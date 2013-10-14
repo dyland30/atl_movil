@@ -7,10 +7,10 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/tipoVisita" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/cmbTipoVisita"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
@@ -18,17 +18,33 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/estadoVisita" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/cmbEstadoVisita"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnFiltrar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/filtrar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/tituloListaVisitas"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ListView>
+   
+    
 
 </LinearLayout>

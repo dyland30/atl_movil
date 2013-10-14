@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ATLMovil</string>
+    <string name="app_name">Calzados Atlas SA</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="login">Usuario</string>
     <string name="password">Clave</string>
     <string name="enter">Ingresar</string>
     <string name="welcome">Bienvenido</string>
-    <string name="title_activity_activar_visita">ActivarVisitaActivity</string>
-
+    <string name="title_activity_activar_visita">Activar Visitas</string>
+    <string name="tipoVisita">Tipo Visita</string>
+    <string name="estadoVisita">Estado Visita</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="tituloListaVisitas">Visitas</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_menu_principal">Calzados Atlas SA</string>
+    <string name="registrarPedido">Registrar Pedido</string>
+    <string name="registrarCobranza">Registrar Cobranza</string>
+    <string name="registrarDeposito">Registrar Deposito</string>
+	<string name="loginFail">Usuario o Clave Incorrectos</string>
 </resources>
