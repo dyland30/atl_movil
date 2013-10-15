@@ -23,6 +23,8 @@ public class ActivarVisitaActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activar_visita);
+		tvDao = new TipoVisitaDAO(this);
+		evDao = new EstadoVisitaDAO(this);
 		tvDao.open();
 		evDao.open();
 		// cargar combos
