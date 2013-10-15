@@ -4,9 +4,11 @@ import com.atl.atlmovil.entidades.Usuario;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MenuPrincipalActivity extends Activity implements OnClickListener{
@@ -23,6 +25,10 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         	lblUsuario.setText("Usuario: "+usr.getLogin() +" "+ usr.getNombres()+" "+ usr.getApellidos());
         	
         }
+        // registrar eventos
+        Button btnActivarVisita = (Button)findViewById(R.id.btnActivarVisitas);
+        btnActivarVisita.setOnClickListener(this);
+        
         
         
     }
@@ -36,6 +42,11 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
+		if(v.getId()==R.id.btnActivarVisitas){
+			Intent activarVisitasIntent = new Intent(MenuPrincipalActivity.this, ActivarVisitaActivity.class);
+			
+			startActivity(activarVisitasIntent);
+			
+		}
 	}
 }

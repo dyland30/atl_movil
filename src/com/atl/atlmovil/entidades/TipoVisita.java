@@ -15,5 +15,10 @@ public String getDescripcionTipoVisita() {
 public void setDescripcionTipoVisita(String descripcionTipoVisita) {
 	this.descripcionTipoVisita = descripcionTipoVisita;
 }
-
+@Override
+public String toString(){
+	return this.descripcionTipoVisita;
+	
 }
+}
+

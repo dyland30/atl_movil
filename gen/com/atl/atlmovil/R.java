@@ -26,12 +26,12 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080010;
+        public static final int btnActivarVisitas=0x7f08000b;
         public static final int btnFiltrar=0x7f080004;
         public static final int btnIngresar=0x7f080009;
-        public static final int button1=0x7f08000b;
-        public static final int button2=0x7f08000c;
-        public static final int button3=0x7f08000d;
-        public static final int button4=0x7f08000e;
+        public static final int btnRegistrarCobranza=0x7f08000d;
+        public static final int btnRegistrarDeposito=0x7f08000e;
+        public static final int btnRegistrarPedido=0x7f08000c;
         public static final int cmbEstadoVisita=0x7f080003;
         public static final int cmbTipoVisita=0x7f080001;
         public static final int lblMensaje=0x7f08000a;

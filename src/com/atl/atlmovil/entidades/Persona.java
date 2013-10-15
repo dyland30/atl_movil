@@ -4,6 +4,7 @@ public class Persona {
 private long codigoPersona;
 private String tipoPersona;
 private long codigoTipoDocumento;
+private String nombrePersona;
 private String documentoPersona;
 private String direccionPersona;
 public long getCodigoPersona() {
@@ -35,6 +36,12 @@ public String getDireccionPersona() {
 }
 public void setDireccionPersona(String direccionPersona) {
 	this.direccionPersona = direccionPersona;
+}
+public String getNombrePersona() {
+	return nombrePersona;
+}
+public void setNombrePersona(String nombrePersona) {
+	this.nombrePersona = nombrePersona;
 }
 
 }

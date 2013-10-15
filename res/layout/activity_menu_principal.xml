@@ -14,25 +14,25 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnActivarVisitas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_activar_visita" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnRegistrarPedido"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/registrarPedido" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnRegistrarCobranza"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/registrarCobranza" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnRegistrarDeposito"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/registrarDeposito" />
