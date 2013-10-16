@@ -21,55 +21,47 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
 			"(id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , login TEXT UNIQUE, " +
-			"clave TEXT, nombres TEXT, apellidos TEXT, dni TEXT);";
+			"clave TEXT, nombres TEXT, apellidos TEXT, dni TEXT) ; ";
 	
 	private static final String C_TB_VISITA = " CREATE TABLE Visita (codigoVisita INTEGER PRIMARY KEY NOT NULL, " +
 			"codigoCliente INTEGER, codigoEmpleado INTEGER, codigoEstadoVisita INTEGER, codigoTipoVIsita INTEGER," +
-			"fechaVisita DATETIME, horaInicioVisita DATETIME, horaFinalVisita DATETIME);";
+			"fechaVisita DATETIME, horaInicioVisita DATETIME, horaFinalVisita DATETIME) ; ";
 	
 	private static final String C_TB_TIPO_VISITA = " CREATE TABLE TipoVisita (codigoTipoVisita INTEGER PRIMARY KEY NOT NULL, " +
-			"descripcionTipoVisita TEXT);";
+			"descripcionTipoVisita TEXT) ; ";
 	
 	private static final String C_TB_ESTADO_VISITA = " CREATE TABLE EstadoVisita (codigoEstadoVisita INTEGER PRIMARY KEY NOT NULL, " +
-			"descripcionEstadoVisita TEXT);";
+			"descripcionEstadoVisita TEXT) ; ";
 	
 	private static final String C_TB_GRUPO = " CREATE TABLE Grupo (codigoGrupo INTEGER PRIMARY KEY NOT NULL, " +
-			"nombreGrupo TEXT, titularGrupo TEXT);";
+			"nombreGrupo TEXT, titularGrupo TEXT) ; ";
 	
 	private static final String C_TB_CLIENTE = " CREATE TABLE Cliente (codigoCliente INTEGER PRIMARY KEY NOT NULL, " +
 			"codigoEmpleado INTEGER, codigoGrupo INTEGER, codigoPersona INTEGER, direccionEntregaCliente TEXT, representanteCliente TEXT, " +
-			"celularCliente TEXT);";
+			"celularCliente TEXT) ; ";
 	
 	private static final String C_TB_EMPLEADO = " CREATE TABLE Empleado (codigoEmpleado INTEGER PRIMARY KEY NOT NULL, " +
-			"codigoPersona INTEGER, areaEmpleado TEXT, cargoEmpleado TEXT, fechaCeseEmpleado DATETIME, fechaIngresoEmpleado DATETIME, jefeEmpleado INTEGER);";
+			"codigoPersona INTEGER, areaEmpleado TEXT, cargoEmpleado TEXT, fechaCeseEmpleado DATETIME, fechaIngresoEmpleado DATETIME, jefeEmpleado INTEGER) ; ";
 	
 	private static final String C_TB_LINEA_CREDITO = " CREATE TABLE LineaCredito (codigoLineaCredito INTEGER PRIMARY KEY NOT NULL, " +
 			"codigoGrupo INTEGER, bloqueoLineaCredito INTEGER, fechaAsignacionLineaCredito DATETIME, fechaVencimientoLineaCredito DATETIME," +
-			"importeComprometidoLineaCredito NUMERIC, importeLineaCredito NUMERIC, importeUtilizadoLineaCredito NUMERIC);";
+			"importeComprometidoLineaCredito NUMERIC, importeLineaCredito NUMERIC, importeUtilizadoLineaCredito NUMERIC) ; ";
 	
 	private static final String C_TB_PERSONA = " CREATE TABLE Persona (codigoPersona INTEGER PRIMARY KEY NOT NULL, " +
-			"codigoTipoDocumento INTEGER, nombrePersona TEXT, direccionPersona TEXT, tipoPersona TEXT);";
+			"codigoTipoDocumento INTEGER, nombrePersona TEXT, direccionPersona TEXT, documentoPersona TEXT, tipoPersona TEXT) ; ";
 	
 	
 	private static final String C_TB_TIPO_DOCUMENTO = " CREATE TABLE TipoDocumento (codigoTipoDocumento INTEGER PRIMARY KEY NOT NULL, " +
-			"nombreTipoDocumento TEXT, siglaTipoDocumento TEXT);";
+			"nombreTipoDocumento TEXT, siglaTipoDocumento TEXT) ; ";
 	
 	
 	private static final String INS_TB_USUARIO = "insert into Usuario (login,clave,nombres,apellidos,dni)  values('demo','demo','demo'," +
 			"'demo','12345678');";
 	
-	private static final String INS_TB_TIPO_VISITA = "insert into TipoVisita(codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial');" +
-													 "insert into TipoVisita(codigoTipoVisita, descripcionTipoVisita) values ('3','Telefónica');";
 	
-	private static final String INS_TB_ESTADO_VISITA = "insert into TipoVisita(codigoEstadoVisita, descripcionEstadoVisita) values ('1','Programada');" +
-													   "insert into TipoVisita(codigoEstadoVisita, descripcionEstadoVisita) values ('2','En Visita'); " +
-													   "insert into TipoVisita(codigoEstadoVisita, descripcionEstadoVisita) values ('3','Atendida');" +
-													   "insert into TipoVisita(codigoEstadoVisita, descripcionEstadoVisita) values ('4','Anulada');";
-
-			
 	
 	private static final String DATABASE_NAME = "atlmovil.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 8;
 
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
 			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO;
@@ -82,9 +74,63 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL(DATABASE_CREATE);
+		//Log.w("info",DATABASE_CREATE);
+		//db.execSQL(DATABASE_CREATE);
+		db.execSQL(C_TB_USUARIO);
+		db.execSQL(C_TB_VISITA);
+		db.execSQL(C_TB_TIPO_VISITA);
+		db.execSQL(C_TB_ESTADO_VISITA);
+		db.execSQL(C_TB_GRUPO);
+		db.execSQL(C_TB_CLIENTE);
+		db.execSQL(C_TB_EMPLEADO);
+		db.execSQL(C_TB_LINEA_CREDITO);
+		db.execSQL(C_TB_PERSONA);
+		db.execSQL(C_TB_TIPO_DOCUMENTO);
+		
+		
+		Log.w("info",DATABASE_CREATE);
 		db.execSQL(INS_TB_USUARIO);
+		//Log.w("info",INS_TB_TIPO_VISITA);
+		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial'); ");
+		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telefónica');");
+		
+		//Log.w("info",INS_TB_ESTADO_VISITA);
+		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('1','Programada'); ");
+		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('2','En Visita'); ");
+		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('3','Atendida') ; ");
+		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('4','Anulada'); ");
+		
+		//tipos de documento
+		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('1','Documento Nacional de Identidad','DNI'); ");
+		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('2','Pasaporte','PASAPORTE'); ");
+		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('3','Carnet de Extranjeria','CE'); ");
 
+		//Personas
+		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('1','1','Ramirez Lesly','Tomas Marsano 457 - SURCO', '47896574', 'NATURAL'); ");
+		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('2','1','Marco Flores','Universitaria 1474 - SAN MIGUEL','12359874', 'NATURAL'); ");
+		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('3','1','Marlon Guadalupe','Universitaria 1111 - SAN MIGUEL','237896587', 'NATURAL'); ");
+		//Empleados
+		db.execSQL("insert into Empleado (codigoEmpleado,codigoPersona, areaEmpleado,cargoEmpleado, fechaCeseEmpleado, fechaIngresoEmpleado, jefeEmpleado) values ('1','3','LIMA-CENTRO','VENDEDOR','2100-12-31 00:00', '2005-01-01 00:00','1'); ");
+		
+		// Grupos de Clientes
+		db.execSQL("insert into Grupo (codigoGrupo, nombreGrupo, titularGrupo) values ('1','Grupo A', 'Ramirez Lesly'); ");
+		
+		//Cliente 
+		db.execSQL("insert into Cliente (codigoCliente, codigoGrupo, codigoEmpleado, codigoPersona, direccionEntregaCliente, representanteCliente) " +
+				"values ('1','1', '1','1','Tomas Marsano 457 - SURCO', 'Ramirez Lesly'); ");
+		
+		db.execSQL("insert into Cliente (codigoCliente, codigoGrupo, codigoEmpleado, codigoPersona, direccionEntregaCliente, representanteCliente) " +
+				"values ('2','1', '1','2','Universitaria 1474 - SAN MIGUEL', 'Marco Flores'); ");
+		
+		db.execSQL("insert into Visita (codigoVisita,codigoCliente, codigoEmpleado, codigoEstadoVisita,codigoTipoVisita, fechaVisita, horaInicioVIsita, horaFinalVisita) " +
+				"values ('1','1','1','1','1','2013-10-16 00:00', '2013-10-16 10:00', '2013-10-16 11:00'); ");
+		db.execSQL("insert into Visita (codigoVisita,codigoCliente, codigoEmpleado, codigoEstadoVisita,codigoTipoVisita, fechaVisita, horaInicioVIsita, horaFinalVisita) " +
+				"values ('2','2','1','1','1','2013-10-16 00:00', '2013-10-16 13:00', '2013-10-16 14:00'); ");
+		db.execSQL("insert into Visita (codigoVisita,codigoCliente, codigoEmpleado, codigoEstadoVisita,codigoTipoVisita, fechaVisita, horaInicioVIsita, horaFinalVisita) " +
+				"values ('3','1','1','1','1','2013-10-17 00:00', '2013-10-17 13:00', '2013-10-16 14:00'); ");
+		
+		
+		
 	}
 
 	@Override
@@ -104,6 +150,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_LINEA_CREDITO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_PERSONA);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_TIPO_DOCUMENTO);
+		
 		onCreate(db);
 
 	}
