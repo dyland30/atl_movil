@@ -4,47 +4,51 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/txtNombreCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tipoVisita" />
-
-    <Spinner
-        android:id="@+id/cmbTipoVisita"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
         android:id="@+id/txtVisitaPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/estadoVisita" />
+        android:text="@string/blanco" />
 
-    <Spinner
-        android:id="@+id/cmbEstadoVisita"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txtCLientePedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
 
     <Button
-        android:id="@+id/btnFiltrar"
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnNuevo" />
+
+    <EditText
+        android:id="@+id/txtFiltrarPedidos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nroPedido"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnFiltrarPedidos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/filtrar" />
 
     <TextView
-        android:id="@+id/txtCodigoVisita"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/tituloListaVisitas"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/pedidos" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content" >
     </ListView>
-   
-    
 
 </LinearLayout>

@@ -18,5 +18,11 @@
     <string name="registrarPedido">Registrar Pedido</string>
     <string name="registrarCobranza">Registrar Cobranza</string>
     <string name="registrarDeposito">Registrar Deposito</string>
-	<string name="loginFail">Usuario o Clave Incorrectos</string>
+    <string name="loginFail">Usuario o Clave Incorrectos</string>
+    <string name="title_activity_registrar_pedidos">RegistrarPedidos</string>
+    <string name="btnNuevo">Nuevo</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="nroPedido">Numero de Pedido ...</string>
+    <string name="blanco"></string>
+
 </resources>

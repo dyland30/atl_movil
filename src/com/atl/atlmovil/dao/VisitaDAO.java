@@ -3,6 +3,7 @@ package com.atl.atlmovil.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.atl.atlmovil.entidades.*;
@@ -44,6 +45,21 @@ public class VisitaDAO {
 		 return ls;
 	 }
 	 
+	 public List<Visita> obtenerVisitasEstadoTipo(long codTipoVisita, long codEstadoVisita){
+		 List<Visita> ls = new ArrayList<Visita>();
+		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+codEstadoVisita+"' and codigoTipoVisita = '"+codTipoVisita+"'",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Visita vi = cursorToEnt(cursor);
+			 ls.add(vi);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+		 
+		 
+	 }
+	 
 	 public void eliminar(Visita vi){
 		 long id = vi.getCodigoVisita();
 		 database.delete(Visita.class.getSimpleName(),"codigoVisita = "+id,null);
@@ -71,7 +87,7 @@ public class VisitaDAO {
 	 }
 	 
 	 public Visita actualizar(Visita vi){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Visita viNew = null;
 		 ContentValues values = new ContentValues();
 		 values.put("codigoEmpleado", vi.getCodigoEmpleado());
@@ -89,6 +105,22 @@ public class VisitaDAO {
 		 return viNew;
 	 }
 	 
+	 public Boolean existeVisitaActiva(){
+		 Visita vi = null;
+		 Boolean existe=false;
+		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"'",null,null,null,null);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 vi = cursorToEnt(cursor); 
+		 }
+		 
+		 if(vi!=null){
+			existe = true; 
+		 }
+		 return existe;
+		 
+	 }
+	 
 	 public Visita buscarPorID(long id){
 		 Visita vi = null;
 		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoVisita = "+id,null,null,null,null);
@@ -101,7 +133,7 @@ public class VisitaDAO {
 	
 	 
 	 private Visita cursorToEnt(Cursor cursor) {
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 
 		    Visita ent = null;
 		    if(cursor!=null ){
@@ -115,19 +147,20 @@ public class VisitaDAO {
 					ent.setFechaVisita(dateFormat.parse(cursor.getString(5)));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					ent.setFechaVisita(null);
+					ent.setFechaVisita(new Date(1900,01,01));
+					
 				}
 		    	try {
 					ent.setHoraInicioVisita(dateFormat.parse(cursor.getString(6)));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					ent.setHoraInicioVisita(null);
+					ent.setHoraInicioVisita(new Date(1900,01,01));
 				}
 		    	try {
-					ent.setHoraFinalVisita(dateFormat.parse(cursor.getString(6)));
+					ent.setHoraFinalVisita(dateFormat.parse(cursor.getString(7)));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
-					ent.setHoraFinalVisita(null);
+					ent.setHoraFinalVisita(new Date(1900,01,01));
 				}
 		    	
 		    }

@@ -9,7 +9,7 @@
         android:targetSdkVersion="7" />
 
     <application
-        android:name=".AtlApp" 
+        android:name="com.atl.atlmovil.AtlApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -28,13 +28,12 @@
             android:label="@string/title_activity_activar_visita" >
         </activity>
         <activity
-            android:name=".MenuPrincipalActivity"
+            android:name="com.atl.atlmovil.MenuPrincipalActivity"
             android:label="@string/title_activity_menu_principal" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.RegistrarPedidos"
+            android:label="@string/title_activity_registrar_pedidos" >
         </activity>
     </application>
 

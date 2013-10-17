@@ -1,6 +1,7 @@
 package com.atl.atlmovil.adapters;
 
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.atl.atlmovil.dao.ClienteDAO;
@@ -41,18 +42,22 @@ public class VisitaAdapter extends BaseAdapter{
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		return data.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
+		
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		
 		View vi = convertView;
 		if(convertView==null)
 			vi = inflater.inflate(R.layout.visita_row, null);
@@ -102,9 +107,9 @@ public class VisitaAdapter extends BaseAdapter{
 		
 		txtCodigoVisita.setText(visita.getCodigoVisita()+"");
 		if(visita.getFechaVisita()!=null){
-			txtFechaVisita.setText(visita.getFechaVisita().toLocaleString());
+			txtFechaVisita.setText(dateFormat.format(visita.getFechaVisita()));
 		} else{
-			txtFechaVisita.setText("2012-01-01");
+			txtFechaVisita.setText("01/01/1900");
 			
 		}
 		

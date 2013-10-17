@@ -17,6 +17,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_LINEA_CREDITO = "LineaCredito";
 	public static final String TB_PERSONA = "Persona";
 	public static final String TB_TIPO_DOCUMENTO = "TipoDocumento";
+	//-----------------------------------------------------------------
+	
+	public static final String TB_PRODUCTO = "Producto";
+	public static final String TB_TALLA = "Talla";
+	public static final String TB_PEDIDO = "Pedido";
+	public static final String TB_FORMA_PAGO = "FormaPago";
+	public static final String TB_DETALLE_PEDIDO = "DetallePedido";
+	public static final String TB_TALLA_PEDIDO = "TallaPedido";
+	public static final String TB_PRODUCTO_FORMA_PAGO = "ProductoFormaPago";
+	//------------------------------------------------------------------
+	
 	
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -59,12 +70,33 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			"'demo','12345678');";
 	
 	
+	private static final String C_TB_PRODUCTO = "CREATE TABLE Producto (codigoProducto INTEGER PRIMARY KEY NOT NULL, " +
+			"calidadProducto TEXT, colorProducto TEXT, descripcionProducto TEXT, materialProducto TEXT, precioPRoducto NUMERIC, sexoProducto TEXT) ;";
+	
+	private static final String C_TB_TALLA = "CREATE TABLE Talla (codigoProducto INTEGER  NOT NULL, numeroTalla INTEGER NOT NULL," +
+			"stockDisponibleTalla INTEGER, PRIMARY KEY(codigoProducto,numeroTalla))  ;";
+	
+	private static final String C_TB_PEDIDO = "CREATE TABLE Pedido (id INTEGER PRIMARY KEY NOT NULL, codigoPedido INTEGER, codigoVisita INTEGER, " +
+			"codigoFormaPago INTEGER, aceptaRetencionPedido INTEGER, direccionDeEnvio TEXT, empresaTransporte TEXT, estadoPedido TEXT, estaRetenidoPedido INTEGER," +
+			"estaSincronizado INTEGER, fechaIngresoPedido DATETIME, importePedido NUMERIC, instruccionesEspeciales TEXT, lineaReservadaPedido NUMERIC)  ;";
+	
+	private static final String C_TB_FORMA_PAGO  = " CREATE TABLE FormaPago (codigoFormaPago INTEGER PRIMARY KEY NOT NULL, " +
+			"descripcionFormaPago TEXT) ; ";
+	private static final String C_TB_DETALLE_PEDIDO  = " CREATE TABLE DetallePedido (codigoPedido INTEGER NOT NULL, " +
+			"codigoProducto INTEGER NOT NULL, precioUnitario NUMERIC, PRIMARY KEY(codigoPedido, codigoProducto)) ; ";
+
+	private static final String C_TB_TALLA_PEDIDO = " CREATE TABLE TallaPedido (codigoPedido INTEGER NOT NULL, " +
+			"codigoProducto INTEGER NOT NULL, numeroTalla INTEGER NOT NULL, cantidad INTEGER, PRIMARY KEY(codigoPedido,codigoProducto,numeroTalla)) ; ";
+
+	
+	private static final String C_TB_PRODUCTO_FORMA_PAGO  = " CREATE TABLE ProductoFormaPago (codigoFormaPago INTEGER NOT NULL, " +
+			"codigoProducto INTEGER, precio NUMERIC, PRIMARY KEY(codigoFormaPago,codigoProducto)) ; ";
 	
 	private static final String DATABASE_NAME = "atlmovil.db";
-	private static final int DATABASE_VERSION = 8;
+	private static final int DATABASE_VERSION = 9;
 
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
-			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO;
+			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO ;
 
 	public MySQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -86,6 +118,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(C_TB_LINEA_CREDITO);
 		db.execSQL(C_TB_PERSONA);
 		db.execSQL(C_TB_TIPO_DOCUMENTO);
+		
+		db.execSQL(C_TB_PRODUCTO);
+		db.execSQL(C_TB_TALLA);
+		db.execSQL(C_TB_PEDIDO);
+		db.execSQL(C_TB_FORMA_PAGO);
+		db.execSQL(C_TB_DETALLE_PEDIDO);
+		db.execSQL(C_TB_TALLA_PEDIDO);
+		db.execSQL(C_TB_PRODUCTO_FORMA_PAGO);
+		
+		
 		
 		
 		Log.w("info",DATABASE_CREATE);
@@ -150,6 +192,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_LINEA_CREDITO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_PERSONA);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_TIPO_DOCUMENTO);
+		
+		db.execSQL("DROP TABLE IF EXISTS " + TB_PRODUCTO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_TALLA);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_PEDIDO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_FORMA_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_DETALLE_PEDIDO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_TALLA_PEDIDO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_PRODUCTO_FORMA_PAGO);
+		
 		
 		onCreate(db);
 

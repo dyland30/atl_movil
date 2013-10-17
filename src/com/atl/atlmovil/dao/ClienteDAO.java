@@ -95,10 +95,11 @@ public class ClienteDAO {
 		    if(cursor!=null ){
 		    	ent = new Cliente();
 		    	ent.setCodigoCliente(cursor.getLong(0));
-		    	ent.setCodigoGrupo(cursor.getLong(1));
-		    	ent.setCodigoPersona(cursor.getLong(2));
-		    	ent.setDireccionEntregaCliente(cursor.getString(3));
-		    	ent.setRepresentanteCliente(cursor.getString(4));
+		    	ent.setCodigoEmpleado(cursor.getLong(1));
+		    	ent.setCodigoGrupo(cursor.getLong(2));
+		    	ent.setCodigoPersona(cursor.getLong(3));
+		    	ent.setDireccionEntregaCliente(cursor.getString(4));
+		    	ent.setRepresentanteCliente(cursor.getString(5));
 		    	
 		    }
 		    
