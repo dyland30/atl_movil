@@ -76,17 +76,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	private static final String C_TB_TALLA = "CREATE TABLE Talla (codigoProducto INTEGER  NOT NULL, numeroTalla INTEGER NOT NULL," +
 			"stockDisponibleTalla INTEGER, PRIMARY KEY(codigoProducto,numeroTalla))  ;";
 	
-	private static final String C_TB_PEDIDO = "CREATE TABLE Pedido (id INTEGER PRIMARY KEY NOT NULL, codigoPedido INTEGER, codigoVisita INTEGER, " +
+	private static final String C_TB_PEDIDO = "CREATE TABLE Pedido (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, codigoPedido INTEGER, codigoVisita INTEGER, " +
 			"codigoFormaPago INTEGER, aceptaRetencionPedido INTEGER, direccionDeEnvio TEXT, empresaTransporte TEXT, estadoPedido TEXT, estaRetenidoPedido INTEGER," +
 			"estaSincronizado INTEGER, fechaIngresoPedido DATETIME, importePedido NUMERIC, instruccionesEspeciales TEXT, lineaReservadaPedido NUMERIC)  ;";
 	
 	private static final String C_TB_FORMA_PAGO  = " CREATE TABLE FormaPago (codigoFormaPago INTEGER PRIMARY KEY NOT NULL, " +
 			"descripcionFormaPago TEXT) ; ";
-	private static final String C_TB_DETALLE_PEDIDO  = " CREATE TABLE DetallePedido (codigoPedido INTEGER NOT NULL, " +
-			"codigoProducto INTEGER NOT NULL, precioUnitario NUMERIC, PRIMARY KEY(codigoPedido, codigoProducto)) ; ";
+	private static final String C_TB_DETALLE_PEDIDO  = " CREATE TABLE DetallePedido (idPedido INTEGER NOT NULL, " +
+			"codigoProducto INTEGER NOT NULL, precioUnitario NUMERIC, PRIMARY KEY(idPedido, codigoProducto)) ; ";
 
-	private static final String C_TB_TALLA_PEDIDO = " CREATE TABLE TallaPedido (codigoPedido INTEGER NOT NULL, " +
-			"codigoProducto INTEGER NOT NULL, numeroTalla INTEGER NOT NULL, cantidad INTEGER, PRIMARY KEY(codigoPedido,codigoProducto,numeroTalla)) ; ";
+	private static final String C_TB_TALLA_PEDIDO = " CREATE TABLE TallaPedido (idPedido INTEGER NOT NULL, " +
+			"codigoProducto INTEGER NOT NULL, numeroTalla INTEGER NOT NULL, cantidad INTEGER, PRIMARY KEY(idPedido,codigoProducto,numeroTalla)) ; ";
 
 	
 	private static final String C_TB_PRODUCTO_FORMA_PAGO  = " CREATE TABLE ProductoFormaPago (codigoFormaPago INTEGER NOT NULL, " +
@@ -134,7 +134,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(INS_TB_USUARIO);
 		//Log.w("info",INS_TB_TIPO_VISITA);
 		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial'); ");
-		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telefónica');");
+		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telefï¿½nica');");
 		
 		//Log.w("info",INS_TB_ESTADO_VISITA);
 		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('1','Programada'); ");

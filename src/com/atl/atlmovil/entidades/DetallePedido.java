@@ -1,14 +1,14 @@
 package com.atl.atlmovil.entidades;
 
 public class DetallePedido {
-	private long codigoPedido;
+	private long idPedido;
 	private long codigoProducto;
 	private double precioUnitario;
-	public long getCodigoPedido() {
-		return codigoPedido;
+	public long getIdPedido() {
+		return idPedido;
 	}
-	public void setCodigoPedido(long codigoPedido) {
-		this.codigoPedido = codigoPedido;
+	public void setIdPedido(long idPedido) {
+		this.idPedido = idPedido;
 	}
 	public long getCodigoProducto() {
 		return codigoProducto;

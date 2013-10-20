@@ -2,7 +2,7 @@ package com.atl.atlmovil.entidades;
 
 public class TallaPedido {
 	private long codigoProducto;
-	private long codigoPedido;
+	private long idPedido;
 	private int numeroTalla;
 	private int cantidad;
 	public long getCodigoProducto() {
@@ -11,11 +11,11 @@ public class TallaPedido {
 	public void setCodigoProducto(long codigoProducto) {
 		this.codigoProducto = codigoProducto;
 	}
-	public long getCodigoPedido() {
-		return codigoPedido;
+	public long getIdPedido() {
+		return idPedido;
 	}
-	public void setCodigoPedido(long codigoPedido) {
-		this.codigoPedido = codigoPedido;
+	public void setIdPedido(long idPedido) {
+		this.idPedido = idPedido;
 	}
 	public int getNumeroTalla() {
 		return numeroTalla;
