@@ -35,6 +35,10 @@
             android:name="com.atl.atlmovil.RegistrarPedidos"
             android:label="@string/title_activity_registrar_pedidos" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.NuevoPedido"
+            android:label="@string/title_activity_nuevo_pedido" >
+        </activity>
     </application>
 
 </manifest>

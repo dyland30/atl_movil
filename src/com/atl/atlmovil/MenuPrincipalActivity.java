@@ -1,9 +1,12 @@
 package com.atl.atlmovil;
 
+import com.atl.atlmovil.dao.VisitaDAO;
 import com.atl.atlmovil.entidades.Usuario;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -28,6 +31,8 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         // registrar eventos
         Button btnActivarVisita = (Button)findViewById(R.id.btnActivarVisitas);
         btnActivarVisita.setOnClickListener(this);
+        Button btnRegistrarPedido = (Button)findViewById(R.id.btnRegistrarPedido);
+        btnRegistrarPedido.setOnClickListener(this);
         
         
         
@@ -48,5 +53,38 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 			startActivity(activarVisitasIntent);
 			
 		}
+		
+		if(v.getId()==R.id.btnRegistrarPedido){
+			// validar que exista una visita activa
+			boolean visitaActiva = false;
+			VisitaDAO viDao = new VisitaDAO(this);
+			viDao.open();
+			visitaActiva = viDao.existeVisitaActiva();
+			viDao.close();
+			if(visitaActiva){
+				Intent registrarPedidoIntent = new Intent(MenuPrincipalActivity.this, RegistrarPedidos.class);
+				startActivity(registrarPedidoIntent);
+				
+			} else{
+				
+				AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuPrincipalActivity.this);
+				alertDialog.setTitle("NO EXISTE VISITA ACTIVA");
+				alertDialog.setMessage("Para registrar un pedido debe tener una visita activa");
+				alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+				alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.cancel();
+					}
+				});
+				alertDialog.show();
+				
+			}
+			
+			
+		}
+		
 	}
 }

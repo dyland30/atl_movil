@@ -24,5 +24,15 @@
     <string name="pedidos">Pedidos</string>
     <string name="nroPedido">Numero de Pedido ...</string>
     <string name="blanco"></string>
+    <string name="title_activity_nuevo_pedido">NuevoPedido</string>
+    <string name="formaPago">Forma de Pago</string>
+    <string name="direccionEnvio">Dirección de Envío</string>
+    <string name="EmpresaTransporte">Empresa de Transporte</string>
+    <string name="Instrucciones">Instrucciones</string>
+    <string name="aceptaRetenido">¿Acepta que el pedido ingrese retenido?</string>
+    <string name="estado">Estado</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="detalles">Ver Detalles</string>
 
 </resources>

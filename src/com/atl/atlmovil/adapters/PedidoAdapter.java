@@ -1,18 +1,8 @@
 package com.atl.atlmovil.adapters;
 
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import com.atl.atlmovil.dao.ClienteDAO;
-import com.atl.atlmovil.dao.EstadoVisitaDAO;
-import com.atl.atlmovil.dao.PersonaDAO;
-import com.atl.atlmovil.entidades.Cliente;
-import com.atl.atlmovil.entidades.EstadoVisita;
-import com.atl.atlmovil.entidades.Persona;
-import com.atl.atlmovil.entidades.Visita;
-
-import com.atl.atlmovil.R;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -22,12 +12,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class VisitaAdapter extends BaseAdapter{
+import com.atl.atlmovi.util.Cadena;
+import com.atl.atlmovil.R;
+import com.atl.atlmovil.dao.ClienteDAO;
+import com.atl.atlmovil.dao.PersonaDAO;
+import com.atl.atlmovil.dao.VisitaDAO;
+import com.atl.atlmovil.entidades.Cliente;
+import com.atl.atlmovil.entidades.Persona;
+import com.atl.atlmovil.entidades.Pedido;
+import com.atl.atlmovil.entidades.Visita;
+
+public class PedidoAdapter extends BaseAdapter{
 	private Activity activity;
-	private List<Visita> data;
+	private List<Pedido> data;
 	private static LayoutInflater inflater=null;
 	
-	public VisitaAdapter(Activity a, List<Visita> d){
+	public PedidoAdapter(Activity a, List<Pedido> d){
 		activity = a;
 		data = d;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,37 +60,39 @@ public class VisitaAdapter extends BaseAdapter{
 		
 		View vi = convertView;
 		if(convertView==null)
-			vi = inflater.inflate(R.layout.visita_row, null);
+			vi = inflater.inflate(R.layout.pedido_row, null);
 		
 		TextView txtCliente = (TextView)vi.findViewById(R.id.lblClientePedido);
-		TextView txtCodigoVisita = (TextView)vi.findViewById(R.id.txtCodigoVisita);
-		TextView txtFechaVisita = (TextView)vi.findViewById(R.id.txtFechaVisita);
-		TextView txtEstadoVisita = (TextView)vi.findViewById(R.id.txtEstadoVisita);
+		TextView txtCodigoPedido = (TextView)vi.findViewById(R.id.lblNumeroPedido);
+		TextView txtFechaPedido = (TextView)vi.findViewById(R.id.lblFechaPedido);
+		TextView txtEstadoPedido = (TextView)vi.findViewById(R.id.lblEstadoPedido);
+		TextView txtImportePedido = (TextView)vi.findViewById(R.id.lblImportePedido);
+		
 		
 		//establecer el valor de los campos
-		Visita visita = data.get(position);
-		Log.w("info", visita.getCodigoVisita()+"");
+		Pedido ped = data.get(position);
+		Log.w("info", ped.getId()+"");
 		// obtener Cliente
 		Cliente cli = null;
-		EstadoVisita evi = null;
+		Visita visita = null;
+		
 		Persona per = null;
-		if(visita.getCodigoCliente()>0){
+		
+		if(ped.getCodigoVisita()>0){
+			VisitaDAO viDao = new VisitaDAO(activity);
+			viDao.open();
+			visita = viDao.buscarPorID(ped.getCodigoVisita());
+			viDao.close();
+		}
+		
+		if(visita!=null){
 			ClienteDAO cliDao = new ClienteDAO(activity);
 			cliDao.open();
 			cli = cliDao.buscarPorID(visita.getCodigoCliente());
 			cliDao.close();
-			
 		}
-		Log.w("info", "cli "+cli.getCodigoCliente()+"");
-		// obtener estado de Visita
-		if(visita.getCodigoEstadoVisita()>0){
-			EstadoVisitaDAO eviDao = new EstadoVisitaDAO(activity);
-			eviDao.open();
-			evi = eviDao.buscarPorID(visita.getCodigoEstadoVisita());
-			eviDao.close();
-		}
-		Log.w("info", "evi "+evi.getCodigoEstadoVisita()+"");
-		// obtener Persona
+		
+				
 		if(cli!=null){
 			PersonaDAO perDao = new PersonaDAO(activity);
 			perDao.open();
@@ -102,18 +104,18 @@ public class VisitaAdapter extends BaseAdapter{
 		if(per!=null)
 			txtCliente.setText(per.getDocumentoPersona()+" "+per.getNombrePersona());
 		
-		if(evi!=null)
-			txtEstadoVisita.setText(evi.getDescripcionEstadoVisita());
+		txtEstadoPedido.setText(ped.getEstadoPedido());
+		txtCodigoPedido.setText(Cadena.formatearNumero("0000000000", (double)ped.getId()));
 		
-		txtCodigoVisita.setText(visita.getCodigoVisita()+"");
-		if(visita.getFechaVisita()!=null){
-			txtFechaVisita.setText(dateFormat.format(visita.getFechaVisita()));
+		if(ped.getFechaIngresoPedido()!=null){
+			txtFechaPedido.setText(dateFormat.format(ped.getFechaIngresoPedido()));
 		} else{
-			txtFechaVisita.setText("01/01/1900");
+			txtFechaPedido.setText("01/01/1900");
 			
 		}
+		txtImportePedido.setText(Cadena.formatearNumero("############.00", ped.getImportePedido()));
+		
 		
 		return vi;
 	}
-
 }

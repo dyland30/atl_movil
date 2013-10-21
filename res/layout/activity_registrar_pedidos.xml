@@ -16,7 +16,7 @@
         android:text="@string/blanco" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnNuevoPedido"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/btnNuevo" />
@@ -39,7 +39,7 @@
         android:text="@string/filtrar" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/lblNumeroPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

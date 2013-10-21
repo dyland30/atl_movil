@@ -26,8 +26,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_DETALLE_PEDIDO = "DetallePedido";
 	public static final String TB_TALLA_PEDIDO = "TallaPedido";
 	public static final String TB_PRODUCTO_FORMA_PAGO = "ProductoFormaPago";
+	public static final String TB_EMPRESA_CARGA = "EmpresaCarga";
 	//------------------------------------------------------------------
-	
+	private static final int DATABASE_VERSION = 10;
 	
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -78,7 +79,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String C_TB_PEDIDO = "CREATE TABLE Pedido (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, codigoPedido INTEGER, codigoVisita INTEGER, " +
 			"codigoFormaPago INTEGER, aceptaRetencionPedido INTEGER, direccionDeEnvio TEXT, empresaTransporte TEXT, estadoPedido TEXT, estaRetenidoPedido INTEGER," +
-			"estaSincronizado INTEGER, fechaIngresoPedido DATETIME, importePedido NUMERIC, instruccionesEspeciales TEXT, lineaReservadaPedido NUMERIC)  ;";
+			"estaSincronizado INTEGER, fechaIngresoPedido DATETIME, importePedido NUMERIC, instruccionesEspeciales TEXT, lineaReservadaPedido NUMERIC,codigoEmpresaCarga INTEGER)  ;";
 	
 	private static final String C_TB_FORMA_PAGO  = " CREATE TABLE FormaPago (codigoFormaPago INTEGER PRIMARY KEY NOT NULL, " +
 			"descripcionFormaPago TEXT) ; ";
@@ -92,11 +93,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	private static final String C_TB_PRODUCTO_FORMA_PAGO  = " CREATE TABLE ProductoFormaPago (codigoFormaPago INTEGER NOT NULL, " +
 			"codigoProducto INTEGER, precio NUMERIC, PRIMARY KEY(codigoFormaPago,codigoProducto)) ; ";
 	
+	private static final String C_TB_EMPRESA_CARGA = " CREATE TABLE EmpresaCarga (codigoEmpresaCarga INTEGER PRIMARY KEY NOT NULL, " +
+			"nombreEmpresaCarga TEXT, direccionEmpresaCarga TEXT, horarioEmpresaCarga TEXT, rucEmpresaCarga TEXT ) ; ";;
 	private static final String DATABASE_NAME = "atlmovil.db";
-	private static final int DATABASE_VERSION = 9;
+	
 
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
-			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO ;
+			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO+C_TB_EMPRESA_CARGA ;
 
 	public MySQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -126,7 +129,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(C_TB_DETALLE_PEDIDO);
 		db.execSQL(C_TB_TALLA_PEDIDO);
 		db.execSQL(C_TB_PRODUCTO_FORMA_PAGO);
-		
+		db.execSQL(C_TB_EMPRESA_CARGA);
 		
 		
 		
@@ -171,8 +174,40 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Visita (codigoVisita,codigoCliente, codigoEmpleado, codigoEstadoVisita,codigoTipoVisita, fechaVisita, horaInicioVIsita, horaFinalVisita) " +
 				"values ('3','1','1','1','1','2013-10-17 00:00', '2013-10-17 13:00', '2013-10-16 14:00'); ");
 		
+		// forma de pago
+		
+		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('1','Factura 90'); ");
+		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('2','Contado'); ");
+		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('3','Adelantado'); ");
 		
 		
+		// empresa de carga
+		db.execSQL("insert into EmpresaCarga (codigoEmpresaCarga, nombreEmpresaCarga, direccionEmpresaCarga, horarioEmpresaCarga, rucEmpresaCarga)" +
+				" values ('1','Transportes Marin SRL','Bausate y Mesa 467, La Victoria', 'Lu Do 24 hrs', '10478965780'); ");
+		db.execSQL("insert into EmpresaCarga (codigoEmpresaCarga, nombreEmpresaCarga, direccionEmpresaCarga, horarioEmpresaCarga, rucEmpresaCarga)" +
+				" values ('2','Transportes Martinez SRL','Alfredo Mendiola 1247, Los Olivos', 'Lu Do 24 hrs', '25478965780'); ");
+		// Pedidos
+		// codigo de pedido es 0 porque no esta asignado por el sistema central
+		db.execSQL("insert into Pedido (codigoPedido, codigoVisita , " +
+			"codigoFormaPago, aceptaRetencionPedido, direccionDeEnvio, empresaTransporte, estadoPedido, estaRetenidoPedido," +
+			"estaSincronizado, fechaIngresoPedido, importePedido, instruccionesEspeciales, lineaReservadaPedido,codigoEmpresaCarga) " +
+			"values ('0','1','1','1','Tomas Marsano 457 - SURCO','Martinez','R','0','0','2013-10-16 10:00','5200','Ref: ovalo higuereta','0','2'); ");
+		
+		db.execSQL("insert into Pedido (codigoPedido, codigoVisita , " +
+				"codigoFormaPago, aceptaRetencionPedido, direccionDeEnvio, empresaTransporte, estadoPedido, estaRetenidoPedido," +
+				"estaSincronizado, fechaIngresoPedido, importePedido, instruccionesEspeciales, lineaReservadaPedido,codigoEmpresaCarga) " +
+				"values ('0','1','1','1','Tomas Marsano 457 - SURCO','Martinez','R','0','0','2013-10-18 10:00','4700','Ref: ovalo higuereta','0','2'); ");
+		
+		db.execSQL("insert into Pedido (codigoPedido, codigoVisita , " +
+				"codigoFormaPago, aceptaRetencionPedido, direccionDeEnvio, empresaTransporte, estadoPedido, estaRetenidoPedido," +
+				"estaSincronizado, fechaIngresoPedido, importePedido, instruccionesEspeciales, lineaReservadaPedido,codigoEmpresaCarga) " +
+				"values ('0','1','1','1','Tomas Marsano 457 - SURCO','Martinez','R','0','0','2013-10-20 10:00','7000','Ref: ovalo higuereta','0','2'); ");
+		
+		// Productos
+		
+		// Producto talla
+		
+		// Detalles de Pedidos
 	}
 
 	@Override
@@ -200,6 +235,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_DETALLE_PEDIDO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_TALLA_PEDIDO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_PRODUCTO_FORMA_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_EMPRESA_CARGA);
 		
 		
 		onCreate(db);

@@ -16,4 +16,10 @@ public class FormaPago {
 		this.descripcionFormaPago = descripcionFormaPago;
 	}
 	
+	@Override
+	public String toString(){
+		return this.descripcionFormaPago;
+		
+	}
+	
 }

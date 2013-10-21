@@ -1,0 +1,153 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <TextView
+        android:id="@+id/lblNumeroNuevoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblNroVisitaNuevoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblClienteNuevoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/formaPago" />
+
+    <Spinner
+        android:id="@+id/cmbFormaPago"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/direccionEnvio" />
+
+    <EditText
+        android:id="@+id/txtDireccionEnvioPedido"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/EmpresaTransporte" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/txtEmpresaTransportePedido"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.96"
+            android:ems="10"
+            android:hint="@string/EmpresaTransporte"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnBuscarEmpresaTransporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blanco"
+            android:drawableRight="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Instrucciones" />
+
+    <EditText
+        android:id="@+id/txtInstruccionesPedido"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <CheckBox
+        android:id="@+id/chbAceptaRetencion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aceptaRetenido" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/estado" />
+
+    <Spinner
+        android:id="@+id/cmbEstadoPedido"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        
+        <Button
+        android:id="@+id/btnCancelarPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" 
+         android:drawableRight="@android:drawable/ic_menu_delete" 
+         android:gravity="center_horizontal"/>
+
+        <Button
+        android:id="@+id/btnGuardarPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:drawableRight="@android:drawable/ic_menu_save"  
+        android:gravity="center_horizontal"/>
+    </LinearLayout>
+    
+    
+    <Button
+        android:id="@+id/btnDetallePedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detalles" 
+        android:drawableRight="@android:drawable/ic_menu_add" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    
+
+</LinearLayout>

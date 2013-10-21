@@ -23,7 +23,7 @@ public class PedidoDAO {
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = { "id","codigoPedido","codigoFormaPago","codigoVisita","aceptaRetencionPedido","direccionDeEnvio",
 			"empresaTransporte","estadoPedido","estaRetenidoPedido","estaSincronizado","fechaIngresoPedido","importePedido",
-			"instruccionesEspeciales","lineaReservadaPedido"};
+			"instruccionesEspeciales","lineaReservadaPedido", "codigoEmpresaCarga"};
 
 	public PedidoDAO(Context context){
 		dbHelper = new MySQLiteHelper(context);
@@ -56,16 +56,16 @@ public class PedidoDAO {
 		 
 	 }
 	 
-	 public Pedido crear(long id, long codigoPedido, long codigoFormaPago, long codigoVisita, Boolean aceptaRetencionPedido, String direccionDeEnvio,
+	 public Pedido crear(long codigoPedido, long codigoFormaPago, long codigoVisita, Boolean aceptaRetencionPedido, String direccionDeEnvio,
 			 String empresaTransporte, String estadoPedido, Boolean estaRetenidoPedido, Boolean estaSincronizado,String fechaIngresoPedido, Double importePedido,
-			 String instruccionesEspeciales, Double lineaReservadaPedido){
+			 String instruccionesEspeciales, Double lineaReservadaPedido, long codigoEmpresaCarga){
 		 Pedido ent = null;
 		 ContentValues values = new ContentValues();
-		 values.put("id", id);
 		 values.put("codigoPedido", codigoPedido);
 		 values.put("codigoFormaPago", codigoFormaPago);
 		 values.put("codigoVisita", codigoVisita);
 		 values.put("aceptaRetencionPedido", aceptaRetencionPedido);
+		 values.put("direccionDeEnvio", direccionDeEnvio);
 		 values.put("empresaTransporte", empresaTransporte);
 		 values.put("estadoPedido", estadoPedido);
 		 values.put("estaRetenidoPedido", estaRetenidoPedido);
@@ -74,6 +74,31 @@ public class PedidoDAO {
 		 values.put("importePedido", importePedido);
 		 values.put("instruccionesEspeciales", instruccionesEspeciales);
 		 values.put("lineaReservadaPedido", lineaReservadaPedido);
+		 values.put("codigoEmpresaCarga", codigoEmpresaCarga);
+		 long insertId = database.insert(Pedido.class.getSimpleName(), null, values);
+		 
+		 ent = buscarPorID(insertId);
+		
+		 return ent;
+	 }
+	 
+	 public Pedido crear(Pedido ent){
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 ContentValues values = new ContentValues();
+		 values.put("codigoPedido", ent.getCodigoPedido());
+		 values.put("codigoFormaPago", ent.getCodigoFormaPago());
+		 values.put("codigoVisita", ent.getCodigoVisita());
+		 values.put("aceptaRetencionPedido", ent.getAceptaRetencionPedido());
+		 values.put("direccionDeEnvio", ent.getDireccionDeEnvio());
+		 values.put("empresaTransporte", ent.getEmpresaTransporte());
+		 values.put("estadoPedido", ent.getEstadoPedido());
+		 values.put("estaRetenidoPedido", ent.getEstaRetenidoPedido());
+		 values.put("estaSincronizado", ent.getEstaSincronizado());
+		 values.put("fechaIngresoPedido", dateFormat.format(ent.getFechaIngresoPedido()));
+		 values.put("importePedido", ent.getImportePedido());
+		 values.put("instruccionesEspeciales", ent.getInstruccionesEspeciales());
+		 values.put("lineaReservadaPedido", ent.getLineaReservadaPedido());
+		 values.put("codigoEmpresaCarga", ent.getCodigoEmpresaCarga());
 		 
 		 long insertId = database.insert(Pedido.class.getSimpleName(), null, values);
 		 
@@ -83,13 +108,14 @@ public class PedidoDAO {
 	 }
 	 
 	 public Pedido actualizar(Pedido ent){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Pedido nuevo = null;
 		 ContentValues values = new ContentValues();
 		 values.put("codigoPedido", ent.getCodigoPedido());
 		 values.put("codigoFormaPago", ent.getCodigoFormaPago());
 		 values.put("codigoVisita", ent.getCodigoVisita());
 		 values.put("aceptaRetencionPedido", ent.getAceptaRetencionPedido());
+		 values.put("direccionDeEnvio", ent.getDireccionDeEnvio());
 		 values.put("empresaTransporte", ent.getEmpresaTransporte());
 		 values.put("estadoPedido", ent.getEstadoPedido());
 		 values.put("estaRetenidoPedido", ent.getEstaRetenidoPedido());
@@ -98,9 +124,9 @@ public class PedidoDAO {
 		 values.put("importePedido", ent.getImportePedido());
 		 values.put("instruccionesEspeciales", ent.getInstruccionesEspeciales());
 		 values.put("lineaReservadaPedido", ent.getLineaReservadaPedido());
-		 
+		 values.put("codigoEmpresaCarga", ent.getCodigoEmpresaCarga());
 		 database.update(Pedido.class.getSimpleName(), values, " id = "+ent.getId(), null);
-		 nuevo=buscarPorID(ent.getCodigoPedido());
+		 nuevo=buscarPorID(ent.getId());
 		 
 		 return nuevo;
 	 }
@@ -114,9 +140,19 @@ public class PedidoDAO {
 	 }
 	 
 	 private Pedido cursorToEnt(Cursor cursor) {
+		 	
+		 /*
+		  * 
+		  * 
+		  * "id","codigoPedido","codigoFormaPago","codigoVisita","aceptaRetencionPedido","direccionDeEnvio",
+			"empresaTransporte","estadoPedido","estaRetenidoPedido","estaSincronizado","fechaIngresoPedido","importePedido",
+			"instruccionesEspeciales","lineaReservadaPedido", "codigoEmpresaCarga"
+		  * 
+		  * */
+		 
 		    Pedido ent = null;
 		    if(cursor!=null ){
-		    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		    	
 		    	ent = new Pedido();
 		    	ent.setId(cursor.getLong(0));
@@ -126,25 +162,26 @@ public class PedidoDAO {
 		    	Boolean aceptaRet = cursor.getInt(4) == 1 ? true : false;
 		    	
 		    	ent.setAceptaRetencionPedido(aceptaRet);
-		    	ent.setEmpresaTransporte(cursor.getString(5));
-		    	ent.setEstadoPedido(cursor.getString(6));
-		    	Boolean estaRet = cursor.getInt(7) == 1 ? true : false;
+		    	ent.setDireccionDeEnvio(cursor.getString(5));
+		    	ent.setEmpresaTransporte(cursor.getString(6));
+		    	ent.setEstadoPedido(cursor.getString(7));
+		    	Boolean estaRet = cursor.getInt(8) == 1 ? true : false;
 		    	ent.setEstaRetenidoPedido(estaRet);
-		    	Boolean estaSinc = cursor.getInt(8)==1?true:false;
+		    	Boolean estaSinc = cursor.getInt(9)==1?true:false;
 		    	ent.setEstaSincronizado(estaSinc);
 		    	
 		    	try {
-					ent.setFechaIngresoPedido(dateFormat.parse(cursor.getString(9)));
+					ent.setFechaIngresoPedido(dateFormat.parse(cursor.getString(10)));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					ent.setFechaIngresoPedido(new Date(1900,1,1));
 					
 				}
 		    	
-		    	ent.setImportePedido(cursor.getDouble(10));
-		    	ent.setInstruccionesEspeciales(cursor.getString(11));
-		    	ent.setLineaReservadaPedido(cursor.getDouble(12));
-		    	
+		    	ent.setImportePedido(cursor.getDouble(11));
+		    	ent.setInstruccionesEspeciales(cursor.getString(12));
+		    	ent.setLineaReservadaPedido(cursor.getDouble(13));
+		    	ent.setCodigoEmpresaCarga(cursor.getLong(14));
 		    	
 		    	
 		    }

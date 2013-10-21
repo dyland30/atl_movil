@@ -121,6 +121,19 @@ public class VisitaDAO {
 		 
 	 }
 	 
+	 public Visita obtenerVisitaActiva(){
+		 Visita vi = null;
+		
+		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"'",null,null,null,null);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 vi = cursorToEnt(cursor); 
+		 }
+		 
+		 return vi;
+		 
+	 }
+	 
 	 public Visita buscarPorID(long id){
 		 Visita vi = null;
 		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoVisita = "+id,null,null,null,null);

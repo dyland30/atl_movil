@@ -7,12 +7,13 @@ private long id;// id interno
 private long codigoPedido;
 private long codigoVisita; // con esto ya se tiene el codigo de cliente
 private long codigoFormaPago;
+private long codigoEmpresaCarga;
 private Date fechaIngresoPedido;
 private Double importePedido;
 private Double lineaReservadaPedido;
 private Boolean aceptaRetencionPedido;
 private Boolean estaRetenidoPedido;
-private String estadoPedido; // A -> Activo, N-> Anulado, R -> Registrado,
+private String estadoPedido; // A -> Activo, N-> Anulado, R -> Registrado, 
 private Boolean estaSincronizado; //1 -> sincronizado, 0-> pendiente de sincronizacion
 private String direccionDeEnvio;
 private String empresaTransporte;
@@ -100,6 +101,12 @@ public String getInstruccionesEspeciales() {
 }
 public void setInstruccionesEspeciales(String instruccionesEspeciales) {
 	this.instruccionesEspeciales = instruccionesEspeciales;
+}
+public long getCodigoEmpresaCarga() {
+	return codigoEmpresaCarga;
+}
+public void setCodigoEmpresaCarga(long codigoEmpresaCarga) {
+	this.codigoEmpresaCarga = codigoEmpresaCarga;
 }
 
 }
