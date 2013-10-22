@@ -27,9 +27,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_TALLA_PEDIDO = "TallaPedido";
 	public static final String TB_PRODUCTO_FORMA_PAGO = "ProductoFormaPago";
 	public static final String TB_EMPRESA_CARGA = "EmpresaCarga";
+	public static final String TB_PRODUCTO_TALLA = "ProductoTalla";
 	//------------------------------------------------------------------
 	private static final int DATABASE_VERSION = 10;
-	
+	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
 			"(id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , login TEXT UNIQUE, " +
@@ -72,7 +73,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private static final String C_TB_PRODUCTO = "CREATE TABLE Producto (codigoProducto INTEGER PRIMARY KEY NOT NULL, " +
-			"calidadProducto TEXT, colorProducto TEXT, descripcionProducto TEXT, materialProducto TEXT, precioPRoducto NUMERIC, sexoProducto TEXT) ;";
+			"calidadProducto TEXT, colorProducto TEXT, descripcionProducto TEXT, materialProducto TEXT, precioProducto NUMERIC, sexoProducto TEXT) ;";
 	
 	private static final String C_TB_TALLA = "CREATE TABLE Talla (codigoProducto INTEGER  NOT NULL, numeroTalla INTEGER NOT NULL," +
 			"stockDisponibleTalla INTEGER, PRIMARY KEY(codigoProducto,numeroTalla))  ;";
@@ -95,9 +96,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	private static final String C_TB_EMPRESA_CARGA = " CREATE TABLE EmpresaCarga (codigoEmpresaCarga INTEGER PRIMARY KEY NOT NULL, " +
 			"nombreEmpresaCarga TEXT, direccionEmpresaCarga TEXT, horarioEmpresaCarga TEXT, rucEmpresaCarga TEXT ) ; ";;
-	private static final String DATABASE_NAME = "atlmovil.db";
 	
-
+			
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
 			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO+C_TB_EMPRESA_CARGA ;
 
@@ -204,10 +204,79 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('0','1','1','1','Tomas Marsano 457 - SURCO','Martinez','R','0','0','2013-10-20 10:00','7000','Ref: ovalo higuereta','0','2'); ");
 		
 		// Productos
+		db.execSQL("insert into Producto (codigoProducto,calidadProducto, colorProducto, descripcionProducto," +
+				" materialProducto, precioProducto, sexoProducto) " +
+				"values ('1','Buena','Negro','Zapato A', 'Cuero','89','Masculino'); ");
 		
-		// Producto talla
+		db.execSQL("insert into Producto (codigoProducto,calidadProducto, colorProducto, descripcionProducto," +
+				" materialProducto, precioProducto, sexoProducto) " +
+				"values ('2','Buena','Negro','Zapato B', 'Cuero','100','Femenino'); ");
+		
+		db.execSQL("insert into Producto (codigoProducto,calidadProducto, colorProducto, descripcionProducto," +
+				" materialProducto, precioProducto, sexoProducto) " +
+				"values ('3','Buena','Negro','Zapato C', 'Cuero','120','Masculino'); ");
+		
+		// Producto Forma Pago
+		
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('1','1','92'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('1','2','105'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('1','3','125'); ");
+		
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('2','1','89'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('2','2','100'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('2','3','120'); ");
+		
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('3','1','85'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('3','2','95'); ");
+		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
+				"values ('3','3','115'); ");
+		
+		// Talla
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('1','39',20)");
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('1','41',15)");
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('2','39',20)");
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('2','40',10)");
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('3','38',5)");
+		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
+				"values('3','40',10)");
+		
 		
 		// Detalles de Pedidos
+		db.execSQL("insert into DetallePedido (idPedido,codigoProducto, precioUnitario) " +
+				"values ('1','1','150'); ");
+		db.execSQL("insert into DetallePedido (idPedido,codigoProducto, precioUnitario) " +
+				"values ('1','2','200'); ");
+		db.execSQL("insert into DetallePedido (idPedido,codigoProducto, precioUnitario) " +
+				"values ('1','3','120'); ");
+		
+		// Tallas Pedidos
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','1','39','5'); ");
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','1','41','5'); ");
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','2','39','5'); ");
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','2','30','5'); ");
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','3','38','2'); ");
+		db.execSQL("insert into TallaPedodo (idPedido , codigoProducto, numeroTalla, cantidad INTEGER) " +
+				"values ('1','3','40','5'); ");
+		
+		
 	}
 
 	@Override

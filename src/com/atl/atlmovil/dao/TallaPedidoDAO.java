@@ -34,6 +34,7 @@ public class TallaPedidoDAO {
 	 }
 	 
 	 public List<TallaPedido> obtenerTodos(){
+		 
 		 List<TallaPedido> ls = new ArrayList<TallaPedido>();
 		 Cursor cursor = database.query(TallaPedido.class.getSimpleName(), allColumns, null,null, null,null,null);
 		 cursor.moveToFirst();
@@ -44,6 +45,15 @@ public class TallaPedidoDAO {
 		 }
 		 cursor.close();
 		 return ls;
+	 }
+	 
+	 public int obtenerCantidadTallas(long idPedido, long codigoProducto){
+		 int suma =0;		
+		 Cursor cursor = database.rawQuery("SELECT SUM(cantidad) as suma FROM TallaPedido WHERE idPedido = ? AND codigoProducto = ?", new String[] {idPedido+"", codigoProducto+""});;
+		 cursor.moveToFirst();
+		 suma = cursor.getInt(0);
+		 cursor.close();
+		 return suma;
 	 }
 	 
 	 public void eliminar(TallaPedido ent){

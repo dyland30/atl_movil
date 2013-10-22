@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblNumeroPedidoDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblNroVisitaPedidoDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblClientePedidoDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <Button
+        android:id="@+id/btnAgregarProductoDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/agregarProducto" 
+        android:drawableLeft="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/lblProductoDetallePedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/resumen" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dip" >
+
+        <TextView
+            android:id="@+id/lblCantItemsPedidoDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/blanco" />
+
+        <TextView
+            android:id="@+id/lblImportePedidoDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/blanco" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

@@ -1,71 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:padding="5dp"  
+    android:layout_height="fill_parent" 
     >
 
     <TextView
-        android:id="@+id/lblClientePedido"
+        android:id="@+id/lblProductoDetallePedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Cliente"
+        android:text="@string/blanco"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/txtVisitaPedido"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/lblClientePedido"
-        android:text="Visita:" />
+        android:layout_below="@+id/lblProductoDetallePedido"
+        android:text="@string/lblcodprod" />
 
     <TextView
-        android:id="@+id/txtCodigoVisita"
+        android:id="@+id/lblCodProductoDetallePedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblClientePedido"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/txtVisitaPedido"
-        android:text="codigo" />
+        android:layout_below="@+id/lblProductoDetallePedido"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/txtFechaVisita"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txtCodigoVisita"
-        android:layout_alignBottom="@+id/txtCodigoVisita"
-        android:layout_alignParentRight="true"
-        android:text="Fecha" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:text="@string/lblPunit" />
 
     <TextView
         android:id="@+id/lblPunitDetallePedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txtFechaVisita"
-        android:layout_alignBottom="@+id/txtFechaVisita"
-        android:layout_marginRight="16dp"
-        android:layout_toLeftOf="@+id/txtFechaVisita"
-        android:text="Fecha:" />
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
+        android:text="@string/blanco" />
 
     <TextView
         android:id="@+id/lblImporteDetallePedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtVisitaPedido"
-        android:text="Estado:" />
+        android:layout_alignBaseline="@+id/lblPunitDetallePedido"
+        android:layout_alignBottom="@+id/lblPunitDetallePedido"
+        android:layout_alignParentRight="true"
+        android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/txtEstadoVisita"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/lblImporteDetallePedido"
         android:layout_alignBottom="@+id/lblImporteDetallePedido"
-        android:layout_alignLeft="@+id/txtCodigoVisita"
-        android:text="Estado" />
+        android:layout_marginRight="22dp"
+        android:layout_toLeftOf="@+id/lblImporteDetallePedido"
+        android:text="@string/lblImporte" />
 
 </RelativeLayout>

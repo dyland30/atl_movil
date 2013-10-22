@@ -34,5 +34,11 @@
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
     <string name="detalles">Ver Detalles</string>
+    <string name="title_activity_detalle_pedido">DetallePedidoActivity</string>
+    <string name="agregarProducto">Agregar Producto</string>
+    <string name="resumen">Resumen</string>
+    <string name="lblcodprod">COD:</string>
+    <string name="lblPunit">P. Unit:</string>
+    <string name="lblImporte">Imp:</string>
 
 </resources>

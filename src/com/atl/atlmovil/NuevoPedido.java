@@ -226,12 +226,15 @@ public class NuevoPedido extends Activity implements OnClickListener {
 				
 				pedido.setDireccionDeEnvio(txtDireccionEnvio.getText().toString());
 				pedido.setInstruccionesEspeciales(txtInstrucciones.getText().toString());
-				pedido.setFechaIngresoPedido(new Date());
-				pedido.setEstaRetenidoPedido(false);
-				pedido.setEstaSincronizado(false);
-				pedido.setImportePedido(0.0D);
-				// por el momento no se usa
-				pedido.setLineaReservadaPedido(0.0D);
+				
+				if(operacion.equals("insertar")){
+					pedido.setFechaIngresoPedido(new Date());
+					pedido.setEstaRetenidoPedido(false);
+					pedido.setEstaSincronizado(false);
+					pedido.setImportePedido(0.0D);
+					// por el momento no se usa
+					pedido.setLineaReservadaPedido(0.0D);
+				}
 				
 				// depende de la operacion
 				if(operacion.equals("editar")){
