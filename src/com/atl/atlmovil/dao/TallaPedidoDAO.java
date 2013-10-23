@@ -47,6 +47,20 @@ public class TallaPedidoDAO {
 		 return ls;
 	 }
 	 
+	 public List<TallaPedido> buscarPorPedidoProducto(long idPedido, long codProducto){
+		 
+		 List<TallaPedido> ls = new ArrayList<TallaPedido>();
+		 Cursor cursor = database.query(TallaPedido.class.getSimpleName(), allColumns, "idPedido = "+idPedido+" AND codigoProducto = "+codProducto,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 TallaPedido ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 public int obtenerCantidadTallas(long idPedido, long codigoProducto){
 		 int suma =0;		
 		 Cursor cursor = database.rawQuery("SELECT SUM(cantidad) as suma FROM TallaPedido WHERE idPedido = ? AND codigoProducto = ?", new String[] {idPedido+"", codigoProducto+""});;

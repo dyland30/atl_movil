@@ -43,6 +43,14 @@
             android:name="com.atl.atlmovil.DetallePedidoActivity"
             android:label="@string/title_activity_detalle_pedido" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.AgregarProductoActivity"
+            android:label="@string/title_activity_agregar_producto" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.BuscarProductoActivity"
+            android:label="@string/title_activity_buscar_producto" >
+        </activity>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lblClientePedido"
-        android:text="Visita:" />
+        android:text="@string/visita" />
 
     <TextView
         android:id="@+id/txtCodigoVisita"
@@ -30,7 +30,7 @@
         android:layout_below="@+id/lblClientePedido"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/txtVisitaPedido"
-        android:text="codigo" />
+        android:text="@string/blanco" />
 
     <TextView
         android:id="@+id/txtFechaVisita"
@@ -39,7 +39,7 @@
         android:layout_alignBaseline="@+id/txtCodigoVisita"
         android:layout_alignBottom="@+id/txtCodigoVisita"
         android:layout_alignParentRight="true"
-        android:text="Fecha" />
+        android:text="@string/blanco" />
 
     <TextView
         android:id="@+id/lblPunitDetallePedido"
@@ -66,6 +66,6 @@
         android:layout_alignBaseline="@+id/lblImporteDetallePedido"
         android:layout_alignBottom="@+id/lblImporteDetallePedido"
         android:layout_alignLeft="@+id/txtCodigoVisita"
-        android:text="Estado" />
+        android:text="@string/blanco" />
 
 </RelativeLayout>

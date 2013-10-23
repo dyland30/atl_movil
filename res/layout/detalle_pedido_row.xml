@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/lblCodProductoAgregarProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -27,24 +27,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblProductoDetallePedido"
-        android:layout_toRightOf="@+id/textView2"
+        android:layout_toRightOf="@+id/lblCodProductoAgregarProd"
         android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lblPunitAgregarProd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/lblCodProductoAgregarProd"
         android:text="@string/lblPunit" />
 
     <TextView
         android:id="@+id/lblPunitDetallePedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
+        android:layout_alignBaseline="@+id/lblPunitAgregarProd"
+        android:layout_alignBottom="@+id/lblPunitAgregarProd"
+        android:layout_toRightOf="@+id/lblPunitAgregarProd"
         android:text="@string/blanco" />
 
     <TextView

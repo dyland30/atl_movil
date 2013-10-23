@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/lblRowProductoNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/blanco"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/lblRowProductoCod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblRowProductoNombre"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblRowProdCalidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblRowProductoCod"
+        android:layout_alignBottom="@+id/lblRowProductoCod"
+        android:layout_alignParentRight="true"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblRowProdColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblRowProductoCod"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblRowProductoSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblRowProdColor"
+        android:layout_alignBottom="@+id/lblRowProdColor"
+        android:layout_alignParentRight="true"
+        android:text="@string/blanco" />
+
+</RelativeLayout>

@@ -40,5 +40,17 @@
     <string name="lblcodprod">COD:</string>
     <string name="lblPunit">P. Unit:</string>
     <string name="lblImporte">Imp:</string>
+    <string name="title_activity_agregar_producto">AgregarProductoActivity</string>
+    <string name="producto">Producto</string>
+    <string name="Punit">Punit:</string>
+    <string name="impTotal">"Importe Total : "</string>
+    <string name="cod">"Cod: "</string>
+    <string name="agregarTalla">Agregar Talla</string>
+    <string name="tallasSeleccionadas">Tallas Seleccionadas</string>
+    <string name="agregar">Agregar</string>
+    <string name="visita">Visita:</string>
+    <string name="title_activity_buscar_producto">BuscarProductoActivity</string>
+    <string name="buscarProducto">Buscar Producto</string>
+    <string name="Productos">Productos</string>
 
 </resources>

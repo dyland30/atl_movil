@@ -45,6 +45,20 @@ public class ProductoDAO {
 		 return ls;
 	 }
 	 
+	 public List<Producto> buscarPorNombre(String nombre){
+		 List<Producto> ls = new ArrayList<Producto>();
+		 Cursor cursor = database.query(Producto.class.getSimpleName(), allColumns, "descripcionProducto LIKE '%"+nombre+"%'",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Producto ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
+	 
 	 public void eliminar(Producto ent){
 		 long id = ent.getCodigoProducto();
 		 database.delete(Producto.class.getSimpleName(),"codigoProducto = "+id,null);
@@ -104,7 +118,8 @@ public class ProductoDAO {
 		    	ent.setColorProducto(cursor.getString(2));
 		    	ent.setDescripcionProducto(cursor.getString(3));
 		    	ent.setMaterialProducto(cursor.getString(4));
-		    	ent.setSexoProducto(cursor.getString(5));
+		    	ent.setPrecioProducto(cursor.getDouble(5));
+		    	ent.setSexoProducto(cursor.getString(6));
 		    	
 		    }
 		    

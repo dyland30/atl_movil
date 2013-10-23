@@ -60,7 +60,7 @@ public class DetallePedidoAdapter extends BaseAdapter{
 		View vi = convertView;
 		
 		if(convertView==null)
-			vi = inflater.inflate(R.layout.pedido_row, null);
+			vi = inflater.inflate(R.layout.detalle_pedido_row, null);
 		
 		TextView lblProductoDetallePedido = (TextView)vi.findViewById(R.id.lblProductoDetallePedido);
 		TextView lblCodigoProductoDetallePedido = (TextView)vi.findViewById(R.id.lblCodProductoDetallePedido);
@@ -109,8 +109,9 @@ public class DetallePedidoAdapter extends BaseAdapter{
 			precioUnitario = prodFp.getPrecio();
 			
 			TallaPedidoDAO tpDao = new TallaPedidoDAO(activity);
+			tpDao.open();
 			cantTallas = tpDao.obtenerCantidadTallas(pe.getId(), prod.getCodigoProducto());
-			
+			tpDao.close();
 		}
 		
 		// calcular monto cantTalla*Punit

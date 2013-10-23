@@ -43,10 +43,25 @@ public class DetallePedidoDAO {
 		 return ls;
 	 }
 	 
+	 public List<DetallePedido> buscarPorPedido(long idPedido){
+		 List<DetallePedido> ls = new ArrayList<DetallePedido>();
+		 Cursor cursor = database.query(DetallePedido.class.getSimpleName(), allColumns, "idPedido = "+idPedido,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 DetallePedido ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 public void eliminar(DetallePedido ent){
 		 long id = ent.getIdPedido();
 		 long codProducto = ent.getCodigoProducto();
 		 database.delete(DetallePedido.class.getSimpleName(),"idPedido = "+id+" and codigoProducto ="+codProducto,null);
+		 //eliminar tallaPedido
+		 database.delete(TallaPedido.class.getSimpleName(), "idPedido ="+id +" and codigoProducto = "+codProducto, null);
 		 
 	 }
 	 

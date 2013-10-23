@@ -55,7 +55,6 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		viDao = new VisitaDAO(this);
 		cliDao = new ClienteDAO(this);
 		fpDao = new FormaPagoDAO(this);
-		
 		pDao.open();
 		viDao.open();
 		cliDao.open();
@@ -192,87 +191,105 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		fpDao.close();
 		super.onPause();
 	}
-
+	private void guardarPedido(){
+		try{
+			Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbFormaPago);
+			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoPedido);
+			CheckBox chbAceptaRetencion = (CheckBox)findViewById(R.id.chbAceptaRetencion);
+			EditText txtDireccionEnvio = (EditText)findViewById(R.id.txtDireccionEnvioPedido);
+			EditText txtInstrucciones = (EditText)findViewById(R.id.txtInstruccionesPedido);
+			
+			if(operacion.equals("insertar")){
+				pedido = new Pedido();
+				
+			}
+			
+			pedido.setCodigoPedido(0);
+			pedido.setCodigoVisita(visitaActiva.getCodigoVisita());
+			FormaPago fp = (FormaPago)cmbFormaPago.getSelectedItem();
+			if(fp!=null){
+				pedido.setCodigoFormaPago(fp.getCodigoFormaPago());
+			}			
+			pedido.setEstadoPedido((String)cmbEstadoPedido.getSelectedItem());
+			pedido.setAceptaRetencionPedido(chbAceptaRetencion.isChecked());
+			
+			if(empCarga!=null){
+				pedido.setCodigoEmpresaCarga(empCarga.getCodigoEmpresaCarga());
+				
+			}
+			
+			pedido.setDireccionDeEnvio(txtDireccionEnvio.getText().toString());
+			pedido.setInstruccionesEspeciales(txtInstrucciones.getText().toString());
+			
+			if(operacion.equals("insertar")){
+				pedido.setFechaIngresoPedido(new Date());
+				pedido.setEstaRetenidoPedido(false);
+				pedido.setEstaSincronizado(false);
+				pedido.setImportePedido(0.0D);
+				// por el momento no se usa
+				pedido.setLineaReservadaPedido(0.0D);
+			}
+			
+			// depende de la operacion
+			if(operacion.equals("editar")){
+				pDao.actualizar(pedido);
+			} else{
+				pDao.crear(pedido);
+			}
+			
+			// navegar a la lista de pedidos
+			Intent registrarPedidoIntent = new Intent(NuevoPedido.this, RegistrarPedidos.class);
+			startActivity(registrarPedidoIntent);
+			
+			
+		}catch(Exception ex){
+			
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(NuevoPedido.this);
+			alertDialog.setTitle("ERROR");
+			alertDialog.setMessage("Ha ocurrido un error al guardar el pedido: "+ex.getMessage());
+			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+			alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.cancel();
+				}
+			});
+			alertDialog.show();
+			
+			
+			Log.w("ERROR","Error "+ex.getMessage());
+		}
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if(v.getId()==R.id.btnGuardarPedido){
 			// guardar
-			try{
-				Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbFormaPago);
-				Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoPedido);
-				CheckBox chbAceptaRetencion = (CheckBox)findViewById(R.id.chbAceptaRetencion);
-				EditText txtDireccionEnvio = (EditText)findViewById(R.id.txtDireccionEnvioPedido);
-				EditText txtInstrucciones = (EditText)findViewById(R.id.txtInstruccionesPedido);
-				
-				if(operacion.equals("insertar")){
-					pedido = new Pedido();
-					
-				}
-				
-				pedido.setCodigoPedido(0);
-				pedido.setCodigoVisita(visitaActiva.getCodigoVisita());
-				FormaPago fp = (FormaPago)cmbFormaPago.getSelectedItem();
-				if(fp!=null){
-					pedido.setCodigoFormaPago(fp.getCodigoFormaPago());
-				}			
-				pedido.setEstadoPedido((String)cmbEstadoPedido.getSelectedItem());
-				pedido.setAceptaRetencionPedido(chbAceptaRetencion.isChecked());
-				
-				if(empCarga!=null){
-					pedido.setCodigoEmpresaCarga(empCarga.getCodigoEmpresaCarga());
-					
-				}
-				
-				pedido.setDireccionDeEnvio(txtDireccionEnvio.getText().toString());
-				pedido.setInstruccionesEspeciales(txtInstrucciones.getText().toString());
-				
-				if(operacion.equals("insertar")){
-					pedido.setFechaIngresoPedido(new Date());
-					pedido.setEstaRetenidoPedido(false);
-					pedido.setEstaSincronizado(false);
-					pedido.setImportePedido(0.0D);
-					// por el momento no se usa
-					pedido.setLineaReservadaPedido(0.0D);
-				}
-				
-				// depende de la operacion
-				if(operacion.equals("editar")){
-					pDao.actualizar(pedido);
-				} else{
-					pDao.crear(pedido);
-				}
-				
-				// navegar a la lista de pedidos
-				Intent registrarPedidoIntent = new Intent(NuevoPedido.this, RegistrarPedidos.class);
-				startActivity(registrarPedidoIntent);
-				
-				
-			}catch(Exception ex){
-				
-				AlertDialog.Builder alertDialog = new AlertDialog.Builder(NuevoPedido.this);
-				alertDialog.setTitle("ERROR");
-				alertDialog.setMessage("Ha ocurrido un error al guardar el pedido: "+ex.getMessage());
-				alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
-				alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						dialog.cancel();
-					}
-				});
-				alertDialog.show();
-				
-				
-				Log.w("ERROR","Error "+ex.getMessage());
-			}
-			
+			guardarPedido();
 			
 		}
 		if(v.getId()==R.id.btnCancelarPedido){
 			Intent registrarPedidoIntent = new Intent(NuevoPedido.this, RegistrarPedidos.class);
 			startActivity(registrarPedidoIntent);
+			
+		}
+		if(v.getId()==R.id.btnDetallePedido){
+			//guardar pedido si no esta guardado
+			if(pedido==null || pedido.getId()==0){
+				guardarPedido();
+				
+			}
+			
+			if(pedido.getId()>0){
+				Intent detallePedidoIntent = new Intent(NuevoPedido.this, DetallePedidoActivity.class);
+				detallePedidoIntent.putExtra("idPedido", pedido.getId());				
+				startActivity(detallePedidoIntent);
+				
+			}
+			
 			
 		}
 		
