@@ -1,5 +1,6 @@
 package com.atl.atlmovil;
 
+import java.nio.charset.CodingErrorAction;
 import java.util.List;
 
 import com.atl.atlmovi.util.Cadena;
@@ -53,6 +54,9 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 		Button btnBuscarProducto = (Button)findViewById(R.id.btnBuscarProducto);
 		btnBuscarProducto.setOnClickListener(this);
 		
+		Button btnAgregarTalla = (Button)findViewById(R.id.btnAgregarTallaAgregarProd);
+		btnAgregarTalla.setOnClickListener(this);
+		
 		pDao = new PedidoDAO(this);
 		tpDao = new TallaPedidoDAO(this);
 		detPDao = new DetallePedidoDAO(this);
@@ -79,7 +83,21 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 	}
 	
 	private void cargarDatos(){
+		Button btnAgregar = (Button)findViewById(R.id.btnBuscarProducto);
 		// llenar datos de cabecera
+		if(operacion.equals("editar")){
+			//deshabilitar boton 
+			
+			btnAgregar.setEnabled(false);
+			
+		} else{
+			//habilitar boton
+			
+			btnAgregar.setEnabled(true);
+			
+		}
+		//obtener precio unitario segun la forma de pago
+		
 		
 		TextView lblNroPedido = (TextView)findViewById(R.id.lblNroPedidoAgregarProducto);
 		
@@ -101,7 +119,10 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 		lblCodProducto.setText(Cadena.formatearNumero("000000", (double)codProducto));
 		// buscar Producto
 		Producto prod = prodDao.buscarPorID(codProducto);
-		txtProducto.setText(prod.getDescripcionProducto());
+		if(prod!=null){
+			txtProducto.setText(prod.getDescripcionProducto());
+		}
+		
 		
 	}
 	
@@ -159,6 +180,11 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 	      break;
 	    } 
 	  }
+	  
+	  pDao.close();
+		tpDao.close();
+		detPDao.close();
+		prodDao.close();
 	}
 
 	@Override
@@ -175,6 +201,25 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 			Intent buscarProductoIntent = new Intent(AgregarProductoActivity.this, BuscarProductoActivity.class);
 			//agregarProductoIntent.putExtra("codigoProducto", det.getIdPedido());
 			startActivityForResult(buscarProductoIntent,BUSCAR_PRODUCTO_ACTIVITY );
+			
+		}
+		if(v.getId()==R.id.btnAgregarTallaAgregarProd){
+			// navegar a actividad agregar Talla
+			//verificar que exista un producto seleccionado
+			if(codProducto>0){
+				Intent agregarTallaIntent = new Intent(AgregarProductoActivity.this, AgregarTallaActivity.class);
+				
+				agregarTallaIntent.putExtra("codigoProducto", codProducto);
+				agregarTallaIntent.putExtra("idPedido", codProducto);
+				agregarTallaIntent.putExtra("operacion", "insertar");
+				
+				startActivity(agregarTallaIntent);
+				
+			} else{
+				//mostrar mensaje indicando que se debe seleccionar un producto
+				
+			}
+			
 			
 		}
 	}

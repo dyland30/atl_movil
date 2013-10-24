@@ -44,6 +44,20 @@ public class TallaDAO {
 		 return ls;
 	 }
 	 
+	 public List<Talla> buscarPorNumero(String nro, long codigoProducto){
+		 List<Talla> ls = new ArrayList<Talla>();
+		 Cursor cursor = database.query(Talla.class.getSimpleName(), allColumns, " cast(numeroTalla as TEXT) LIKE  '%"+nro+"%' and codigoProducto = "+codigoProducto,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Talla ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	
+	 
 	 public void eliminar(Talla ent){
 		 long id = ent.getCodigoProducto();
 		 int idTalla = ent.getNumeroTalla();
@@ -90,7 +104,7 @@ public class TallaDAO {
 	 
 	 private Talla cursorToEnt(Cursor cursor) {
 		    Talla ent = null;
-		    if(cursor!=null ){
+		    if(cursor!=null && cursor.getCount()>0){
 		    	ent = new Talla();
 		    	ent.setCodigoProducto(cursor.getInt(0));
 		    	ent.setNumeroTalla(cursor.getInt(1));

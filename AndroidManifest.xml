@@ -51,6 +51,14 @@
             android:name="com.atl.atlmovil.BuscarProductoActivity"
             android:label="@string/title_activity_buscar_producto" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.AgregarTallaActivity"
+            android:label="@string/title_activity_agregar_talla" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.BuscarTalla"
+            android:label="@string/title_activity_buscar_talla" >
+        </activity>
     </application>
 
 </manifest>

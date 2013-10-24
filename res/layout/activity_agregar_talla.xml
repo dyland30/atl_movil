@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:layout_marginTop="5dip"
+    android:layout_marginLeft="10dip"
+    android:layout_marginRight="10dip">
+
+    <TextView
+        android:id="@+id/lblAgregarTallaIdPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_margin="5dip"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblExistenciasTallaRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/producto" />
+
+    <TextView
+        android:id="@+id/lblAgregarTallaCodProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_margin="5dip"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/talla" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/txtAgregarTalla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dip"
+            android:ems="10"
+            android:hint="@string/seleccionarTalla"
+            android:inputType="number" 
+            android:editable="false">
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnSeleccionarTalla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+             android:layout_margin="5dip"
+            android:text="@string/blanco" 
+            android:drawableLeft="@android:drawable/ic_input_add"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:text="@string/existencias" />
+
+    <TextView
+        android:id="@+id/lblAgregarTallaExistencias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_margin="5dip"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cantidad"
+         android:layout_margin="5dip" />
+
+    <EditText
+        android:id="@+id/txtCantidadTalla"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" 
+         android:layout_margin="5dip"/>
+
+    <Button
+        android:id="@+id/btnCrearTalla"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/agregar"
+         android:layout_margin="5dip" />
+
+    <Button
+        android:id="@+id/btnCancelarTalla"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+         android:layout_margin="5dip" />
+
+</LinearLayout>

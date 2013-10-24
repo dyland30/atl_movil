@@ -29,7 +29,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_EMPRESA_CARGA = "EmpresaCarga";
 	public static final String TB_PRODUCTO_TALLA = "ProductoTalla";
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 11;
+	private static final int DATABASE_VERSION = 12;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -270,7 +270,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +
 				"values ('1','2','39','5'); ");
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +
-				"values ('1','2','30','5'); ");
+				"values ('1','2','40','5'); ");
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +
 				"values ('1','3','38','2'); ");
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +

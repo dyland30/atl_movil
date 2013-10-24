@@ -31,6 +31,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DetallePedidoActivity extends ListActivity implements OnClickListener {
@@ -52,6 +53,10 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 		setContentView(R.layout.activity_detalle_pedido);
 		//registrar menu
 		registerForContextMenu(this.getListView());
+		//registrar boton
+		Button btnAgregarProd = (Button)findViewById(R.id.btnAgregarProductoDetalle);
+		btnAgregarProd.setOnClickListener(this);
+		
 		
 		viDao= new VisitaDAO(this);
 		cliDao = new ClienteDAO(this);
@@ -84,6 +89,17 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		if(v.getId()==R.id.btnAgregarProductoDetalle){
+			
+			Intent agregarProductoIntent = new Intent(DetallePedidoActivity.this, AgregarProductoActivity.class);
+			agregarProductoIntent.putExtra("operacion", "insertar");
+			agregarProductoIntent.putExtra("idPedido", pedido.getId());
+			agregarProductoIntent.putExtra("codigoProducto", 0);
+			
+			startActivity(agregarProductoIntent);
+			
+		}
+		
 		
 	}
 	
@@ -136,7 +152,7 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 			Intent agregarProductoIntent = new Intent(DetallePedidoActivity.this, AgregarProductoActivity.class);
 			agregarProductoIntent.putExtra("operacion", "editar");
 			agregarProductoIntent.putExtra("idPedido", det.getIdPedido());
-			agregarProductoIntent.putExtra("codigoProducto", det.getIdPedido());
+			agregarProductoIntent.putExtra("codigoProducto", det.getCodigoProducto());
 			
 			
 			startActivity(agregarProductoIntent);

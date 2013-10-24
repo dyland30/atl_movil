@@ -100,7 +100,7 @@ public class DetallePedidoDAO {
 	 
 	 private DetallePedido cursorToEnt(Cursor cursor) {
 		    DetallePedido ent = null;
-		    if(cursor!=null ){
+		    if(cursor!=null && cursor.getCount()>0){
 		    	ent = new DetallePedido();
 		    	ent.setIdPedido(cursor.getInt(0));
 		    	ent.setCodigoProducto(cursor.getInt(1));

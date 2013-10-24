@@ -52,5 +52,12 @@
     <string name="title_activity_buscar_producto">BuscarProductoActivity</string>
     <string name="buscarProducto">Buscar Producto</string>
     <string name="Productos">Productos</string>
+    <string name="title_activity_agregar_talla">AgregarTallaActivity</string>
+    <string name="talla">Talla</string>
+    <string name="existencias">Existencias</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="seleccionarTalla">Seleccionar Talla</string>
+    <string name="title_activity_buscar_talla">BuscarTalla</string>
+    <string name="buscarTalla">Buscar Talla...</string>
 
 </resources>

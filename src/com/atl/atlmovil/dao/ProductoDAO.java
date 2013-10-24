@@ -111,7 +111,7 @@ public class ProductoDAO {
 	 
 	 private Producto cursorToEnt(Cursor cursor) {
 		    Producto ent = null;
-		    if(cursor!=null ){
+		    if(cursor!=null && cursor.getCount()>0){
 		    	ent = new Producto();
 		    	ent.setCodigoProducto(cursor.getInt(0));
 		    	ent.setCalidadProducto(cursor.getString(1));

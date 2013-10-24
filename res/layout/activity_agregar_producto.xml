@@ -30,7 +30,9 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lbl1"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="none"
+        android:editable="false"
+        >
 
         <requestFocus />
     </EditText>
