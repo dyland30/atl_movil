@@ -12,6 +12,8 @@ import com.atl.atlmovil.entidades.TallaPedido;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -127,16 +129,9 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		return true;
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		if(v.getId()==R.id.btnSeleccionarTalla){
-			Intent buscarTallaIntent = new Intent(AgregarTallaActivity.this, BuscarTalla.class);
-			buscarTallaIntent.putExtra("codigoProducto", prod.getCodigoProducto());
-			startActivityForResult(buscarTallaIntent,BUSCAR_TALLA );
+	private void guardarTalla(){
+		try{
 			
-		} else if(v.getId()==R.id.btnCrearTalla){
-			//crear registro de tallaPedido y matar a la actividad
 			if(operacion.equals("insertar")){
 				if(prod!=null && pedido!=null && talla !=null){
 					tallaPed = new TallaPedido();
@@ -155,14 +150,52 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 					
 					tpDao.crear(tallaPed);
 					
-					finish();
-					
 				}
-				
-				
 				
 			}
 			
+		} catch(Exception ex){
+			// mostrar alerta
+			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada");
+		} finally{
+			
+			finish();
+			
+		}
+		
+		
+	}
+	
+	
+public void mostrarMensaje( String titulo, String mensaje){
+		
+		AlertDialog errorDialog = new AlertDialog.Builder(AgregarTallaActivity.this).create();
+		errorDialog.setTitle(titulo);
+		errorDialog.setMessage(mensaje);
+		errorDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				dialog.cancel();
+			}
+		});
+		errorDialog.show();
+	}
+	
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v.getId()==R.id.btnSeleccionarTalla){
+			Intent buscarTallaIntent = new Intent(AgregarTallaActivity.this, BuscarTalla.class);
+			buscarTallaIntent.putExtra("codigoProducto", prod.getCodigoProducto());
+			startActivityForResult(buscarTallaIntent,BUSCAR_TALLA );
+			
+		} else if(v.getId()==R.id.btnCrearTalla){
+			//crear registro de tallaPedido y matar a la actividad
+			
+			guardarTalla();
 			
 			
 		}

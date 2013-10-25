@@ -1,12 +1,11 @@
 package com.atl.atlmovil;
 
-import java.nio.charset.CodingErrorAction;
 import java.util.List;
 
 import com.atl.atlmovi.util.Cadena;
-import com.atl.atlmovil.adapters.DetallePedidoAdapter;
 import com.atl.atlmovil.adapters.TallaPedidoAdapter;
 import com.atl.atlmovil.dao.DetallePedidoDAO;
+import com.atl.atlmovil.dao.FormaPagoDAO;
 import com.atl.atlmovil.dao.PedidoDAO;
 import com.atl.atlmovil.dao.ProductoDAO;
 import com.atl.atlmovil.dao.TallaPedidoDAO;
@@ -38,6 +37,7 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 	TallaPedidoDAO tpDao;
 	DetallePedidoDAO detPDao;
 	ProductoDAO prodDao;
+	FormaPagoDAO fpDao;
 	long idPedido;
 	long codProducto;
 	final int BUSCAR_PRODUCTO_ACTIVITY = 1;
@@ -207,6 +207,20 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 			// navegar a actividad agregar Talla
 			//verificar que exista un producto seleccionado
 			if(codProducto>0){
+				
+				if(operacion.equals("insertar")){
+					if(detPed==null){
+						//crear detalle
+						detPed.setCodigoProducto(codProducto);
+						detPed.setIdPedido(idPedido);
+						//detPed.setPrecioUnitario(precioUnitario);
+						//obtener precio unitario de Forma de Pago
+						
+					}
+					
+				}
+				
+				
 				Intent agregarTallaIntent = new Intent(AgregarProductoActivity.this, AgregarTallaActivity.class);
 				
 				agregarTallaIntent.putExtra("codigoProducto", codProducto);
@@ -217,6 +231,7 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 				
 			} else{
 				//mostrar mensaje indicando que se debe seleccionar un producto
+				
 				
 			}
 			
