@@ -95,6 +95,24 @@ public class TallaPedidoDAO {
 		 return ent;
 	 }
 	 
+	 public TallaPedido crear(TallaPedido tPed){
+		 TallaPedido ent = null;
+		 ContentValues values = new ContentValues();
+		 values.put("idPedido", tPed.getIdPedido());
+		 values.put("codigoProducto", tPed.getCodigoProducto());
+		 values.put("numeroTalla", tPed.getNumeroTalla());
+		 
+		 values.put("cantidad", tPed.getCantidad());
+		 
+		 
+		 database.insert(TallaPedido.class.getSimpleName(), null, values);
+		 
+		 ent = buscarPorID(tPed.getIdPedido(), tPed.getCodigoProducto(), tPed.getNumeroTalla());
+		
+		 return ent;
+	 }
+	 
+	 
 	 public TallaPedido actualizar(TallaPedido ent){
 		 TallaPedido nuevo = null;
 		 ContentValues values = new ContentValues();

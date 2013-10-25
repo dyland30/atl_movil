@@ -4,9 +4,11 @@ import com.atl.atlmovi.util.Cadena;
 import com.atl.atlmovil.dao.PedidoDAO;
 import com.atl.atlmovil.dao.ProductoDAO;
 import com.atl.atlmovil.dao.TallaDAO;
+import com.atl.atlmovil.dao.TallaPedidoDAO;
 import com.atl.atlmovil.entidades.Pedido;
 import com.atl.atlmovil.entidades.Producto;
 import com.atl.atlmovil.entidades.Talla;
+import com.atl.atlmovil.entidades.TallaPedido;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -29,7 +31,9 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	PedidoDAO pdao;
 	ProductoDAO proDao;
 	TallaDAO tdao;
+	TallaPedidoDAO tpDao;
 
+	TallaPedido tallaPed;
 	
 	final int  BUSCAR_TALLA = 1;
 	
@@ -40,13 +44,18 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		pdao = new PedidoDAO(this);
 		proDao = new ProductoDAO(this);
 		tdao = new TallaDAO(this);
-		pdao.open();
+		tpDao = new TallaPedidoDAO(this);
 		proDao.open();
+		pdao.open();
 		tdao.open();
+		tpDao.open();
+	
 		//registrar boton
 		Button btnSeleccionarTalla = (Button)findViewById(R.id.btnSeleccionarTalla);
 		btnSeleccionarTalla.setOnClickListener(this);
 		
+		Button btnAgregar = (Button)findViewById(R.id.btnCrearTalla);
+		btnAgregar.setOnClickListener(this);
 		Intent intent = getIntent();
 		long idPedido =  intent.getLongExtra("idPedido", 0);
 		long codProducto = intent.getLongExtra("codigoProducto",0);
@@ -67,6 +76,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	  	pdao.open();
 		proDao.open();
 		tdao.open();
+		tpDao.open();
 	  switch(requestCode) {
 	    case (BUSCAR_TALLA) : {
 	      if (resultCode == Activity.RESULT_OK) {
@@ -83,6 +93,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	  pdao.close();
 		proDao.close();
 		tdao.close();
+		tpDao.close();
 	}
 	private void cargarDatos(){
 		TextView lblAgregarTallaIdPedido = (TextView)findViewById(R.id.lblAgregarTallaIdPedido);
@@ -126,6 +137,33 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 			
 		} else if(v.getId()==R.id.btnCrearTalla){
 			//crear registro de tallaPedido y matar a la actividad
+			if(operacion.equals("insertar")){
+				if(prod!=null && pedido!=null && talla !=null){
+					tallaPed = new TallaPedido();
+					tallaPed.setCodigoProducto(prod.getCodigoProducto());
+					tallaPed.setIdPedido(pedido.getId());
+					tallaPed.setNumeroTalla(talla.getNumeroTalla());
+					EditText txtCantidad = (EditText)findViewById(R.id.txtCantidadTalla);
+					
+					String strcant = txtCantidad.getText().toString();
+					int cant=0;
+					if(strcant!=null && strcant.length()>0){
+						cant = Integer.parseInt(strcant);
+						
+					}
+					tallaPed.setCantidad(cant);
+					
+					tpDao.crear(tallaPed);
+					
+					finish();
+					
+				}
+				
+				
+				
+			}
+			
+			
 			
 		}
 		
@@ -136,6 +174,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		pdao.open();
 		proDao.open();
 		tdao.open();
+		tpDao.open();
 		cargarDatos();
 		cargarTalla();
 		super.onResume();
@@ -146,6 +185,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		pdao.close();
 		proDao.close();
 		tdao.close();
+		tpDao.close();
 		super.onPause();
 	}
 
