@@ -43,6 +43,8 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agregar_talla);
+		
+		
 		pdao = new PedidoDAO(this);
 		proDao = new ProductoDAO(this);
 		tdao = new TallaDAO(this);
@@ -61,14 +63,20 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		Intent intent = getIntent();
 		long idPedido =  intent.getLongExtra("idPedido", 0);
 		long codProducto = intent.getLongExtra("codigoProducto",0);
-		
+		long numeroTalla = intent.getIntExtra("numeroTalla", 0);
 		operacion = intent.getStringExtra("operacion");
 		
 		pedido = pdao.buscarPorID(idPedido);
 		prod = proDao.buscarPorID(codProducto);
 		
-		cargarDatos();
+		if(operacion.equals("editar")){
+			tallaPed = tpDao.buscarPorID(idPedido, codProducto, numeroTalla);
+			talla = tdao.buscarPorID(tallaPed.getCodigoProducto(), tallaPed.getNumeroTalla());
+			cargarTalla();
+		}
+			
 		
+		cargarDatos();
 		
 	}
 	
@@ -135,7 +143,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 			if(operacion.equals("insertar")){
 				if(prod!=null && pedido!=null && talla !=null){
 					tallaPed = new TallaPedido();
-					tallaPed.setCodigoProducto(prod.getCodigoProducto());
+					tallaPed.setCodigoProducto((long)prod.getCodigoProducto());
 					tallaPed.setIdPedido(pedido.getId());
 					tallaPed.setNumeroTalla(talla.getNumeroTalla());
 					EditText txtCantidad = (EditText)findViewById(R.id.txtCantidadTalla);
@@ -149,19 +157,33 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 					tallaPed.setCantidad(cant);
 					
 					tpDao.crear(tallaPed);
+					pdao.actualizar(pedido);
 					
 				}
 				
+			} else if(operacion.equals("editar")){
+				if(tallaPed!=null && pedido!=null){
+					EditText txtCantidad = (EditText)findViewById(R.id.txtCantidadTalla);
+					
+					String strcant = txtCantidad.getText().toString();
+					int cant=0;
+					if(strcant!=null && strcant.length()>0){
+						cant = Integer.parseInt(strcant);
+						
+					}
+					tallaPed.setCantidad(cant);
+					tpDao.actualizar(tallaPed);
+					pdao.actualizar(pedido);
+				}
+				
 			}
+			finish();
 			
 		} catch(Exception ex){
 			// mostrar alerta
-			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada");
-		} finally{
+			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada " +ex.getMessage() );
 			
-			finish();
-			
-		}
+		} 
 		
 		
 	}
@@ -169,11 +191,11 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	
 public void mostrarMensaje( String titulo, String mensaje){
 		
-		AlertDialog errorDialog = new AlertDialog.Builder(AgregarTallaActivity.this).create();
+		AlertDialog.Builder errorDialog = new AlertDialog.Builder(AgregarTallaActivity.this);
 		errorDialog.setTitle(titulo);
 		errorDialog.setMessage(mensaje);
 		errorDialog.setIcon(android.R.drawable.ic_dialog_alert);
-		errorDialog.setButton("OK", new DialogInterface.OnClickListener() {
+		errorDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

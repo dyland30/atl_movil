@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.atl.atlmovi.util.Cadena;
 import com.atl.atlmovil.entidades.*;
 
 
@@ -18,6 +19,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class PedidoDAO {
 
+	private Context contexto;
 
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
@@ -26,6 +28,7 @@ public class PedidoDAO {
 			"instruccionesEspeciales","lineaReservadaPedido", "codigoEmpresaCarga"};
 
 	public PedidoDAO(Context context){
+		contexto = context;
 		dbHelper = new MySQLiteHelper(context);
 		
 	}
@@ -49,6 +52,33 @@ public class PedidoDAO {
 		 cursor.close();
 		 return ls;
 	 }
+	 public List<Pedido> buscarPorNroCliente(String nroPedido, long codigoCliente){
+		 List<Pedido> ls = new ArrayList<Pedido>();
+		 List<Visita> lsVisitas;
+		 VisitaDAO viDao = new VisitaDAO(contexto);
+		 viDao.open();
+		 lsVisitas = viDao.obtenerVisitasporCliente(codigoCliente); 
+		 viDao.close();
+		 String[] strVisitas = new String[lsVisitas.size()];
+		 int i=0;
+		 for(Visita vi: lsVisitas){
+			 
+			 strVisitas[i]=vi.getCodigoVisita()+"";
+			 i++;
+		 }
+		 String codigos = Cadena.join(strVisitas, ",");
+
+		 Cursor cursor = database.query(Pedido.class.getSimpleName(), allColumns, "CAST(id as TEXT) like '%"+nroPedido+"%' and codigoVisita IN ("+codigos+") ",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Pedido ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 
 	 public void eliminar(Pedido ent){
 		 long id = ent.getCodigoPedido();
@@ -110,6 +140,8 @@ public class PedidoDAO {
 	 public Pedido actualizar(Pedido ent){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Pedido nuevo = null;
+		 ent.setImportePedido(calcularMontoPedido(ent.getId()));
+		 
 		 ContentValues values = new ContentValues();
 		 values.put("codigoPedido", ent.getCodigoPedido());
 		 values.put("codigoFormaPago", ent.getCodigoFormaPago());
@@ -120,7 +152,7 @@ public class PedidoDAO {
 		 values.put("estadoPedido", ent.getEstadoPedido());
 		 values.put("estaRetenidoPedido", ent.getEstaRetenidoPedido());
 		 values.put("estaSincronizado", ent.getEstaSincronizado());
-		 values.put("fechaIngresoPedido", dateFormat.format(ent.getFechaIngresoPedido()));
+		 values.put("fechaIngresoPedido", dateFormat.format(ent.getFechaIngresoPedido()));		 
 		 values.put("importePedido", ent.getImportePedido());
 		 values.put("instruccionesEspeciales", ent.getInstruccionesEspeciales());
 		 values.put("lineaReservadaPedido", ent.getLineaReservadaPedido());
@@ -137,6 +169,20 @@ public class PedidoDAO {
 		 ent = cursorToEnt(cursor);
 		 cursor.close();		 
 		 return ent;
+	 }
+	 public double calcularMontoPedido(long idPedido){
+		 double suma =0.0D;		
+		 Cursor cursor = database.rawQuery("select sum(cant*precio) as importe from " +
+		 		"(select sum(cantidad) as cant ,tp.codigoProducto as prod, pf.precio as precio " +
+		 		"from TallaPedido as tp inner join Pedido as p on tp.idPedido = p.id " +
+		 		"inner join ProductoFormaPago as pf on pf.codigoFormaPago = p.codigoFormaPago" +
+		 		" and pf.codigoProducto = tp.codigoProducto where tp.idPedido = ? " +
+		 		"group by tp.codigoProducto, pf.precio) as tabla ", new String[] {idPedido+""});;
+		 cursor.moveToFirst();
+		 suma = cursor.getDouble(0);
+		 cursor.close();
+		 return suma;
+		 
 	 }
 	 
 	 private Pedido cursorToEnt(Cursor cursor) {

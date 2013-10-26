@@ -15,8 +15,6 @@ public  class Cadena {
             otherSymbols.setGroupingSeparator(',');
             DecimalFormat myFormatter = new DecimalFormat(patron,otherSymbols);
             
-            
-            
             output = myFormatter.format(numero);
         } else{
             output = numero.toString();
@@ -24,5 +22,16 @@ public  class Cadena {
         return output;
     
     }
+	public static String join(String[] s, String glue)
+	{
+	  int k=s.length;
+	  if (k==0)
+	    return null;
+	  StringBuilder out=new StringBuilder();
+	  out.append(s[0]);
+	  for (int x=1;x<k;++x)
+	    out.append(glue).append(s[x]);
+	  return out.toString();
+	}
 
 }

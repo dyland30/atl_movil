@@ -44,6 +44,19 @@ public class VisitaDAO {
 		 cursor.close();
 		 return ls;
 	 }
+	 public List<Visita> obtenerVisitasporCliente(long codigoCLiente){
+		 List<Visita> ls = new ArrayList<Visita>();
+		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, "codigoCliente= "+codigoCLiente,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Visita vi = cursorToEnt(cursor);
+			 ls.add(vi);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 
 	 public List<Visita> obtenerVisitasEstadoTipo(long codTipoVisita, long codEstadoVisita){
 		 List<Visita> ls = new ArrayList<Visita>();

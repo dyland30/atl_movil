@@ -98,6 +98,8 @@ public class DetallePedidoDAO {
 		 return ent;
 	 }
 	 
+	 
+	 
 	 private DetallePedido cursorToEnt(Cursor cursor) {
 		    DetallePedido ent = null;
 		    if(cursor!=null && cursor.getCount()>0){

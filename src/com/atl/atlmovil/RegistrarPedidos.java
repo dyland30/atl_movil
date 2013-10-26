@@ -26,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegistrarPedidos extends ListActivity implements OnClickListener  {
@@ -142,12 +143,18 @@ public class RegistrarPedidos extends ListActivity implements OnClickListener  {
 	
 	private void cargarListaPedidos(){
 		
-		lsPedidos = pDao.obtenerTodos();
+		EditText txtfiltro = (EditText)findViewById(R.id.txtFiltrarPedidos);
+		if(clientePedido!=null){
+			
+			lsPedidos = pDao.buscarPorNroCliente(txtfiltro.getText().toString(), clientePedido.getCodigoCliente());
+			
+			
+			//ListView lvVisitas = (ListView)findViewById(android.R.id.list);
+			adapter = new PedidoAdapter(this, lsPedidos);
+			//lvVisitas.setAdapter(adapter);
+			setListAdapter(adapter);
+		}
 		
-		//ListView lvVisitas = (ListView)findViewById(android.R.id.list);
-		adapter = new PedidoAdapter(this, lsPedidos);
-		//lvVisitas.setAdapter(adapter);
-		setListAdapter(adapter);
 		
 		
 	}

@@ -71,7 +71,7 @@ public class PedidoAdapter extends BaseAdapter{
 		
 		//establecer el valor de los campos
 		Pedido ped = data.get(position);
-		Log.w("info", ped.getId()+"");
+		//Log.w("info", ped.getId()+"");
 		// obtener Cliente
 		Cliente cli = null;
 		Visita visita = null;
@@ -100,7 +100,7 @@ public class PedidoAdapter extends BaseAdapter{
 			perDao.close();
 		}
 		
-		Log.w("info", "per "+per.getCodigoPersona()+"");
+		//Log.w("info", "per "+per.getCodigoPersona()+"");
 		if(per!=null)
 			txtCliente.setText(per.getDocumentoPersona()+" "+per.getNombrePersona());
 		
