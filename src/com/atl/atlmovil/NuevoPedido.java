@@ -234,12 +234,10 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			if(operacion.equals("editar")){
 				pDao.actualizar(pedido);
 			} else{
-				pDao.crear(pedido);
+				pedido = pDao.crear(pedido);
 			}
 			
-			// navegar a la lista de pedidos
-			Intent registrarPedidoIntent = new Intent(NuevoPedido.this, RegistrarPedidos.class);
-			startActivity(registrarPedidoIntent);
+			
 			
 			
 		}catch(Exception ex){
@@ -269,17 +267,20 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		if(v.getId()==R.id.btnGuardarPedido){
 			// guardar
 			guardarPedido();
+			// navegar a la lista de pedidos
+			finish();
+			
 			
 		}
 		if(v.getId()==R.id.btnCancelarPedido){
-			Intent registrarPedidoIntent = new Intent(NuevoPedido.this, RegistrarPedidos.class);
-			startActivity(registrarPedidoIntent);
+			finish();
 			
 		}
 		if(v.getId()==R.id.btnDetallePedido){
 			//guardar pedido si no esta guardado
 			if(pedido==null || pedido.getId()==0){
 				guardarPedido();
+				//navegar a la lista de 
 				
 			}
 			

@@ -28,6 +28,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_PRODUCTO_FORMA_PAGO = "ProductoFormaPago";
 	public static final String TB_EMPRESA_CARGA = "EmpresaCarga";
 	public static final String TB_PRODUCTO_TALLA = "ProductoTalla";
+	
+	// COBRANZA
+	public static final String TB_COBRANZA = "Cobranza";
+	public static final String TB_DOCUMENTO_PAGO = "DocumentoPago";
+	public static final String TB_AMORTIZACION = "Amortizacion";
+	public static final String TB_MEDIO_PAGO = "MedioPago";
+	public static final String TB_BANCO = "Banco";
+	public static final String TB_DEPOSITO = "Deposito";
+	public static final String TB_VOUCHER = "Voucher";
+
+	
 	//------------------------------------------------------------------
 	private static final int DATABASE_VERSION = 14;
 	private static final String DATABASE_NAME = "atlmovil.db";
@@ -95,7 +106,31 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			"codigoProducto INTEGER, precio NUMERIC, PRIMARY KEY(codigoFormaPago,codigoProducto)) ; ";
 	
 	private static final String C_TB_EMPRESA_CARGA = " CREATE TABLE EmpresaCarga (codigoEmpresaCarga INTEGER PRIMARY KEY NOT NULL, " +
-			"nombreEmpresaCarga TEXT, direccionEmpresaCarga TEXT, horarioEmpresaCarga TEXT, rucEmpresaCarga TEXT ) ; ";;
+			"nombreEmpresaCarga TEXT, direccionEmpresaCarga TEXT, horarioEmpresaCarga TEXT, rucEmpresaCarga TEXT ) ; ";
+	
+	
+	private static final String C_TB_COBRANZA = "CREATE TABLE Cobranza (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+			"codigoCobranza INTEGER, codigoMedioPago INTEGER, importeCobranza NUMERIC, fechaCobranza DATETIME) ; ";
+	
+	private static final String C_TB_DOCUMENTO_PAGO = "CREATE TABLE DocumentoPago (codigoDocumentoPago INTEGER PRIMARY KEY NOT NULL, " +
+			"fechaEmisionDocumentoPago DATETIME, fechaVencimientoDocumentoPago DATETIME, importeAmortizadoDocumentoPago NUMERIC," +
+			"importeDescontadoDocumentoPago NUMERIC, importeIgvDocumentoPago NUMERIC, importeOriginalDocumentoPago NUMERIC," +
+			"importePendienteDocumentoPago NUMERIC, plazoDocumentoPago INTEGER, tipoDocumentoPago TEXT, ReferenciaDocumentoPago TEXT ) ; ";
+	
+	
+	private static final String C_TB_AMORTIZACION = "CREATE TABLE Amortizacion (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT) ; ";
+	
+	private static final String C_TB_MEDIO_PAGO = "CREATE TABLE MedioPago (codigoMedioPago INTEGER PRIMARY KEY NOT NULL," +
+			"descripcionMedioPago TEXT) ; ";
+	
+	private static final String C_TB_BANCO = "CREATE TABLE Banco (codigoBanco INTEGER PRIMARY KEY NOT NULL," +
+			"nombreBanco TEXT) ; ";
+	
+	private static final String C_TB_DEPOSITO = "CREATE TABLE Banco (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+			"codigoDeposito INTEGER, codigoCobranza INTEGER,codigoMedioPago INTEGER, bancoDeposito INTEGER, clienteDeposito INTEGER, " +
+			"voucherDeposito INTEGER, agenciaDeposito TEXT,terminalDeposito TEXT, estadoDeposito INTEGER, fechaDeposito DATETIME, " +
+			"importeDeposito NUMERIC, ) ; ";
 	
 			
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
@@ -130,6 +165,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(C_TB_TALLA_PEDIDO);
 		db.execSQL(C_TB_PRODUCTO_FORMA_PAGO);
 		db.execSQL(C_TB_EMPRESA_CARGA);
+		
+		
+		db.execSQL(C_TB_COBRANZA);
+		db.execSQL(C_TB_DOCUMENTO_PAGO);
+		db.execSQL(C_TB_AMORTIZACION);
+		db.execSQL(C_TB_MEDIO_PAGO);
+		db.execSQL(C_TB_BANCO);
+		db.execSQL(C_TB_DEPOSITO);
 		
 		
 		
@@ -306,6 +349,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_PRODUCTO_FORMA_PAGO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_EMPRESA_CARGA);
 		
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_COBRANZA);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_DOCUMENTO_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_AMORTIZACION);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_MEDIO_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_BANCO);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_DEPOSITO);
 		
 		onCreate(db);
 
