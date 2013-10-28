@@ -34,6 +34,8 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         Button btnRegistrarPedido = (Button)findViewById(R.id.btnRegistrarPedido);
         btnRegistrarPedido.setOnClickListener(this);
         
+        Button btnTestWB = (Button)findViewById(R.id.btnTestWebService);
+        btnTestWB.setOnClickListener(this);
         
         
     }
@@ -83,6 +85,11 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 				
 			}
 			
+			
+		}
+		if(v.getId()==R.id.btnTestWebService){
+			Intent testIntent = new Intent(MenuPrincipalActivity.this, PruebaWebServiceActivity.class);
+			startActivity(testIntent);
 			
 		}
 		

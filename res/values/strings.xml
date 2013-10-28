@@ -59,5 +59,7 @@
     <string name="seleccionarTalla">Seleccionar Talla</string>
     <string name="title_activity_buscar_talla">BuscarTalla</string>
     <string name="buscarTalla">Buscar Talla...</string>
+    <string name="title_activity_test_url">TestURLActivity</string>
+    <string name="title_activity_prueba_web_service">PruebaWebServiceActivity</string>
 
 </resources>

@@ -29,7 +29,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TB_EMPRESA_CARGA = "EmpresaCarga";
 	public static final String TB_PRODUCTO_TALLA = "ProductoTalla";
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 12;
+	private static final int DATABASE_VERSION = 14;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -151,7 +151,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('3','Carnet de Extranjeria','CE'); ");
 
 		//Personas
-		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('1','1','Ramirez Lesly','Tomas Marsano 457 - SURCO', '47896574', 'NATURAL'); ");
+		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('1','1','Juan Jimenez','Tomas Marsano 457 - SURCO', '47896574', 'NATURAL'); ");
 		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('2','1','Marco Flores','Universitaria 1474 - SAN MIGUEL','12359874', 'NATURAL'); ");
 		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('3','1','Marlon Guadalupe','Universitaria 1111 - SAN MIGUEL','237896587', 'NATURAL'); ");
 		//Empleados

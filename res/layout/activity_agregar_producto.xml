@@ -29,10 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/lbl1"
-        android:ems="10"
-        android:inputType="none"
         android:editable="false"
-        >
+        android:ems="10"
+        android:inputType="none" >
 
         <requestFocus />
     </EditText>
@@ -44,8 +43,8 @@
         android:layout_alignBaseline="@+id/txtProductoAgregar"
         android:layout_alignBottom="@+id/txtProductoAgregar"
         android:layout_toRightOf="@+id/txtProductoAgregar"
-        android:text="@string/blanco"
-        android:drawableLeft="@android:drawable/ic_input_add" />
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:text="@string/blanco" />
 
     <TextView
         android:id="@+id/lblNumeroTallaPedido"
@@ -103,8 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblExistenciasTallaPedido"
         android:layout_centerHorizontal="true"
-        android:text="@string/agregarTalla" 
-        android:drawableLeft="@android:drawable/ic_input_add"/>
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:text="@string/agregarTalla" />
 
     <TextView
         android:id="@+id/lblImporteTallaPedido"
@@ -114,30 +113,13 @@
         android:layout_centerHorizontal="true"
         android:text="@string/tallasSeleccionadas" />
 
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="205dp"
-        android:layout_above="@+id/btnAgregarProducto"
-        android:layout_alignLeft="@+id/lblExistenciasTallaPedido" >
-    </ListView>
-    
-     <Button
-         android:id="@+id/btnAgregarProducto"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_alignRight="@+id/lblImporteTallaPedido"
-         android:text="@string/agregar" />
-
-    <Button
-        android:id="@+id/btnCancelarAgregarProducto"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnAgregarProducto"
-        android:layout_alignBottom="@+id/btnAgregarProducto"
-        android:layout_toLeftOf="@+id/btnAgregarProducto"
-        android:text="@string/cancel" />
+        android:layout_alignLeft="@+id/lblExistenciasTallaPedido"
+         android:layout_below="@+id/lblImporteTallaPedido"
+        >
+    </ListView>
 
 </RelativeLayout>

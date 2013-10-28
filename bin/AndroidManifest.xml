@@ -8,6 +8,8 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="7" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.atl.atlmovil.AtlApp"
         android:allowBackup="true"
@@ -58,6 +60,10 @@
         <activity
             android:name="com.atl.atlmovil.BuscarTalla"
             android:label="@string/title_activity_buscar_talla" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.PruebaWebServiceActivity"
+            android:label="@string/title_activity_prueba_web_service" >
         </activity>
     </application>
 
