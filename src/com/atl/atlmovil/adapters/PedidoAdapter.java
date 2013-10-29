@@ -3,9 +3,10 @@ package com.atl.atlmovil.adapters;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.atl.atlmovil.entidades.Persona;
 import com.atl.atlmovil.entidades.Pedido;
 import com.atl.atlmovil.entidades.Visita;
 
+@SuppressLint("SimpleDateFormat")
 public class PedidoAdapter extends BaseAdapter{
 	private Activity activity;
 	private List<Pedido> data;

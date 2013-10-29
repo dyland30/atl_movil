@@ -3,16 +3,13 @@ package com.atl.atlmovil;
 import java.util.List;
 
 import com.atl.atlmovi.util.Cadena;
-import com.atl.atlmovil.adapters.DetallePedidoAdapter;
 import com.atl.atlmovil.adapters.TallaPedidoAdapter;
 import com.atl.atlmovil.dao.DetallePedidoDAO;
-import com.atl.atlmovil.dao.FormaPagoDAO;
 import com.atl.atlmovil.dao.PedidoDAO;
 import com.atl.atlmovil.dao.ProductoDAO;
 import com.atl.atlmovil.dao.ProductoFormaPagoDAO;
 import com.atl.atlmovil.dao.TallaPedidoDAO;
 import com.atl.atlmovil.entidades.DetallePedido;
-import com.atl.atlmovil.entidades.FormaPago;
 import com.atl.atlmovil.entidades.Pedido;
 import com.atl.atlmovil.entidades.Producto;
 import com.atl.atlmovil.entidades.ProductoFormaPago;
@@ -257,7 +254,7 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					
-					@SuppressWarnings("unchecked")
+				
 					TallaPedidoAdapter adaptadorInterno = (TallaPedidoAdapter)getListAdapter();
 					TallaPedido det = (TallaPedido)adaptadorInterno.getItem(adapterInfo.position);
 					//eliminar el detalle con todas sus tallas 

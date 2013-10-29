@@ -61,5 +61,6 @@
     <string name="buscarTalla">Buscar Talla...</string>
     <string name="title_activity_test_url">TestURLActivity</string>
     <string name="title_activity_prueba_web_service">PruebaWebServiceActivity</string>
+    <string name="title_activity_registrar_cobranzas">RegistrarCobranzasActivity</string>
 
 </resources>

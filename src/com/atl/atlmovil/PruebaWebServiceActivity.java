@@ -2,7 +2,7 @@ package com.atl.atlmovil;
 
 import com.atl.atlmovi.util.RequestManager;
 
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;

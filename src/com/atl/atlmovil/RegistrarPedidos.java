@@ -3,7 +3,7 @@ package com.atl.atlmovil;
 import java.util.List;
 
 import com.atl.atlmovil.adapters.PedidoAdapter;
-import com.atl.atlmovil.adapters.VisitaAdapter;
+
 import com.atl.atlmovil.dao.ClienteDAO;
 import com.atl.atlmovil.dao.PedidoDAO;
 import com.atl.atlmovil.dao.PersonaDAO;
@@ -16,7 +16,7 @@ import com.atl.atlmovil.entidades.Visita;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
-import android.util.Log;
+
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -120,7 +120,7 @@ public class RegistrarPedidos extends ListActivity implements OnClickListener  {
 		
 		if(item.getTitle().equals("EDITAR PEDIDO")){
 			// 
-			@SuppressWarnings("unchecked")
+		
 			PedidoAdapter adaptadorInterno = (PedidoAdapter)getListAdapter();
 			Pedido pe = (Pedido)adaptadorInterno.getItem(adapterInfo.position);
 			if(pe!=null){

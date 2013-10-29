@@ -65,6 +65,10 @@
             android:name="com.atl.atlmovil.PruebaWebServiceActivity"
             android:label="@string/title_activity_prueba_web_service" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.RegistrarCobranzasActivity"
+            android:label="@string/title_activity_registrar_cobranzas" >
+        </activity>
     </application>
 
 </manifest>

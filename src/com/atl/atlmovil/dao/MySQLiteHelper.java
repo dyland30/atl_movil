@@ -127,12 +127,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	private static final String C_TB_BANCO = "CREATE TABLE Banco (codigoBanco INTEGER PRIMARY KEY NOT NULL," +
 			"nombreBanco TEXT) ; ";
 	
-	private static final String C_TB_DEPOSITO = "CREATE TABLE Banco (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+	private static final String C_TB_DEPOSITO = "CREATE TABLE Deposito (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
 			"codigoDeposito INTEGER, codigoCobranza INTEGER,codigoMedioPago INTEGER, bancoDeposito INTEGER, clienteDeposito INTEGER, " +
 			"voucherDeposito INTEGER, agenciaDeposito TEXT,terminalDeposito TEXT, estadoDeposito INTEGER, fechaDeposito DATETIME, " +
-			"importeDeposito NUMERIC, ) ; ";
+			"importeDeposito NUMERIC ) ; ";
 	
-			
+	private static final String C_TB_VOUCHER= "CREATE TABLE Voucher (codigoVoucher INTEGER PRIMARY KEY NOT NULL," +
+			"bancoVoucher INTEGER, clienteVoucher INTEGER, agenciaVoucher TEXT, estadoVoucher INTEGER, fechaVoucher DATETIME," +
+			"importeVoucher NUMERIC, medioVoucher TEXT, terminalVoucher TEXT) ; ";
+	
 	private static final String DATABASE_CREATE = C_TB_USUARIO+C_TB_VISITA +C_TB_TIPO_VISITA+C_TB_ESTADO_VISITA+C_TB_GRUPO+C_TB_CLIENTE+C_TB_EMPLEADO+
 			C_TB_LINEA_CREDITO+C_TB_PERSONA+C_TB_TIPO_DOCUMENTO+C_TB_EMPRESA_CARGA ;
 
@@ -173,7 +176,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(C_TB_MEDIO_PAGO);
 		db.execSQL(C_TB_BANCO);
 		db.execSQL(C_TB_DEPOSITO);
-		
+		db.execSQL(C_TB_VOUCHER);
 		
 		
 		Log.w("info",DATABASE_CREATE);
@@ -355,6 +358,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + C_TB_MEDIO_PAGO);
 		db.execSQL("DROP TABLE IF EXISTS " + C_TB_BANCO);
 		db.execSQL("DROP TABLE IF EXISTS " + C_TB_DEPOSITO);
+		db.execSQL("DROP TABLE IF EXISTS " + C_TB_VOUCHER);
 		
 		onCreate(db);
 

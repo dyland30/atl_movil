@@ -1,11 +1,11 @@
 package com.atl.atlmovil;
 
-import java.util.Date;
+
 import java.util.List;
 
 import com.atl.atlmovi.util.Cadena;
 import com.atl.atlmovil.adapters.DetallePedidoAdapter;
-import com.atl.atlmovil.adapters.VisitaAdapter;
+
 
 import com.atl.atlmovil.dao.ClienteDAO;
 import com.atl.atlmovil.dao.DetallePedidoDAO;
@@ -171,7 +171,7 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					
-					@SuppressWarnings("unchecked")
+				
 					DetallePedidoAdapter adaptadorInterno = (DetallePedidoAdapter)getListAdapter();
 					DetallePedido det = (DetallePedido)adaptadorInterno.getItem(adapterInfo.position);
 					//eliminar el detalle con todas sus tallas 

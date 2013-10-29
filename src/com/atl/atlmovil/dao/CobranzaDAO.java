@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.atl.atlmovil.entidades.Cobranza;
 
+@SuppressLint("SimpleDateFormat")
 public class CobranzaDAO {
    
 	private SQLiteDatabase database;
@@ -76,7 +78,7 @@ public class CobranzaDAO {
 		 values.put("fechaCobranza", dateFormat.format( ent.getFechaCObranza()));
 		 
 		 database.update(Cobranza.class.getSimpleName(), values, " id = "+ent.getId(), null);
-		 nuevo=buscarPorID(ent.getCodigoCobranza());
+		 nuevo=buscarPorID(ent.getId());
 		 
 		 return nuevo;
 	 }

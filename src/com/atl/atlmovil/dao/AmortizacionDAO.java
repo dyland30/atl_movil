@@ -1,9 +1,7 @@
 package com.atl.atlmovil.dao;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -15,11 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.atl.atlmovil.entidades.Amortizacion;
 
 public class AmortizacionDAO {
-	/*
-	 *  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-			" INTEGER,  INTEGER,  NUMERIC,  TEXT
-	 * 
-	 * */
+	
 
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
@@ -55,16 +49,16 @@ public class AmortizacionDAO {
 		 database.delete(Amortizacion.class.getSimpleName(),"id = "+id,null);
 		 
 	 }
-	 /*
-	 public Amortizacion crear(){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	 public Amortizacion crear(long id,long idCobranza,long codigoDocumentoPago,double importeAmortizacion,String anotacionAmortizacion){
+		
 		 Amortizacion ent = null;
 		 ContentValues values = new ContentValues();
-		 values.put("codigoAmortizacion", codigoAmortizacion);
-		 values.put("codigoMedioPago", codigoMedioPago);
+		 values.put("id", id);
+		 values.put("idCobranza", idCobranza);
+		 values.put("codigoDocumentoPago", codigoDocumentoPago);
 		 values.put("importeAmortizacion", importeAmortizacion);
-		 values.put("fechaAmortizacion", dateFormat.format(fechaAmortizacion));
-		 
+		 values.put("anotacionAmortizacion", anotacionAmortizacion);
 		 
 		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
 		 
@@ -74,16 +68,16 @@ public class AmortizacionDAO {
 	 }
 	 
 	 public Amortizacion actualizar(Amortizacion ent){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 
 		 Amortizacion nuevo = null;
 		 ContentValues values = new ContentValues();
-		 values.put("codigoAmortizacion", ent.getCodigoAmortizacion());
-		 values.put("codigoMedioPago",  ent.getCodigoMedioPago());
+		 values.put("idCobranza", ent.getIdCobranza());
+		 values.put("codigoDocumentoPago", ent.getCodigoDocumentoPago());
 		 values.put("importeAmortizacion", ent.getImporteAmortizacion());
-		 values.put("fechaAmortizacion", dateFormat.format( ent.getFechaAmortizacion()));
+		 values.put("anotacionAmortizacion", ent.getAnotacionAmortizacion());
 		 
 		 database.update(Amortizacion.class.getSimpleName(), values, " id = "+ent.getId(), null);
-		 nuevo=buscarPorID(ent.getCodigoAmortizacion());
+		 nuevo=buscarPorID(ent.getId());
 		 
 		 return nuevo;
 	 }
@@ -97,26 +91,20 @@ public class AmortizacionDAO {
 	 }
 	 
 	 private Amortizacion cursorToEnt(Cursor cursor) {
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
 		    Amortizacion ent = null;
 		    if(cursor!=null ){
 		    	ent = new Amortizacion();
 		    	ent.setId(cursor.getLong(0));
-		    	ent.setCodigoAmortizacion(cursor.getLong(1));
-		    	ent.setCodigoMedioPago(cursor.getInt(2));
+		    	ent.setIdCobranza(cursor.getLong(1));
+		    	ent.setCodigoDocumentoPago(cursor.getInt(2));
 		    	ent.setImporteAmortizacion(cursor.getDouble(3));
+		    	ent.setAnotacionAmortizacion(cursor.getString(4));
 		    	
-		    	try {
-					ent.setFechaAmortizacion(dateFormat.parse(cursor.getString(4)));
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					ent.setFechaAmortizacion(new Date(1900,1,1));
-					
-				}
 		    	
 		    }
 		    
 		    return ent;
 	 }
-*/
+
 }

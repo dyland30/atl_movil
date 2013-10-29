@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.atl.atlmovil.entidades.DocumentoPago;
 
+@SuppressLint("SimpleDateFormat")
 public class DocumentoPagoDAO {
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
@@ -104,7 +106,7 @@ public class DocumentoPagoDAO {
 	 }
 	 public DocumentoPago buscarPorID(long id){
 		 DocumentoPago ent = null;
-		 Cursor cursor = database.query(DocumentoPago.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
+		 Cursor cursor = database.query(DocumentoPago.class.getSimpleName(), allColumns, " codigoDocumentoPago = "+id,null,null,null,null);
 		 cursor.moveToFirst();
 		 ent = cursorToEnt(cursor);
 		 cursor.close();		 

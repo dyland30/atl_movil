@@ -148,8 +148,7 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					
-					@SuppressWarnings("unchecked")
+				
 					VisitaAdapter adaptadorInterno = (VisitaAdapter)getListAdapter();
 					Visita vi = (Visita)adaptadorInterno.getItem(adapterInfo.position);
 					
@@ -225,7 +224,6 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					
-					@SuppressWarnings("unchecked")
 					VisitaAdapter adaptadorInterno = (VisitaAdapter) getListAdapter();
 					
 					Visita vi = (Visita)adaptadorInterno.getItem(adapterInfo.position);
@@ -281,7 +279,7 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					
-					@SuppressWarnings("unchecked")
+				
 					VisitaAdapter adaptadorInterno = (VisitaAdapter) getListAdapter();
 					
 					Visita vi = (Visita)adaptadorInterno.getItem(adapterInfo.position);
