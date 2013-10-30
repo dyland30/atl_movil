@@ -62,5 +62,13 @@
     <string name="title_activity_test_url">TestURLActivity</string>
     <string name="title_activity_prueba_web_service">PruebaWebServiceActivity</string>
     <string name="title_activity_registrar_cobranzas">RegistrarCobranzasActivity</string>
+    <string name="btnNuevaCobranza">Nueva Cobranza</string>
+    <string name="title_activity_nueva_cobranza">NuevaCobranzaActivity</string>
+    <string name="importe">Importe</string>
+    <string name="medioPago">Medio Pago</string>
+    <string name="detalleCobranza">Detalle de la Cobranza</string>
+    <string name="autoDistribuir">Auto Distribuir</string>
+    
+    
 
 </resources>

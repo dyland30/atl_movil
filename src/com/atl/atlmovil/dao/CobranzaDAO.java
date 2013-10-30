@@ -20,7 +20,7 @@ public class CobranzaDAO {
    
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
-	private String[] allColumns = { "id","codigoCobranza","codigoMedioPago","importeCobranza", "fechaCobranza"};
+	private String[] allColumns = { "id","codigoCobranza","codigoMedioPago","importeCobranza", "fechaCobranza","estaSincronizado", "estadoCobranza", "codigoVisita"};
 
 	public CobranzaDAO(Context context){
 		dbHelper = new MySQLiteHelper(context);
@@ -47,13 +47,27 @@ public class CobranzaDAO {
 		 return ls;
 	 }
 	 
+	 public List<Cobranza> buscarPorVisita(long codigoVisita){
+		 List<Cobranza> ls = new ArrayList<Cobranza>();
+		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " codigoVisita = '"+codigoVisita+"'",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Cobranza ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 public void eliminar(Cobranza ent){
 		 long id = ent.getId();
 		 database.delete(Cobranza.class.getSimpleName(),"id = "+id,null);
 		 
 	 }
 	 
-	 public Cobranza crear(long codigoCobranza, long codigoMedioPago, double importeCobranza, Date fechaCobranza){
+	 public Cobranza crear(long codigoCobranza, long codigoMedioPago, double importeCobranza, Date fechaCobranza, Boolean estaSincronizado,
+			 String estadoCobranza, long codigoVisita){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Cobranza ent = null;
 		 ContentValues values = new ContentValues();
@@ -61,6 +75,10 @@ public class CobranzaDAO {
 		 values.put("codigoMedioPago", codigoMedioPago);
 		 values.put("importeCobranza", importeCobranza);
 		 values.put("fechaCobranza", dateFormat.format(fechaCobranza));
+		 values.put("estaSincronizado", estaSincronizado);
+		 values.put("estadoCobranza", estadoCobranza);
+		 values.put("codigoVisita", codigoVisita);
+		 
 		 long insertId = database.insert(Cobranza.class.getSimpleName(), null, values);
 		 
 		 ent = buscarPorID(insertId);
@@ -76,7 +94,9 @@ public class CobranzaDAO {
 		 values.put("codigoMedioPago",  ent.getCodigoMedioPago());
 		 values.put("importeCobranza", ent.getImporteCobranza());
 		 values.put("fechaCobranza", dateFormat.format( ent.getFechaCObranza()));
-		 
+		 values.put("estaSincronizado", ent.getEstaSincronizado());
+		 values.put("estadoCobranza", ent.getEstadoCobranza());
+		 values.put("codigoVisita", ent.getCodigoVisita());
 		 database.update(Cobranza.class.getSimpleName(), values, " id = "+ent.getId(), null);
 		 nuevo=buscarPorID(ent.getId());
 		 
@@ -108,6 +128,11 @@ public class CobranzaDAO {
 					ent.setFechaCObranza(new Date(1900,1,1));
 					
 				}
+		    	
+		    	Boolean estaSincronizado = cursor.getInt(5)==1 ?true : false;
+		    	ent.setEstaSincronizado(estaSincronizado);
+		    	ent.setEstadoCobranza(cursor.getString(6));
+		    	ent.setCodigoVisita(cursor.getLong(7));
 		    	
 		    }
 		    

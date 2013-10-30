@@ -9,6 +9,10 @@ public class Cobranza {
 	private double importeCobranza;
 	private Date fechaCObranza;
 	
+	private Boolean estaSincronizado; // 1 -> si, 0 --> no
+	private String estadoCobranza; 
+	private long codigoVisita;
+	
 	public long getId() {
 		return id;
 	}
@@ -38,6 +42,24 @@ public class Cobranza {
 	}
 	public void setFechaCObranza(Date fechaCObranza) {
 		this.fechaCObranza = fechaCObranza;
+	}
+	public Boolean getEstaSincronizado() {
+		return estaSincronizado;
+	}
+	public void setEstaSincronizado(Boolean estaSincronizado) {
+		this.estaSincronizado = estaSincronizado;
+	}
+	public String getEstadoCobranza() {
+		return estadoCobranza;
+	}
+	public void setEstadoCobranza(String estadoCobranza) {
+		this.estadoCobranza = estadoCobranza;
+	}
+	public long getCodigoVisita() {
+		return codigoVisita;
+	}
+	public void setCodigoVisita(long codigoVisita) {
+		this.codigoVisita = codigoVisita;
 	}
 	
 	

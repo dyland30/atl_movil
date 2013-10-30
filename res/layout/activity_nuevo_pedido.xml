@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/blanco"
-            android:drawableRight="@android:drawable/ic_input_add" />
+            android:drawableRight="@android:drawable/ic_search_category_default" />
     </LinearLayout>
 
     <TextView
@@ -112,13 +112,16 @@
         android:text="@string/estado" />
 
     <Spinner
-        android:id="@+id/cmbEstadoPedido"
+        android:id="@+id/cmbEstadoNuevaCobranza"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     
      <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center_horizontal"
+        
+        >
         
         <Button
         android:id="@+id/btnCancelarPedido"

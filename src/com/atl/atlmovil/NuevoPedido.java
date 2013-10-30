@@ -98,7 +98,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	private void cargarDatos(){
 		if(pedido!=null){
 			Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbFormaPago);
-			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoPedido);
+			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 			CheckBox chbAceptaRetencion = (CheckBox)findViewById(R.id.chbAceptaRetencion);
 			EditText txtDireccionEnvio = (EditText)findViewById(R.id.txtDireccionEnvioPedido);
 			EditText txtInstrucciones = (EditText)findViewById(R.id.txtInstruccionesPedido);
@@ -164,7 +164,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	private void cargarCmbEstadoPedido(){
 		
 		String[] estados = 	{"Ingresado","Retenido","Anulado"};
-		Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbEstadoPedido);
+		Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 		ArrayAdapter<String> formaPagoAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, estados);
 		cmbFormaPago.setAdapter(formaPagoAdapter);
@@ -194,7 +194,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	private void guardarPedido(){
 		try{
 			Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbFormaPago);
-			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoPedido);
+			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 			CheckBox chbAceptaRetencion = (CheckBox)findViewById(R.id.chbAceptaRetencion);
 			EditText txtDireccionEnvio = (EditText)findViewById(R.id.txtDireccionEnvioPedido);
 			EditText txtInstrucciones = (EditText)findViewById(R.id.txtInstruccionesPedido);

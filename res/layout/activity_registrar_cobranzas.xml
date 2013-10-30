@@ -9,58 +9,106 @@
     tools:context=".RegistrarCobranzasActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/lblVisitaRegistrarCobranzas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="TextView" />
+        android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/lblClienteRegistrarCobranzas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="TextView" />
+        android:layout_alignLeft="@+id/lblVisitaRegistrarCobranzas"
+        android:layout_below="@+id/lblVisitaRegistrarCobranzas"
+        android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/lblClienteNuevaCobranza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/lblClienteRegistrarCobranzas"
+        android:layout_below="@+id/lblClienteRegistrarCobranzas"
         android:text="@string/estado" />
 
     <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner1"
-        android:layout_centerHorizontal="true"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:text="Button" />
-
-    <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/cmbEstadoCobranzaFiltro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spinner1"
-        android:layout_below="@+id/button2" >
+        android:layout_alignLeft="@+id/lblClienteNuevaCobranza"
+        android:layout_below="@+id/lblClienteNuevaCobranza" />
+
+    <TextView
+        android:id="@+id/lblFechaDesde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmbEstadoCobranzaFiltro"
+        android:layout_below="@+id/cmbEstadoCobranzaFiltro"
+        android:layout_marginTop="14dp"
+        android:text="@string/blanco" />
+
+    <Button
+        android:id="@+id/btnSelFechaDesde"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblFechaDesde"
+        android:layout_alignBottom="@+id/lblFechaDesde"
+        android:layout_toRightOf="@+id/lblFechaDesde"
+        android:text="@string/blanco"
+        android:drawableLeft="@android:drawable/arrow_up_float"/>
+
+    <Button
+        android:id="@+id/btnSelFechaHasta"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSelFechaDesde"
+        android:layout_alignBottom="@+id/btnSelFechaDesde"
+        android:layout_alignRight="@+id/cmbEstadoCobranzaFiltro"
+        android:text="@string/blanco"
+        android:drawableLeft="@android:drawable/arrow_up_float" />
+
+    <TextView
+        android:id="@+id/lblFechaHasta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSelFechaHasta"
+        android:layout_alignBottom="@+id/btnSelFechaHasta"
+        android:layout_toLeftOf="@+id/btnSelFechaHasta"
+        android:text="@string/blanco" />
+
+    <Button
+        android:id="@+id/btnFiltrarRegistroCobranza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnNuevaCobranza"
+        android:layout_alignRight="@+id/btnNuevaCobranza"
+        android:layout_below="@+id/btnSelFechaDesde"
+        android:layout_marginTop="20dip"
+        android:text="@string/filtrar" 
+        android:drawableRight="@android:drawable/ic_search_category_default"
+        />
+    
+    <Button
+        android:id="@+id/btnNuevaCobranza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnFiltrarRegistroCobranza"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnNuevaCobranza" 
+        android:drawableRight="@android:drawable/ic_input_add"
+        />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblFechaDesde"
+        android:layout_below="@+id/btnNuevaCobranza" >
     </ListView>
+
+    
 
 </RelativeLayout>

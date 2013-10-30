@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 14;
+	private static final int DATABASE_VERSION = 15;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -110,7 +110,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private static final String C_TB_COBRANZA = "CREATE TABLE Cobranza (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-			"codigoCobranza INTEGER, codigoMedioPago INTEGER, importeCobranza NUMERIC, fechaCobranza DATETIME) ; ";
+			"codigoCobranza INTEGER, codigoMedioPago INTEGER, importeCobranza NUMERIC, fechaCobranza DATETIME, estaSincronizado INTEGER, estadoCobranza TEXT, codigoVisita INTEGER) ; ";
 	
 	private static final String C_TB_DOCUMENTO_PAGO = "CREATE TABLE DocumentoPago (codigoDocumentoPago INTEGER PRIMARY KEY NOT NULL, " +
 			"fechaEmisionDocumentoPago DATETIME, fechaVencimientoDocumentoPago DATETIME, importeAmortizadoDocumentoPago NUMERIC," +
@@ -322,6 +322,28 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +
 				"values ('1','3','40','5'); ");
 		
+		//Medios de Pago
+		// INTEGER PRIMARY KEY NOT NULL," +
+		//" TEXT
+		
+		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
+				"values ('1','Voucher'); ");
+		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
+				"values ('2','Efectivo'); ");
+		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
+				"values ('3','Cheque'); ");
+		
+		
+		// Cobranzas
+		// "","","","", "","", ""
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
+				"values ('1','0','1','500.00','2013-10-30','0','Registrado', '1'); ");
+		
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
+				"values ('2','0','1','450.00','2013-10-30','0','Registrado','1'); ");
+		
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
+				"values ('3','0','1','600.00','2013-10-30','0','Registrado','1'); ");
 		
 	}
 
@@ -352,13 +374,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TB_PRODUCTO_FORMA_PAGO);
 		db.execSQL("DROP TABLE IF EXISTS " + TB_EMPRESA_CARGA);
 		
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_COBRANZA);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_DOCUMENTO_PAGO);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_AMORTIZACION);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_MEDIO_PAGO);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_BANCO);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_DEPOSITO);
-		db.execSQL("DROP TABLE IF EXISTS " + C_TB_VOUCHER);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_COBRANZA);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_DOCUMENTO_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_AMORTIZACION);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_MEDIO_PAGO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_BANCO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_DEPOSITO);
+		db.execSQL("DROP TABLE IF EXISTS " + TB_VOUCHER);
 		
 		onCreate(db);
 

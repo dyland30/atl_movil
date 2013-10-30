@@ -69,6 +69,10 @@
             android:name="com.atl.atlmovil.RegistrarCobranzasActivity"
             android:label="@string/title_activity_registrar_cobranzas" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.NuevaCobranzaActivity"
+            android:label="@string/title_activity_nueva_cobranza" >
+        </activity>
     </application>
 
 </manifest>

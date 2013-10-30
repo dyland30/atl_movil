@@ -16,4 +16,10 @@ public class MedioPago {
 	public void setDescripcionMedioPago(String descripcionMedioPago) {
 		this.descripcionMedioPago = descripcionMedioPago;
 	}
+	
+	@Override
+	public String toString(){
+		return  this.descripcionMedioPago;
+		
+	}
 }
