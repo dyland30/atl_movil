@@ -86,6 +86,26 @@ public class CobranzaDAO {
 		 return ent;
 	 }
 	 
+	 
+	 public Cobranza crear(Cobranza ent){
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 Cobranza nuevo = null;
+		 ContentValues values = new ContentValues();
+		 values.put("codigoCobranza", ent.getCodigoCobranza());
+		 values.put("codigoMedioPago",  ent.getCodigoMedioPago());
+		 values.put("importeCobranza", ent.getImporteCobranza());
+		 values.put("fechaCobranza", dateFormat.format( ent.getFechaCObranza()));
+		 values.put("estaSincronizado", ent.getEstaSincronizado());
+		 values.put("estadoCobranza", ent.getEstadoCobranza());
+		 values.put("codigoVisita", ent.getCodigoVisita());
+		 
+		 long insertId = database.insert(Cobranza.class.getSimpleName(), null, values);
+		 nuevo=buscarPorID(insertId);
+		 
+		 return nuevo;
+	 }
+	 
+	 
 	 public Cobranza actualizar(Cobranza ent){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Cobranza nuevo = null;

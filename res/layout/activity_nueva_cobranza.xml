@@ -43,7 +43,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lblImporteOriginalRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/importe" />
@@ -59,7 +59,7 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/lblImportePendienteRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medioPago" />
@@ -76,7 +76,7 @@
         >
         
         <Button
-        android:id="@+id/btnCancelarPedido"
+        android:id="@+id/btnCancelarCobranza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel" 
@@ -84,7 +84,7 @@
          android:gravity="center_horizontal"/>
 
         <Button
-        android:id="@+id/btnGuardarPedido"
+        android:id="@+id/btnGuardarCobranza"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"

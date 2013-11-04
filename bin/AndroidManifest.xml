@@ -73,6 +73,23 @@
             android:name="com.atl.atlmovil.NuevaCobranzaActivity"
             android:label="@string/title_activity_nueva_cobranza" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.DetalleCobranzaActivity"
+            android:label="@string/title_activity_detalle_cobranza" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.AgregarDocumentosActivity"
+            android:label="@string/title_activity_agregar_documentos" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.BuscarDocumentoPagoActivity"
+            android:label="@string/title_activity_buscar_documento_pago" >
+        </activity>
     </application>
 
 </manifest>

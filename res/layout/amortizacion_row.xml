@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="5dip" >
+
+    <TextView
+        android:id="@+id/lblNroDocumentoPagoRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/lblTipoDocumentoPagoRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/lblReferenciaDocumentoPagoRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblNroDocumentoPagoRow"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/lblFechaVencimientoAmortizacionRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblReferenciaDocumentoPagoRow"
+        android:layout_alignBottom="@+id/lblReferenciaDocumentoPagoRow"
+        android:layout_alignParentRight="true"
+        android:text="TextView" />
+
+
+    <TextView
+        android:id="@+id/lblImporteAmortizacionRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblFechaVencimientoAmortizacionRow"
+        android:layout_alignParentRight="true"
+        android:text="TextView" />
+
+</RelativeLayout>

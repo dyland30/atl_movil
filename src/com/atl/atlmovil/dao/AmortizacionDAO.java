@@ -36,8 +36,21 @@ public class AmortizacionDAO {
 		 Cursor cursor = database.query(Amortizacion.class.getSimpleName(), allColumns, null,null, null,null,null);
 		 cursor.moveToFirst();
 		 while(!cursor.isAfterLast()){
-			// Amortizacion ent = cursorToEnt(cursor);
-			// ls.add(ent);
+			Amortizacion ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
+	 public List<Amortizacion> buscarPorCobranza(long idCobranza){
+		 List<Amortizacion> ls = new ArrayList<Amortizacion>();
+		 Cursor cursor = database.query(Amortizacion.class.getSimpleName(), allColumns, " idCobranza= "+idCobranza,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Amortizacion ent = cursorToEnt(cursor);
+			 ls.add(ent);
 			 cursor.moveToNext();
 		 }
 		 cursor.close();
@@ -50,11 +63,11 @@ public class AmortizacionDAO {
 		 
 	 }
 	
-	 public Amortizacion crear(long id,long idCobranza,long codigoDocumentoPago,double importeAmortizacion,String anotacionAmortizacion){
+	 public Amortizacion crear(long idCobranza,long codigoDocumentoPago,double importeAmortizacion,String anotacionAmortizacion){
 		
 		 Amortizacion ent = null;
 		 ContentValues values = new ContentValues();
-		 values.put("id", id);
+		 //values.put("id", id);
 		 values.put("idCobranza", idCobranza);
 		 values.put("codigoDocumentoPago", codigoDocumentoPago);
 		 values.put("importeAmortizacion", importeAmortizacion);
@@ -66,6 +79,24 @@ public class AmortizacionDAO {
 		
 		 return ent;
 	 }
+	 
+	 
+	 public Amortizacion crear(Amortizacion ent){
+		 
+		 Amortizacion nuevo = null;
+		 ContentValues values = new ContentValues();
+		 values.put("idCobranza", ent.getIdCobranza());
+		 values.put("codigoDocumentoPago", ent.getCodigoDocumentoPago());
+		 values.put("importeAmortizacion", ent.getImporteAmortizacion());
+		 values.put("anotacionAmortizacion", ent.getAnotacionAmortizacion());
+		 
+		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
+		 nuevo=buscarPorID(insertId);
+		 
+		 return nuevo;
+	 }
+	 
+	 
 	 
 	 public Amortizacion actualizar(Amortizacion ent){
 		 

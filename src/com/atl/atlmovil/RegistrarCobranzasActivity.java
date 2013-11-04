@@ -5,8 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.atl.atlmovi.util.Cadena;
 import com.atl.atlmovil.adapters.CobranzaAdapter;
-import com.atl.atlmovil.adapters.PedidoAdapter;
 import com.atl.atlmovil.dao.ClienteDAO;
 import com.atl.atlmovil.dao.CobranzaDAO;
 import com.atl.atlmovil.dao.PersonaDAO;
@@ -17,15 +17,20 @@ import com.atl.atlmovil.entidades.Persona;
 import com.atl.atlmovil.entidades.Visita;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,6 +53,8 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_registrar_cobranzas);
+		//registrar menu
+		registerForContextMenu(this.getListView());
 		
 		//registrar botones
 		Button btnNuevaCobranza = (Button)findViewById(R.id.btnNuevaCobranza);
@@ -122,6 +129,78 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 		getMenuInflater().inflate(R.menu.registrar_cobranzas, menu);
 		return true;
 	}
+	
+	@Override  
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {  
+		super.onCreateContextMenu(menu, v, menuInfo);  
+		
+		AdapterView.AdapterContextMenuInfo adapterInfo = (AdapterView.AdapterContextMenuInfo) menuInfo;
+	    Adapter adapter = getListAdapter();
+	    //obtener la visita seleccionada
+	    Cobranza cob = (Cobranza)adapter.getItem(adapterInfo.position);
+	    
+	    
+	    menu.setHeaderTitle("Cobranza Nro: "+Cadena.formatearNumero("0000000000", (double)cob.getId()));
+	    menu.add(0, v.getId(), 0, "EDITAR");  
+	    menu.add(0, v.getId(), 1, "REMOVER");
+	    menu.add(0, v.getId(), 2, "ANULAR");
+	    
+	}
+	
+	@Override  
+	public boolean onContextItemSelected(MenuItem item) {  
+		final AdapterView.AdapterContextMenuInfo adapterInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+		if(item.getTitle().equals("EDITAR")){
+			// navegar a actividad con operacion editar
+			CobranzaAdapter adaptadorInterno = (CobranzaAdapter) getListAdapter();
+			Cobranza cob = (Cobranza)adaptadorInterno.getItem(adapterInfo.position);
+			
+			Intent nuevaCobranza = new Intent(RegistrarCobranzasActivity.this, NuevaCobranzaActivity.class);
+			nuevaCobranza.putExtra("operacion", "editar");
+			nuevaCobranza.putExtra("idCobranza", cob.getId());
+			startActivity(nuevaCobranza);
+			
+		}
+		if(item.getTitle().equals("REMOVER")){
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistrarCobranzasActivity.this);
+			alertDialog.setTitle("REMOVER COBRANZA");
+			alertDialog.setMessage("¿Realmente Desea Eliminar la Cobranza?");
+			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+			
+			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					//remover cobranza con todos sus detalles
+					CobranzaAdapter adaptadorInterno = (CobranzaAdapter) getListAdapter();
+					Cobranza cob = (Cobranza)adaptadorInterno.getItem(adapterInfo.position);
+					
+					cobDao.eliminar(cob);
+					adaptadorInterno.notifyDataSetChanged();
+					
+					
+				}
+				
+			});
+			
+			alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.cancel();
+				}
+			});
+			
+			alertDialog.show();
+			
+		}
+		
+		return true;
+	}
+	
+	
+	
 	
 	private void obtenerVisitaActiva(){
 		visitaActiva = viDao.obtenerVisitaActiva();

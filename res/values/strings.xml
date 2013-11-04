@@ -68,7 +68,16 @@
     <string name="medioPago">Medio Pago</string>
     <string name="detalleCobranza">Detalle de la Cobranza</string>
     <string name="autoDistribuir">Auto Distribuir</string>
-    
-    
+    <string name="title_activity_detalle_cobranza">DetalleCobranzaActivity</string>
+    <string name="documentosIncluidosCobranza">Documentos Incluidos en la Cobranza</string>
+    <string name="agregarDocumentos">Agregar Documentos</string>
+    <string name="title_activity_agregar_documentos">AgregarDocumentosActivity</string>
+    <string name="tipoDocumento">Tipo Documento</string>
+    <string name="documentoPago">Documento de Pago: </string>
+    <string name="fechaVencimiento">Fecha Vencimiento: </string>
+    <string name="ImportePendiente">"Importe Pendiente: "</string>
+    <string name="importeAmortizar">Importe a Amortizar: </string>
+    <string name="title_activity_buscar_documento_pago">BuscarDocumentoPagoActivity</string>
+    <string name="buscarDocumento">Buscar Documento</string>
 
 </resources>

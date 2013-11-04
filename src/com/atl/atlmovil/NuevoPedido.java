@@ -201,11 +201,12 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			
 			if(operacion.equals("insertar")){
 				pedido = new Pedido();
+				pedido.setCodigoPedido(0);
+				pedido.setCodigoVisita(visitaActiva.getCodigoVisita());
 				
 			}
 			
-			pedido.setCodigoPedido(0);
-			pedido.setCodigoVisita(visitaActiva.getCodigoVisita());
+			
 			FormaPago fp = (FormaPago)cmbFormaPago.getSelectedItem();
 			if(fp!=null){
 				pedido.setCodigoFormaPago(fp.getCodigoFormaPago());
@@ -220,11 +221,12 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			
 			pedido.setDireccionDeEnvio(txtDireccionEnvio.getText().toString());
 			pedido.setInstruccionesEspeciales(txtInstrucciones.getText().toString());
+			pedido.setEstaSincronizado(false);
 			
 			if(operacion.equals("insertar")){
 				pedido.setFechaIngresoPedido(new Date());
 				pedido.setEstaRetenidoPedido(false);
-				pedido.setEstaSincronizado(false);
+				
 				pedido.setImportePedido(0.0D);
 				// por el momento no se usa
 				pedido.setLineaReservadaPedido(0.0D);
@@ -236,8 +238,6 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			} else{
 				pedido = pDao.crear(pedido);
 			}
-			
-			
 			
 			
 		}catch(Exception ex){

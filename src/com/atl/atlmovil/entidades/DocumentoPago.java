@@ -14,6 +14,7 @@ public class DocumentoPago {
 	private double importePendienteDocumentoPago;
 	private double importeIgvDocumentoPago;
 	private String referenciaDocumentoPago;
+	private long codigoCliente;
 	
 	
 	public long getCodigoDocumentoPago() {
@@ -85,5 +86,11 @@ public class DocumentoPago {
 	}
 	public void setReferenciaDocumentoPago(String referenciaDocumentoPago) {
 		this.referenciaDocumentoPago = referenciaDocumentoPago;
+	}
+	public long getCodigoCliente() {
+		return codigoCliente;
+	}
+	public void setCodigoCliente(long codigoCliente) {
+		this.codigoCliente = codigoCliente;
 	}
 }

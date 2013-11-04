@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".AgregarDocumentosActivity" >
+
+    <TextView
+        android:id="@+id/lblNroCobranzaAgregarDocumentos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblClienteBuscarDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblNroCobranzaAgregarDocumentos"
+        android:layout_below="@+id/lblNroCobranzaAgregarDocumentos"
+        android:text="@string/tipoDocumento" />
+
+    <Spinner
+        android:id="@+id/cmbTipoDocumentoAgregarDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblClienteBuscarDocumento"
+        android:layout_below="@+id/lblClienteBuscarDocumento" />
+
+    <TextView
+        android:id="@+id/lblReferenciaRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmbTipoDocumentoAgregarDoc"
+        android:layout_below="@+id/cmbTipoDocumentoAgregarDoc"
+        android:text="@string/documentoPago" />
+
+    <EditText
+        android:id="@+id/txtDocumentoPagoAgregarDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblReferenciaRow"
+        android:layout_below="@+id/lblReferenciaRow"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblImporteOriginalRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDocumentoPagoAgregarDoc"
+        android:layout_below="@+id/btnAgregarDocumentoPago"
+        android:text="@string/fechaVencimiento" />
+
+    <EditText
+        android:id="@+id/txtFechaVencimientoAgregarDocumentos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblImporteOriginalRow"
+        android:layout_alignRight="@+id/cmbTipoDocumentoAgregarDoc"
+        android:layout_below="@+id/lblImporteOriginalRow"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/lblImportePendienteRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtFechaVencimientoAgregarDocumentos"
+        android:layout_below="@+id/txtFechaVencimientoAgregarDocumentos"
+        android:text="@string/ImportePendiente" />
+
+    <EditText
+        android:id="@+id/txtImportePendienteAgregarDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblImportePendienteRow"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lblImportePendienteRow"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/lblFechaVencimientoDocRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtImportePendienteAgregarDoc"
+        android:layout_below="@+id/txtImportePendienteAgregarDoc"
+        android:text="@string/importeAmortizar" />
+
+    <EditText
+        android:id="@+id/txtImporteAmortizarAgregarDocs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblFechaVencimientoDocRow"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lblFechaVencimientoDocRow"
+        android:ems="10"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnAgregarDocumentoPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblReferenciaRow"
+        android:layout_toRightOf="@+id/txtDocumentoPagoAgregarDoc"
+        android:text="@string/blanco" 
+        android:drawableLeft="@android:drawable/ic_search_category_default"/>
+
+    <Button
+        android:id="@+id/btnAgregarDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtImporteAmortizarAgregarDocs"
+        android:layout_alignRight="@+id/txtImporteAmortizarAgregarDocs"
+        android:layout_below="@+id/txtImporteAmortizarAgregarDocs"
+        android:text="@string/agregar" />
+
+    <Button
+        android:id="@+id/btnCancelarAgregarDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnAgregarDocumento"
+        android:layout_alignRight="@+id/btnAgregarDocumento"
+        android:layout_below="@+id/btnAgregarDocumento"
+        android:text="@string/cancel" 
+        />
+
+</RelativeLayout>

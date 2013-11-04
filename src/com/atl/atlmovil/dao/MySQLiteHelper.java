@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 15;
+	private static final int DATABASE_VERSION = 18;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -115,7 +115,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	private static final String C_TB_DOCUMENTO_PAGO = "CREATE TABLE DocumentoPago (codigoDocumentoPago INTEGER PRIMARY KEY NOT NULL, " +
 			"fechaEmisionDocumentoPago DATETIME, fechaVencimientoDocumentoPago DATETIME, importeAmortizadoDocumentoPago NUMERIC," +
 			"importeDescontadoDocumentoPago NUMERIC, importeIgvDocumentoPago NUMERIC, importeOriginalDocumentoPago NUMERIC," +
-			"importePendienteDocumentoPago NUMERIC, plazoDocumentoPago INTEGER, tipoDocumentoPago TEXT, ReferenciaDocumentoPago TEXT ) ; ";
+			"importePendienteDocumentoPago NUMERIC, plazoDocumentoPago INTEGER, tipoDocumentoPago TEXT, ReferenciaDocumentoPago TEXT, codigoCliente INTEGER) ; ";
 	
 	
 	private static final String C_TB_AMORTIZACION = "CREATE TABLE Amortizacion (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -183,7 +183,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL(INS_TB_USUARIO);
 		//Log.w("info",INS_TB_TIPO_VISITA);
 		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial'); ");
-		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telef�nica');");
+		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telefónica');");
 		
 		//Log.w("info",INS_TB_ESTADO_VISITA);
 		db.execSQL("insert into EstadoVisita (codigoEstadoVisita, descripcionEstadoVisita) values ('1','Programada'); ");
@@ -344,6 +344,34 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
 				"values ('3','0','1','600.00','2013-10-30','0','Registrado','1'); ");
+		
+		
+		//Documentos de pago
+		
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('1','2013-10-30 00:00','2013-12-31 00:00', '0','0','100.80','560.00','560.00','60','FACTURA','F001-000000432','1'); ");
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('2','2013-10-30 00:00','2013-12-31 00:00', '0','0','288.00','1600.00','800.00','60','FACTURA','F001-000000433','1'); ");
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('3','2013-10-30 00:00','2013-12-31 00:00', '0','0','414.00','2300.00','1000.00','60','FACTURA','F001-000000434','1'); ");
+		
+		// amortizaciones
+		/*
+		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT
+		 * 
+		 * */
+		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
+				"values ('1','1','1','200','pago en efectivo'); ");
+		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
+				"values ('2','1','2','100','pago en efectivo'); ");
+		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
+				"values ('3','1','3','200','pago en efectivo'); ");
+		
+		
 		
 	}
 
