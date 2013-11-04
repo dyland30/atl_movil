@@ -90,6 +90,14 @@
             android:name="com.atl.atlmovil.BuscarDocumentoPagoActivity"
             android:label="@string/title_activity_buscar_documento_pago" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.RegistrarDepositosActivity"
+            android:label="@string/title_activity_registrar_depositos" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.NuevoDepositoActivity"
+            android:label="@string/title_activity_nuevo_deposito" >
+        </activity>
     </application>
 
 </manifest>

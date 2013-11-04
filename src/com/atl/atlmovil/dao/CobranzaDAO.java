@@ -122,6 +122,14 @@ public class CobranzaDAO {
 		 
 		 return nuevo;
 	 }
+	 
+	 public void actualizarImporteCobranza(long idCobranza){
+		 double monto = calcularMontoCobranza(idCobranza);
+		 ContentValues values = new ContentValues();
+		 values.put("importeCobranza",monto);
+		 database.update(Cobranza.class.getSimpleName(), values, " id = "+idCobranza, null);
+		 
+	 }
 	 public Cobranza buscarPorID(long id){
 		 Cobranza ent = null;
 		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
@@ -130,7 +138,15 @@ public class CobranzaDAO {
 		 cursor.close();		 
 		 return ent;
 	 }
-	 
+	 public double calcularMontoCobranza(long idCobranza){
+		 double suma =0.0D;		
+		 Cursor cursor = database.rawQuery("SELECT sum(importeAmortizacion) FROM Amortizacion " +
+		 		"where idCobranza = ? ", new String[] {idCobranza+""});;
+		 cursor.moveToFirst();
+		 suma = cursor.getDouble(0);
+		 cursor.close();
+		 return suma; 
+	 }
 	 private Cobranza cursorToEnt(Cursor cursor) {
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		    Cobranza ent = null;

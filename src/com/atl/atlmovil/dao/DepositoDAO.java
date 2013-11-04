@@ -50,6 +50,19 @@ public class DepositoDAO {
 		 return ls;
 	 }
 	 
+	 public List<Deposito> buscarPorCliente(long codigoCliente ){
+		 List<Deposito> ls = new ArrayList<Deposito>();
+		 Cursor cursor = database.query(Deposito.class.getSimpleName(), allColumns, " clienteDeposito = "+codigoCliente,null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Deposito ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 public void eliminar(Deposito ent){
 		 long id = ent.getId();
 		 database.delete(Deposito.class.getSimpleName(),"id = "+id,null);

@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 18;
+	private static final int DATABASE_VERSION = 20;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -337,17 +337,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		// Cobranzas
 		// "","","","", "","", ""
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('1','0','1','500.00','2013-10-30','0','Registrado', '1'); ");
+				"values ('1','0','1','500.00','2013-10-30 00:00','0','Registrado', '1'); ");
 		
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('2','0','1','450.00','2013-10-30','0','Registrado','1'); ");
+				"values ('2','0','1','450.00','2013-10-30 00:00','0','Registrado','1'); ");
 		
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('3','0','1','600.00','2013-10-30','0','Registrado','1'); ");
+				"values ('3','0','1','600.00','2013-10-30 00:00','0','Registrado','1'); ");
 		
 		
 		//Documentos de pago
-		
+		//cliente 1
 		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
 				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
 				"values ('1','2013-10-30 00:00','2013-12-31 00:00', '0','0','100.80','560.00','560.00','60','FACTURA','F001-000000432','1'); ");
@@ -357,6 +357,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
 				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
 				"values ('3','2013-10-30 00:00','2013-12-31 00:00', '0','0','414.00','2300.00','1000.00','60','FACTURA','F001-000000434','1'); ");
+		
+		//cliente 2
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('4','2013-10-30 00:00','2013-12-31 00:00', '0','0','162.00','900.00','900.00','60','FACTURA','F001-00001234','2'); ");
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('5','2013-10-30 00:00','2013-12-31 00:00', '0','0','288.00','1600.00','1600.00','60','FACTURA','F001-00001235','2'); ");
+		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
+				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
+				"values ('6','2013-10-30 00:00','2013-12-31 00:00', '0','0','414.00','2300.00','1000.00','60','FACTURA','F001-00001236','2'); ");
 		
 		// amortizaciones
 		/*
@@ -371,8 +382,40 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
 				"values ('3','1','3','200','pago en efectivo'); ");
 		
+		//Bancos
+		/*
+		 * codigoBanco INTEGER PRIMARY KEY NOT NULL," +
+			"nombreBanco TEXT
+		 * 
+		 * */
+		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
+				"values ('1','INTERBANK'); ");
+		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
+				"values ('2','BBVA'); ");
+		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
+				"values ('3','FINANCIERO'); ");
 		
+		//depositos
+		/*
+		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+			"codigoDeposito INTEGER, codigoCobranza INTEGER,codigoMedioPago INTEGER, bancoDeposito INTEGER, clienteDeposito INTEGER, " +
+			"voucherDeposito INTEGER, agenciaDeposito TEXT,terminalDeposito TEXT, estadoDeposito INTEGER, fechaDeposito DATETIME, " +
+			"importeDeposito NUMERIC 
+		 * 
+		 * 
+		 * */
 		
+		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
+				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
+				"values ('1', '1','1','1','1','1','San Miguel', 'T01', '1', '2013-11-04 00:00', '300'); ");
+		
+		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
+				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
+				"values ('2', '1','1','1','1','1','Santa Anita', 'T02', '1', '2013-11-04 00:00', '150'); ");
+		
+		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
+				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
+				"values ('3', '2','1','1','1','1','Surco', 'T03', '1', '2013-11-04 00:00', '200'); ");
 	}
 
 	@Override

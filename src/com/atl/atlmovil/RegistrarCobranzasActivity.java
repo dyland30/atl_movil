@@ -176,6 +176,7 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 					Cobranza cob = (Cobranza)adaptadorInterno.getItem(adapterInfo.position);
 					
 					cobDao.eliminar(cob);
+					cargarListaCobranzas();
 					adaptadorInterno.notifyDataSetChanged();
 					
 					
@@ -198,9 +199,6 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 		
 		return true;
 	}
-	
-	
-	
 	
 	private void obtenerVisitaActiva(){
 		visitaActiva = viDao.obtenerVisitaActiva();
@@ -233,9 +231,7 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 			setListAdapter(adapter);
 		}
 		
-		
-		
-	}
+		}
 
 		@Override
 		public void onClick(View v) {

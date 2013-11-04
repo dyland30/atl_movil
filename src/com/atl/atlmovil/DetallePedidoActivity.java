@@ -176,7 +176,10 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 					DetallePedido det = (DetallePedido)adaptadorInterno.getItem(adapterInfo.position);
 					//eliminar el detalle con todas sus tallas 
 					dpDao.eliminar(det);
+					
+					cargarListaDetallePedidos();
 					adaptadorInterno.notifyDataSetChanged();
+					
 				}
 			});
 			

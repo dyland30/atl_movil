@@ -245,7 +245,7 @@ public class AgregarProductoActivity extends ListActivity implements OnClickList
 			
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(AgregarProductoActivity.this);
 			alertDialog.setTitle("REMOVER TALLA");
-			alertDialog.setMessage("�Realmente Desea Remover esta talla del pedido?");
+			alertDialog.setMessage("¿Realmente desea remover la talla del pedido?");
 			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 			
 			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {

@@ -79,5 +79,12 @@
     <string name="importeAmortizar">Importe a Amortizar: </string>
     <string name="title_activity_buscar_documento_pago">BuscarDocumentoPagoActivity</string>
     <string name="buscarDocumento">Buscar Documento</string>
+    <string name="title_activity_registrar_depositos">RegistrarDepositosActivity</string>
+    <string name="nuevoDeposito">Nuevo Depósito</string>
+    <string name="depositos">Depósitos</string>
+    <string name="buscarDeposito">Buscar Depósito ...</string>
+    <string name="title_activity_nuevo_deposito">NuevoDepositoActivity</string>
+    <string name="banco">Banco</string>
+    <string name="voucher">Voucher</string>
 
 </resources>

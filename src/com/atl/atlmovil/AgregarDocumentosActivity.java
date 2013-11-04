@@ -154,7 +154,7 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 			
 			txtImporteAmortizar.setText(Cadena.formatearNumero("0.00", amortizacion.getImporteAmortizacion()));
 			
-			documento = docDao.buscarPorID(amortizacion.getId());
+			documento = docDao.buscarPorID(amortizacion.getCodigoDocumentoPago());
 			cargarDocumento();
 			
 		}

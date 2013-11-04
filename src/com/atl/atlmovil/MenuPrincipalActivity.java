@@ -35,6 +35,8 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         btnRegistrarPedido.setOnClickListener(this);
         Button btnRegistrarCobranza = (Button)findViewById(R.id.btnRegistrarCobranza);
         btnRegistrarCobranza.setOnClickListener(this);
+        Button btnRegistrarDeposito = (Button)findViewById(R.id.btnRegistrarDeposito);
+        btnRegistrarDeposito.setOnClickListener(this);
         
         Button btnTestWB = (Button)findViewById(R.id.btnTestWebService);
         btnTestWB.setOnClickListener(this);
@@ -118,6 +120,37 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 				
 			}	
 		}
+		
+		if(v.getId()==R.id.btnRegistrarDeposito){
+			// validar que exista una visita activa
+			boolean visitaActiva = false;
+			VisitaDAO viDao = new VisitaDAO(this);
+			viDao.open();
+			visitaActiva = viDao.existeVisitaActiva();
+			viDao.close();
+			if(visitaActiva){
+				Intent registrarDepositoIntent = new Intent(MenuPrincipalActivity.this, RegistrarDepositosActivity.class);
+				startActivity(registrarDepositoIntent);
+				
+			} else{
+				
+				AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuPrincipalActivity.this);
+				alertDialog.setTitle("NO EXISTE VISITA ACTIVA");
+				alertDialog.setMessage("Para registrar un depósito debe tener una visita activa");
+				alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+				alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.cancel();
+					}
+				});
+				alertDialog.show();
+				
+			}	
+		}
+		
 		if(v.getId()==R.id.btnTestWebService){
 			Intent testIntent = new Intent(MenuPrincipalActivity.this, PruebaWebServiceActivity.class);
 			startActivity(testIntent);

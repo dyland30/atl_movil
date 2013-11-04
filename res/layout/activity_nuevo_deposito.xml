@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".NuevoDepositoActivity" >
+
+    <TextView
+        android:id="@+id/lblNroDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblNroCobranzaDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblNroDeposito"
+        android:layout_below="@+id/lblNroDeposito"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblClienteDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblNroCobranzaDeposito"
+        android:layout_below="@+id/lblNroCobranzaDeposito"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblBancoRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblClienteDeposito"
+        android:layout_below="@+id/lblClienteDeposito"
+        android:text="@string/banco" />
+
+    <Spinner
+        android:id="@+id/cmbBancoDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblBancoRow"
+        android:layout_below="@+id/lblBancoRow" />
+
+    <TextView
+        android:id="@+id/lblVoucherRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmbBancoDeposito"
+        android:layout_below="@+id/cmbBancoDeposito"
+        android:text="@string/voucher" />
+
+    <EditText
+        android:id="@+id/txtVoucherDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblVoucherRow"
+        android:layout_alignRight="@+id/cmbBancoDeposito"
+        android:layout_below="@+id/lblVoucherRow"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/lblImporteRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtVoucherDeposito"
+        android:layout_centerVertical="true"
+        android:text="@string/importe" />
+
+    <EditText
+        android:id="@+id/txtImporteDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblImporteRow"
+        android:layout_alignRight="@+id/txtVoucherDeposito"
+        android:layout_below="@+id/lblImporteRow"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtImporteDeposito"
+        android:layout_below="@+id/txtImporteDeposito"
+        android:text="@string/medioPago" />
+
+    <Spinner
+        android:id="@+id/cmbMedioPagoDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_below="@+id/textView7" />
+
+    <Button
+        android:id="@+id/btnGuardarDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cmbMedioPagoDeposito"
+        android:layout_alignRight="@+id/cmbMedioPagoDeposito"
+        android:layout_below="@+id/cmbMedioPagoDeposito"
+        android:text="@string/save" />
+
+    <Button
+        android:id="@+id/btnCancelarDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnGuardarDeposito"
+        android:layout_alignRight="@+id/btnGuardarDeposito"
+        android:layout_below="@+id/btnGuardarDeposito"
+        android:text="@string/cancel" />
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RegistrarDepositosActivity" >
+
+    <TextView
+        android:id="@+id/lblVisitaRegistroDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/blanco" />
+
+    <TextView
+        android:id="@+id/lblClienteRegistrarDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblVisitaRegistroDeposito"
+        android:layout_below="@+id/lblVisitaRegistroDeposito"
+        android:text="@string/blanco" />
+
+    <EditText
+        android:id="@+id/txtFiltroRegistrarDepositos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblClienteRegistrarDeposito"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lblClienteRegistrarDeposito"
+        android:ems="10"
+        android:hint="@string/buscarDeposito"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnNuevoDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtFiltroRegistrarDepositos"
+        android:layout_alignRight="@+id/txtFiltroRegistrarDepositos"
+        android:layout_below="@+id/txtFiltroRegistrarDepositos"
+        android:text="@string/nuevoDeposito" />
+
+    <TextView
+        android:id="@+id/lblClienteDeposito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnNuevoDeposito"
+        android:layout_centerHorizontal="true"
+        android:text="@string/depositos" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnNuevoDeposito"
+        android:layout_below="@+id/lblClienteDeposito"
+        android:layout_marginTop="16dp" >
+    </ListView>
+
+</RelativeLayout>

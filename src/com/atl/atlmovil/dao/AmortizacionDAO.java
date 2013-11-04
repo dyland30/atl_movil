@@ -9,17 +9,21 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.atl.atlmovil.entidades.Amortizacion;
+import com.atl.atlmovil.entidades.DocumentoPago;
 
 public class AmortizacionDAO {
 	
-
+	Context contexto;
+	
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = {"id","idCobranza","codigoDocumentoPago","importeAmortizacion","anotacionAmortizacion"};
 
 	public AmortizacionDAO(Context context){
+		contexto = context;
 		dbHelper = new MySQLiteHelper(context);
 		
 	}
@@ -60,6 +64,8 @@ public class AmortizacionDAO {
 	 public void eliminar(Amortizacion ent){
 		 long id = ent.getId();
 		 database.delete(Amortizacion.class.getSimpleName(),"id = "+id,null);
+		 actualizarImporteCobranza(ent.getIdCobranza());
+		 actualizarSaldoDocumento(ent.getCodigoDocumentoPago(), "eliminar", ent.getImporteAmortizacion(), 0);
 		 
 	 }
 	
@@ -76,10 +82,42 @@ public class AmortizacionDAO {
 		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
 		 
 		 ent = buscarPorID(insertId);
-		
+		 actualizarImporteCobranza(ent.getIdCobranza());
+		 actualizarSaldoDocumento(ent.getCodigoDocumentoPago(), "insertar", ent.getImporteAmortizacion(), 0);
 		 return ent;
 	 }
 	 
+	 private void actualizarSaldoDocumento(long codigoDocumento, String operacion, double monto, double montoAnterior){
+		 DocumentoPagoDAO docDao = new DocumentoPagoDAO(contexto);
+		 DocumentoPago doc;
+		 docDao.open();
+		 try{
+			 doc = docDao.buscarPorID(codigoDocumento);
+			 if(operacion.equals("insertar")){
+				 //disminuir el monto disponible del documento
+				 doc.setImportePendienteDocumentoPago(doc.getImportePendienteDocumentoPago()-monto);
+			 }
+			 if(operacion.equals("editar")){
+				 //aumentar o disminuir el monto disponible del documento
+				 doc.setImportePendienteDocumentoPago(doc.getImportePendienteDocumentoPago()-(monto-montoAnterior));
+			 }
+			 if(operacion.equals("eliminar")){
+				 //aumentar el monto disponible del documento
+				 doc.setImportePendienteDocumentoPago(doc.getImportePendienteDocumentoPago()+monto);	 
+			 }
+			 
+			 docDao.actualizar(doc);
+			 
+			 
+		 }catch(Exception ex){
+			 Log.w("error",ex.getMessage());
+			 
+		 }finally{
+			 docDao.close();
+			 
+		 }
+		 
+	 }
 	 
 	 public Amortizacion crear(Amortizacion ent){
 		 
@@ -92,14 +130,30 @@ public class AmortizacionDAO {
 		 
 		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
 		 nuevo=buscarPorID(insertId);
-		 
+		 actualizarImporteCobranza(ent.getIdCobranza());
+		 actualizarSaldoDocumento(ent.getCodigoDocumentoPago(), "insertar", ent.getImporteAmortizacion(), 0);
 		 return nuevo;
+	 }
+	 private void actualizarImporteCobranza(long idCobranza){
+		 CobranzaDAO cobDao = new CobranzaDAO(contexto);
+		 cobDao.open();
+		 try{
+			 cobDao.actualizarImporteCobranza(idCobranza);
+		 }
+		 catch(Exception ex){
+			 Log.w("error", ex.getMessage());
+			 
+		 }
+		 finally{
+			 cobDao.close();
+		 }
+		 
 	 }
 	 
 	 
-	 
 	 public Amortizacion actualizar(Amortizacion ent){
-		 
+		 Amortizacion antiguo = null;
+		 antiguo = buscarPorID(ent.getId());
 		 Amortizacion nuevo = null;
 		 ContentValues values = new ContentValues();
 		 values.put("idCobranza", ent.getIdCobranza());
@@ -109,6 +163,8 @@ public class AmortizacionDAO {
 		 
 		 database.update(Amortizacion.class.getSimpleName(), values, " id = "+ent.getId(), null);
 		 nuevo=buscarPorID(ent.getId());
+		 actualizarImporteCobranza(nuevo.getIdCobranza());
+		 actualizarSaldoDocumento(ent.getCodigoDocumentoPago(), "editar", ent.getImporteAmortizacion(), antiguo.getImporteAmortizacion());
 		 
 		 return nuevo;
 	 }

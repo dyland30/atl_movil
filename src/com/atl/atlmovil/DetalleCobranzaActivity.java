@@ -54,8 +54,7 @@ public class DetalleCobranzaActivity extends ListActivity implements OnClickList
         Button btnAgregarDocs = (Button)findViewById(R.id.btnAgregarDocumentoPago);
         btnAgregarDocs.setOnClickListener(this);
         registerForContextMenu(this.getListView());
-        
-        
+                
         viDao = new VisitaDAO(this);
 		cliDao = new ClienteDAO(this);
 		cobDao = new CobranzaDAO(this);
@@ -67,8 +66,6 @@ public class DetalleCobranzaActivity extends ListActivity implements OnClickList
 		
 		obtenerVisitaActiva();
 		cargarListaAmortizaciones();
-		
-        
     }
     
     private void obtenerVisitaActiva(){
@@ -109,7 +106,6 @@ public class DetalleCobranzaActivity extends ListActivity implements OnClickList
         return true;
     }
     
-
 	@Override  
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {  
 		super.onCreateContextMenu(menu, v, menuInfo);  
@@ -158,7 +154,9 @@ public class DetalleCobranzaActivity extends ListActivity implements OnClickList
 					Amortizacion det = (Amortizacion)adaptadorInterno.getItem(adapterInfo.position);
 					//eliminar el detalle con todas sus tallas 
 					amDao.eliminar(det);
+					cargarListaAmortizaciones();
 					adaptadorInterno.notifyDataSetChanged();
+					
 				}
 			});
 			

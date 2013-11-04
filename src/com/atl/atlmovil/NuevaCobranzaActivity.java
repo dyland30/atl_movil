@@ -134,6 +134,10 @@ private void cargarDatos(){
 	 * @+id/btnRegistrarDepositoCobranza
 	 * */
 	if(cobranza!=null){
+		//en caso la cobranza haya sido modificada es necesario obtener la ultima de la bd
+		cobranza = cobDao.buscarPorID(cobranza.getId());
+		
+		
 		Spinner cmbMedioPago = (Spinner)findViewById(R.id.cmbMedioPagoNuevaCobranza);
 		Spinner cmbEstadoNuevaCobranza = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 		EditText txtImporteCobranzaNueva = (EditText)findViewById(R.id.txtImporteCobranzaNueva);
@@ -263,6 +267,12 @@ private void guardarCobranza(){
 				detalleCobranzaIntent.putExtra("idCobranza", cobranza.getId());
 				startActivity(detalleCobranzaIntent);
 			}
+		}
+		if(v.getId()==R.id.btnRegistrarDepositoCobranza){
+			//abrir actividad deposito
+			Intent registrarDepositoIntent = new Intent(NuevaCobranzaActivity.this, RegistrarDepositosActivity.class);
+			registrarDepositoIntent.putExtra("idCobranza", cobranza.getId());
+			startActivity(registrarDepositoIntent);
 			
 			
 		}
