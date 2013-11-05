@@ -47,7 +47,8 @@
         android:layout_alignLeft="@+id/lblReferenciaRow"
         android:layout_below="@+id/lblReferenciaRow"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="text" 
+        android:editable="false">
 
         <requestFocus />
     </EditText>
@@ -68,7 +69,8 @@
         android:layout_alignRight="@+id/cmbTipoDocumentoAgregarDoc"
         android:layout_below="@+id/lblImporteOriginalRow"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="datetime|number|text" 
+        android:editable="false"/>
 
     <TextView
         android:id="@+id/lblImportePendienteRow"
@@ -76,7 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtFechaVencimientoAgregarDocumentos"
         android:layout_below="@+id/txtFechaVencimientoAgregarDocumentos"
-        android:text="@string/ImportePendiente" />
+        android:text="@string/ImportePendiente" 
+        android:editable="false"/>
 
     <EditText
         android:id="@+id/txtImportePendienteAgregarDoc"
@@ -86,7 +89,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/lblImportePendienteRow"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/lblFechaVencimientoDocRow"
@@ -104,7 +107,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/lblFechaVencimientoDocRow"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btnAgregarDocumentoPago"

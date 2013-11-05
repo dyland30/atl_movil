@@ -43,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lblBancoRow"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/lblBancoRow" />
 
     <TextView
@@ -58,10 +59,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lblVoucherRow"
-        android:layout_alignRight="@+id/cmbBancoDeposito"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/lblVoucherRow"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="number" >
 
         <requestFocus />
     </EditText>
@@ -79,10 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lblImporteRow"
-        android:layout_alignRight="@+id/txtVoucherDeposito"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/lblImporteRow"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/textView7"
@@ -97,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView7"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/textView7" />
 
     <Button
@@ -104,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cmbMedioPagoDeposito"
-        android:layout_alignRight="@+id/cmbMedioPagoDeposito"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/cmbMedioPagoDeposito"
         android:text="@string/save" />
 
@@ -113,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnGuardarDeposito"
-        android:layout_alignRight="@+id/btnGuardarDeposito"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/btnGuardarDeposito"
         android:text="@string/cancel" />
 

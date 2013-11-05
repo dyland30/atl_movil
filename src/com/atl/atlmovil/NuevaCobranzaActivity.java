@@ -270,8 +270,9 @@ private void guardarCobranza(){
 		}
 		if(v.getId()==R.id.btnRegistrarDepositoCobranza){
 			//abrir actividad deposito
-			Intent registrarDepositoIntent = new Intent(NuevaCobranzaActivity.this, RegistrarDepositosActivity.class);
+			Intent registrarDepositoIntent = new Intent(NuevaCobranzaActivity.this, NuevoDepositoActivity.class);
 			registrarDepositoIntent.putExtra("idCobranza", cobranza.getId());
+			registrarDepositoIntent.putExtra("operacion", "insertar");
 			startActivity(registrarDepositoIntent);
 			
 			

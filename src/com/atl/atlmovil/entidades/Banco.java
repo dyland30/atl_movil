@@ -16,4 +16,10 @@ public void setNombreBanco(String nombreBanco) {
 	this.nombreBanco = nombreBanco;
 }
 
+@Override
+public String toString(){
+	return this.nombreBanco;
+	
+}
+
 }

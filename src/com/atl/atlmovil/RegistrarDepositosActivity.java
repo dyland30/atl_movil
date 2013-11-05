@@ -38,15 +38,11 @@ public class RegistrarDepositosActivity extends ListActivity implements OnClickL
 	Visita visitaActiva;
 	Cliente cliente;
 	Cobranza cobranza;
-	
 	DepositoAdapter adapter;
-	
 	CobranzaDAO cobDao;
 	VisitaDAO viDao;
 	ClienteDAO cliDao;
 	DepositoDAO depDao;
-	
-	
 	
 
 	@Override
@@ -166,20 +162,22 @@ public class RegistrarDepositosActivity extends ListActivity implements OnClickL
 			DepositoAdapter adaptadorInterno = (DepositoAdapter) getListAdapter();
 			Deposito dep = (Deposito)adaptadorInterno.getItem(adapterInfo.position);
 			
-			Intent nuevaCobranza = new Intent(RegistrarDepositosActivity.this, NuevoDepositoActivity.class);
-			nuevaCobranza.putExtra("operacion", "editar");
-			nuevaCobranza.putExtra("idDeposito", dep.getId());
-			startActivity(nuevaCobranza);
+			Intent nuevoDepositoActivity = new Intent(RegistrarDepositosActivity.this, NuevoDepositoActivity.class);
+			nuevoDepositoActivity.putExtra("operacion", "editar");
+			
+			nuevoDepositoActivity.putExtra("idDeposito", dep.getId());
+			nuevoDepositoActivity.putExtra("idCobranza", dep.getCodigoCobranza());
+			
+			startActivity(nuevoDepositoActivity);
 			
 		}
 		if(item.getTitle().equals("REMOVER")){
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistrarDepositosActivity.this);
 			alertDialog.setTitle("REMOVER DEPOSITO");
-			alertDialog.setMessage("¿Realmente Desea eliminar el Depósito?");
+			alertDialog.setMessage("Â¿Realmente Desea eliminar el DepÃ³sito?");
 			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 			
-			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-				
+			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					//remover cobranza con todos sus detalles
@@ -193,7 +191,6 @@ public class RegistrarDepositosActivity extends ListActivity implements OnClickL
 				}
 				
 			});
-			
 			alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 				
 				@Override

@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/com/atl/atlmovil/AgregarProductoActivity.java=UTF-8
 encoding//src/com/atl/atlmovil/DetalleCobranzaActivity.java=UTF-8
+encoding//src/com/atl/atlmovil/NuevoDepositoActivity.java=UTF-8
 encoding//src/com/atl/atlmovil/RegistrarCobranzasActivity.java=UTF-8
+encoding//src/com/atl/atlmovil/RegistrarDepositosActivity.java=UTF-8
 encoding//src/com/atl/atlmovil/dao/MySQLiteHelper.java=UTF-8

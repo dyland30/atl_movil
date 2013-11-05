@@ -38,20 +38,11 @@
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/btnNuevoDeposito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtFiltroRegistrarDepositos"
-        android:layout_alignRight="@+id/txtFiltroRegistrarDepositos"
-        android:layout_below="@+id/txtFiltroRegistrarDepositos"
-        android:text="@string/nuevoDeposito" />
-
     <TextView
         android:id="@+id/lblClienteDeposito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnNuevoDeposito"
+        android:layout_below="@+id/txtFiltroRegistrarDepositos"
         android:layout_centerHorizontal="true"
         android:text="@string/depositos" />
 
@@ -59,7 +50,7 @@
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnNuevoDeposito"
+        android:layout_alignLeft="@+id/txtFiltroRegistrarDepositos"
         android:layout_below="@+id/lblClienteDeposito"
         android:layout_marginTop="16dp" >
     </ListView>

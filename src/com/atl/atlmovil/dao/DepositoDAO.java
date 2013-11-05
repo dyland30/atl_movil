@@ -94,6 +94,28 @@ public class DepositoDAO {
 		 return ent;
 	 }
 	 
+	 public Deposito crear(Deposito ent){
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 Deposito nuevo = null;
+		 ContentValues values = new ContentValues();
+		 values.put("codigoDeposito", ent.getCodigoDeposito());
+		 values.put("codigoCobranza", ent.getCodigoCobranza());
+		 values.put("codigoMedioPago", ent.getCodigoMedioPago());
+		 values.put("bancoDeposito", ent.getBancoDeposito());
+		 values.put("clienteDeposito", ent.getClienteDeposito());
+		 values.put("voucherDeposito", ent.getVoucherDeposito());
+		 values.put("agenciaDeposito", ent.getAgenciaDeposito());
+		 values.put("terminalDeposito", ent.getTerminalDeposito());
+		 values.put("estadoDeposito", ent.getEstadoDeposito());		 
+		 values.put("fechaDeposito", dateFormat.format(ent.getFechaDeposito()));
+		 values.put("importeDeposito", ent.getImporteDeposito()); 
+		 
+		 long insertId = database.insert(Deposito.class.getSimpleName(), null, values);
+		 nuevo=buscarPorID(insertId);
+		 
+		 return nuevo;
+	 }
+	 
 	 public Deposito actualizar(Deposito ent){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Deposito nuevo = null;
@@ -127,7 +149,7 @@ public class DepositoDAO {
 	 private Deposito cursorToEnt(Cursor cursor) {
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		    Deposito ent = null;
-		    if(cursor!=null ){
+		    if(cursor!=null && cursor.getCount()>0){
 		    	ent = new Deposito();
 		    	ent.setId(cursor.getLong(0));
 		    	ent.setCodigoDeposito(cursor.getLong(1));
