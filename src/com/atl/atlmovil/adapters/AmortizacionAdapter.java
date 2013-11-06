@@ -79,7 +79,7 @@ public class AmortizacionAdapter extends BaseAdapter{
 		
 		Amortizacion am = data.get(position);
 		lblNroDocumentoPago.setText("Nro Documento: "+Cadena.formatearNumero("0000000000", (double)am.getCodigoDocumentoPago()));
-		lblImporteAmortizacion.setText("Imp. Amort: "+Cadena.formatearNumero("#########0.00", am.getImporteAmortizacion()));
+		lblImporteAmortizacion.setText("Imp. Amort: "+Cadena.formatearNumero("0.00", am.getImporteAmortizacion()));
 		
 		//obtener documento de pago
 		DocumentoPagoDAO dpDao = new DocumentoPagoDAO(activity);

@@ -116,15 +116,31 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 				}
 				double importe = Double.parseDouble(strImporte);
 				amortizacion.setImporteAmortizacion(importe);
-				if(operacion.equals("insertar")){
-					amortizacion = amDao.crear(amortizacion);
+				
+				// validar que el importe sea menor o igual al importe pendiente del documento y que sea mayor que cero
+				if(importe>0){
+					if(importe<=documento.getImportePendienteDocumentoPago()){
+						if(operacion.equals("insertar")){
+							amortizacion = amDao.crear(amortizacion);
+							
+						} else if(operacion.equals("editar")){
+							
+							amortizacion = amDao.actualizar(amortizacion);
+							
+						}
+						finish();
+					} else{
+						
+						mostrarMensaje("ADVERTENCIA", "El importe no puede ser mayor al importe pendiente del documento");
+						
+					}
 					
-				} else if(operacion.equals("editar")){
+				} else{
 					
-					amortizacion = amDao.actualizar(amortizacion);
+					mostrarMensaje("ADVERTENCIA", "El importe debe ser mayor a cero");
 					
 				}
-				finish();
+				
 			}
 			else{
 				mostrarMensaje("ADVERTENCIA", "Debe seleccionar un documento");
@@ -235,7 +251,7 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 		}
 		if(v.getId()==R.id.btnAgregarDocumento){
 			guardarAmortizacion();
-			finish();	
+			
 		}
 	}
 	

@@ -58,6 +58,7 @@ public class CobranzaAdapter extends BaseAdapter {
 		TextView lblFechaCobranza = (TextView)vi.findViewById(R.id.lblRowFechaCobranza);
 		TextView lblEstadoCobranza = (TextView)vi.findViewById(R.id.lblRowEstadoCobranza);
 		TextView lblImporteCobranza = (TextView)vi.findViewById(R.id.lblRowImporteCobranza);
+		TextView lblRowImportePendienteCobranza = (TextView)vi.findViewById(R.id.lblRowImportePendienteCobranza);
 		
 		Cobranza cob = data.get(position);
 		lblNumeroCobranza.setText("Nro Cobranza: "+Cadena.formatearNumero("0000000000",  (double)cob.getId()));
@@ -70,7 +71,9 @@ public class CobranzaAdapter extends BaseAdapter {
 		}
 		
 		lblEstadoCobranza.setText(cob.getEstadoCobranza());
-		lblImporteCobranza.setText(Cadena.formatearNumero("##########.00", cob.getImporteCobranza()));
+		lblImporteCobranza.setText("Imp. Orig: "+Cadena.formatearNumero("0.00", cob.getImporteCobranza()));
+		lblRowImportePendienteCobranza.setText("Saldo: "+Cadena.formatearNumero("0.00", cob.getImportePendiente()));
+		
 		return vi;
 	}
 	

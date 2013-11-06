@@ -17,7 +17,7 @@ public class ClienteDAO {
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = { "codigoCliente","codigoEmpleado","codigoGrupo","codigoPersona","direccionEntregaCliente",
-			"representanteCliente","celularCliente"};
+			"representanteCliente","celularCliente", };
 
 	public ClienteDAO(Context context){
 		dbHelper = new MySQLiteHelper(context);

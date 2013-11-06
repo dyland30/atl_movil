@@ -7,11 +7,12 @@ public class Cobranza {
 	private long codigoCobranza;
 	private long codigoMedioPago;
 	private double importeCobranza;
+	private double importePendiente; // importe que sera utilizado para distribuir la cobranza
 	private Date fechaCObranza;
-	
 	private Boolean estaSincronizado; // 1 -> si, 0 --> no
 	private String estadoCobranza; 
 	private long codigoVisita;
+	private Boolean esAutoDistribuido;  // 1 -> si, 0 --> no
 	
 	public long getId() {
 		return id;
@@ -60,6 +61,18 @@ public class Cobranza {
 	}
 	public void setCodigoVisita(long codigoVisita) {
 		this.codigoVisita = codigoVisita;
+	}
+	public double getImportePendiente() {
+		return importePendiente;
+	}
+	public void setImportePendiente(double importePendiente) {
+		this.importePendiente = importePendiente;
+	}
+	public Boolean getEsAutoDistribuido() {
+		return esAutoDistribuido;
+	}
+	public void setEsAutoDistribuido(Boolean esAutoDistribuido) {
+		this.esAutoDistribuido = esAutoDistribuido;
 	}
 	
 	

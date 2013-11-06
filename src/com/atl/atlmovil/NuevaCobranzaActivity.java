@@ -76,6 +76,10 @@ public class NuevaCobranzaActivity extends Activity implements OnClickListener{
 		if(operacion.equals("editar")){
 			long idCobranza = intent.getLongExtra("idCobranza", 0);
 			cobranza = cobDao.buscarPorID(idCobranza);
+			
+			//obtener detalles
+			
+			
 			// cargar Datos
 			cargarDatos();
 		}
@@ -136,6 +140,17 @@ private void cargarDatos(){
 	if(cobranza!=null){
 		//en caso la cobranza haya sido modificada es necesario obtener la ultima de la bd
 		cobranza = cobDao.buscarPorID(cobranza.getId());
+		Button btnAutoDistribuirCobranza = (Button)findViewById(R.id.btnAutoDistribuirCobranza);
+		int cantDetalles = cobDao.obtenerCantidadDetalles(cobranza.getId());
+		if(cantDetalles>0){
+			
+			btnAutoDistribuirCobranza.setEnabled(false);
+			
+			
+		} else {
+			
+			btnAutoDistribuirCobranza.setEnabled(true);
+		}
 		
 		
 		Spinner cmbMedioPago = (Spinner)findViewById(R.id.cmbMedioPagoNuevaCobranza);
@@ -174,6 +189,7 @@ private void guardarCobranza(){
 			cobranza = new Cobranza();
 			cobranza.setCodigoCobranza(0);
 			cobranza.setCodigoVisita(visitaActiva.getCodigoVisita());
+			cobranza.setEsAutoDistribuido(false);
 		}
 		MedioPago mp = (MedioPago)cmbMedioPago.getSelectedItem();
 		if(mp!=null){
@@ -270,14 +286,54 @@ private void guardarCobranza(){
 		}
 		if(v.getId()==R.id.btnRegistrarDepositoCobranza){
 			//abrir actividad deposito
-			Intent registrarDepositoIntent = new Intent(NuevaCobranzaActivity.this, NuevoDepositoActivity.class);
-			registrarDepositoIntent.putExtra("idCobranza", cobranza.getId());
-			registrarDepositoIntent.putExtra("operacion", "insertar");
-			startActivity(registrarDepositoIntent);
+			if(cobranza!=null){
+				Intent registrarDepositoIntent = new Intent(NuevaCobranzaActivity.this, NuevoDepositoActivity.class);
+				registrarDepositoIntent.putExtra("idCobranza", cobranza.getId());
+				registrarDepositoIntent.putExtra("operacion", "insertar");
+				startActivity(registrarDepositoIntent);
+			} else{
+				// mostrar mensaje
+				mostrarMensaje("ERROR", "Para registrar un depósito primero debe guardar la cobranza");	
+			}
+		}
+		if(v.getId()==R.id.btnAutoDistribuirCobranza){
+			guardarCobranza();
+			if(cobranza!=null){
+				try {
+					cobDao.autoDistribuir(cobranza);
+					// ir al detalle de la cobranza para mostrar las cobranzas distribuidas
+					Intent detalleCobranzaIntent = new Intent(NuevaCobranzaActivity.this, DetalleCobranzaActivity.class);
+					detalleCobranzaIntent.putExtra("idCobranza", cobranza.getId());
+					startActivity(detalleCobranzaIntent);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					mostrarMensaje("Error", "Ocurrio un error al distribuir la cobranza "+ e.getMessage());
+					
+				}
+				
+				
+			}
 			
 			
 		}
 		
 	}
+	
+	public void mostrarMensaje( String titulo, String mensaje){		
+		AlertDialog.Builder errorDialog = new AlertDialog.Builder(NuevaCobranzaActivity.this);
+		errorDialog.setTitle(titulo);
+		errorDialog.setMessage(mensaje);
+		errorDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		errorDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				dialog.cancel();
+			}
+		});
+		errorDialog.show();
+	}
+	
 
 }

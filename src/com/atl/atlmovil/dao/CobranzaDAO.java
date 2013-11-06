@@ -13,16 +13,21 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.atl.atlmovil.entidades.Amortizacion;
 import com.atl.atlmovil.entidades.Cobranza;
+import com.atl.atlmovil.entidades.DocumentoPago;
+import com.atl.atlmovil.entidades.Visita;
 
 @SuppressLint("SimpleDateFormat")
 public class CobranzaDAO {
    
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
-	private String[] allColumns = { "id","codigoCobranza","codigoMedioPago","importeCobranza", "fechaCobranza","estaSincronizado", "estadoCobranza", "codigoVisita"};
-
+	private String[] allColumns = { "id","codigoCobranza","codigoMedioPago","importeCobranza", "fechaCobranza","estaSincronizado", "estadoCobranza", "codigoVisita", "importePendiente", "esAutoDistribuido"};
+	Context contexto;
+	
 	public CobranzaDAO(Context context){
+		contexto = context;
 		dbHelper = new MySQLiteHelper(context);
 		
 	}
@@ -67,7 +72,7 @@ public class CobranzaDAO {
 	 }
 	 
 	 public Cobranza crear(long codigoCobranza, long codigoMedioPago, double importeCobranza, Date fechaCobranza, Boolean estaSincronizado,
-			 String estadoCobranza, long codigoVisita){
+			 String estadoCobranza, long codigoVisita, double importePendiente, Boolean esAutoDistribuido){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Cobranza ent = null;
 		 ContentValues values = new ContentValues();
@@ -78,6 +83,10 @@ public class CobranzaDAO {
 		 values.put("estaSincronizado", estaSincronizado);
 		 values.put("estadoCobranza", estadoCobranza);
 		 values.put("codigoVisita", codigoVisita);
+		 values.put("importePendiente",importePendiente);
+		 values.put("esAutoDistribuido",esAutoDistribuido);
+		 
+		 
 		 
 		 long insertId = database.insert(Cobranza.class.getSimpleName(), null, values);
 		 
@@ -98,7 +107,8 @@ public class CobranzaDAO {
 		 values.put("estaSincronizado", ent.getEstaSincronizado());
 		 values.put("estadoCobranza", ent.getEstadoCobranza());
 		 values.put("codigoVisita", ent.getCodigoVisita());
-		 
+		 values.put("importePendiente",ent.getImporteCobranza());
+		 values.put("esAutoDistribuido",ent.getEsAutoDistribuido());
 		 long insertId = database.insert(Cobranza.class.getSimpleName(), null, values);
 		 nuevo=buscarPorID(insertId);
 		 
@@ -117,18 +127,101 @@ public class CobranzaDAO {
 		 values.put("estaSincronizado", ent.getEstaSincronizado());
 		 values.put("estadoCobranza", ent.getEstadoCobranza());
 		 values.put("codigoVisita", ent.getCodigoVisita());
+		 values.put("importePendiente",ent.getImportePendiente());
+		 values.put("esAutoDistribuido",ent.getEsAutoDistribuido());
 		 database.update(Cobranza.class.getSimpleName(), values, " id = "+ent.getId(), null);
 		 nuevo=buscarPorID(ent.getId());
 		 
 		 return nuevo;
 	 }
+	 public void autoDistribuir(Cobranza ent) throws Exception{
+		 double monto = 0.0D;
+		 if(ent!=null){
+			 
+			 DocumentoPagoDAO dpDao = new DocumentoPagoDAO(contexto);
+			 VisitaDAO viDao = new VisitaDAO(contexto);
+			 AmortizacionDAO amDao = new AmortizacionDAO(contexto);
+			 
+			 try{
+				 
+				 dpDao.open();
+				 viDao.open();
+				 amDao.open();
+				 //establecemos la cobranza como autodistribuida
+				 ent.setEsAutoDistribuido(true);
+				 actualizar(ent); 
+				 
+				 Visita vi = viDao.buscarPorID(ent.getCodigoVisita());
+				 //obtener Documentos pendientes
+				  monto = ent.getImportePendiente();
+				 List<DocumentoPago> lsDocumentos;
+				 lsDocumentos =  dpDao.buscarPorCliente(vi.getCodigoCliente(), "");
+				 int cont =0;
+				 DocumentoPago docPag;
+				 while(monto>0 && cont<lsDocumentos.size()){
+					 docPag = lsDocumentos.get(cont);
+					 if(monto>docPag.getImportePendienteDocumentoPago()){
+						 //crear amortizacion por el monto pendiente del documento
+						 Amortizacion am = new Amortizacion();
+						 am.setCodigoDocumentoPago(docPag.getCodigoDocumentoPago());
+						 am.setIdCobranza(ent.getId());
+						 am.setImporteAmortizacion(docPag.getImportePendienteDocumentoPago());
+						 amDao.crear(am);
+						 monto -= docPag.getImportePendienteDocumentoPago();
+						 
+					 } else {
+						 //crear amortizacion por el monto y terminar bucle
+						 Amortizacion am = new Amortizacion();
+						 am.setCodigoDocumentoPago(docPag.getCodigoDocumentoPago());
+						 am.setIdCobranza(ent.getId());
+						 am.setImporteAmortizacion(monto);
+						 amDao.crear(am);
+						 monto = 0.0D;
+						 break;
+					 }
+					 cont++;
+				 }
+				 
+				 ent.setImportePendiente(monto);
+				 actualizar(ent); 
+				 
+			 } catch(Exception ex){
+				 throw ex;
+				 
+				 
+			 } finally{
+				 dpDao.close();
+				 viDao.close();
+				 amDao.close();
+			 }
+			 
+		 }
+		
+	 }
 	 
 	 public void actualizarImporteCobranza(long idCobranza){
-		 double monto = calcularMontoCobranza(idCobranza);
-		 ContentValues values = new ContentValues();
-		 values.put("importeCobranza",monto);
-		 database.update(Cobranza.class.getSimpleName(), values, " id = "+idCobranza, null);
+		 //obtener cobranza
+		 Cobranza cob = buscarPorID(idCobranza);
+		 if(cob!=null && !cob.getEsAutoDistribuido()){
+			 double monto = calcularMontoCobranza(idCobranza);
+			 ContentValues values = new ContentValues();
+			 values.put("importeCobranza",monto);
+			 database.update(Cobranza.class.getSimpleName(), values, " id = "+idCobranza, null);
+			 
+		 }
+		 actualizarImportePendiente(idCobranza);
 		 
+	 }
+	 public void actualizarImportePendiente(long idCobranza){
+		 //imp pendiente = montoOriginalCobranza - calcularMontoCobranza 
+		 Cobranza cob = buscarPorID(idCobranza);
+		 if(cob!=null){
+			 double monto = calcularMontoCobranza(idCobranza);
+			 double pendiente = cob.getImporteCobranza() - monto;
+			 ContentValues values = new ContentValues();
+			 values.put("importePendiente",pendiente);
+			 database.update(Cobranza.class.getSimpleName(), values, " id = "+idCobranza, null);
+		 }
 	 }
 	 public Cobranza buscarPorID(long id){
 		 Cobranza ent = null;
@@ -147,6 +240,17 @@ public class CobranzaDAO {
 		 cursor.close();
 		 return suma; 
 	 }
+	 
+	 public int obtenerCantidadDetalles(long idCobranza){
+		 int suma=0;		
+		 Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM Amortizacion " +
+		 		"where idCobranza = ? ", new String[] {idCobranza+""});;
+		 cursor.moveToFirst();
+		 suma = cursor.getInt(0);
+		 cursor.close();
+		 return suma; 
+	 }
+	 
 	 private Cobranza cursorToEnt(Cursor cursor) {
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		    Cobranza ent = null;
@@ -169,10 +273,17 @@ public class CobranzaDAO {
 		    	ent.setEstaSincronizado(estaSincronizado);
 		    	ent.setEstadoCobranza(cursor.getString(6));
 		    	ent.setCodigoVisita(cursor.getLong(7));
+		    	ent.setImportePendiente(cursor.getDouble(8));
+		    	
+		    	Boolean esAutoDistribuido = cursor.getInt(9)==1 ?true : false;
+		    	ent.setEsAutoDistribuido(esAutoDistribuido);
+		    	
 		    	
 		    }
 		    
 		    return ent;
 	 }
+	 
+	 
 
 }

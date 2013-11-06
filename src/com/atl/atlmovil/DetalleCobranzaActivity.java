@@ -64,6 +64,10 @@ public class DetalleCobranzaActivity extends ListActivity implements OnClickList
 		long idCobranza = intent.getLongExtra("idCobranza", 0);
 		cobranza = cobDao.buscarPorID(idCobranza);
 		
+		if(cobranza!=null && cobranza.getImportePendiente()==0 && cobranza.getEsAutoDistribuido()){
+			btnAgregarDocs.setEnabled(false);
+		} 
+		
 		obtenerVisitaActiva();
 		cargarListaAmortizaciones();
     }

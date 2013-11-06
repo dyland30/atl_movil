@@ -64,10 +64,10 @@ public class DepositoAdapter extends BaseAdapter{
 		Deposito dep = data.get(position);
 		lblNroDepositoRow.setText("Nro Deposito: "+Cadena.formatearNumero("0000000000", (double)dep.getCodigoDeposito()));
 		lblFechaDepositoRow.setText(dateFormat.format(dep.getFechaDeposito()));
-		lblNroCobranzaDepositoRow.setText("Nro Cobranza: "+Cadena.formatearNumero("0000000000", (double)dep.getCodigoCobranza()));
-		lblVoucherRow.setText("Nro Voucher "+Cadena.formatearNumero("00000", (double)dep.getVoucherDeposito()));
+		lblNroCobranzaDepositoRow.setText("Cobranza: "+Cadena.formatearNumero("0000000000", (double)dep.getCodigoCobranza()));
+		lblVoucherRow.setText("Voucher :"+Cadena.formatearNumero("00000", (double)dep.getVoucherDeposito()));
 		
-		lblImporteRow.setText(Cadena.formatearNumero("0.00", dep.getImporteDeposito()));
+		lblImporteRow.setText("Imp: "+Cadena.formatearNumero("0.00", dep.getImporteDeposito()));
 		
 		//obtener banco
 	

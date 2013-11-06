@@ -149,17 +149,26 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 					EditText txtCantidad = (EditText)findViewById(R.id.txtCantidadTalla);
 					
 					String strcant = txtCantidad.getText().toString();
+					
 					int cant=0;
 					if(strcant!=null && strcant.length()>0){
 						cant = Integer.parseInt(strcant);
-						
 					}
-					tallaPed.setCantidad(cant);
+					if(cant>0){
+						tallaPed.setCantidad(cant);
+						tpDao.crear(tallaPed);
+						pdao.actualizar(pedido);
+						finish();
+						
+					} else{
+						mostrarMensaje("ADVERTENCIA", "La cantidad debe ser mayor a cero");
+					}
 					
-					tpDao.crear(tallaPed);
-					pdao.actualizar(pedido);
 					
+				}else{
+					mostrarMensaje("ADVERTENCIA", "Debe seleccionar una talla");
 				}
+				
 				
 			} else if(operacion.equals("editar")){
 				if(tallaPed!=null && pedido!=null){
@@ -171,17 +180,23 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 						cant = Integer.parseInt(strcant);
 						
 					}
-					tallaPed.setCantidad(cant);
-					tpDao.actualizar(tallaPed);
-					pdao.actualizar(pedido);
+					if(cant>0){
+						tallaPed.setCantidad(cant);
+						tpDao.actualizar(tallaPed);
+						pdao.actualizar(pedido);
+						finish();
+					} else{
+						mostrarMensaje("ADVERTENCIA", "La cantidad debe ser mayor a cero");
+					}
+					
 				}
-				
+				else{
+					mostrarMensaje("ADVERTENCIA", "Debe seleccionar una talla");
+				}
 			}
-			finish();
-			
 		} catch(Exception ex){
 			// mostrar alerta
-			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada " +ex.getMessage() );
+			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada:  " +ex.getMessage() );
 			
 		} 
 		

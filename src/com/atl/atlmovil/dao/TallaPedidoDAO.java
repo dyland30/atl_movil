@@ -137,9 +137,7 @@ public class TallaPedidoDAO {
 					 if(stockactual<=0){
 						 if(!aceptaRetencion){
 							 throw new Exception("No hay suficiente Stock, el pedido no acepta ingresar retenido");
-						 } else{
-							 stockactual = 0;
-						 }
+						 } 
 					 }
 					 
 				 } else{

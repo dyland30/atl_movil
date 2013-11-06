@@ -51,7 +51,7 @@ public class DocumentoPagoDAO {
 	 }
 	 public List<DocumentoPago> buscarPorCliente(long codigoCliente, String referencia){
 		 List<DocumentoPago> ls = new ArrayList<DocumentoPago>();
-		 Cursor cursor = database.query(DocumentoPago.class.getSimpleName(), allColumns, " codigoCliente = "+codigoCliente+" and ReferenciaDocumentoPago like '%"+referencia+"%'",null, null,null,null);
+		 Cursor cursor = database.query(DocumentoPago.class.getSimpleName(), allColumns, " codigoCliente = "+codigoCliente+" and ReferenciaDocumentoPago like '%"+referencia+"%' and importePendienteDocumentoPago >0",null, null,null,null);
 		 cursor.moveToFirst();
 		 while(!cursor.isAfterLast()){
 			 DocumentoPago ent = cursorToEnt(cursor);

@@ -87,7 +87,7 @@ public class DetallePedidoAdapter extends BaseAdapter{
 			lblCodigoProductoDetallePedido.setText(Cadena.formatearNumero("000000", (double)prod.getCodigoProducto()));
 		}
 			
-		lblPunitDetallePedido.setText(Cadena.formatearNumero("############.00", dped.getPrecioUnitario()));
+		lblPunitDetallePedido.setText(Cadena.formatearNumero("0.00", dped.getPrecioUnitario()));
 		
 		//obtener precio por producto y forma de pago
 		
@@ -116,7 +116,7 @@ public class DetallePedidoAdapter extends BaseAdapter{
 		
 		// calcular monto cantTalla*Punit
 		Double importe = cantTallas*precioUnitario;
-		lblImporteDetallePedido.setText(Cadena.formatearNumero("############.00", importe));
+		lblImporteDetallePedido.setText(Cadena.formatearNumero("0.00", importe));
 		
 		return vi;
 	}

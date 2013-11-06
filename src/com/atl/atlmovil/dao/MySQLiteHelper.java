@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 20;
+	private static final int DATABASE_VERSION = 22;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -109,8 +109,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			"nombreEmpresaCarga TEXT, direccionEmpresaCarga TEXT, horarioEmpresaCarga TEXT, rucEmpresaCarga TEXT ) ; ";
 	
 	
+	
 	private static final String C_TB_COBRANZA = "CREATE TABLE Cobranza (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-			"codigoCobranza INTEGER, codigoMedioPago INTEGER, importeCobranza NUMERIC, fechaCobranza DATETIME, estaSincronizado INTEGER, estadoCobranza TEXT, codigoVisita INTEGER) ; ";
+			"codigoCobranza INTEGER, codigoMedioPago INTEGER, importeCobranza NUMERIC, fechaCobranza DATETIME, estaSincronizado INTEGER, " +
+			"estadoCobranza TEXT, codigoVisita INTEGER,importePendiente NUMERIC, esAutoDistribuido INTEGER); ";
 	
 	private static final String C_TB_DOCUMENTO_PAGO = "CREATE TABLE DocumentoPago (codigoDocumentoPago INTEGER PRIMARY KEY NOT NULL, " +
 			"fechaEmisionDocumentoPago DATETIME, fechaVencimientoDocumentoPago DATETIME, importeAmortizadoDocumentoPago NUMERIC," +
@@ -336,14 +338,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		
 		// Cobranzas
 		// "","","","", "","", ""
-		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('1','0','1','500.00','2013-10-30 00:00','0','Registrado', '1'); ");
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita, importePendiente,esAutoDistribuido ) " +
+				"values ('1','0','1','500.00','2013-10-30 00:00','0','Registrado', '1', '500.00','0'); ");
 		
-		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('2','0','1','450.00','2013-10-30 00:00','0','Registrado','1'); ");
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita, importePendiente,esAutoDistribuido ) " +
+				"values ('2','0','1','450.00','2013-10-30 00:00','0','Registrado','1','450.00','0'); ");
 		
-		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita ) " +
-				"values ('3','0','1','600.00','2013-10-30 00:00','0','Registrado','1'); ");
+		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita, importePendiente,esAutoDistribuido ) " +
+				"values ('3','0','1','600.00','2013-10-30 00:00','0','Registrado','1','600.00','0'); ");
 		
 		
 		//Documentos de pago

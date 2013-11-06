@@ -115,7 +115,7 @@ public class PedidoAdapter extends BaseAdapter{
 			txtFechaPedido.setText("01/01/1900");
 			
 		}
-		txtImportePedido.setText(Cadena.formatearNumero("############.00", ped.getImportePedido()));
+		txtImportePedido.setText(Cadena.formatearNumero("0.00", ped.getImportePedido()));
 		
 		
 		return vi;
