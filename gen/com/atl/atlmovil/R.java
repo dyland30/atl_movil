@@ -289,6 +289,7 @@ public final class R {
         public static final int registrarDeposito=0x7f050010;
         public static final int registrarPedido=0x7f05000e;
         public static final int resumen=0x7f050023;
+        public static final int ruta_servicio=0x7f050055;
         public static final int save=0x7f05001e;
         public static final int seleccionarTalla=0x7f050037;
         public static final int talla=0x7f050034;

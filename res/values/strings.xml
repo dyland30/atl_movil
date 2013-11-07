@@ -19,10 +19,10 @@
     <string name="registrarCobranza">Registrar Cobranza</string>
     <string name="registrarDeposito">Registrar Deposito</string>
     <string name="loginFail">Usuario o Clave Incorrectos</string>
-    <string name="title_activity_registrar_pedidos">RegistrarPedidos</string>
+    <string name="title_activity_registrar_pedidos">Calzados Atlas SA - Registrar Pedidos</string>
     <string name="btnNuevo">Nuevo</string>
     <string name="pedidos">Pedidos</string>
-    <string name="nroPedido">Numero de Pedido ...</string>
+    <string name="nroPedido">Número de Pedido ...</string>
     <string name="blanco"></string>
     <string name="title_activity_nuevo_pedido">NuevoPedido</string>
     <string name="formaPago">Forma de Pago</string>
@@ -86,5 +86,6 @@
     <string name="title_activity_nuevo_deposito">NuevoDepositoActivity</string>
     <string name="banco">Banco</string>
     <string name="voucher">Voucher</string>
+    <string name="ruta_servicio">http://172.24.3.15:82/servicio/Servicios.asmx</string>
 
 </resources>

@@ -1,5 +1,8 @@
 package com.atl.atlmovil;
 
+import java.util.List;
+
+import com.atl.atlmovi.util.Sincronizador;
 import com.atl.atlmovil.dao.VisitaDAO;
 import com.atl.atlmovil.entidades.Usuario;
 
@@ -8,6 +11,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -152,6 +156,12 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 		}
 		
 		if(v.getId()==R.id.btnTestWebService){
+			Sincronizador sinc = new Sincronizador();
+			List<Usuario> ls = sinc.obtenerUsuarios();
+			for(Usuario u:ls){
+				Log.w("info",  "id: "+u.getId()+" nombre:  "+u.getClave());
+				
+			}	
 			Intent testIntent = new Intent(MenuPrincipalActivity.this, PruebaWebServiceActivity.class);
 			startActivity(testIntent);
 			
