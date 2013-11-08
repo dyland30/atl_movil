@@ -1,0 +1,5 @@
+D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.dll
+D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.pdb
+D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.csprojResolveAssemblyReference.cache
+D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.dll
+D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.pdb
