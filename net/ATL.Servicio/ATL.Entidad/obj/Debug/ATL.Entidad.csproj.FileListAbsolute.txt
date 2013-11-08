@@ -1,0 +1,5 @@
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Entidad\bin\Debug\ATL.Entidad.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Entidad\bin\Debug\ATL.Entidad.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Entidad\obj\Debug\ResolveAssemblyReference.cache
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Entidad\obj\Debug\ATL.Entidad.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Entidad\obj\Debug\ATL.Entidad.pdb

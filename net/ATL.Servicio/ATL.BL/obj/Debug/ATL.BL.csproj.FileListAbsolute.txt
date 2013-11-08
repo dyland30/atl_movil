@@ -1,0 +1,9 @@
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\obj\Debug\ResolveAssemblyReference.cache
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.BL.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.BL.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.DAO.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.Entidad.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.DAO.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\bin\Debug\ATL.Entidad.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\obj\Debug\ATL.BL.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.BL\obj\Debug\ATL.BL.pdb

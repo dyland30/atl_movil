@@ -3,3 +3,14 @@ D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\bin\ATL.S
 D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.csprojResolveAssemblyReference.cache
 D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.dll
 D:\Daniel\Dropbox\Proyecto ABAXERIAS\fuentes\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ResolveAssemblyReference.cache
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.BL.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.DAO.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Entidad.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.BL.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.DAO.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Entidad.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.dll

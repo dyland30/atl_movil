@@ -5,13 +5,15 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
+using ATL.Entidad;
+using ATL.BL;
 
 namespace ATL.Servicio
 {
     /// <summary>
     /// Summary description for Service1
     /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
+    [WebService(Namespace = "http://atl.com/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
@@ -20,18 +22,10 @@ namespace ATL.Servicio
     {
 
         [WebMethod]
-        public string HelloWorld()
-        {
-            return "Hello World";
-        }
-
-        [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String obtenerUsuarios() {
-            List<Usuario> ls = new List<Usuario>();
-            ls.Add(new Usuario(1,"admin","admin"));
-            ls.Add(new Usuario(2, "dan", "dan"));
-            ls.Add(new Usuario(3, "cala", "cala"));
+            List<Usuario> ls = UsuarioBL.obtenerUsuarios();
+ 
             JavaScriptSerializer js = new JavaScriptSerializer();
             string retJSON = js.Serialize(ls);
             return retJSON;
