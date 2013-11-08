@@ -31,5 +31,17 @@ namespace ATL.Servicio
             return retJSON;
             
         }
+
+        [WebMethod]
+        public String ping()
+        {
+
+            String resp = "OK";
+            return resp;
+
+        }
+
+
+
     }
 }

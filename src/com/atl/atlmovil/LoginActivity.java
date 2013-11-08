@@ -1,5 +1,6 @@
 package com.atl.atlmovil;
 
+import com.atl.atlmovi.util.ServicioSync;
 import com.atl.atlmovil.dao.UsuarioDAO;
 import com.atl.atlmovil.entidades.Usuario;
 
@@ -26,7 +27,9 @@ public class LoginActivity extends Activity  implements OnClickListener{
         Button btnIngresar = (Button)findViewById(R.id.btnIngresar);
         btnIngresar.setOnClickListener(this);
         dao.open();
-        
+        // iniciamos servicio de sincronizacion
+        Intent i= new Intent(this, ServicioSync.class);
+        this.startService(i); 
     }
 
 

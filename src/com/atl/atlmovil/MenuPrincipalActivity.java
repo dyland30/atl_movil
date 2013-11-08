@@ -157,11 +157,17 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 		
 		if(v.getId()==R.id.btnTestWebService){
 			Sincronizador sinc = new Sincronizador();
+			String ping = sinc.ping();
+			Log.w("ping: ",ping);
 			List<Usuario> ls = sinc.obtenerUsuarios();
-			for(Usuario u:ls){
-				Log.w("info",  "id: "+u.getId()+" nombre:  "+u.getClave());
+			if(ls!=null){
+				for(Usuario u:ls){
+					Log.w("info",  "id: "+u.getId()+" nombre:  "+u.getLogin());
+					
+				}	
 				
-			}	
+			}
+			
 			Intent testIntent = new Intent(MenuPrincipalActivity.this, PruebaWebServiceActivity.class);
 			startActivity(testIntent);
 			

@@ -5,6 +5,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.atl.atlmovil.entidades.Usuario;
 
 
@@ -21,10 +23,14 @@ import com.google.gson.reflect.TypeToken;
 
 public class Sincronizador {
 	
-	private static final String NAMESPACE = "http://tempuri.org/";
+	private static final String NAMESPACE = "http://atl.com/";
+	
 	private static String URL="http://172.24.3.15:82/servicio/Servicios.asmx";
-	private static final String METHOD_NAME = "obtenerUsuarios";
-	private static final String SOAP_ACTION ="http://tempuri.org/obtenerUsuarios";
+	
+	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
+	private static final String METHOD_PING = "ping";
+	private static final String SOAP_OBTENER_USUARIOS =NAMESPACE+"obtenerUsuarios";
+	private static final String SOAP_PING =NAMESPACE+"ping";
 
 	
 	private SoapObject request=null;
@@ -32,12 +38,40 @@ public class Sincronizador {
 	private SoapPrimitive  resultsRequestSOAP=null;
 	
 	Gson gson ;
-	
-	
+	public String ping(){
+		String ping ="";
+		request = new SoapObject(NAMESPACE, METHOD_PING);
+		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true;
+		envelope.setOutputSoapObject(request);
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_PING, envelope);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+			ping = resultsRequestSOAP.toString();
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			ping = "";
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			ping = "";
+		}
+		
+		return ping;
+		
+	}
 	
 	public List<Usuario> obtenerUsuarios(){
 		List<Usuario> ls= null;
-		request = new SoapObject(NAMESPACE, METHOD_NAME);
+		request = new SoapObject(NAMESPACE, METHOD_OBTENERUSUARIOS);
 		//Se crea un objeto SoapSerializationEnvelope para serealizar la
 //		peticion SOAP y permitir viajar el mensaje por la nube
 //		el constructor recibe la version de SOAP
@@ -53,7 +87,7 @@ public class Sincronizador {
 		
 		try {	
 			//Hace la llamada al ws
-			transporte.call(SOAP_ACTION, envelope);
+			transporte.call(SOAP_OBTENER_USUARIOS, envelope);
 			
 			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
 			//de la peticion
@@ -74,6 +108,8 @@ public class Sincronizador {
 		
 		return ls;
 	}
+	
+	
 	
 	public List<Usuario> crearListaUsuarios(String strJson){
 		List<Usuario> ls= new ArrayList<Usuario>();

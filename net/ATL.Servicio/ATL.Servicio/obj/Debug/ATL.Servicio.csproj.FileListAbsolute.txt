@@ -14,3 +14,14 @@ C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.BL.pdb
 C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.DAO.pdb
 C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Entidad.pdb
 C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Servicio.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.BL.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.DAO.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Entidad.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.BL.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.DAO.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\bin\ATL.Entidad.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.csprojResolveAssemblyReference.cache
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Servicio\obj\Debug\ATL.Servicio.pdb
