@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 24;
+	private static final int DATABASE_VERSION = 25;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -79,8 +79,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			"nombreTipoDocumento TEXT, siglaTipoDocumento TEXT) ; ";
 	
 	
-	private static final String INS_TB_USUARIO = "insert into Usuario (login,clave,nombres,apellidos,dni)  values('demo','demo','demo'," +
-			"'demo','12345678');";
+	//private static final String INS_TB_USUARIO = "insert into Usuario (login,clave,nombres,apellidos,dni)  values('demo','demo','demo'," +
+	//		"'demo','12345678');";
 	
 	
 	private static final String C_TB_PRODUCTO = "CREATE TABLE Producto (codigoProducto INTEGER PRIMARY KEY NOT NULL, " +
@@ -182,8 +182,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		
 		
 		Log.w("info",DATABASE_CREATE);
-		db.execSQL(INS_TB_USUARIO);
+		//db.execSQL(INS_TB_USUARIO);
 		//Log.w("info",INS_TB_TIPO_VISITA);
+		/*
 		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial'); ");
 		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('2','Telefónica');");
 		
@@ -197,18 +198,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('1','Documento Nacional de Identidad','DNI'); ");
 		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('2','Pasaporte','PASAPORTE'); ");
 		db.execSQL("insert into TipoDocumento (codigoTipoDocumento, nombreTipoDocumento, siglaTipoDocumento) values ('3','Carnet de Extranjeria','CE'); ");
-
+		 */
 		//Personas
+		/*
 		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('1','1','Juan Jimenez','Tomas Marsano 457 - SURCO', '47896574', 'NATURAL'); ");
 		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('2','1','Marco Flores','Universitaria 1474 - SAN MIGUEL','12359874', 'NATURAL'); ");
 		db.execSQL("insert into Persona (codigoPersona, codigoTipoDocumento,nombrePersona, direccionPersona,documentoPersona, tipoPersona) values ('3','1','Marlon Guadalupe','Universitaria 1111 - SAN MIGUEL','237896587', 'NATURAL'); ");
+		*/
 		//Empleados
-		db.execSQL("insert into Empleado (codigoEmpleado,codigoPersona, areaEmpleado,cargoEmpleado, fechaCeseEmpleado, fechaIngresoEmpleado, jefeEmpleado) values ('1','3','LIMA-CENTRO','VENDEDOR','2100-12-31 00:00', '2005-01-01 00:00','1'); ");
+		//db.execSQL("insert into Empleado (codigoEmpleado,codigoPersona, areaEmpleado,cargoEmpleado, fechaCeseEmpleado, fechaIngresoEmpleado, jefeEmpleado) values ('1','3','LIMA-CENTRO','VENDEDOR','2100-12-31 00:00', '2005-01-01 00:00','1'); ");
 		
 		// Grupos de Clientes
-		db.execSQL("insert into Grupo (codigoGrupo, nombreGrupo, titularGrupo) values ('1','Grupo A', 'Ramirez Lesly'); ");
+		//db.execSQL("insert into Grupo (codigoGrupo, nombreGrupo, titularGrupo) values ('1','Grupo A', 'Ramirez Lesly'); ");
 		
 		//Cliente 
+		/*
 		db.execSQL("insert into Cliente (codigoCliente, codigoGrupo, codigoEmpleado, codigoPersona, direccionEntregaCliente, representanteCliente) " +
 				"values ('1','1', '1','1','Tomas Marsano 457 - SURCO', 'Ramirez Lesly'); ");
 		
@@ -221,14 +225,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('2','2','1','1','1','2013-10-16 00:00', '2013-10-16 13:00', '2013-10-16 14:00'); ");
 		db.execSQL("insert into Visita (codigoVisita,codigoCliente, codigoEmpleado, codigoEstadoVisita,codigoTipoVisita, fechaVisita, horaInicioVIsita, horaFinalVisita) " +
 				"values ('3','1','1','1','1','2013-10-17 00:00', '2013-10-17 13:00', '2013-10-16 14:00'); ");
-		
+		*/
 		// forma de pago
-		
+		/*
 		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('1','Factura 90'); ");
 		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('2','Contado'); ");
 		db.execSQL("insert into FormaPago (codigoFormaPago, descripcionFormaPago) values ('3','Adelantado'); ");
-		
-		
+		*/
+		/*
 		// empresa de carga
 		db.execSQL("insert into EmpresaCarga (codigoEmpresaCarga, nombreEmpresaCarga, direccionEmpresaCarga, horarioEmpresaCarga, rucEmpresaCarga)" +
 				" values ('1','Transportes Marin SRL','Bausate y Mesa 467, La Victoria', 'Lu Do 24 hrs', '10478965780'); ");
@@ -251,7 +255,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"estaSincronizado, fechaIngresoPedido, importePedido, instruccionesEspeciales, lineaReservadaPedido,codigoEmpresaCarga) " +
 				"values ('0','1','1','1','Tomas Marsano 457 - SURCO','Martinez','R','0','0','2013-10-20 10:00','7000','Ref: ovalo higuereta','0','2'); ");
 		
+		*/
 		// Productos
+		/*
 		db.execSQL("insert into Producto (codigoProducto,calidadProducto, colorProducto, descripcionProducto," +
 				" materialProducto, precioProducto, sexoProducto) " +
 				"values ('1','Buena','Negro','Zapato A', 'Cuero','89','Masculino'); ");
@@ -263,9 +269,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Producto (codigoProducto,calidadProducto, colorProducto, descripcionProducto," +
 				" materialProducto, precioProducto, sexoProducto) " +
 				"values ('3','Buena','Negro','Zapato C', 'Cuero','120','Masculino'); ");
-		
+		*/
 		// Producto Forma Pago
-		
+		/*
 		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
 				"values ('1','1','92'); ");
 		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
@@ -286,8 +292,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('3','2','95'); ");
 		db.execSQL("insert into ProductoFormaPago (codigoFormaPago,codigoProducto, precio) " +
 				"values ('3','3','115'); ");
-		
+		*/
 		// Talla
+		/*
 		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
 				"values('1','39',20)");
 		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
@@ -301,7 +308,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Talla (codigoProducto, numeroTalla,stockDisponibleTalla) " +
 				"values('3','40',10)");
 		
-		
+		*/
+		/*
 		// Detalles de Pedidos
 		db.execSQL("insert into DetallePedido (idPedido,codigoProducto, precioUnitario) " +
 				"values ('1','1','150'); ");
@@ -323,11 +331,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('1','3','38','2'); ");
 		db.execSQL("insert into TallaPedido (idPedido , codigoProducto, numeroTalla, cantidad) " +
 				"values ('1','3','40','5'); ");
-		
+		*/
 		//Medios de Pago
 		// INTEGER PRIMARY KEY NOT NULL," +
 		//" TEXT
-		
+		/*
 		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
 				"values ('1','Voucher'); ");
 		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
@@ -335,7 +343,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into MedioPago (codigoMedioPago , descripcionMedioPago) " +
 				"values ('3','Cheque'); ");
 		
-		
+		*/
+		/*
 		// Cobranzas
 		// "","","","", "","", ""
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita, importePendiente,esAutoDistribuido ) " +
@@ -347,7 +356,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Cobranza (id , codigoCobranza, codigoMedioPago, importeCobranza, fechaCobranza, estaSincronizado, estadoCobranza, codigoVisita, importePendiente,esAutoDistribuido ) " +
 				"values ('3','0','1','600.00','2013-10-30 00:00','0','Registrado','1','600.00','0'); ");
 		
-		
+		*/
+		/*
 		//Documentos de pago
 		//cliente 1
 		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
@@ -370,33 +380,35 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into DocumentoPago (codigoDocumentoPago , fechaEmisionDocumentoPago, fechaVencimientoDocumentoPago, importeAmortizadoDocumentoPago, " +
 				"importeDescontadoDocumentoPago, importeIgvDocumentoPago, importeOriginalDocumentoPago, importePendienteDocumentoPago, plazoDocumentoPago, tipoDocumentoPago, ReferenciaDocumentoPago, codigoCliente  ) " +
 				"values ('6','2013-10-30 00:00','2013-12-31 00:00', '0','0','414.00','2300.00','1000.00','60','FACTURA','F001-00001236','2'); ");
-		
+		*/
 		// amortizaciones
 		/*
 		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
 			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT
 		 * 
 		 * */
+		/*
 		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
 				"values ('1','1','1','200','pago en efectivo'); ");
 		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
 				"values ('2','1','2','100','pago en efectivo'); ");
 		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
 				"values ('3','1','3','200','pago en efectivo'); ");
-		
+		*/
 		//Bancos
 		/*
 		 * codigoBanco INTEGER PRIMARY KEY NOT NULL," +
 			"nombreBanco TEXT
 		 * 
 		 * */
+		/*
 		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
 				"values ('1','INTERBANK'); ");
 		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
 				"values ('2','BBVA'); ");
 		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
 				"values ('3','FINANCIERO'); ");
-		
+		*/
 		//depositos
 		/*
 		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -406,7 +418,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		 * 
 		 * 
 		 * */
-		
+		/*
 		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
 				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
 				"values ('1', '1','1','1','1','1','San Miguel', 'T01', '1', '2013-11-04 00:00', '300'); ");
@@ -418,6 +430,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
 				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
 				"values ('3', '2','1','1','1','1','Surco', 'T03', '1', '2013-11-04 00:00', '200'); ");
+				
+				*/
 	}
 
 	@Override

@@ -195,9 +195,17 @@ public class ServicioSync extends Service{
 					Empleado old = dao.buscarPorID(p.getCodigoEmpleado());
 					if(old==null){
 						//insertamos en bd
-						p.setFechaCeseEmpleado(dateFormat.parse(p.getStrfechaCeseEmpleado()));
-						p.setFechaIngresoEmpleado(dateFormat.parse(p.getStrfechaIngresoEmpleado()));
 						
+						if(p.getStrfechaCeseEmpleado()!=null && p.getStrfechaCeseEmpleado().length()>0 && !p.getStrfechaCeseEmpleado().equals("null")) 
+							p.setFechaCeseEmpleado(dateFormat.parse(p.getStrfechaCeseEmpleado()));
+						else
+							p.setFechaCeseEmpleado(dateFormat.parse("1900-01-01"));						
+						
+						if(p.getStrfechaIngresoEmpleado()!=null && p.getStrfechaIngresoEmpleado().length()>0 && !p.getStrfechaIngresoEmpleado().equals("null"))
+							p.setFechaIngresoEmpleado(dateFormat.parse(p.getStrfechaIngresoEmpleado()));
+						else
+							p.setFechaIngresoEmpleado(dateFormat.parse("1900-01-01"));
+							
 						dao.crear(p.getCodigoEmpleado(), p.getCodigoPersona(), p.getAreaEmpleado(), p.getCargoEmpleado(),
 								p.getFechaCeseEmpleado(), p.getFechaIngresoEmpleado(), p.getJefeEmpleado());
 						Log.i("empleado insertado", "cod: "+p.getCodigoEmpleado());
