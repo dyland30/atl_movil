@@ -24,12 +24,112 @@ namespace ATL.Servicio
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String obtenerUsuarios() {
-            List<Usuario> ls = UsuarioBL.obtenerUsuarios();
- 
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string retJSON = js.Serialize(ls);
-            return retJSON;
+            try {
+
+                List<Usuario> ls = UsuarioBL.obtenerUsuarios();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
             
+            }catch(Exception ex){
+                return null;
+                
+            }
+            
+            
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerPersonas()
+        {
+            try
+            {
+                List<Persona> ls = PersonaBL.obtenerPersonas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }catch(Exception ex){
+                return null;
+                
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerClientes()
+        {
+            try{
+                List<Cliente> ls = ClienteBL.obtenerClientes();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerGrupos()
+        {
+            try{
+                List<Grupo> ls = GrupoBL.obtenerGrupos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerEmpleados()
+        {
+            try{
+                List<Empleado> ls = EmpleadoBL.obtenerEmpleados();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerVisitas()
+        {
+            try
+            {
+                List<Visita> ls = VisitaBL.obtenerVisitas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
         }
 
         [WebMethod]

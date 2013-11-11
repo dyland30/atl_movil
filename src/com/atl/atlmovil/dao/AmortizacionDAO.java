@@ -171,9 +171,12 @@ public class AmortizacionDAO {
 	 public Amortizacion buscarPorID(long id){
 		 Amortizacion ent = null;
 		 Cursor cursor = database.query(Amortizacion.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+		 }
+		 cursor.close();	
+		 
 		 return ent;
 	 }
 	 

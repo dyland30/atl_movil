@@ -68,6 +68,23 @@ public class PersonaDAO {
 		 return ent;
 	 }
 	 
+	 public Persona crear(Persona ent){
+		 Persona nuevo = null;
+		 ContentValues values = new ContentValues();
+		 values.put("codigoPersona", ent.getCodigoPersona());
+		 values.put("codigoTipoDocumento", ent.getCodigoTipoDocumento());
+		 values.put("nombrePersona", ent.getNombrePersona());
+		 values.put("direccionPersona", ent.getDireccionPersona());
+		 values.put("documentoPersona", ent.getDocumentoPersona());
+		 values.put("tipoPersona", ent.getTipoPersona());
+		 
+		 long insertId = database.insert(Persona.class.getSimpleName(), null, values);
+		 
+		 nuevo=buscarPorID(insertId);
+		 
+		 return nuevo;
+	 }
+	 
 	 public Persona actualizar(Persona ent){
 		 Persona nuevo = null;
 		 ContentValues values = new ContentValues();
@@ -86,15 +103,17 @@ public class PersonaDAO {
 	 public Persona buscarPorID(long id){
 		 Persona ent = null;
 		 Cursor cursor = database.query(Persona.class.getSimpleName(), allColumns, " codigoPersona = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+		 }
 		 cursor.close();		 
 		 return ent;
 	 }
 	 
 	 private Persona cursorToEnt(Cursor cursor) {
 		    Persona ent = null;
-		    if(cursor!=null ){
+		    if(cursor!=null  && cursor.getCount()>0){
 		    	ent = new Persona();
 		    	ent.setCodigoPersona(cursor.getLong(0));
 		    	ent.setCodigoTipoDocumento(cursor.getLong(1));

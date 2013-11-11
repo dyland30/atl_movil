@@ -76,9 +76,12 @@ public class FormaPagoDAO {
 	 public FormaPago buscarPorID(long id){
 		 FormaPago ent = null;
 		 Cursor cursor = database.query(FormaPago.class.getSimpleName(), allColumns, " codigoFormaPago = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

@@ -9,6 +9,10 @@ private long codigoTipoVisita;
 private long codigoEmpleado;
 private long codigoCliente;
 private long codigoEstadoVisita;
+private String strfechaVisita;
+private String strhoraInicioVisita;
+private String strhoraFinalVisita;
+
 public long getCodigoVisita() {
 	return codigoVisita;
 }
@@ -56,6 +60,24 @@ public long getCodigoEstadoVisita() {
 }
 public void setCodigoEstadoVisita(long codigoEstadoVisita) {
 	this.codigoEstadoVisita = codigoEstadoVisita;
+}
+public String getStrfechaVisita() {
+	return strfechaVisita;
+}
+public void setStrfechaVisita(String strfechaVisita) {
+	this.strfechaVisita = strfechaVisita;
+}
+public String getStrhoraInicioVisita() {
+	return strhoraInicioVisita;
+}
+public void setStrhoraInicioVisita(String strhoraInicioVisita) {
+	this.strhoraInicioVisita = strhoraInicioVisita;
+}
+public String getStrhoraFinalVisita() {
+	return strhoraFinalVisita;
+}
+public void setStrhoraFinalVisita(String strhoraFinalVisita) {
+	this.strhoraFinalVisita = strhoraFinalVisita;
 }
 
 }

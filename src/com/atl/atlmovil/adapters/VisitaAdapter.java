@@ -81,7 +81,7 @@ public class VisitaAdapter extends BaseAdapter{
 			cliDao.close();
 			
 		}
-		Log.w("info", "cli "+cli.getCodigoCliente()+"");
+		//Log.w("info", "cli "+cli.getCodigoCliente()+"");
 		// obtener estado de Visita
 		if(visita.getCodigoEstadoVisita()>0){
 			EstadoVisitaDAO eviDao = new EstadoVisitaDAO(activity);
@@ -94,11 +94,13 @@ public class VisitaAdapter extends BaseAdapter{
 		if(cli!=null){
 			PersonaDAO perDao = new PersonaDAO(activity);
 			perDao.open();
+			Log.w("codigoPersona",cli.getCodigoPersona()+"");
+			
 			per = perDao.buscarPorID(cli.getCodigoPersona());
 			perDao.close();
 		}
 		
-		Log.w("info", "per "+per.getCodigoPersona()+"");
+		//Log.w("info", "per "+per.getCodigoPersona()+"");
 		if(per!=null)
 			txtCliente.setText(per.getDocumentoPersona()+" "+per.getNombrePersona());
 		

@@ -79,9 +79,12 @@ public class GrupoDAO {
 	 public Grupo buscarPorID(long id){
 		 Grupo ent = null;
 		 Cursor cursor = database.query(Grupo.class.getSimpleName(), allColumns, " codigoGrupo = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

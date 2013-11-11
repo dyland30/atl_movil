@@ -7,7 +7,7 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.atl.atlmovil.entidades.Usuario;
+import com.atl.atlmovil.entidades.*;
 
 
 import org.ksoap2.SoapEnvelope;
@@ -25,13 +25,27 @@ public class Sincronizador {
 	
 	private static final String NAMESPACE = "http://atl.com/";
 	
-	private static String URL="http://172.24.3.15:82/servicio/Servicios.asmx";
-	
+	private static String URL="http://192.168.0.12:82/AtlServicio/Servicios.asmx";
+	//
 	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
+	private static final String METHOD_OBTENERPERSONAS = "obtenerPersonas";
+	private static final String METHOD_OBTENERCLIENTES = "obtenerClientes";
+	private static final String METHOD_OBTENERGRUPOS = "obtenerGrupos";
+	private static final String METHOD_OBTENEREMPLEADOS = "obtenerEmpleados";
+	private static final String METHOD_OBTENERVISITAS = "obtenerVisitas";
+	
 	private static final String METHOD_PING = "ping";
-	private static final String SOAP_OBTENER_USUARIOS =NAMESPACE+"obtenerUsuarios";
-	private static final String SOAP_PING =NAMESPACE+"ping";
+	private static final String SOAP_OBTENER_USUARIOS =NAMESPACE+METHOD_OBTENERUSUARIOS;
+	private static final String SOAP_OBTENER_PERSONAS =NAMESPACE+METHOD_OBTENERPERSONAS;
+	private static final String SOAP_OBTENER_CLIENTES =NAMESPACE+METHOD_OBTENERCLIENTES;
+	private static final String SOAP_OBTENER_GRUPOS  =NAMESPACE+METHOD_OBTENERGRUPOS;
+	private static final String SOAP_OBTENER_EMPLEADOS  =NAMESPACE+METHOD_OBTENEREMPLEADOS;
+	private static final String SOAP_OBTENER_VISITAS  =NAMESPACE+METHOD_OBTENERVISITAS;
 
+	
+	private static final String SOAP_PING =NAMESPACE+METHOD_PING;
+
+	
 	
 	private SoapObject request=null;
 	private SoapSerializationEnvelope envelope=null;
@@ -68,6 +82,8 @@ public class Sincronizador {
 		return ping;
 		
 	}
+	
+	//usuarios
 	
 	public List<Usuario> obtenerUsuarios(){
 		List<Usuario> ls= null;
@@ -110,15 +126,270 @@ public class Sincronizador {
 	}
 	
 	
-	
 	public List<Usuario> crearListaUsuarios(String strJson){
 		List<Usuario> ls= new ArrayList<Usuario>();
 		//se crea el objeto que ayuda deserealizar la cadena JSON
 				gson = new Gson();
+				
 				//Obtenemos el tipo de un ArrayList<AndroidSO>
 				Type lstT = new TypeToken< ArrayList<Usuario>>(){}.getType();
 				ls = gson.fromJson(strJson, lstT);
 		return ls;
 	}
+	
+//personas
+	public List<Persona> obtenerPersonas(){
+		List<Persona> ls= null;
+		request = new SoapObject(NAMESPACE, METHOD_OBTENERPERSONAS);
+		//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//		peticion SOAP y permitir viajar el mensaje por la nube
+//		el constructor recibe la version de SOAP
+		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+		//Se envuelve la peticion soap
+		envelope.setOutputSoapObject(request);
+		
+		//Objeto que representa el modelo de transporte
+		//Recibe la URL del ws
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		
+		
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_OBTENER_PERSONAS, envelope);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+			
+			String  strJSON = resultsRequestSOAP.toString();
+			
+			ls =  crearListaPersonas(strJSON);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ls;
+	}
+		
+	public List<Persona> crearListaPersonas(String strJson){
+		List<Persona> ls= new ArrayList<Persona>();
+		//se crea el objeto que ayuda deserealizar la cadena JSON
+				gson = new Gson();
+				//Obtenemos el tipo de un ArrayList<AndroidSO>
+				Type lstT = new TypeToken< ArrayList<Persona>>(){}.getType();
+				ls = gson.fromJson(strJson, lstT);
+		return ls;
+	}
+	
+//grupos
+
+	public List<Grupo> obtenerGrupos(){
+		List<Grupo> ls= null;
+		request = new SoapObject(NAMESPACE, METHOD_OBTENERGRUPOS);
+		//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//		peticion SOAP y permitir viajar el mensaje por la nube
+//		el constructor recibe la version de SOAP
+		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+		//Se envuelve la peticion soap
+		envelope.setOutputSoapObject(request);
+		
+		//Objeto que representa el modelo de transporte
+		//Recibe la URL del ws
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_OBTENER_GRUPOS, envelope);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+			
+			String  strJSON = resultsRequestSOAP.toString();
+			
+			ls =  crearListaGrupos(strJSON);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ls;
+	}
+		
+	public List<Grupo> crearListaGrupos(String strJson){
+		List<Grupo> ls= new ArrayList<Grupo>();
+		//se crea el objeto que ayuda deserealizar la cadena JSON
+				gson = new Gson();
+				//Obtenemos el tipo de un ArrayList<AndroidSO>
+				Type lstT = new TypeToken< ArrayList<Grupo>>(){}.getType();
+				ls = gson.fromJson(strJson, lstT);
+		return ls;
+	}
+
+	
+// clientes
+	
+	public List<Cliente> obtenerClientes(){
+			List<Cliente> ls= null;
+			request = new SoapObject(NAMESPACE, METHOD_OBTENERCLIENTES);
+			//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//			peticion SOAP y permitir viajar el mensaje por la nube
+//			el constructor recibe la version de SOAP
+			envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+			envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+			//Se envuelve la peticion soap
+			envelope.setOutputSoapObject(request);
+			
+			//Objeto que representa el modelo de transporte
+			//Recibe la URL del ws
+			HttpTransportSE transporte = new HttpTransportSE(URL);
+			try {	
+				//Hace la llamada al ws
+				transporte.call(SOAP_OBTENER_CLIENTES, envelope);
+				
+				//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+				//de la peticion
+				resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+				
+				String  strJSON = resultsRequestSOAP.toString();
+				
+				ls =  crearListaClientes(strJSON);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return ls;
+		}
+			
+	public List<Cliente> crearListaClientes(String strJson){
+			List<Cliente> ls= new ArrayList<Cliente>();
+			//se crea el objeto que ayuda deserealizar la cadena JSON
+					gson = new Gson();
+					//Obtenemos el tipo de un ArrayList<AndroidSO>
+					Type lstT = new TypeToken< ArrayList<Cliente>>(){}.getType();
+					ls = gson.fromJson(strJson, lstT);
+			return ls;
+		}
+
+
+		// empleados
+		
+	public List<Empleado> obtenerEmpleados(){
+				List<Empleado> ls= null;
+				request = new SoapObject(NAMESPACE, METHOD_OBTENEREMPLEADOS);
+				//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//				peticion SOAP y permitir viajar el mensaje por la nube
+//				el constructor recibe la version de SOAP
+				envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+				envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+				//Se envuelve la peticion soap
+				envelope.setOutputSoapObject(request);
+				
+				//Objeto que representa el modelo de transporte
+				//Recibe la URL del ws
+				HttpTransportSE transporte = new HttpTransportSE(URL);
+				try {	
+					//Hace la llamada al ws
+					transporte.call(SOAP_OBTENER_EMPLEADOS, envelope);
+					
+					//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+					//de la peticion
+					resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+					
+					String  strJSON = resultsRequestSOAP.toString();
+					
+					ls =  crearListaEmpleados(strJSON);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (XmlPullParserException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				return ls;
+			}
+				
+	public List<Empleado> crearListaEmpleados(String strJson){
+				List<Empleado> ls= new ArrayList<Empleado>();
+				//se crea el objeto que ayuda deserealizar la cadena JSON
+						gson = new Gson();
+						//Obtenemos el tipo de un ArrayList<AndroidSO>
+						Type lstT = new TypeToken< ArrayList<Empleado>>(){}.getType();
+						ls = gson.fromJson(strJson, lstT);
+				return ls;
+			}
+		
+	//visita
+	public List<Visita> obtenerVisitas(){
+			List<Visita> ls= null;
+			request = new SoapObject(NAMESPACE, METHOD_OBTENERVISITAS);
+			//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//			peticion SOAP y permitir viajar el mensaje por la nube
+//			el constructor recibe la version de SOAP
+			envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+			envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+			//Se envuelve la peticion soap
+			envelope.setOutputSoapObject(request);
+			
+			//Objeto que representa el modelo de transporte
+			//Recibe la URL del ws
+			HttpTransportSE transporte = new HttpTransportSE(URL);
+			try {	
+				//Hace la llamada al ws
+				transporte.call(SOAP_OBTENER_VISITAS, envelope);
+				
+				//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+				//de la peticion
+				resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+				
+				String  strJSON = resultsRequestSOAP.toString();
+				
+				ls =  crearListaVisitas(strJSON);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return ls;
+		}
+			
+	public List<Visita> crearListaVisitas(String strJson){
+			List<Visita> ls= new ArrayList<Visita>();
+			//se crea el objeto que ayuda deserealizar la cadena JSON
+					gson = new Gson();
+					//Obtenemos el tipo de un ArrayList<AndroidSO>
+					Type lstT = new TypeToken< ArrayList<Visita>>(){}.getType();
+					ls = gson.fromJson(strJson, lstT);
+			return ls;
+		}
+	
+		
+		
 	
 }

@@ -1,0 +1,2 @@
+%windir%\system32\inetsrv\appcmd.exe unlock config -section:system.webServer/handlers
+%windir%\system32\inetsrv\appcmd.exe unlock config -section:system.webServer/modules

@@ -80,9 +80,9 @@ public class BancoDAO {
 		 if(cursor!=null){
 			 cursor.moveToFirst();
 			 ent = cursorToEnt(cursor);
-			 cursor.close();
+			
 		 }
-		 		 
+		 cursor.close();	 
 		 return ent;
 	 }
 	 

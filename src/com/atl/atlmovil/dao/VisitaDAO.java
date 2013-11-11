@@ -79,12 +79,13 @@ public class VisitaDAO {
 		 
 	 }
 	 
-	 public Visita crear(long codigoVisita, long codigoEmpleado, long codigoEstadoVisita, long codigoTipoVisita, String fechaVisita,
+	 public Visita crear(long codigoVisita, long codigoCliente, long codigoEmpleado, long codigoEstadoVisita, long codigoTipoVisita, String fechaVisita,
 			 			String horaInicioVisita, String horaFinalVisita){
 		// SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		 Visita vi = null;
 		 ContentValues values = new ContentValues();
 		 values.put("codigoVisita", codigoVisita);
+		 values.put("codigoCliente", codigoCliente);
 		 values.put("codigoEmpleado", codigoEmpleado);
 		 values.put("codigoEstadoVisita",codigoEstadoVisita);
 		 values.put("codigoTipoVisita",codigoTipoVisita);
@@ -99,11 +100,36 @@ public class VisitaDAO {
 		 return vi;
 	 }
 	 
+	 public Visita crear(Visita vi){
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 Visita viNew = null;
+		 ContentValues values = new ContentValues();
+		 values.put("codigoVisita", vi.getCodigoVisita());
+
+		 values.put("codigoCliente", vi.getCodigoCliente());
+		 values.put("codigoEmpleado", vi.getCodigoEmpleado());
+		 values.put("codigoEstadoVisita",vi.getCodigoEstadoVisita());
+		 values.put("codigoTipoVisita",vi.getCodigoTipoVisita());
+		 values.put("fechaVisita",  dateFormat.format(vi.getFechaVisita()));
+		 values.put("horaInicioVisita",  dateFormat.format(vi.getHoraInicioVisita()));
+		 values.put("horaFinalVisita",  dateFormat.format(vi.getHoraFinalVisita()));
+		 
+		 long insertId = database.insert(Visita.class.getSimpleName(), null, values);
+		
+		 viNew=buscarPorID(insertId);
+		 
+		 return viNew;
+	 }
+	 
+	 
+	 
+	 
 	 public Visita actualizar(Visita vi){
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		 Visita viNew = null;
 		 ContentValues values = new ContentValues();
 		 values.put("codigoEmpleado", vi.getCodigoEmpleado());
+		 values.put("codigoCliente", vi.getCodigoCliente());
 		 values.put("codigoEstadoVisita",vi.getCodigoEstadoVisita());
 		 values.put("codigoTipoVisita",vi.getCodigoTipoVisita());
 		 values.put("fechaVisita",  dateFormat.format(vi.getFechaVisita()));
@@ -150,9 +176,12 @@ public class VisitaDAO {
 	 public Visita buscarPorID(long id){
 		 Visita vi = null;
 		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoVisita = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 vi = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 vi = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return vi;
 	 }
 	 

@@ -11,6 +11,18 @@ namespace ATL.DAO
     public class PersonaDAO
     {
 
+        public static IDataReader obtenerPersonas()
+        {
+            DBHelper helper = DBHelper.GetInstance();
+            IDataReader reader = helper.CargarDataReaderProc("usp_persona_sel");
+            if (reader == null)
+            {
+                throw helper.getErrorReal();
+            }
+            return reader;
+
+        }
+
 
         public void guardar(object obj)
         {

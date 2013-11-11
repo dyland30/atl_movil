@@ -92,9 +92,12 @@ public class DetallePedidoDAO {
 	 public DetallePedido buscarPorID(long idPedido, long codProducto){
 		 DetallePedido ent = null;
 		 Cursor cursor = database.query(DetallePedido.class.getSimpleName(), allColumns, " idPedido = "+idPedido+" and codigoProducto ="+codProducto,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

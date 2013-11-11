@@ -200,9 +200,12 @@ public class TallaPedidoDAO {
 	 public TallaPedido buscarPorID(long idPedido, long codProducto, long numeroTalla){
 		 TallaPedido ent = null;
 		 Cursor cursor = database.query(TallaPedido.class.getSimpleName(), allColumns, " idPedido = "+idPedido+" and codigoProducto ="+codProducto+ " and numeroTalla = "+numeroTalla,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

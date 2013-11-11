@@ -76,10 +76,14 @@ public class MedioPagoDAO {
 	 }
 	 public MedioPago buscarPorID(long id){
 		 MedioPago ent = null;
+		 
 		 Cursor cursor = database.query(MedioPago.class.getSimpleName(), allColumns, " codigoMedioPago = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

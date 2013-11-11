@@ -10,6 +10,10 @@ private String cargoEmpleado;
 private Date fechaCeseEmpleado;
 private long jefeEmpleado;
 private long codigoPersona;
+private String strfechaIngresoEmpleado;
+private String strfechaCeseEmpleado;
+
+
 public long getCodigoEmpleado() {
 	return codigoEmpleado;
 }
@@ -51,6 +55,18 @@ public long getCodigoPersona() {
 }
 public void setCodigoPersona(long codigoPersona) {
 	this.codigoPersona = codigoPersona;
+}
+public String getStrfechaIngresoEmpleado() {
+	return strfechaIngresoEmpleado;
+}
+public void setStrfechaIngresoEmpleado(String strfechaIngresoEmpleado) {
+	this.strfechaIngresoEmpleado = strfechaIngresoEmpleado;
+}
+public String getStrfechaCeseEmpleado() {
+	return strfechaCeseEmpleado;
+}
+public void setStrfechaCeseEmpleado(String strfechaCeseEmpleado) {
+	this.strfechaCeseEmpleado = strfechaCeseEmpleado;
 }
 
 }

@@ -120,9 +120,12 @@ public class DocumentoPagoDAO {
 	 public DocumentoPago buscarPorID(long id){
 		 DocumentoPago ent = null;
 		 Cursor cursor = database.query(DocumentoPago.class.getSimpleName(), allColumns, " codigoDocumentoPago = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

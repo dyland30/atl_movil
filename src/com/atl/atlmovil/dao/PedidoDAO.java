@@ -165,9 +165,12 @@ public class PedidoDAO {
 	 public Pedido buscarPorID(long id){
 		 Pedido ent = null;
 		 Cursor cursor = database.query(Pedido.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 public double calcularMontoPedido(long idPedido){

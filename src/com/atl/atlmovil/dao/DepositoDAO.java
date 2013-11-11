@@ -140,9 +140,12 @@ public class DepositoDAO {
 	 public Deposito buscarPorID(long id){
 		 Deposito ent = null;
 		 Cursor cursor = database.query(Deposito.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 	
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

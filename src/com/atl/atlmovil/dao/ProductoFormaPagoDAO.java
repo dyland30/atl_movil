@@ -79,9 +79,12 @@ public class ProductoFormaPagoDAO {
 	 public ProductoFormaPago buscarPorID(long codigoFormaPago, long codProducto){
 		 ProductoFormaPago ent = null;
 		 Cursor cursor = database.query(ProductoFormaPago.class.getSimpleName(), allColumns, " codigoFormaPago = "+codigoFormaPago+" and codigoProducto ="+codProducto,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

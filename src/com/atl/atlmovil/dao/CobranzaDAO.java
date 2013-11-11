@@ -226,9 +226,12 @@ public class CobranzaDAO {
 	 public Cobranza buscarPorID(long id){
 		 Cobranza ent = null;
 		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 public double calcularMontoCobranza(long idCobranza){

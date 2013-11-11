@@ -82,8 +82,11 @@ public class UsuarioDAO {
 	 public Usuario buscarPorID(long id){
 		 Usuario us = null;
 		 Cursor cursor = database.query(Usuario.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 us = cursorToEnt(cursor);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 us = cursorToEnt(cursor);
+		 }
+		 
 		 cursor.close();		 
 		 return us;
 	 }

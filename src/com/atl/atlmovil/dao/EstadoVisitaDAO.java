@@ -78,9 +78,12 @@ public class EstadoVisitaDAO {
 	 public EstadoVisita buscarPorID(long id){
 		 EstadoVisita ent = null;
 		 Cursor cursor = database.query(EstadoVisita.class.getSimpleName(), allColumns, " codigoEstadoVisita = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

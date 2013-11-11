@@ -103,9 +103,12 @@ public class ProductoDAO {
 	 public Producto buscarPorID(long id){
 		 Producto ent = null;
 		 Cursor cursor = database.query(Producto.class.getSimpleName(), allColumns, " codigoProducto = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

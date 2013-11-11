@@ -99,9 +99,12 @@ public class VoucherDAO {
 	 public Voucher buscarPorID(long id){
 		 Voucher ent = null;
 		 Cursor cursor = database.query(Voucher.class.getSimpleName(), allColumns, " codigoVoucher = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 

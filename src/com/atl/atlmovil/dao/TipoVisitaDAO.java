@@ -75,9 +75,12 @@ public class TipoVisitaDAO {
 	 public TipoVisita buscarPorID(long id){
 		 TipoVisita ent = null;
 		 Cursor cursor = database.query(TipoVisita.class.getSimpleName(), allColumns, " codigoTipoVisita = "+id,null,null,null,null);
-		 cursor.moveToFirst();
-		 ent = cursorToEnt(cursor);
-		 cursor.close();		 
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
 		 return ent;
 	 }
 	 
