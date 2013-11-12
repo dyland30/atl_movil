@@ -98,14 +98,18 @@
             android:name="com.atl.atlmovil.NuevoDepositoActivity"
             android:label="@string/title_activity_nuevo_deposito" >
         </activity>
-        
+
         <service
-  			android:name="com.atl.atlmovi.util.ServicioSync"
-  			android:icon="@drawable/ic_launcher"
-  			android:label="@string/title_activity_menu_principal"
-  			android:process=":proceso_sincronizacion" 
-  			>
-		</service> 
+            android:name="com.atl.atlmovi.util.ServicioSync"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/title_activity_menu_principal"
+            android:process=":proceso_sincronizacion" >
+        </service>
+
+        <activity
+            android:name="com.atl.atlmovil.BuscarEmpresaTransporteActivity"
+            android:label="@string/title_activity_buscar_empresa_transporte" >
+        </activity>
     </application>
 
 </manifest>

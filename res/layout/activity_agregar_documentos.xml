@@ -47,8 +47,9 @@
         android:layout_alignLeft="@+id/lblReferenciaRow"
         android:layout_below="@+id/lblReferenciaRow"
         android:ems="10"
-        android:inputType="text" 
-        android:editable="false">
+        android:editable="false"
+        android:inputType="none"
+        >
 
         <requestFocus />
     </EditText>
@@ -69,8 +70,10 @@
         android:layout_alignRight="@+id/cmbTipoDocumentoAgregarDoc"
         android:layout_below="@+id/lblImporteOriginalRow"
         android:ems="10"
-        android:inputType="datetime|number|text" 
-        android:editable="false"/>
+		android:editable="false"
+        android:inputType="none"         
+
+/>
 
     <TextView
         android:id="@+id/lblImportePendienteRow"
@@ -79,7 +82,8 @@
         android:layout_alignLeft="@+id/txtFechaVencimientoAgregarDocumentos"
         android:layout_below="@+id/txtFechaVencimientoAgregarDocumentos"
         android:text="@string/ImportePendiente" 
-        android:editable="false"/>
+        
+        />
 
     <EditText
         android:id="@+id/txtImportePendienteAgregarDoc"
@@ -89,7 +93,9 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/lblImportePendienteRow"
         android:ems="10"
-        android:inputType="number" />
+    	android:editable="false"
+        android:inputType="none"   
+/>
 
     <TextView
         android:id="@+id/lblFechaVencimientoDocRow"

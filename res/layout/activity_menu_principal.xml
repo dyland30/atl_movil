@@ -17,7 +17,7 @@
             android:id="@+id/btnActivarVisitas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_activity_activar_visita" />
+            android:text="@string/activarVisitas" />
 
         <Button
             android:id="@+id/btnRegistrarPedido"

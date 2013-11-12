@@ -54,6 +54,7 @@ public class NuevaCobranzaActivity extends Activity implements OnClickListener{
 		Button btnDetalleCobranza = (Button)findViewById(R.id.btnDetalleCobranza);
 		Button btnAutoDistribuirCobranza = (Button)findViewById(R.id.btnAutoDistribuirCobranza);
 		Button btnRegistrarDepositoCobranza = (Button)findViewById(R.id.btnRegistrarDepositoCobranza);
+		Spinner cmbEstadoNuevaCobranza = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 		btnGuardar.setOnClickListener(this);
 		btnCancelar.setOnClickListener(this);
 		btnDetalleCobranza.setOnClickListener(this);
@@ -78,10 +79,14 @@ public class NuevaCobranzaActivity extends Activity implements OnClickListener{
 			cobranza = cobDao.buscarPorID(idCobranza);
 			
 			//obtener detalles
-			
+			cmbEstadoNuevaCobranza.setEnabled(true);
 			
 			// cargar Datos
 			cargarDatos();
+		} else{
+			//inactivar spinner
+			
+			cmbEstadoNuevaCobranza.setEnabled(false);
 		}
 		
 	}
@@ -207,6 +212,8 @@ private void guardarCobranza(){
 			cobranza=cobDao.actualizar(cobranza);
 		} else{
 			cobranza  = cobDao.crear(cobranza);
+			
+			
 		}
 		
 	}catch(Exception ex){
@@ -311,9 +318,10 @@ private void guardarCobranza(){
 					mostrarMensaje("Error", "Ocurrio un error al distribuir la cobranza "+ e.getMessage());
 					
 				}
-				
-				
 			}
+		}
+		if(v.getId()==R.id.btnCancelarCobranza){
+			finish();
 			
 			
 		}

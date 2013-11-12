@@ -253,6 +253,10 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 			guardarAmortizacion();
 			
 		}
+		if(v.getId()==R.id.btnCancelarAgregarDocumento){
+			finish();
+			
+		}
 	}
 	
 	@Override

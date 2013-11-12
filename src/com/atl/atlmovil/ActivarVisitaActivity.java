@@ -123,9 +123,9 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 	    Visita vi = (Visita)adapter.getItem(adapterInfo.position);
 	    
 	    menu.setHeaderTitle("Visita Nro: "+vi.getCodigoVisita());
-	    menu.add(0, v.getId(), 0, "ACTIVAR");  
-	    menu.add(0, v.getId(), 1, "DESACTIVAR");
-	    menu.add(0, v.getId(), 2, "ANULAR");
+	    menu.add(0, v.getId(), 0, "INICIAR");  
+	    menu.add(0, v.getId(), 1, "TERMINAR");
+	    menu.add(0, v.getId(), 2, "DESPROGRAMAR");
 	    
 	}
 	
@@ -137,10 +137,10 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 		
 		//Visita visitaSeleccionada = (Visita)adapter.getItem(adapterInfo.position);
 		
-		if(item.getTitle().equals("ACTIVAR")){
+		if(item.getTitle().equals("INICIAR")){
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-			alertDialog.setTitle("ACTIVAR VISITA");
-			alertDialog.setMessage("¿Realmente Desea Activar la Visita?");
+			alertDialog.setTitle("INICIAR VISITA");
+			alertDialog.setMessage("¿Realmente Desea Iniciar la Visita?");
 			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 			
 			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -152,11 +152,11 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 					VisitaAdapter adaptadorInterno = (VisitaAdapter)getListAdapter();
 					Visita vi = (Visita)adaptadorInterno.getItem(adapterInfo.position);
 					
-					// verificar si la visita se encuentra activa
+					// verificar si la visita se encuentra Iniciada
 					if(vi.getCodigoEstadoVisita()==2){
 						AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-						alertDialog.setTitle("ACTIVAR VISITA");
-						alertDialog.setMessage("La visita ya se encuentra activa");
+						alertDialog.setTitle("INICIAR VISITA");
+						alertDialog.setMessage("La visita ya se encuentra Iniciada");
 						alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 						alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				
@@ -170,11 +170,11 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 						
 						
 					} else{
-						//verificar que no haya ninguna visita activa
+						//verificar que no haya ninguna otra visita activa
 						if(viDao.existeVisitaActiva()){
 							AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-							alertDialog.setTitle("ACTIVAR VISITA");
-							alertDialog.setMessage("No se puede activar otra visita, ya existe una visita activa");
+							alertDialog.setTitle("INICIAR VISITA");
+							alertDialog.setMessage("No se puede iniciar otra visita, ya existe una visita en proceso");
 							alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 							alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 								
@@ -212,10 +212,10 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
         	
 			alertDialog.show();
 			
-		} else if(item.getTitle().equals("DESACTIVAR")){
+		} else if(item.getTitle().equals("TERMINAR")){
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-			alertDialog.setTitle("DESACTIVAR VISITA");
-			alertDialog.setMessage("¿Realmente Desea Desactivar la Visita?");
+			alertDialog.setTitle("TERMINAR VISITA");
+			alertDialog.setMessage("¿Realmente Desea Terminar la Visita?");
 			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 			
 			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -237,8 +237,8 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 						
 					} else{
 						AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-						alertDialog.setTitle("DESACTIVAR VISITA");
-						alertDialog.setMessage("La visita no se encuentra activa");
+						alertDialog.setTitle("TERMINAR VISITA");
+						alertDialog.setMessage("La visita no se encuentra en proceso");
 						alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 						alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 							
@@ -267,10 +267,10 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 			alertDialog.show();
 			
 			
-		} else if(item.getTitle().equals("ANULAR")){
+		} else if(item.getTitle().equals("DESPROGRAMAR")){
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-			alertDialog.setTitle("ANULAR VISITA");
-			alertDialog.setMessage("¿Realmente Desea Anular la Visita?");
+			alertDialog.setTitle("DESPROGRAMAR VISITA");
+			alertDialog.setMessage("¿Realmente Desea Desprogramar la Visita?");
 			alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 			
 			alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -283,8 +283,8 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 					VisitaAdapter adaptadorInterno = (VisitaAdapter) getListAdapter();
 					
 					Visita vi = (Visita)adaptadorInterno.getItem(adapterInfo.position);
-					// verificar que la visita se encuentre activa
-					if(vi.getCodigoEstadoVisita()!=4){
+					// verificar que la visita se encuentre programada
+					if(vi.getCodigoEstadoVisita()==1){
 						vi.setCodigoEstadoVisita(4);
 						vi.setHoraFinalVisita(new Date());
 						vi =viDao.actualizar(vi);
@@ -293,8 +293,8 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 						
 					} else{
 						AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActivarVisitaActivity.this);
-						alertDialog.setTitle("ANULAR VISITA");
-						alertDialog.setMessage("La visita ya se encuentra anulada");
+						alertDialog.setTitle("DESPROGRAMAR VISITA");
+						alertDialog.setMessage("La visita no se encuentra en estado programada");
 						alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 						alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 							

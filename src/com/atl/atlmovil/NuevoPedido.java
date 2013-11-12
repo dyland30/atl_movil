@@ -79,6 +79,10 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			pedido = pDao.buscarPorID(idPedido);
 			// cargar Datos
 			cargarDatos();
+		} else{
+			Spinner cmbEstadoPedido = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
+			cmbEstadoPedido.setEnabled(false);
+			
 		}
 		
 		//nuevo
@@ -125,8 +129,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			}
 			
 		}
-		
-		
+
 	}
 	
 	

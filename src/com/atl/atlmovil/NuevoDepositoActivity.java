@@ -283,6 +283,11 @@ public class NuevoDepositoActivity extends Activity implements OnClickListener{
 			guardarDeposito();
 			finish();
 		}
+		if(v.getId()==R.id.btnCancelarDeposito){
+			finish();
+			
+			
+		}
 	}
 	
 

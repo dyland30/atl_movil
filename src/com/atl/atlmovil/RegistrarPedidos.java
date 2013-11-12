@@ -48,6 +48,10 @@ public class RegistrarPedidos extends ListActivity implements OnClickListener  {
 		Button btnNuevo = (Button)findViewById(R.id.btnNuevoPedido);
 		btnNuevo.setOnClickListener(this);
 		
+		Button btnFiltro  = (Button)findViewById(R.id.btnFiltrarPedidos);
+		btnFiltro.setOnClickListener(this);
+		
+		
 		pDao = new PedidoDAO(this);
 		viDao = new VisitaDAO(this);
 		cliDao = new ClienteDAO(this);
@@ -72,6 +76,10 @@ public class RegistrarPedidos extends ListActivity implements OnClickListener  {
 			Intent nuevoPedidoIntent = new Intent(RegistrarPedidos.this, NuevoPedido.class);
 			nuevoPedidoIntent.putExtra("operacion", "insertar");
 			startActivity(nuevoPedidoIntent);
+			
+		}
+		if(v.getId()==R.id.btnFiltrarPedidos){
+			cargarListaPedidos();
 			
 		}
 	}

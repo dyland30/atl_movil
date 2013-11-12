@@ -65,6 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="scripts\procedimientos11112013.sql" />
     <Content Include="scripts\Script Creacion ATL - v010.sql" />
     <Content Include="scripts\usp_LEVANTAR_RETENCIONES - v006.sql" />
   </ItemGroup>

@@ -19,7 +19,7 @@
         android:hint="@string/buscarProducto"
         android:inputType="text" >
 
-        <requestFocus />
+        
     </EditText>
 
     <TextView

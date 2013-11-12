@@ -18,9 +18,12 @@ import com.atl.atlmovil.entidades.Visita;
 
 import android.os.Bundle;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +34,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -49,6 +53,13 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 	Date fechaDesde;
 	Date fechaHasta;
 	
+	static final int DATE_DIALOG_DESDE = 100;
+	static final int DATE_DIALOG_HASTA = 200;
+	
+	private int year;
+	private int month;
+	private int day;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +70,15 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 		//registrar botones
 		Button btnNuevaCobranza = (Button)findViewById(R.id.btnNuevaCobranza);
 		btnNuevaCobranza.setOnClickListener(this);
+		
+		Button btnSelFechaDesde = (Button)findViewById(R.id.btnSelFechaDesde);
+		btnSelFechaDesde.setOnClickListener(this);
+		
+		Button btnSelFechaHasta = (Button)findViewById(R.id.btnSelFechaHasta);
+		btnSelFechaHasta.setOnClickListener(this);
+		
+		Button btnFiltrarRegistroCobranza = (Button)findViewById(R.id.btnFiltrarRegistroCobranza);
+		btnFiltrarRegistroCobranza.setOnClickListener(this);
 		
 		
 		viDao = new VisitaDAO(this);
@@ -217,13 +237,19 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 		}
 		
 	}
+	
 		private void cargarListaCobranzas(){
 		
 		
-		if(visitaActiva!=null){
+		if(visitaActiva!=null && fechaDesde!=null && fechaHasta !=null){
 			
-			// filtrar por estado, fecha y 
-			lsCobranza = cobDao.buscarPorVisita(visitaActiva.getCodigoVisita());
+			// filtrar por estado, fecha y visita
+			Spinner cmbEstadoNuevaCobranza = (Spinner)findViewById(R.id.cmbEstadoCobranzaFiltro);
+			
+			String estado = (String)cmbEstadoNuevaCobranza.getSelectedItem();
+			
+			lsCobranza = cobDao.buscarPorVisitaFechaEstado(visitaActiva.getCodigoVisita(),fechaDesde, fechaHasta, estado);
+			
 			
 			//ListView lvVisitas = (ListView)findViewById(android.R.id.list);
 			adapter = new CobranzaAdapter(this, lsCobranza);
@@ -243,8 +269,82 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 				startActivity(nuevaCobranza);
 				
 			}
+			if(v.getId()==R.id.btnSelFechaDesde){
+				showDialog(DATE_DIALOG_DESDE);
+				
+			}
+			if(v.getId()==R.id.btnSelFechaHasta){
+				showDialog(DATE_DIALOG_HASTA);
+				
+			}
+			if(v.getId()==R.id.btnFiltrarRegistroCobranza){
+				
+				cargarListaCobranzas();
+				
+			}
 		}
 	
-	
+		@Override
+		protected Dialog onCreateDialog(int id) {
+			Calendar c = Calendar.getInstance();
+			year = c.get(Calendar.YEAR);
+			month = c.get(Calendar.MONTH);
+			day = c.get(Calendar.DAY_OF_MONTH);
+			
+			switch (id) {
+			case DATE_DIALOG_DESDE:
+			   // set date picker as current date
+				
+				
+			   return new DatePickerDialog(this, datePickerListenerDesde, 
+	                         year, month,day);
+			case DATE_DIALOG_HASTA:
+				
+				
+			   return new DatePickerDialog(this, datePickerListenerHasta, 
+	                         year, month,day);
+				
+			}
+			return null;
+		}
+		
+		private DatePickerDialog.OnDateSetListener datePickerListenerDesde    = new DatePickerDialog.OnDateSetListener() {
+
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
+			year = selectedYear;
+			month = selectedMonth;
+			day = selectedDay;
+		
+			Calendar c = Calendar.getInstance();
+			c.set(selectedYear, selectedMonth, selectedDay);
+			fechaDesde = c.getTime();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			TextView lblFechaDesde = (TextView)findViewById(R.id.lblFechaDesde);
+			lblFechaDesde.setText("Del: "+dateFormat.format(fechaDesde));
+		
+		}
+		};
+		
+		private DatePickerDialog.OnDateSetListener datePickerListenerHasta    = new DatePickerDialog.OnDateSetListener() {
+
+			// when dialog box is closed, below method will be called.
+			public void onDateSet(DatePicker view, int selectedYear,
+					int selectedMonth, int selectedDay) {
+				year = selectedYear;
+				month = selectedMonth;
+				day = selectedDay;
+				Log.w("year selected",""+year);
+				Calendar c = Calendar.getInstance();
+				c.set(selectedYear, selectedMonth, selectedDay);
+				fechaHasta = c.getTime();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				TextView lblFechaHasta = (TextView)findViewById(R.id.lblFechaHasta);
+				lblFechaHasta.setText("Al: "+dateFormat.format(fechaHasta));
+			
+			}
+			};
+		
 
 }

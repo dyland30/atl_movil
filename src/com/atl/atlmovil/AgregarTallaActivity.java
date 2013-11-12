@@ -43,8 +43,6 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agregar_talla);
-		
-		
 		pdao = new PedidoDAO(this);
 		proDao = new ProductoDAO(this);
 		tdao = new TallaDAO(this);
@@ -60,6 +58,10 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		
 		Button btnAgregar = (Button)findViewById(R.id.btnCrearTalla);
 		btnAgregar.setOnClickListener(this);
+		
+		Button btnCancelar = (Button)findViewById(R.id.btnCancelarTalla);
+		btnCancelar.setOnClickListener(this);
+		
 		Intent intent = getIntent();
 		long idPedido =  intent.getLongExtra("idPedido", 0);
 		long codProducto = intent.getLongExtra("codigoProducto",0);
@@ -229,12 +231,15 @@ public void mostrarMensaje( String titulo, String mensaje){
 			buscarTallaIntent.putExtra("codigoProducto", prod.getCodigoProducto());
 			startActivityForResult(buscarTallaIntent,BUSCAR_TALLA );
 			
-		} else if(v.getId()==R.id.btnCrearTalla){
+		} 
+		if(v.getId()==R.id.btnCrearTalla){
 			//crear registro de tallaPedido y matar a la actividad
 			
 			guardarTalla();
 			
-			
+		}
+		if(v.getId()==R.id.btnCancelarTalla){
+			finish();
 		}
 		
 	}

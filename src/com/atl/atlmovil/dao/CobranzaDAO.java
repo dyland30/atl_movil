@@ -65,6 +65,22 @@ public class CobranzaDAO {
 		 return ls;
 	 }
 	 
+	 public List<Cobranza> buscarPorVisitaFechaEstado(long codigoVisita, Date fechaInicio, Date fechaFin, String estado){
+		 List<Cobranza> ls = new ArrayList<Cobranza>();
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 String strFechaInicio = dateFormat.format(fechaInicio);
+		 String strFechaFin = dateFormat.format(fechaFin);
+		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " codigoVisita = '"+codigoVisita+"' and estadoCobranza = '"+estado+"' and fechaCObranza >= '"+strFechaInicio+"' and fechaCObranza <='"+strFechaFin+"'",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Cobranza ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
 	 public void eliminar(Cobranza ent){
 		 long id = ent.getId();
 		 database.delete(Cobranza.class.getSimpleName(),"id = "+id,null);
