@@ -7,7 +7,7 @@ namespace ATL.Entidad
 {
     public class EstadoVisita
     {
-        public long codigoEstadoVisita;
-        public string descripcionEstadoVisita;
+        public long codigoEstadoVisita { get; set; }
+        public string descripcionEstadoVisita { get; set; }
     }
 }

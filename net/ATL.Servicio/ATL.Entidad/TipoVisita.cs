@@ -8,6 +8,6 @@ namespace ATL.Entidad
     public class TipoVisita
     {
         public long codigoTipoVisita { get; set; }
-        public string descripcionTipoVosota { get; set; }
+        public string descripcionTipoVisita { get; set; }
     }
 }

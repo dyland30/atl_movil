@@ -44,12 +44,21 @@ public class ServicioSync extends Service{
 				//push
 				//pull
 				
-				pullUsuarios();
+				pullTipoDocumentos();
 				pullPersonas();
+				pullEmpleados();
+				pullUsuarios();
 				pullGrupos();
 				pullClientes();
-				pullEmpleados();
+				pullTipoVisitas();
+				pullEstadoVisitas();
 				pullVisitas();
+				pullEmpresaCargas();
+				pullFormaPagos();
+				pullTallas();
+				pullProductos();
+				pullProductosFormaPago();
+				
 				
 			}
 			
@@ -150,7 +159,278 @@ public class ServicioSync extends Service{
 			dao.close();	
 		}		
 	}
+	
+	public void pullTipoDocumentos(){
+		TipoDocumentoDAO dao = new TipoDocumentoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<TipoDocumento> ls = sinc.obtenerTiposDocumento();
+			if(ls!=null){
+				for(TipoDocumento p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					TipoDocumento old = dao.buscarPorID(p.getCodigoTipoDocumento());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoTipoDocumento(), p.getNombreTipoDocumento(), p.getSiglaTipoDocumento());
+						
+						Log.i("tipo documento insertado", p.getNombreTipoDocumento());
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
 
+	public void pullTipoVisitas(){
+		TipoVisitaDAO dao = new TipoVisitaDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<TipoVisita> ls = sinc.obtenerTiposVisita();
+			if(ls!=null){
+				for(TipoVisita p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					TipoVisita old = dao.buscarPorID(p.getCodigoTipoVisita());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoTipoVisita(), p.getDescripcionTipoVisita());
+						
+						Log.i("tipo visita insertada", p.getDescripcionTipoVisita());
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullEstadoVisitas(){
+		EstadoVisitaDAO dao = new EstadoVisitaDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<EstadoVisita> ls = sinc.obtenerEstadosVisita();
+			if(ls!=null){
+				for(EstadoVisita p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					EstadoVisita old = dao.buscarPorID(p.getCodigoEstadoVisita());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoEstadoVisita(), p.getDescripcionEstadoVisita());
+						
+						Log.i("Estado visita insertado", p.getDescripcionEstadoVisita());
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullEmpresaCargas(){
+		EmpresaCargaDAO dao = new EmpresaCargaDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<EmpresaCarga> ls = sinc.obtenerEmpresaCargas();
+			if(ls!=null){
+				for(EmpresaCarga p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					EmpresaCarga old = dao.buscarPorID(p.getCodigoEmpresaCarga());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoEmpresaCarga(), p.getNombreEmpresaCarga(), p.getDireccionEmpresaCarga(),
+								p.getHorarioEmpresaCarga(), p.getRucEmpresaCarga());
+						
+						Log.i("Empresa Carga insertado", p.getNombreEmpresaCarga());
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullFormaPagos(){
+		FormaPagoDAO dao = new FormaPagoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<FormaPago> ls = sinc.obtenerFormasPago();
+			if(ls!=null){
+				for(FormaPago p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					FormaPago old = dao.buscarPorID(p.getCodigoFormaPago());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoFormaPago(), p.getDescripcionFormaPago());
+						
+						Log.i("Forma Pago insertada", p.getDescripcionFormaPago());
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullTallas(){
+		TallaDAO dao = new TallaDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Talla> ls = sinc.obtenerTallas();
+			if(ls!=null){
+				for(Talla p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					Talla old = dao.buscarPorID(p.getCodigoProducto(), p.getNumeroTalla());
+					
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoProducto(), p.getNumeroTalla(), p.getStockDisponibleTalla());
+						
+						Log.i("Talla insertada", "Prod: "+p.getCodigoProducto()+" Talla: "+p.getNumeroTalla());
+						
+					} else{
+						//actualizar solo si ha cambiado el stock
+						if(p.getStockDisponibleTalla()!= old.getStockDisponibleTalla()){
+							dao.actualizar(p);
+							Log.i("Talla actualizada", "Prod: "+p.getCodigoProducto()+" Talla: "+p.getNumeroTalla()+" Stock: "+p.getStockDisponibleTalla());
+							
+						}
+						
+						
+					}
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullProductos(){
+		ProductoDAO dao = new ProductoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Producto> ls = sinc.obtenerProductos();
+			if(ls!=null){
+				for(Producto p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					Producto old = dao.buscarPorID(p.getCodigoProducto());
+					
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoProducto(), p.getCalidadProducto(), p.getColorProducto(),
+								p.getDescripcionProducto(), p.getMaterialProducto(), 
+								p.getPrecioProducto(), p.getSexoProducto());
+						
+						Log.i("Producto insertado", p.getCodigoProducto()+" "+p.getDescripcionProducto());		
+					} 
+				}
+					
+				}
+				
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+
+	public void pullProductosFormaPago(){
+		ProductoFormaPagoDAO dao = new ProductoFormaPagoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<ProductoFormaPago> ls = sinc.obtenerProductoFormaPagos();
+			if(ls!=null){
+				for(ProductoFormaPago p : ls){
+					//guardar usuario en base de datos si aun no existe
+					//Log.i("p", p.getCodigoPersona()+" "+  p.getNombrePersona());
+					ProductoFormaPago old = dao.buscarPorID(p.getCodigoFormaPago(), p.getCodigoProducto());
+					
+					
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoFormaPago(), p.getCodigoProducto(), p.getPrecio());
+						
+						Log.i("Precio Producto Insertado", "Prod: "+p.getCodigoProducto()+" M. Pago: "+p.getCodigoFormaPago()+" Precio: "+p.getPrecio());
+						
+					} else{
+						//actualizar solo si ha cambiado el stock
+						if(Math.abs(p.getPrecio()-old.getPrecio())>0.1){
+							dao.actualizar(p);
+							Log.i("Precio Producto Actualizado", "Prod: "+p.getCodigoProducto()+" M. Pago: "+p.getCodigoFormaPago()+" Precio act: "+p.getPrecio()+" Precio ant: "+old.getPrecio());
+							
+						}
+						
+						
+					}
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullTipoDocumentos", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+	
 	public void pullClientes(){
 		ClienteDAO dao = new ClienteDAO(this);
 		try{
@@ -269,5 +549,7 @@ public class ServicioSync extends Service{
 		}		
 	}
 
+	
+	
 
 }

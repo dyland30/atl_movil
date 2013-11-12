@@ -8,7 +8,7 @@ namespace ATL.DAO
 {
     public class ProductoFormaPagoDAO
     {
-        public static IDataReader obtenerTallas()
+        public static IDataReader obtenerProductoFormaPagos()
         {
             DBHelper helper = DBHelper.GetInstance();
             IDataReader reader = helper.CargarDataReaderProc("usp_producto_forma_pago_sel");

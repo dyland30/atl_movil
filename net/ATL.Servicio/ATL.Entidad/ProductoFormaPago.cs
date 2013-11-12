@@ -9,7 +9,7 @@ namespace ATL.Entidad
     {
         public long codigoFormaPago { get; set; }
         public long codigoProducto { get; set; }
-        public double precio { get; set; }
+        public decimal precio { get; set; }
 
     }
 }

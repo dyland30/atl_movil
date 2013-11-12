@@ -12,7 +12,7 @@ namespace ATL.DAO
         public static IDataReader obtenerTipoDocumentos()
         {
             DBHelper helper = DBHelper.GetInstance();
-            IDataReader reader = helper.CargarDataReaderProc("usp_tipo_documento_sel");
+            IDataReader reader = helper.CargarDataReaderProc("usp_tipodocumento_sel");
             if (reader == null)
             {
                 throw helper.getErrorReal();

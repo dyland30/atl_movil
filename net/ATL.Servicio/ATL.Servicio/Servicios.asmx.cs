@@ -133,6 +133,158 @@ namespace ATL.Servicio
         }
 
         [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerEstadoVisitas()
+        {
+            try
+            {
+                List<EstadoVisita> ls = EstadoVisitaBL.obtenerEstadoVisitas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerTipoVisitas()
+        {
+            try
+            {
+                List<TipoVisita> ls = TipoVisitaBL.obtenerTipoVisitas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerTipoDocumentos()
+        {
+            try
+            {
+                List<TipoDocumento> ls = TipoDocumentoBL.obtenerTipoDocumentos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerFormaPagos()
+        {
+            try
+            {
+                List<FormaPago> ls = FormaPagoBL.obtenerFormaPagos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerProductos()
+        {
+            try
+            {
+                List<Producto> ls = ProductoBL.obtenerProductos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerProductoFormaPagos()
+        {
+            try
+            {
+                List<ProductoFormaPago> ls = ProductoFormaPagoBL.obtenerProductoFormaPagos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerTallas()
+        {
+            try
+            {
+                List<Talla> ls = TallaBL.obtenerTallas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerEmpresaCargas()
+        {
+            try
+            {
+                List<EmpresaCarga> ls = EmpresaCargaBL.obtenerEmpresaCargas();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+        [WebMethod]
         public String ping()
         {
 

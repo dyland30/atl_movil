@@ -8,7 +8,7 @@ namespace ATL.DAO
 {
     public class FormaPagoDAO
     {
-        public static IDataReader obtenerEstadoVisitas()
+        public static IDataReader obtenerFormaPagos()
         {
             DBHelper helper = DBHelper.GetInstance();
             IDataReader reader = helper.CargarDataReaderProc("usp_forma_pago_sel");
