@@ -7,7 +7,8 @@ using System.Web.Script.Services;
 using System.Web.Script.Serialization;
 using ATL.Entidad;
 using ATL.BL;
-
+using ATL.BL.Contrato;
+using ATL.BL.Implementacion;
 namespace ATL.Servicio
 {
     /// <summary>
@@ -25,8 +26,9 @@ namespace ATL.Servicio
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String obtenerUsuarios() {
             try {
-
-                List<Usuario> ls = UsuarioBL.obtenerUsuarios();
+                IUsuarioBL usuarioBL = new UsuarioBL();
+                
+                List<Usuario> ls = usuarioBL.obtenerUsuarios();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -46,7 +48,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<Persona> ls = PersonaBL.obtenerPersonas();
+                IPersonaBL personaBL = new PersonaBL();
+                List<Persona> ls = personaBL.obtenerPersonas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -62,7 +65,8 @@ namespace ATL.Servicio
         public String obtenerClientes()
         {
             try{
-                List<Cliente> ls = ClienteBL.obtenerClientes();
+                IClienteBL clienteBL = new ClienteBL();
+                List<Cliente> ls = clienteBL.obtenerClientes();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -81,7 +85,8 @@ namespace ATL.Servicio
         public String obtenerGrupos()
         {
             try{
-                List<Grupo> ls = GrupoBL.obtenerGrupos();
+                IGrupoBL grupoBL = new GrupoBL();
+                List<Grupo> ls = grupoBL.obtenerGrupos();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -99,7 +104,8 @@ namespace ATL.Servicio
         public String obtenerEmpleados()
         {
             try{
-                List<Empleado> ls = EmpleadoBL.obtenerEmpleados();
+                IEmpleadoBL empleadoBL = new EmpleadoBL();
+                List<Empleado> ls = empleadoBL.obtenerEmpleados();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -119,7 +125,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<Visita> ls = VisitaBL.obtenerVisitas();
+                IVisitaBL visitaBL = new VisitaBL();
+                List<Visita> ls = visitaBL.obtenerVisitas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -138,7 +145,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<EstadoVisita> ls = EstadoVisitaBL.obtenerEstadoVisitas();
+                IEstadoVisitaBL estadoVisitaBL = new EstadoVisitaBL();
+                List<EstadoVisita> ls = estadoVisitaBL.obtenerEstadoVisitas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -157,7 +165,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<TipoVisita> ls = TipoVisitaBL.obtenerTipoVisitas();
+                ITipoVisitaBL tipoVisitaBL = new TipoVisitaBL();
+                List<TipoVisita> ls = tipoVisitaBL.obtenerTipoVisitas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -176,7 +185,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<TipoDocumento> ls = TipoDocumentoBL.obtenerTipoDocumentos();
+                ITipoDocumentoBL tipoDocumentoBL = new TipoDocumentoBL();
+                List<TipoDocumento> ls = tipoDocumentoBL.obtenerTipoDocumentos();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -195,7 +205,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<FormaPago> ls = FormaPagoBL.obtenerFormaPagos();
+                IFormaPagoBL formaPagoBL = new FormaPagoBL();
+                List<FormaPago> ls = formaPagoBL.obtenerFormaPagos();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -214,7 +225,9 @@ namespace ATL.Servicio
         {
             try
             {
-                List<Producto> ls = ProductoBL.obtenerProductos();
+                IProductoBL productoBL = new ProductoBL();
+
+                List<Producto> ls = productoBL.obtenerProductos();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -233,7 +246,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<ProductoFormaPago> ls = ProductoFormaPagoBL.obtenerProductoFormaPagos();
+                IProductoFormaPagoBL productoFormaPagoBL = new ProductoFormaPagoBL();
+                List<ProductoFormaPago> ls = productoFormaPagoBL.obtenerProductoFormaPagos();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -252,7 +266,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<Talla> ls = TallaBL.obtenerTallas();
+                ITallaBL tallaBL = new TallaBL();
+                List<Talla> ls = tallaBL.obtenerTallas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -271,7 +286,8 @@ namespace ATL.Servicio
         {
             try
             {
-                List<EmpresaCarga> ls = EmpresaCargaBL.obtenerEmpresaCargas();
+                IEmpresaCargaBL empresaCargaBL = new EmpresaCargaBL();
+                List<EmpresaCarga> ls = empresaCargaBL.obtenerEmpresaCargas();
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string retJSON = js.Serialize(ls);
@@ -283,6 +299,48 @@ namespace ATL.Servicio
 
             }
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerDocumentoPagos()
+        {
+            try
+            {
+                IDocumentoPagoBL documentoPagoBL = new DocumentoPagoBL();
+                List<DocumentoPago> ls = documentoPagoBL.obtenerDocumentos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerBancos()
+        {
+            try
+            {
+                IBancoBL bancoBL = new BancoBL();
+                List<Banco> ls = bancoBL.obtenerBancos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
 
         [WebMethod]
         public String ping()

@@ -41,6 +41,9 @@ public class Sincronizador {
 	private static final String METHOD_OBTENERTALLAS = "obtenerTallas";
 	private static final String METHOD_OBTENERPRODUCTOS = "obtenerProductos";
 	private static final String METHOD_OBTENERPRODUCTOSFORMAPAGO = "obtenerProductoFormaPagos";
+	private static final String METHOD_OBTENERDOCUMENTOSPAGO = "obtenerProductoFormaPagos";
+	
+	
 	
 	private static final String METHOD_PING = "ping";
 	private static final String SOAP_OBTENER_USUARIOS =NAMESPACE+METHOD_OBTENERUSUARIOS;
@@ -58,7 +61,7 @@ public class Sincronizador {
 	private static final String SOAP_OBTENER_TALLAS  =NAMESPACE+METHOD_OBTENERTALLAS;
 	private static final String SOAP_OBTENER_PRODUCTOS  =NAMESPACE+METHOD_OBTENERPRODUCTOS;
 	private static final String SOAP_OBTENER_PRODUCTOS_FORMA_PAGO  =NAMESPACE+METHOD_OBTENERPRODUCTOSFORMAPAGO;
-	
+	private static final String SOAP_OBTENER_DOCUMENTOS_PAGO  =NAMESPACE+METHOD_OBTENERDOCUMENTOSPAGO;
 		
 	private static final String SOAP_PING =NAMESPACE+METHOD_PING;
 
@@ -83,8 +86,6 @@ public class Sincronizador {
 			//de la peticion
 			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
 			ping = resultsRequestSOAP.toString();
-			
-			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -797,4 +798,55 @@ public class Sincronizador {
 					return ls;
 				}
 			
+
+	//Obtener Documentos de Pago
+	public List<DocumentoPago> obtenerDocumentosPago(){
+						List<DocumentoPago> ls= null;
+						request = new SoapObject(NAMESPACE, METHOD_OBTENERDOCUMENTOSPAGO);
+						//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//						peticion SOAP y permitir viajar el mensaje por la nube
+//						el constructor recibe la version de SOAP
+						envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+						envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+						//Se envuelve la peticion soap
+						envelope.setOutputSoapObject(request);
+						
+						//Objeto que representa el modelo de transporte
+						//Recibe la URL del ws
+						HttpTransportSE transporte = new HttpTransportSE(URL);
+						try {	
+							//Hace la llamada al ws
+							transporte.call(SOAP_OBTENER_DOCUMENTOS_PAGO, envelope);
+							
+							//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+							//de la peticion
+							resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+							
+							String  strJSON = resultsRequestSOAP.toString();
+							
+							ls =  crearListaDocumentosPago(strJSON);
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (XmlPullParserException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						
+						return ls;
+					}
+						
+	public List<DocumentoPago> crearListaDocumentosPago(String strJson){
+						List<DocumentoPago> ls= new ArrayList<DocumentoPago>();
+						//se crea el objeto que ayuda deserealizar la cadena JSON
+								gson = new Gson();
+								//Obtenemos el tipo de un ArrayList<AndroidSO>
+								Type lstT = new TypeToken< ArrayList<DocumentoPago>>(){}.getType();
+								ls = gson.fromJson(strJson, lstT);
+						return ls;
+		}
+			
+	
 }

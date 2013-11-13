@@ -40,23 +40,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClienteBL.cs" />
-    <Compile Include="EmpleadoBL.cs" />
-    <Compile Include="EmpresaCargaBL.cs" />
-    <Compile Include="EntidadesHelper.cs" />
-    <Compile Include="EstadoVisitaBL.cs" />
-    <Compile Include="FormaPagoBL.cs" />
-    <Compile Include="GrupoBL.cs" />
-    <Compile Include="Loger.cs" />
-    <Compile Include="PersonaBL.cs" />
-    <Compile Include="ProductoBL.cs" />
-    <Compile Include="ProductoFormaPagoBL.cs" />
+    <Compile Include="Contrato\IBancoBL.cs" />
+    <Compile Include="Contrato\IDocumentoPagoBL.cs" />
+    <Compile Include="Contrato\IEmpleadoBL.cs" />
+    <Compile Include="Contrato\IClienteBL.cs" />
+    <Compile Include="Contrato\IEmpresaCargaBL.cs" />
+    <Compile Include="Contrato\IEstadoVisitaBL.cs" />
+    <Compile Include="Contrato\IFormaPagoBL.cs" />
+    <Compile Include="Contrato\IGrupoBL.cs" />
+    <Compile Include="Contrato\IPersonaBL.cs" />
+    <Compile Include="Contrato\IProductoBL.cs" />
+    <Compile Include="Contrato\IProductoFormaPagoBL.cs" />
+    <Compile Include="Contrato\ITallaBL.cs" />
+    <Compile Include="Contrato\ITipoDocumentoBL.cs" />
+    <Compile Include="Contrato\ITipoVisitaBL.cs" />
+    <Compile Include="Contrato\IUsuarioBL.cs" />
+    <Compile Include="Contrato\IVisitaBL.cs" />
+    <Compile Include="Implementacion\BancoBL.cs" />
+    <Compile Include="Implementacion\ClienteBL.cs" />
+    <Compile Include="Implementacion\DocumentoPagoBL.cs" />
+    <Compile Include="Implementacion\EmpleadoBL.cs" />
+    <Compile Include="Implementacion\EmpresaCargaBL.cs" />
+    <Compile Include="Implementacion\EntidadesHelper.cs" />
+    <Compile Include="Implementacion\EstadoVisitaBL.cs" />
+    <Compile Include="Implementacion\FormaPagoBL.cs" />
+    <Compile Include="Implementacion\GrupoBL.cs" />
+    <Compile Include="Implementacion\Loger.cs" />
+    <Compile Include="Implementacion\PersonaBL.cs" />
+    <Compile Include="Implementacion\ProductoBL.cs" />
+    <Compile Include="Implementacion\ProductoFormaPagoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TallaBL.cs" />
-    <Compile Include="TipoDocumentoBL.cs" />
-    <Compile Include="TipoVisitaBL.cs" />
-    <Compile Include="UsuarioBL.cs" />
-    <Compile Include="VisitaBL.cs" />
+    <Compile Include="Implementacion\TallaBL.cs" />
+    <Compile Include="Implementacion\TipoDocumentoBL.cs" />
+    <Compile Include="Implementacion\TipoVisitaBL.cs" />
+    <Compile Include="Implementacion\UsuarioBL.cs" />
+    <Compile Include="Implementacion\VisitaBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ATL.DAO\ATL.DAO.csproj">
@@ -68,6 +86,7 @@
       <Name>ATL.Entidad</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

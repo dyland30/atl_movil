@@ -15,6 +15,8 @@ public class DocumentoPago {
 	private double importeIgvDocumentoPago;
 	private String referenciaDocumentoPago;
 	private long codigoCliente;
+	private String strfechaEmisionDocumentoPago;
+	private String strfechaVencimientoDocumentoPago;
 	
 	
 	public long getCodigoDocumentoPago() {
@@ -92,5 +94,19 @@ public class DocumentoPago {
 	}
 	public void setCodigoCliente(long codigoCliente) {
 		this.codigoCliente = codigoCliente;
+	}
+	public String getStrfechaEmisionDocumentoPago() {
+		return strfechaEmisionDocumentoPago;
+	}
+	public void setStrfechaEmisionDocumentoPago(
+			String strfechaEmisionDocumentoPago) {
+		this.strfechaEmisionDocumentoPago = strfechaEmisionDocumentoPago;
+	}
+	public String getStrfechaVencimientoDocumentoPago() {
+		return strfechaVencimientoDocumentoPago;
+	}
+	public void setStrfechaVencimientoDocumentoPago(
+			String strfechaVencimientoDocumentoPago) {
+		this.strfechaVencimientoDocumentoPago = strfechaVencimientoDocumentoPago;
 	}
 }

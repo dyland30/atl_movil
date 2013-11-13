@@ -58,7 +58,7 @@ public class ServicioSync extends Service{
 				pullTallas();
 				pullProductos();
 				pullProductosFormaPago();
-				
+				pullDocumentosPago();
 				
 			}
 			
@@ -548,6 +548,53 @@ public class ServicioSync extends Service{
 			dao.close();	
 		}		
 	}
+	
+	public void pullDocumentosPago(){
+		DocumentoPagoDAO dao = new DocumentoPagoDAO(this);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<DocumentoPago> ls = sinc.obtenerDocumentosPago();
+			
+			if(ls!=null){
+				for(DocumentoPago p : ls){
+				//	Log.i("empleado ", "cod: "+p.getCodigoEmpleado());
+					DocumentoPago old = dao.buscarPorID(p.getCodigoDocumentoPago());
+					if(old==null){
+						//insertamos en bd
+						
+						if(p.getStrfechaEmisionDocumentoPago()!=null && p.getStrfechaEmisionDocumentoPago().length()>0 && !p.getStrfechaEmisionDocumentoPago().equals("null")) 
+							p.setFechaEmisionDocumentoPago(dateFormat.parse(p.getStrfechaEmisionDocumentoPago()));
+						else
+							p.setFechaEmisionDocumentoPago(dateFormat.parse("1900-01-01"));						
+						
+						if(p.getStrfechaVencimientoDocumentoPago()!=null && p.getStrfechaVencimientoDocumentoPago().length()>0 && !p.getStrfechaVencimientoDocumentoPago().equals("null"))
+							p.setFechaVencimientoDocumentoPago(dateFormat.parse(p.getStrfechaVencimientoDocumentoPago()));
+						else
+							p.setFechaVencimientoDocumentoPago(dateFormat.parse("1900-01-01"));
+							
+						dao.crear(p.getCodigoDocumentoPago(), p.getFechaEmisionDocumentoPago(), p.getFechaVencimientoDocumentoPago(), 
+								p.getImporteAmortizadoDocumentoPago(), p.getImporteDescontadoDocumentoPago(), p.getImporteIgvDocumentoPago(), 
+								p.getImporteOriginalDocumentoPago(), p.getImportePendienteDocumentoPago(), p.getPlazoDocumentoPago(), p.getTipoDocumentoPago(), 
+								p.getReferenciaDocumentoPago(), p.getCodigoCliente());
+						
+						
+						Log.i("documento pago insertado", "cod: "+p.getCodigoDocumentoPago());
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullEmpleado", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+	
 
 	
 	
