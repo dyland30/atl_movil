@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 27;
+	private static final int DATABASE_VERSION = 28;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -182,7 +182,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		
 		
 		Log.w("info",DATABASE_CREATE);
+		
 		db.execSQL(INS_TB_USUARIO);
+		/*
 		//Log.w("info",INS_TB_TIPO_VISITA);
 		
 		db.execSQL(" insert into TipoVisita (codigoTipoVisita, descripcionTipoVisita) values ('1','Presencial'); ");
@@ -379,11 +381,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('6','2013-10-30 00:00','2013-12-31 00:00', '0','0','414.00','2300.00','1000.00','60','FACTURA','F001-00001236','2'); ");
 		
 		// amortizaciones
-		/*
-		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT
-		 * 
-		 * */
+		
+		  
 	
 		db.execSQL("insert into Amortizacion (id , idCobranza, codigoDocumentoPago, importeAmortizacion, anotacionAmortizacion) " +
 				"values ('1','1','1','200','pago en efectivo'); ");
@@ -393,11 +392,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('3','1','3','200','pago en efectivo'); ");
 	
 		//Bancos
-		/*
-		 * codigoBanco INTEGER PRIMARY KEY NOT NULL," +
-			"nombreBanco TEXT
-		 * 
-		 * */
+		
 	
 		db.execSQL("insert into Banco (codigoBanco , nombreBanco) " +
 				"values ('1','INTERBANK'); ");
@@ -407,15 +402,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 				"values ('3','FINANCIERO'); ");
 
 		//depositos
-		/*
-		 * id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-			"codigoDeposito INTEGER, codigoCobranza INTEGER,codigoMedioPago INTEGER, bancoDeposito INTEGER, clienteDeposito INTEGER, " +
-			"voucherDeposito INTEGER, agenciaDeposito TEXT,terminalDeposito TEXT, estadoDeposito INTEGER, fechaDeposito DATETIME, " +
-			"importeDeposito NUMERIC 
-		 * 
-		 * 
-		 * */
-
+		
 		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
 				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
 				"values ('1', '1','1','1','1','1','San Miguel', 'T01', '1', '2013-11-04 00:00', '300'); ");
@@ -427,7 +414,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		db.execSQL("insert into Deposito ( codigoDeposito, codigoCobranza, codigoMedioPago, bancoDeposito,clienteDeposito, voucherDeposito,agenciaDeposito,terminalDeposito," +
 				" estadoDeposito, fechaDeposito, importeDeposito  ) " +
 				"values ('3', '2','1','1','1','1','Surco', 'T03', '1', '2013-11-04 00:00', '200'); ");
-
+      */
 	}
 
 	@Override

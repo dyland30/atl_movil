@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.atl.atlmovi.util.Cadena;
 import com.atl.atlmovil.dao.ClienteDAO;
+import com.atl.atlmovil.dao.EmpresaCargaDAO;
 import com.atl.atlmovil.dao.FormaPagoDAO;
 import com.atl.atlmovil.dao.PedidoDAO;
 import com.atl.atlmovil.dao.PersonaDAO;
@@ -16,6 +17,9 @@ import com.atl.atlmovil.entidades.Pedido;
 import com.atl.atlmovil.entidades.Persona;
 import com.atl.atlmovil.entidades.Visita;
 import com.atl.atlmovil.entidades.FormaPago;
+
+
+
 
 
 import android.os.Bundle;
@@ -44,9 +48,12 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	PedidoDAO pDao;
 	VisitaDAO viDao;
 	ClienteDAO cliDao;
+	EmpresaCargaDAO empDao;
 	List<FormaPago> lsFpago;
 	FormaPagoDAO fpDao;
 	String operacion;
+	final int BUSCAR_EMPRESA_CARGA_ACTIVITY = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,17 +62,18 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		viDao = new VisitaDAO(this);
 		cliDao = new ClienteDAO(this);
 		fpDao = new FormaPagoDAO(this);
-		pDao.open();
-		viDao.open();
-		cliDao.open();
-		fpDao.open();
+		empDao = new EmpresaCargaDAO(this);
+		abrirConexion();
 		// registrar botones
 		Button btnGuardar = (Button)findViewById(R.id.btnGuardarPedido);
 		Button btnCancelar = (Button)findViewById(R.id.btnCancelarPedido);
 		Button btnDetalles = (Button)findViewById(R.id.btnDetallePedido);
+		Button btnEmpCarga = (Button)findViewById(R.id.btnBuscarEmpresaTransporte);
 		btnGuardar.setOnClickListener(this);
 		btnCancelar.setOnClickListener(this);
 		btnDetalles.setOnClickListener(this);
+		btnEmpCarga.setOnClickListener(this);
+		
 		
 		obtenerVisitaActiva();
 		cargarCmbFormaPago();
@@ -77,6 +85,9 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		if(operacion.equals("editar")){
 			long idPedido = intent.getLongExtra("idPedido", 0);
 			pedido = pDao.buscarPorID(idPedido);
+			
+			//empresa carga
+			empCarga = empDao.buscarPorID(pedido.getCodigoEmpresaCarga());
 			// cargar Datos
 			cargarDatos();
 		} else{
@@ -128,6 +139,8 @@ public class NuevoPedido extends Activity implements OnClickListener {
 				cmbFormaPago.setSelection(formaPagoAdapter.getPosition(fpago));
 			}
 			
+			cargarEmpresaCarga();
+			
 		}
 
 	}
@@ -177,10 +190,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onResume() {
-		pDao.open();
-		viDao.open();
-		cliDao.open();
-		fpDao.open();
+		abrirConexion();
 		obtenerVisitaActiva();
 		
 		super.onResume();
@@ -188,10 +198,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 
 	@Override
 	protected void onPause() {
-		pDao.close();
-		viDao.close();
-		cliDao.close();
-		fpDao.close();
+		cerrarConexion();
 		super.onPause();
 	}
 	private void guardarPedido(){
@@ -225,6 +232,9 @@ public class NuevoPedido extends Activity implements OnClickListener {
 			pedido.setDireccionDeEnvio(txtDireccionEnvio.getText().toString());
 			pedido.setInstruccionesEspeciales(txtInstrucciones.getText().toString());
 			pedido.setEstaSincronizado(false);
+			if(empCarga!=null){
+				pedido.setCodigoEmpresaCarga(empCarga.getCodigoEmpresaCarga());
+			}
 			
 			if(operacion.equals("insertar")){
 				pedido.setFechaIngresoPedido(new Date());
@@ -264,6 +274,52 @@ public class NuevoPedido extends Activity implements OnClickListener {
 		}
 	}
 	
+	public void abrirConexion(){
+		pDao.open();
+		viDao.open();
+		cliDao.open();
+		fpDao.open();
+		empDao.open();
+	}
+	public void cerrarConexion(){
+		pDao.close();
+		viDao.close();
+		cliDao.close();
+		fpDao.close();
+		empDao.close();
+		
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	  super.onActivityResult(requestCode, resultCode, data);
+	  abrirConexion();
+	  
+	  switch(requestCode) {
+	    case (BUSCAR_EMPRESA_CARGA_ACTIVITY) : {
+	      if (resultCode == Activity.RESULT_OK) {
+	        // TODO Extract the data returned from the child Activity.
+	    	 long codEmpresaCarga =  data.getIntExtra("codigoEmpresaCarga", 0);
+	    	 empCarga = empDao.buscarPorID(codEmpresaCarga);
+	    	 // cargar Datos de Producto
+	    	 cargarEmpresaCarga();
+	      }
+	      break;
+	    } 
+	  }
+	  
+	    cerrarConexion();
+		
+	}
+
+	public void cargarEmpresaCarga(){
+		if(empCarga!=null){
+			EditText txtEmpresaCarga = (EditText)findViewById(R.id.txtEmpresaTransportePedido);
+			txtEmpresaCarga.setText(empCarga.getNombreEmpresaCarga());
+		}
+	}
+	
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -293,6 +349,14 @@ public class NuevoPedido extends Activity implements OnClickListener {
 				startActivity(detallePedidoIntent);
 				
 			}
+			
+			
+		}
+		if(v.getId()==R.id.btnBuscarEmpresaTransporte){
+			//registrar actividad dialog
+			Intent buscarEmpresaCargaIntent = new Intent(NuevoPedido.this, BuscarEmpresaTransporteActivity.class);
+			//agregarProductoIntent.putExtra("codigoProducto", det.getIdPedido());
+			startActivityForResult(buscarEmpresaCargaIntent,BUSCAR_EMPRESA_CARGA_ACTIVITY );
 			
 			
 		}

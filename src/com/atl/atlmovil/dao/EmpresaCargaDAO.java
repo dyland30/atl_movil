@@ -45,6 +45,21 @@ public class EmpresaCargaDAO {
 		 return ls;
 	 }
 	 
+	 public List<EmpresaCarga> buscarPorNombre(String nombre){
+		 List<EmpresaCarga> ls = new ArrayList<EmpresaCarga>();
+		 Cursor cursor = database.query(EmpresaCarga.class.getSimpleName(), allColumns, " nombreEmpresaCarga like '%"+nombre+"%' or rucEmpresaCarga like '%"+nombre+"%'",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 EmpresaCarga tv = cursorToEnt(cursor);
+			 ls.add(tv);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
+	 
+	 
+	 
 	 public void eliminar(EmpresaCarga tv){
 		 long id = tv.getCodigoEmpresaCarga();
 		 database.delete(EmpresaCarga.class.getSimpleName(),"codigoEmpresaCarga = "+id,null);
