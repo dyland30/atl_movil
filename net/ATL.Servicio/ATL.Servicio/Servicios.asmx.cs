@@ -341,6 +341,26 @@ namespace ATL.Servicio
             }
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerMedioPagos()
+        {
+            try
+            {
+                IMedioPagoBL medipPagoBL = new MedioPagoBL();
+                List<MedioPago> ls = medipPagoBL.obtenerMedioPagos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
 
         [WebMethod]
         public String ping()
@@ -351,6 +371,13 @@ namespace ATL.Servicio
 
         }
 
+        [WebMethod]
+        public String echo(String cadena)
+        {
+
+            return cadena;
+
+        }
 
 
     }

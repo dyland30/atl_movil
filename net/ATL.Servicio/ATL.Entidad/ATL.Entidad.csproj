@@ -48,6 +48,7 @@
     <Compile Include="EstadoVisita.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="Grupo.cs" />
+    <Compile Include="MedioPago.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductoFormaPago.cs" />

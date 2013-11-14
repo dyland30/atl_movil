@@ -49,6 +49,7 @@
     <Compile Include="Contrato\IEstadoVisitaDAO.cs" />
     <Compile Include="Contrato\IFormaPagoDAO.cs" />
     <Compile Include="Contrato\IGrupoDAO.cs" />
+    <Compile Include="Contrato\IMedioPagoDAO.cs" />
     <Compile Include="Contrato\IPersonaDAO.cs" />
     <Compile Include="Contrato\IProductoDAO.cs" />
     <Compile Include="Contrato\IProductoFormaPagoDAO.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Implementacion\EstadoVisitaDAO.cs" />
     <Compile Include="Implementacion\FormaPagoDAO.cs" />
     <Compile Include="Implementacion\GrupoDAO.cs" />
+    <Compile Include="Implementacion\MedioPagoDAO.cs" />
     <Compile Include="Implementacion\PersonaDAO.cs" />
     <Compile Include="Implementacion\ProductoDAO.cs" />
     <Compile Include="Implementacion\ProductoFormaPagoDAO.cs" />
@@ -83,7 +85,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="scripts\MOD_DOCUMENTO_PAGO.sql" />
     <Content Include="scripts\procedimientos11112013.sql" />
+    <Content Include="scripts\procedimientos20131113.sql" />
     <Content Include="scripts\Script Creacion ATL - v010.sql" />
     <Content Include="scripts\usp_LEVANTAR_RETENCIONES - v006.sql" />
   </ItemGroup>

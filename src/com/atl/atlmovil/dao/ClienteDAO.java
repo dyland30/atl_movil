@@ -56,6 +56,7 @@ public class ClienteDAO {
 		 ContentValues values = new ContentValues();
 		 values.put("codigoCliente", codigoCliente);
 		 values.put("codigoGrupo", codigoGrupo);
+		 values.put("codigoEmpleado", codigoEmpleado);
 		 values.put("codigoPersona", codigoPersona);
 		 values.put("direccionEntregaCliente", direccionEntregaCliente);
 		 values.put("representanteCliente", representanteCliente);
@@ -73,6 +74,8 @@ public class ClienteDAO {
 		 ContentValues values = new ContentValues();
 		 values.put("codigoGrupo", ent.getCodigoGrupo());
 		 values.put("codigoPersona", ent.getCodigoPersona());
+		 values.put("codigoEmpleado", ent.getCodigoEmpleado());
+		 
 		 values.put("direccionEntregaCliente", ent.getDireccionEntregaCliente());
 		 values.put("representanteCliente", ent.getRepresentanteCliente());
 		 values.put("celularCliente", ent.getCelularCliente());

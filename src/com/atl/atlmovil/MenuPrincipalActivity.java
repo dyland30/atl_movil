@@ -42,8 +42,7 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         Button btnRegistrarDeposito = (Button)findViewById(R.id.btnRegistrarDeposito);
         btnRegistrarDeposito.setOnClickListener(this);
         
-        Button btnTestWB = (Button)findViewById(R.id.btnTestWebService);
-        btnTestWB.setOnClickListener(this);
+       
         
         
     }
@@ -155,23 +154,7 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 			}	
 		}
 		
-		if(v.getId()==R.id.btnTestWebService){
-			Sincronizador sinc = new Sincronizador();
-			String ping = sinc.ping();
-			Log.w("ping: ",ping);
-			List<Usuario> ls = sinc.obtenerUsuarios();
-			if(ls!=null){
-				for(Usuario u:ls){
-					Log.w("info",  "id: "+u.getId()+" nombre:  "+u.getLogin());
-					
-				}	
-				
-			}
-			
-			Intent testIntent = new Intent(MenuPrincipalActivity.this, PruebaWebServiceActivity.class);
-			startActivity(testIntent);
-			
-		}
+		
 		
 	}
 }

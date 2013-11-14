@@ -18,7 +18,7 @@ namespace ATL.Entidad
         public decimal importePendienteDocumentoPago { get; set; }
         public int plazoDocumentoPago { get; set; }
         public string tipoDocumentoPago { get; set; }
-        public string ReferenciaDocumentoPago { get; set; }
+        public string referenciaDocumentoPago { get; set; }
         public long codigoCliente { get; set; }
 
     }

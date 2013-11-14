@@ -25,7 +25,7 @@ public class Sincronizador {
 	
 	private static final String NAMESPACE = "http://atl.com/";
 	
-	private static String URL="http://192.168.0.12:82/AtlServicio/Servicios.asmx";
+	private static String URL="http://192.168.1.101:82/AtlServicio/Servicios.asmx";
 	//
 	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
 	private static final String METHOD_OBTENERPERSONAS = "obtenerPersonas";
@@ -41,10 +41,12 @@ public class Sincronizador {
 	private static final String METHOD_OBTENERTALLAS = "obtenerTallas";
 	private static final String METHOD_OBTENERPRODUCTOS = "obtenerProductos";
 	private static final String METHOD_OBTENERPRODUCTOSFORMAPAGO = "obtenerProductoFormaPagos";
-	private static final String METHOD_OBTENERDOCUMENTOSPAGO = "obtenerProductoFormaPagos";
+	private static final String METHOD_OBTENERDOCUMENTOSPAGO = "obtenerDocumentoPagos";
+	private static final String METHOD_OBTENERBANCOS = "obtenerBancos";
+	private static final String METHOD_OBTENERMEDIOPAGO = "obtenerMedioPagos";
 	
 	
-	
+	private static final String METHOD_ECHO = "echo";
 	private static final String METHOD_PING = "ping";
 	private static final String SOAP_OBTENER_USUARIOS =NAMESPACE+METHOD_OBTENERUSUARIOS;
 	private static final String SOAP_OBTENER_PERSONAS =NAMESPACE+METHOD_OBTENERPERSONAS;
@@ -62,14 +64,54 @@ public class Sincronizador {
 	private static final String SOAP_OBTENER_PRODUCTOS  =NAMESPACE+METHOD_OBTENERPRODUCTOS;
 	private static final String SOAP_OBTENER_PRODUCTOS_FORMA_PAGO  =NAMESPACE+METHOD_OBTENERPRODUCTOSFORMAPAGO;
 	private static final String SOAP_OBTENER_DOCUMENTOS_PAGO  =NAMESPACE+METHOD_OBTENERDOCUMENTOSPAGO;
-		
+	private static final String SOAP_OBTENER_BANCOS  =NAMESPACE+METHOD_OBTENERBANCOS;
+	private static final String SOAP_OBTENER_MEDIO_PAGO  =NAMESPACE+METHOD_OBTENERMEDIOPAGO;
 	private static final String SOAP_PING =NAMESPACE+METHOD_PING;
-
+	private static final String SOAP_ECHO =NAMESPACE+METHOD_ECHO;
+	
 	private SoapObject request=null;
 	private SoapSerializationEnvelope envelope=null;
 	private SoapPrimitive  resultsRequestSOAP=null;
 	
 	Gson gson ;
+	
+	public String echo(String cadena){
+		String respuesta ="";
+		 SoapObject requestEcho=null;
+		 SoapSerializationEnvelope envelopeEcho=null;
+		 SoapPrimitive  resultsRequestSOAPEcho=null;
+		
+		 requestEcho = new SoapObject(NAMESPACE, METHOD_ECHO);
+		 requestEcho.addProperty("cadena", cadena);		 
+		 
+		 envelopeEcho = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		 envelopeEcho.dotNet = true;
+		 envelopeEcho.setOutputSoapObject(requestEcho);
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_ECHO, envelopeEcho);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAPEcho = (SoapPrimitive)envelopeEcho.getResponse();
+			respuesta = resultsRequestSOAPEcho.toString();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		}
+		
+		return respuesta;
+		
+	}
+	
+	
+	
 	public String ping(){
 		String ping ="";
 		request = new SoapObject(NAMESPACE, METHOD_PING);
@@ -847,6 +889,114 @@ public class Sincronizador {
 								ls = gson.fromJson(strJson, lstT);
 						return ls;
 		}
-			
 	
+	
+	//Obtener Documentos de Pago
+	public List<Banco> obtenerBanco(){
+							List<Banco> ls= null;
+							request = new SoapObject(NAMESPACE, METHOD_OBTENERBANCOS);
+							//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//							peticion SOAP y permitir viajar el mensaje por la nube
+//							el constructor recibe la version de SOAP
+							envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+							envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+							//Se envuelve la peticion soap
+							envelope.setOutputSoapObject(request);
+							
+							//Objeto que representa el modelo de transporte
+							//Recibe la URL del ws
+							HttpTransportSE transporte = new HttpTransportSE(URL);
+							try {	
+								//Hace la llamada al ws
+								transporte.call(SOAP_OBTENER_BANCOS, envelope);
+								
+								//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+								//de la peticion
+								resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+								
+								String  strJSON = resultsRequestSOAP.toString();
+								
+								ls =  crearListaBancos(strJSON);
+								
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (XmlPullParserException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							
+							return ls;
+						}
+							
+	public List<Banco> crearListaBancos(String strJson){
+							List<Banco> ls= new ArrayList<Banco>();
+							//se crea el objeto que ayuda deserealizar la cadena JSON
+									gson = new Gson();
+									//Obtenemos el tipo de un ArrayList<AndroidSO>
+									Type lstT = new TypeToken< ArrayList<Banco>>(){}.getType();
+									ls = gson.fromJson(strJson, lstT);
+							return ls;
+			}
+			
+		//Obtener Documentos de Pago
+	public List<MedioPago> obtenerMedioPagos(){
+									List<MedioPago> ls= null;
+									request = new SoapObject(NAMESPACE, METHOD_OBTENERMEDIOPAGO);
+									//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//									peticion SOAP y permitir viajar el mensaje por la nube
+//									el constructor recibe la version de SOAP
+									envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+									envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+									//Se envuelve la peticion soap
+									envelope.setOutputSoapObject(request);
+									
+									//Objeto que representa el modelo de transporte
+									//Recibe la URL del ws
+									HttpTransportSE transporte = new HttpTransportSE(URL);
+									try {	
+										//Hace la llamada al ws
+										transporte.call(SOAP_OBTENER_MEDIO_PAGO, envelope);
+										
+										//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+										//de la peticion
+										resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+										
+										String  strJSON = resultsRequestSOAP.toString();
+										
+										ls =  crearListaMedioPagos(strJSON);
+										
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (XmlPullParserException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+									return ls;
+								}
+									
+	public List<MedioPago> crearListaMedioPagos(String strJson){
+									List<MedioPago> ls= new ArrayList<MedioPago>();
+									//se crea el objeto que ayuda deserealizar la cadena JSON
+											gson = new Gson();
+											//Obtenemos el tipo de un ArrayList<AndroidSO>
+											Type lstT = new TypeToken< ArrayList<MedioPago>>(){}.getType();
+											ls = gson.fromJson(strJson, lstT);
+									return ls;
+					}
+	
+	
+	// registrar Pedido
+	
+	public String registrarPedido(Pedido pedido){
+		Pedido nuevo =null;
+		gson = new Gson();
+		String json = gson.toJson(pedido);
+		return echo(json);
+		
+	}
 }

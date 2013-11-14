@@ -1,6 +1,7 @@
 package com.atl.atlmovi.util;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.atl.atlmovil.dao.*;
@@ -43,7 +44,7 @@ public class ServicioSync extends Service{
 			if(ping.equals("OK")){
 				//push
 				//pull
-				
+				//Log.i("TEST",sinc.echo("!!!!!.....PROBANDO....!!!!!!!!"));
 				pullTipoDocumentos();
 				pullPersonas();
 				pullEmpleados();
@@ -59,7 +60,10 @@ public class ServicioSync extends Service{
 				pullProductos();
 				pullProductosFormaPago();
 				pullDocumentosPago();
+				pullMedioPago();
+				pullBancos();
 				
+				pushPedidos();
 			}
 			
 		}
@@ -93,7 +97,7 @@ public class ServicioSync extends Service{
 			}
 			
 		} catch(Exception ex){
-			Log.w("pullUsuarios", ex.getMessage());
+			Log.w("pullUsuarios","err: "+ ex.getMessage());
 		} finally{
 			udao.close();	
 		}		
@@ -596,6 +600,97 @@ public class ServicioSync extends Service{
 	}
 	
 
+	public void pullBancos(){
+		BancoDAO dao = new BancoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Banco> ls = sinc.obtenerBanco();
+			if(ls!=null){
+				for(Banco p : ls){
+					//Log.i("cliente nuevo", "cod: "+p.getCodigoCliente()+" "+p.getCelularCliente());
+					Banco old = dao.buscarPorID(p.getCodigoBanco());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoBanco(), p.getNombreBanco());
+						Log.i("Banco insertado", " "+p.getNombreBanco());
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullBanco", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+	
+	
+	public void pullMedioPago(){
+		MedioPagoDAO dao = new MedioPagoDAO(this);
+		try{
+			dao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<MedioPago> ls = sinc.obtenerMedioPagos();
+			if(ls!=null){
+				for(MedioPago p : ls){
+					//Log.i("cliente nuevo", "cod: "+p.getCodigoCliente()+" "+p.getCelularCliente());
+					MedioPago old = dao.buscarPorID(p.getCodigoMedioPago());
+					if(old==null){
+						//insertamos en bd
+						dao.crear(p.getCodigoMedioPago(), p.getDescripcionMedioPago());
+						Log.i("Medio Pago Insertado", " "+p.getDescripcionMedioPago());
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullCliente", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();	
+		}		
+	}
+	
+	public void pushPedidos(){
+		PedidoDAO dao = new PedidoDAO(this);
+		DetallePedidoDAO dpDao = new DetallePedidoDAO(this);
+		TallaPedidoDAO tpDao = new TallaPedidoDAO(this);
+		try{
+			dao.open();
+			dpDao.open();
+			tpDao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Pedido> ls = dao.obtenerTodos();
+			//test
+			for(Pedido p: ls){
+				//cargar detalles
+				List<DetallePedido> lsDetalles = new ArrayList<DetallePedido>();
+				//cargar tallas
+				for(DetallePedido dp : dpDao.buscarPorPedido(p.getId())){
+					dp.setTallas(tpDao.buscarPorPedidoProducto(dp.getIdPedido(), dp.getCodigoProducto()));
+					lsDetalles.add(dp);
+				}
+				p.setDetalles(lsDetalles);
+				
+				Log.i("test pedido", sinc.registrarPedido(p));
+			}
+			
+		} catch(Exception ex){
+			Log.w("pushPedido", "err "+ ex.getMessage());
+			//ex.printStackTrace();
+		} finally{
+			dao.close();
+			dpDao.close();
+			tpDao.close();
+		}		
+	}
+	
 	
 	
 

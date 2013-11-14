@@ -77,7 +77,7 @@ public class BancoDAO {
 	 public Banco buscarPorID(long id){
 		 Banco ent = null;
 		 Cursor cursor = database.query(Banco.class.getSimpleName(), allColumns, " codigoBanco = "+id,null,null,null,null);
-		 if(cursor!=null){
+		 if(cursor!=null && cursor.getCount()>0){
 			 cursor.moveToFirst();
 			 ent = cursorToEnt(cursor);
 			

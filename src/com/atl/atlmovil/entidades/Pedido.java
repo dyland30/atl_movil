@@ -1,6 +1,7 @@
 package com.atl.atlmovil.entidades;
 
 import java.util.Date;
+import java.util.List;
 
 public class Pedido {
 private long id;// id interno
@@ -18,6 +19,10 @@ private Boolean estaSincronizado; //1 -> sincronizado, 0-> pendiente de sincroni
 private String direccionDeEnvio;
 private String empresaTransporte;
 private String instruccionesEspeciales;
+
+private List<DetallePedido> detalles;
+
+
 public long getId() {
 	return id;
 }
@@ -107,6 +112,12 @@ public long getCodigoEmpresaCarga() {
 }
 public void setCodigoEmpresaCarga(long codigoEmpresaCarga) {
 	this.codigoEmpresaCarga = codigoEmpresaCarga;
+}
+public List<DetallePedido> getDetalles() {
+	return detalles;
+}
+public void setDetalles(List<DetallePedido> detalles) {
+	this.detalles = detalles;
 }
 
 }

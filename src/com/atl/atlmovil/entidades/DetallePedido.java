@@ -1,9 +1,14 @@
 package com.atl.atlmovil.entidades;
 
+import java.util.List;
+
 public class DetallePedido {
 	private long idPedido;
 	private long codigoProducto;
 	private double precioUnitario;
+	private List<TallaPedido> tallas;
+	
+	
 	public long getIdPedido() {
 		return idPedido;
 	}
@@ -21,6 +26,12 @@ public class DetallePedido {
 	}
 	public void setPrecioUnitario(double precioUnitario) {
 		this.precioUnitario = precioUnitario;
+	}
+	public List<TallaPedido> getTallas() {
+		return tallas;
+	}
+	public void setTallas(List<TallaPedido> tallas) {
+		this.tallas = tallas;
 	}
 	
 	

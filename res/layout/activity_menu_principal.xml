@@ -37,12 +37,6 @@
             android:layout_height="wrap_content"
             android:text="@string/registrarDeposito" />
 
-        <Button
-            android:id="@+id/btnTestWebService"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Test Web Service" />
-
         <TextView
             android:id="@+id/lblUsuario"
             android:layout_width="wrap_content"
