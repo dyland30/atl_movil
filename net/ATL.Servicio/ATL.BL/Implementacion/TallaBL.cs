@@ -20,5 +20,18 @@ namespace ATL.BL
             return ls;
 
         }
+
+
+        public Talla buscarPorID(long codigoProducto, long numeroTalla)
+        {
+            Talla t = null;
+            List<Talla> ls;
+            ITallaDAO tallaDAO = new TallaDAO();
+            ls = EntidadesHelper.ConvertirAEntidades<Talla>(tallaDAO.buscarPorID(codigoProducto,numeroTalla));
+            if(ls!=null && ls.Count>0){
+                t = ls.First();
+            }
+            return t;
+        }
     }
 }

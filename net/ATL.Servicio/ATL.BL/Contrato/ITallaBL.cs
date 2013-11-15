@@ -9,5 +9,7 @@ namespace ATL.BL.Contrato
      public interface ITallaBL
     {
         List<Talla> obtenerTallas();
+        Talla buscarPorID(long codigoProducto, long numeroTalla);
+
     }
 }

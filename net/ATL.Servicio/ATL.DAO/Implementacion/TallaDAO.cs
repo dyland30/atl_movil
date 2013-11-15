@@ -20,5 +20,17 @@ namespace ATL.DAO
             return reader;
 
         }
+
+
+        public IDataReader buscarPorID(long codigoProducto, long numeroTalla)
+        {
+            DBHelper helper = DBHelper.GetInstance();
+            IDataReader reader = helper.CargarDataReaderProc("usp_talla_sel_por_id", codigoProducto, numeroTalla);
+            if (reader == null)
+            {
+                throw helper.getErrorReal();
+            }
+            return reader;
+        }
     }
 }

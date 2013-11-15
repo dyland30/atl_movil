@@ -52,6 +52,19 @@ public class PedidoDAO {
 		 cursor.close();
 		 return ls;
 	 }
+	 
+	 public List<Pedido> obtenerNoSincronizados(){
+		 List<Pedido> ls = new ArrayList<Pedido>();
+		 Cursor cursor = database.query(Pedido.class.getSimpleName(), allColumns, "estaSincronizado=0",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Pedido ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
 	 public List<Pedido> buscarPorNroCliente(String nroPedido, long codigoCliente){
 		 List<Pedido> ls = new ArrayList<Pedido>();
 		 List<Visita> lsVisitas;

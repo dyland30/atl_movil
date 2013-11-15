@@ -49,6 +49,7 @@
     <Compile Include="Contrato\IFormaPagoBL.cs" />
     <Compile Include="Contrato\IGrupoBL.cs" />
     <Compile Include="Contrato\IMedioPagoBL.cs" />
+    <Compile Include="Contrato\IPedidoBL.cs" />
     <Compile Include="Contrato\IPersonaBL.cs" />
     <Compile Include="Contrato\IProductoBL.cs" />
     <Compile Include="Contrato\IProductoFormaPagoBL.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Implementacion\GrupoBL.cs" />
     <Compile Include="Implementacion\Loger.cs" />
     <Compile Include="Implementacion\MedioPagoBL.cs" />
+    <Compile Include="Implementacion\PedidoBL.cs" />
     <Compile Include="Implementacion\PersonaBL.cs" />
     <Compile Include="Implementacion\ProductoBL.cs" />
     <Compile Include="Implementacion\ProductoFormaPagoBL.cs" />

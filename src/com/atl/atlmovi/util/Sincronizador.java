@@ -25,7 +25,7 @@ public class Sincronizador {
 	
 	private static final String NAMESPACE = "http://atl.com/";
 	
-	private static String URL="http://192.168.1.101:82/AtlServicio/Servicios.asmx";
+	private static String URL="http://172.24.3.15:82/AtlServicio/Servicios.asmx";
 	//
 	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
 	private static final String METHOD_OBTENERPERSONAS = "obtenerPersonas";
@@ -990,8 +990,7 @@ public class Sincronizador {
 					}
 	
 	
-	// registrar Pedido
-	
+	// registrar Pedido	
 	public String registrarPedido(Pedido pedido){
 		Pedido nuevo =null;
 		gson = new Gson();

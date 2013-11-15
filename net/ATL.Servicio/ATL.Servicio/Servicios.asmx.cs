@@ -363,6 +363,27 @@ namespace ATL.Servicio
 
 
         [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String registrarPedido(String strPedidoJSON)
+        {
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                Pedido ped = js.Deserialize<Pedido>(strPedidoJSON);
+
+                return ped.id + " "+ped.strfechaIngresoPedido;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
+
+        [WebMethod]
         public String ping()
         {
 

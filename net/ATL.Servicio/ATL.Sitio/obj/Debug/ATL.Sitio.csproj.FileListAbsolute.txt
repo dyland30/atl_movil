@@ -1,0 +1,11 @@
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Sitio.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Sitio.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.BL.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Entidad.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.DAO.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.BL.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Entidad.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.DAO.pdb
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.csprojResolveAssemblyReference.cache
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.dll
+D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.pdb

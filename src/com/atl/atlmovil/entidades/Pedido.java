@@ -19,6 +19,7 @@ private Boolean estaSincronizado; //1 -> sincronizado, 0-> pendiente de sincroni
 private String direccionDeEnvio;
 private String empresaTransporte;
 private String instruccionesEspeciales;
+private String strfechaIngresoPedido;
 
 private List<DetallePedido> detalles;
 
@@ -118,6 +119,12 @@ public List<DetallePedido> getDetalles() {
 }
 public void setDetalles(List<DetallePedido> detalles) {
 	this.detalles = detalles;
+}
+public String getStrfechaIngresoPedido() {
+	return strfechaIngresoPedido;
+}
+public void setStrfechaIngresoPedido(String strfechaIngresoPedido) {
+	this.strfechaIngresoPedido = strfechaIngresoPedido;
 }
 
 }

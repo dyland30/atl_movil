@@ -9,5 +9,6 @@ namespace ATL.DAO.Contrato
     public interface ITallaDAO
     {
         IDataReader obtenerTallas();
+        IDataReader buscarPorID(long codigoProducto, long numeroTalla);
     }
 }

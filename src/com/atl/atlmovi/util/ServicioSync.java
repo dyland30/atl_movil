@@ -661,18 +661,31 @@ public class ServicioSync extends Service{
 		PedidoDAO dao = new PedidoDAO(this);
 		DetallePedidoDAO dpDao = new DetallePedidoDAO(this);
 		TallaPedidoDAO tpDao = new TallaPedidoDAO(this);
+		ProductoFormaPagoDAO pfDao = new ProductoFormaPagoDAO(this);
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd HH:mm");
 		try{
 			dao.open();
 			dpDao.open();
 			tpDao.open();
+			pfDao.open();
 			Sincronizador sinc = new Sincronizador();
-			List<Pedido> ls = dao.obtenerTodos();
+			List<Pedido> ls = dao.obtenerNoSincronizados();
 			//test
 			for(Pedido p: ls){
+				//establecer fecha en 
+				if(p.getFechaIngresoPedido()!=null){
+					p.setStrfechaIngresoPedido(dateformat.format(p.getFechaIngresoPedido()));
+				}
 				//cargar detalles
 				List<DetallePedido> lsDetalles = new ArrayList<DetallePedido>();
 				//cargar tallas
+				
 				for(DetallePedido dp : dpDao.buscarPorPedido(p.getId())){
+					//obtener precio unitario
+					ProductoFormaPago pf = pfDao.buscarPorID(p.getCodigoFormaPago(), dp.getCodigoProducto());
+					if(pf!=null){
+						dp.setPrecioUnitario(pf.getPrecio());
+					}
 					dp.setTallas(tpDao.buscarPorPedidoProducto(dp.getIdPedido(), dp.getCodigoProducto()));
 					lsDetalles.add(dp);
 				}
@@ -688,6 +701,7 @@ public class ServicioSync extends Service{
 			dao.close();
 			dpDao.close();
 			tpDao.close();
+			pfDao.close();
 		}		
 	}
 	
