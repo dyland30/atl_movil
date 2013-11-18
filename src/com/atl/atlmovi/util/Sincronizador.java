@@ -44,6 +44,9 @@ public class Sincronizador {
 	private static final String METHOD_OBTENERDOCUMENTOSPAGO = "obtenerDocumentoPagos";
 	private static final String METHOD_OBTENERBANCOS = "obtenerBancos";
 	private static final String METHOD_OBTENERMEDIOPAGO = "obtenerMedioPagos";
+	private static final String METHOD_REGISTRARPEDIDO = "registrarPedido";
+	
+	
 	
 	
 	private static final String METHOD_ECHO = "echo";
@@ -68,6 +71,7 @@ public class Sincronizador {
 	private static final String SOAP_OBTENER_MEDIO_PAGO  =NAMESPACE+METHOD_OBTENERMEDIOPAGO;
 	private static final String SOAP_PING =NAMESPACE+METHOD_PING;
 	private static final String SOAP_ECHO =NAMESPACE+METHOD_ECHO;
+	private static final String SOAP_REGISTRAR_PEDIDO = NAMESPACE+METHOD_REGISTRARPEDIDO;
 	
 	private SoapObject request=null;
 	private SoapSerializationEnvelope envelope=null;
@@ -992,10 +996,45 @@ public class Sincronizador {
 	
 	// registrar Pedido	
 	public String registrarPedido(Pedido pedido){
-		Pedido nuevo =null;
+		
 		gson = new Gson();
 		String json = gson.toJson(pedido);
-		return echo(json);
+		String respuesta = "";
+		
+		 SoapObject requestPedido=null;
+		 SoapSerializationEnvelope envelopePedido=null;
+		 SoapPrimitive  resultsRequestSOAPPedido=null;
+		
+		 requestPedido = new SoapObject(NAMESPACE, METHOD_REGISTRARPEDIDO);
+		 requestPedido.addProperty("strPedidoJSON", json);		 
+		 Log.i("json Pedido: ",json);
+		 envelopePedido = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		 envelopePedido.dotNet = true;
+		 envelopePedido.setOutputSoapObject(requestPedido);
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_REGISTRAR_PEDIDO, envelopePedido);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAPPedido = (SoapPrimitive)envelopePedido.getResponse();
+			if(resultsRequestSOAPPedido!=null){
+				respuesta = resultsRequestSOAPPedido.toString();
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		}
+		
+		return respuesta;
+		
 		
 	}
 }

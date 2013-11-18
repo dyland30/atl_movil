@@ -102,6 +102,14 @@ public class TallaPedidoDAO {
 		 actualizarStock(idPedido, codigoProducto, numeroTalla, cantidad, "salida");
 		 database.insert(TallaPedido.class.getSimpleName(), null, values);
 		 
+		 //establecer estado no sincronizado
+		 PedidoDAO pdao = new PedidoDAO(contexto);
+		 pdao.open();
+		 Pedido ped = pdao.buscarPorID(idPedido);
+		 if(ped!=null){
+			 ped.setEstaSincronizado(false);
+		 }
+		 pdao.close();
 		 ent = buscarPorID(idPedido, codigoProducto, numeroTalla);
 		 // actualizar stock
 		 // validar cantidad de stock disponible
@@ -167,6 +175,18 @@ public class TallaPedidoDAO {
 		 actualizarStock(tPed.getIdPedido(), tPed.getCodigoProducto(), tPed.getNumeroTalla(), tPed.getCantidad(), "salida");
 		 database.insert(TallaPedido.class.getSimpleName(), null, values);
 		 
+		 
+		//establecer estado no sincronizado
+		 PedidoDAO pdao = new PedidoDAO(contexto);
+		 pdao.open();
+		 Pedido ped = pdao.buscarPorID(tPed.getIdPedido());
+		 if(ped!=null){
+			 ped.setEstaSincronizado(false);
+		 }
+		 pdao.close();
+		 
+		 
+		 
 		 ent = buscarPorID(tPed.getIdPedido(), tPed.getCodigoProducto(), tPed.getNumeroTalla());
 		 		
 		 return ent;
@@ -190,6 +210,18 @@ public class TallaPedidoDAO {
 		 
 		 actualizarStock(ent.getIdPedido(), ent.getCodigoProducto(), ent.getNumeroTalla(), dif, tipoMovimiento);
 		 database.update(TallaPedido.class.getSimpleName(), values, "idPedido = "+ent.getIdPedido()+" and codigoProducto ="+ent.getCodigoProducto()+ " and numeroTalla = "+ent.getNumeroTalla(), null);
+		 
+		//establecer estado no sincronizado
+		 PedidoDAO pdao = new PedidoDAO(contexto);
+		 pdao.open();
+		 Pedido ped = pdao.buscarPorID(ent.getIdPedido());
+		 if(ped!=null){
+			 ped.setEstaSincronizado(false);
+		 }
+		 pdao.close();
+		 
+		 
+		 
 		 nuevo=buscarPorID(ent.getIdPedido(), ent.getCodigoProducto(), ent.getNumeroTalla());
 		 
 		 

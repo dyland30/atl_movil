@@ -22,8 +22,8 @@ namespace ATL.Entidad
         public long codigoVisita { get; set; }
         public long codigoFormaPago { get; set; }
         public long codigoEmpresaCarga { get; set; }
-        public Double importePedido { get; set; }
-        public Double lineaReservadaPedido { get; set; }
+        public Decimal importePedido { get; set; }
+        public Decimal lineaReservadaPedido { get; set; }
         public Boolean aceptaRetencionPedido { get; set; }
         public Boolean estaRetenidoPedido { get; set; }
         public String estadoPedido { get; set; } // A -> Activo, N-> Anulado, R -> Registrado, 
@@ -32,6 +32,10 @@ namespace ATL.Entidad
         public String empresaTransporte { get; set; }
         public String instruccionesEspeciales { get; set; }
         public String strfechaIngresoPedido { get; set; }
+        public Boolean faltaImportePedido { get; set; }
+        public Boolean faltaStockPedido { get; set; }
+
+
 
         public List<DetallePedido> detalles;
 

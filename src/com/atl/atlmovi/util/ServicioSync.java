@@ -691,12 +691,33 @@ public class ServicioSync extends Service{
 				}
 				p.setDetalles(lsDetalles);
 				
-				Log.i("test pedido", sinc.registrarPedido(p));
+				long codigoPedido=0;
+				int retenido=0;
+				String resp = sinc.registrarPedido(p);
+				Log.i("info",resp);
+				if(resp!=null && resp.length()>0){
+					String[] datos = resp.split(",");
+					codigoPedido = Long.parseLong(datos[0]);
+					retenido = Integer.parseInt(datos[1]);
+				}
+				if(codigoPedido>0){
+					Log.i("Pedido Registrado", "Codigo Asignado: "+codigoPedido );
+					//cambiar estado de pedido
+					p.setEstaSincronizado(true);
+					Boolean estaRet = retenido==1 ? true : false;
+					p.setEstaRetenidoPedido(estaRet);
+					p.setCodigoPedido(codigoPedido);
+					dao.actualizar(p);
+				}
+				
+				
+				
+				
 			}
 			
 		} catch(Exception ex){
 			Log.w("pushPedido", "err "+ ex.getMessage());
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		} finally{
 			dao.close();
 			dpDao.close();

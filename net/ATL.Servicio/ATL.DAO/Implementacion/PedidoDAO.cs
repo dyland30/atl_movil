@@ -14,18 +14,19 @@ namespace ATL.DAO.Implementacion
         public long guardarPedido(Entidad.Pedido p)
         {
             long codigoPedido=0;
-            DateTime fecha =  DateTime.ParseExact(p.strfechaIngresoPedido,"yyyy-MM-dd HH:mm",CultureInfo.InvariantCulture);
+            DateTime fecha =  DateTime.ParseExact(p.strfechaIngresoPedido,"yyyy-mm-dd hh:mm",CultureInfo.InvariantCulture);
             
             DBHelper helper = DBHelper.GetInstance();
             DataTable dt = helper.CargarDataTableProc("USP_PEDIDO_INS",fecha, p.importePedido, p.codigoFormaPago, p.instruccionesEspeciales, 
-                p.codigoEmpresaCarga,0.0, p.aceptaRetencionPedido,p.estaRetenidoPedido,0,0,p.estadoPedido,p.codigoVisita);
+                p.codigoEmpresaCarga,0.0, p.aceptaRetencionPedido,p.estaRetenidoPedido,p.faltaImportePedido,p.faltaStockPedido,p.estadoPedido,p.codigoVisita);
 
-            if (dt != null)
+            if (dt == null)
             {
                 throw helper.getErrorReal();
             }
-
-
+            DataRow row = dt.Rows[0];
+            string codPed = row["codigoPedido"].ToString();
+            codigoPedido = Int64.Parse(codPed);
             return codigoPedido;
         }
         public System.Data.IDataReader buscarPorCodigo(long codigoPedido)
@@ -45,9 +46,19 @@ namespace ATL.DAO.Implementacion
             throw new NotImplementedException();
         }
 
-        public void actualizarPedido(Entidad.Pedido pedido)
+        public void actualizarPedido(Entidad.Pedido p)
         {
-            throw new NotImplementedException();
+
+            DateTime fecha = DateTime.ParseExact(p.strfechaIngresoPedido, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            DBHelper helper = DBHelper.GetInstance();
+         
+            int resp = helper.Ejecute("usp_pedido_update", p.codigoPedido, p.importePedido, p.codigoFormaPago, p.instruccionesEspeciales,
+                p.codigoEmpresaCarga, p.aceptaRetencionPedido, p.estaRetenidoPedido, p.faltaImportePedido, p.faltaStockPedido, p.estadoPedido);
+            if (resp == -2)
+            {
+                throw helper.getErrorReal();
+            }         
+
         }
 
 

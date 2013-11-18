@@ -372,7 +372,14 @@ namespace ATL.Servicio
 
                 Pedido ped = js.Deserialize<Pedido>(strPedidoJSON);
 
-                return ped.id + " "+ped.strfechaIngresoPedido;
+                IPedidoBL pedidoBL = new PedidoBL();
+
+                Pedido nuevo = pedidoBL.registrarPedido(ped);
+                string retJSON = nuevo.codigoPedido+","+(nuevo.estaRetenidoPedido? 1 : 0);
+
+
+
+                return retJSON;
             }
             catch (Exception ex)
             {

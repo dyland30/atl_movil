@@ -94,7 +94,7 @@ public class DetallePedidoActivity extends ListActivity implements OnClickListen
 			Intent agregarProductoIntent = new Intent(DetallePedidoActivity.this, AgregarProductoActivity.class);
 			agregarProductoIntent.putExtra("operacion", "insertar");
 			agregarProductoIntent.putExtra("idPedido", pedido.getId());
-			agregarProductoIntent.putExtra("codigoProducto", 0);
+			agregarProductoIntent.putExtra("codigoProducto", (long)0);
 			
 			startActivity(agregarProductoIntent);
 			
