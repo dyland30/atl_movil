@@ -90,5 +90,10 @@
     <string name="activarVisitas">Activar Visitas</string>
     <string name="title_activity_buscar_empresa_transporte">Calzados Atlas SA - Buscar Empresa de Carga</string>
     <string name="buscarEmpTrans">Buscar Empresa de Carga ...</string>
+    <string name="title_activity_test_graphic">TestGraphicActivity</string>
+    <string name="reset_button">Reset</string>
+    <string name="btn_testGraphic">Test Graphic</string>
+    <string name="title_activity_reporte_pedido">ReportePedidoActivity</string>
+    <string name="lblImprimir">Imprimir</string>
 
 </resources>

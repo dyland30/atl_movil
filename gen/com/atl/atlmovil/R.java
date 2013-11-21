@@ -9,6 +9,130 @@ package com.atl.atlmovil;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int autoCenterPointerInSlice=0x7f010000;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int highlightStrength=0x7f010001;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int labelColor=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int labelHeight=0x7f010003;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int labelPosition=0x7f010004;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int labelWidth=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int labelY=0x7f010006;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pieRotation=0x7f010007;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pointerRadius=0x7f010008;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int showText=0x7f010009;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int strokeColor=0x7f01000b;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int strokeWidth=0x7f01000a;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int titulo=0x7f01000c;
+    }
+    public static final class color {
+        public static final int black=0x7f040007;
+        public static final int bluegrass=0x7f040003;
+        public static final int chartreuse=0x7f040001;
+        public static final int emerald=0x7f040002;
+        public static final int seafoam=0x7f040000;
+        public static final int slate=0x7f040005;
+        public static final int turquoise=0x7f040004;
+        public static final int white=0x7f040006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -17,170 +141,178 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f08009a;
-        public static final int btnActivarVisitas=0x7f08003f;
-        public static final int btnAgregarDocumento=0x7f080012;
-        public static final int btnAgregarDocumentoPago=0x7f08000c;
-        public static final int btnAgregarProductoDetalle=0x7f080037;
-        public static final int btnAgregarTallaAgregarProd=0x7f08001d;
-        public static final int btnAutoDistribuirCobranza=0x7f08004e;
-        public static final int btnBuscarEmpresaTransporte=0x7f080064;
-        public static final int btnBuscarProducto=0x7f080017;
-        public static final int btnCancelarAgregarDocumento=0x7f080013;
-        public static final int btnCancelarCobranza=0x7f08004b;
-        public static final int btnCancelarDeposito=0x7f08005b;
-        public static final int btnCancelarPedido=0x7f080067;
-        public static final int btnCancelarTalla=0x7f080029;
-        public static final int btnCrearTalla=0x7f080028;
-        public static final int btnDetalleCobranza=0x7f08004d;
-        public static final int btnDetallePedido=0x7f080069;
-        public static final int btnFiltrar=0x7f080004;
-        public static final int btnFiltrarPedidos=0x7f08007b;
-        public static final int btnFiltrarRegistroCobranza=0x7f080073;
-        public static final int btnGuardarCobranza=0x7f08004c;
-        public static final int btnGuardarDeposito=0x7f08005a;
-        public static final int btnGuardarPedido=0x7f080068;
-        public static final int btnIngresar=0x7f08003d;
-        public static final int btnNuevaCobranza=0x7f080074;
-        public static final int btnNuevoPedido=0x7f080079;
-        public static final int btnRegistrarCobranza=0x7f080041;
-        public static final int btnRegistrarDeposito=0x7f080042;
-        public static final int btnRegistrarDepositoCobranza=0x7f08004f;
-        public static final int btnRegistrarPedido=0x7f080040;
-        public static final int btnSelFechaDesde=0x7f080070;
-        public static final int btnSelFechaHasta=0x7f080071;
-        public static final int btnSeleccionarTalla=0x7f080024;
-        public static final int btnWebServiceGet=0x7f08006d;
-        public static final int chbAceptaRetencion=0x7f080066;
-        public static final int cmbBancoDeposito=0x7f080054;
-        public static final int cmbEstadoCobranzaFiltro=0x7f08006f;
-        public static final int cmbEstadoNuevaCobranza=0x7f080048;
-        public static final int cmbEstadoVisita=0x7f080003;
-        public static final int cmbFormaPago=0x7f08005f;
-        public static final int cmbMedioPagoDeposito=0x7f080059;
-        public static final int cmbMedioPagoNuevaCobranza=0x7f08004a;
-        public static final int cmbTipoDocumentoAgregarDoc=0x7f080008;
-        public static final int cmbTipoVisita=0x7f080001;
-        public static final int lbl1=0x7f080015;
-        public static final int lblAgregarTallaCodProducto=0x7f080021;
-        public static final int lblAgregarTallaExistencias=0x7f080025;
-        public static final int lblAgregarTallaIdPedido=0x7f08001f;
-        public static final int lblBancoRow=0x7f080053;
-        public static final int lblBuscarTalla=0x7f080030;
-        public static final int lblCantItemsPedidoDetalle=0x7f080039;
-        public static final int lblCantidadTallaPedido=0x7f080096;
-        public static final int lblClienteBuscarDocumento=0x7f080007;
-        public static final int lblClienteCobranzaDetalle=0x7f080033;
-        public static final int lblClienteDeposito=0x7f080052;
-        public static final int lblClienteNuevaCobranza=0x7f080046;
-        public static final int lblClienteNuevoPedido=0x7f08005e;
-        public static final int lblClientePedido=0x7f080000;
-        public static final int lblClientePedidoDetalle=0x7f080036;
-        public static final int lblClienteRegistrarCobranzas=0x7f08006e;
-        public static final int lblClienteRegistrarDeposito=0x7f080076;
-        public static final int lblCodProductoAgregarProd=0x7f080019;
-        public static final int lblCodProductoDetallePedido=0x7f08008a;
-        public static final int lblCodigoEmpresaCargaRow=0x7f08008d;
-        public static final int lblCodigoProductoBuscarTalla=0x7f08002f;
-        public static final int lblDescripcionEmpresaCargaRow=0x7f08008e;
-        public static final int lblEstadoPedido=0x7f080090;
-        public static final int lblExistenciasTallaPedido=0x7f08001b;
-        public static final int lblExistenciasTallaRow=0x7f080020;
-        public static final int lblFechaDepositoRow=0x7f080088;
-        public static final int lblFechaDesde=0x7f080022;
-        public static final int lblFechaHasta=0x7f080072;
-        public static final int lblFechaPedido=0x7f08008f;
-        public static final int lblFechaVencimientoAmortizacionRow=0x7f080080;
-        public static final int lblFechaVencimientoDocRow=0x7f080010;
-        public static final int lblImporteAmortizacionRow=0x7f080081;
-        public static final int lblImporteDetallePedido=0x7f080062;
-        public static final int lblImporteOriginalRow=0x7f08000b;
-        public static final int lblImportePedido=0x7f080091;
-        public static final int lblImportePedidoDetalle=0x7f08003a;
-        public static final int lblImportePendienteRow=0x7f08000e;
-        public static final int lblImporteRow=0x7f080057;
-        public static final int lblImporteTallaPedido=0x7f08001e;
-        public static final int lblImporteTotalAgregarProducto=0x7f08001c;
-        public static final int lblMensaje=0x7f08003e;
-        public static final int lblNroCobranzaAgregarDocumentos=0x7f080006;
-        public static final int lblNroCobranzaBuscarDocumento=0x7f08002a;
-        public static final int lblNroCobranzaDeposito=0x7f080051;
-        public static final int lblNroCobranzaDepositoRow=0x7f080089;
-        public static final int lblNroCobranzaNueva=0x7f080044;
-        public static final int lblNroDeposito=0x7f080050;
-        public static final int lblNroDepositoRow=0x7f080087;
-        public static final int lblNroDocumentoPagoRow=0x7f08007d;
-        public static final int lblNroDocumentoRow=0x7f08008b;
-        public static final int lblNroPedidoAgregarProducto=0x7f080014;
-        public static final int lblNroTallaRow=0x7f080097;
-        public static final int lblNroVisitaNuevoPedido=0x7f08005d;
-        public static final int lblNroVisitaPedidoDetalle=0x7f080035;
-        public static final int lblNumeroCobranzaDetalle=0x7f080031;
-        public static final int lblNumeroNuevoPedido=0x7f08005c;
-        public static final int lblNumeroPedido=0x7f08007c;
-        public static final int lblNumeroPedidoDetalle=0x7f080034;
-        public static final int lblNumeroTallaPedido=0x7f080018;
-        public static final int lblProductoDetallePedido=0x7f080038;
-        public static final int lblPunitAgregarProd=0x7f08001a;
-        public static final int lblPunitDetallePedido=0x7f080060;
-        public static final int lblReferenciaDocumentoPagoRow=0x7f08007f;
-        public static final int lblReferenciaRow=0x7f080009;
-        public static final int lblRowEstadoCobranza=0x7f080084;
-        public static final int lblRowFechaCobranza=0x7f080083;
-        public static final int lblRowImporteCobranza=0x7f080085;
-        public static final int lblRowImportePendienteCobranza=0x7f080086;
-        public static final int lblRowNroCobranza=0x7f080082;
-        public static final int lblRowProdCalidad=0x7f080093;
-        public static final int lblRowProdColor=0x7f080094;
-        public static final int lblRowProductoCod=0x7f080092;
-        public static final int lblRowProductoNombre=0x7f08002e;
-        public static final int lblRowProductoSexo=0x7f080095;
-        public static final int lblTipoDocumentoPagoRow=0x7f08007e;
-        public static final int lblTipoDocumentoRow=0x7f08008c;
-        public static final int lblUsuario=0x7f080043;
-        public static final int lblVisitaCobranzaDetalle=0x7f080032;
-        public static final int lblVisitaNuevaCobranza=0x7f080045;
-        public static final int lblVisitaRegistrarCobranzas=0x7f08006a;
-        public static final int lblVisitaRegistroDeposito=0x7f080075;
-        public static final int lblVoucherRow=0x7f080055;
-        public static final int menu_settings=0x7f08009b;
-        public static final int scrollView1=0x7f080047;
-        public static final int textView7=0x7f080026;
-        public static final int txtAgregarTalla=0x7f080023;
-        public static final int txtBuscarEmpresaTransporte=0x7f08002c;
-        public static final int txtBuscarProducto=0x7f08002d;
-        public static final int txtCLientePedido=0x7f080078;
-        public static final int txtCantidadTalla=0x7f080027;
-        public static final int txtClave=0x7f08003c;
-        public static final int txtCodigoVisita=0x7f080005;
-        public static final int txtDireccionEnvioPedido=0x7f080061;
-        public static final int txtDocumentoPagoAgregarDoc=0x7f08000a;
-        public static final int txtEmpresaTransportePedido=0x7f080063;
-        public static final int txtEstadoVisita=0x7f080099;
-        public static final int txtFechaVencimientoAgregarDocumentos=0x7f08000d;
-        public static final int txtFechaVisita=0x7f080098;
-        public static final int txtFiltrarPedidos=0x7f08007a;
-        public static final int txtFiltroBuscarDocumento=0x7f08002b;
-        public static final int txtFiltroRegistrarDepositos=0x7f080077;
-        public static final int txtImporteAmortizarAgregarDocs=0x7f080011;
-        public static final int txtImporteCobranzaNueva=0x7f080049;
-        public static final int txtImporteDeposito=0x7f080058;
-        public static final int txtImportePendienteAgregarDoc=0x7f08000f;
-        public static final int txtInstruccionesPedido=0x7f080065;
-        public static final int txtLogin=0x7f08003b;
-        public static final int txtProductoAgregar=0x7f080016;
-        public static final int txtVisitaPedido=0x7f080002;
-        public static final int txtVoucherDeposito=0x7f080056;
-        public static final int txtWebServiceRespuesta=0x7f08006c;
-        public static final int txtWebServiceURL=0x7f08006b;
+        public static final int Pie=0x7f050082;
+        public static final int Reset=0x7f050083;
+        public static final int action_settings=0x7f0500a2;
+        public static final int btnActivarVisitas=0x7f050041;
+        public static final int btnAgregarDocumento=0x7f050014;
+        public static final int btnAgregarDocumentoPago=0x7f05000e;
+        public static final int btnAgregarProductoDetalle=0x7f050039;
+        public static final int btnAgregarTallaAgregarProd=0x7f05001f;
+        public static final int btnAutoDistribuirCobranza=0x7f050051;
+        public static final int btnBuscarEmpresaTransporte=0x7f050067;
+        public static final int btnBuscarProducto=0x7f050019;
+        public static final int btnCancelarAgregarDocumento=0x7f050015;
+        public static final int btnCancelarCobranza=0x7f05004e;
+        public static final int btnCancelarDeposito=0x7f05005e;
+        public static final int btnCancelarPedido=0x7f05006a;
+        public static final int btnCancelarTalla=0x7f05002b;
+        public static final int btnCrearTalla=0x7f05002a;
+        public static final int btnDetalleCobranza=0x7f050050;
+        public static final int btnDetallePedido=0x7f05006c;
+        public static final int btnFiltrar=0x7f050006;
+        public static final int btnFiltrarPedidos=0x7f05007e;
+        public static final int btnFiltrarRegistroCobranza=0x7f050076;
+        public static final int btnGuardarCobranza=0x7f05004f;
+        public static final int btnGuardarDeposito=0x7f05005d;
+        public static final int btnGuardarPedido=0x7f05006b;
+        public static final int btnImprimir=0x7f050081;
+        public static final int btnIngresar=0x7f05003f;
+        public static final int btnNuevaCobranza=0x7f050077;
+        public static final int btnNuevoPedido=0x7f05007c;
+        public static final int btnRegistrarCobranza=0x7f050043;
+        public static final int btnRegistrarDeposito=0x7f050044;
+        public static final int btnRegistrarDepositoCobranza=0x7f050052;
+        public static final int btnRegistrarPedido=0x7f050042;
+        public static final int btnSelFechaDesde=0x7f050073;
+        public static final int btnSelFechaHasta=0x7f050074;
+        public static final int btnSeleccionarTalla=0x7f050026;
+        public static final int btnTest=0x7f050045;
+        public static final int btnWebServiceGet=0x7f050070;
+        public static final int chbAceptaRetencion=0x7f050069;
+        public static final int circle_view_id=0x7f050084;
+        public static final int cmbBancoDeposito=0x7f050057;
+        public static final int cmbEstadoCobranzaFiltro=0x7f050072;
+        public static final int cmbEstadoNuevaCobranza=0x7f05004b;
+        public static final int cmbEstadoVisita=0x7f050005;
+        public static final int cmbFormaPago=0x7f050062;
+        public static final int cmbMedioPagoDeposito=0x7f05005c;
+        public static final int cmbMedioPagoNuevaCobranza=0x7f05004d;
+        public static final int cmbTipoDocumentoAgregarDoc=0x7f05000a;
+        public static final int cmbTipoVisita=0x7f050003;
+        public static final int lbl1=0x7f050017;
+        public static final int lblAgregarTallaCodProducto=0x7f050023;
+        public static final int lblAgregarTallaExistencias=0x7f050027;
+        public static final int lblAgregarTallaIdPedido=0x7f050021;
+        public static final int lblBancoRow=0x7f050056;
+        public static final int lblBuscarTalla=0x7f050032;
+        public static final int lblCantItemsPedidoDetalle=0x7f05003b;
+        public static final int lblCantidadTallaPedido=0x7f05009e;
+        public static final int lblClienteBuscarDocumento=0x7f050009;
+        public static final int lblClienteCobranzaDetalle=0x7f050035;
+        public static final int lblClienteDeposito=0x7f050055;
+        public static final int lblClienteNuevaCobranza=0x7f050049;
+        public static final int lblClienteNuevoPedido=0x7f050061;
+        public static final int lblClientePedido=0x7f050002;
+        public static final int lblClientePedidoDetalle=0x7f050038;
+        public static final int lblClienteRegistrarCobranzas=0x7f050071;
+        public static final int lblClienteRegistrarDeposito=0x7f050079;
+        public static final int lblCodProductoAgregarProd=0x7f05001b;
+        public static final int lblCodProductoDetallePedido=0x7f050092;
+        public static final int lblCodigoEmpresaCargaRow=0x7f050095;
+        public static final int lblCodigoProductoBuscarTalla=0x7f050031;
+        public static final int lblDescripcionEmpresaCargaRow=0x7f050096;
+        public static final int lblEstadoPedido=0x7f050098;
+        public static final int lblExistenciasTallaPedido=0x7f05001d;
+        public static final int lblExistenciasTallaRow=0x7f050022;
+        public static final int lblFechaDepositoRow=0x7f050090;
+        public static final int lblFechaDesde=0x7f050024;
+        public static final int lblFechaHasta=0x7f050075;
+        public static final int lblFechaPedido=0x7f050097;
+        public static final int lblFechaVencimientoAmortizacionRow=0x7f050088;
+        public static final int lblFechaVencimientoDocRow=0x7f050012;
+        public static final int lblImporteAmortizacionRow=0x7f050089;
+        public static final int lblImporteDetallePedido=0x7f050065;
+        public static final int lblImporteOriginalRow=0x7f05000d;
+        public static final int lblImportePedido=0x7f050099;
+        public static final int lblImportePedidoDetalle=0x7f05003c;
+        public static final int lblImportePendienteRow=0x7f050010;
+        public static final int lblImporteRow=0x7f05005a;
+        public static final int lblImporteTallaPedido=0x7f050020;
+        public static final int lblImporteTotalAgregarProducto=0x7f05001e;
+        public static final int lblMensaje=0x7f050040;
+        public static final int lblNroCobranzaAgregarDocumentos=0x7f050008;
+        public static final int lblNroCobranzaBuscarDocumento=0x7f05002c;
+        public static final int lblNroCobranzaDeposito=0x7f050054;
+        public static final int lblNroCobranzaDepositoRow=0x7f050091;
+        public static final int lblNroCobranzaNueva=0x7f050047;
+        public static final int lblNroDeposito=0x7f050053;
+        public static final int lblNroDepositoRow=0x7f05008f;
+        public static final int lblNroDocumentoPagoRow=0x7f050085;
+        public static final int lblNroDocumentoRow=0x7f050093;
+        public static final int lblNroPedidoAgregarProducto=0x7f050016;
+        public static final int lblNroTallaRow=0x7f05009f;
+        public static final int lblNroVisitaNuevoPedido=0x7f050060;
+        public static final int lblNroVisitaPedidoDetalle=0x7f050037;
+        public static final int lblNumeroCobranzaDetalle=0x7f050033;
+        public static final int lblNumeroNuevoPedido=0x7f05005f;
+        public static final int lblNumeroPedido=0x7f05007f;
+        public static final int lblNumeroPedidoDetalle=0x7f050036;
+        public static final int lblNumeroTallaPedido=0x7f05001a;
+        public static final int lblProductoDetallePedido=0x7f05003a;
+        public static final int lblPunitAgregarProd=0x7f05001c;
+        public static final int lblPunitDetallePedido=0x7f050063;
+        public static final int lblReferenciaDocumentoPagoRow=0x7f050087;
+        public static final int lblReferenciaRow=0x7f05000b;
+        public static final int lblRowEstadoCobranza=0x7f05008c;
+        public static final int lblRowFechaCobranza=0x7f05008b;
+        public static final int lblRowImporteCobranza=0x7f05008d;
+        public static final int lblRowImportePendienteCobranza=0x7f05008e;
+        public static final int lblRowNroCobranza=0x7f05008a;
+        public static final int lblRowProdCalidad=0x7f05009b;
+        public static final int lblRowProdColor=0x7f05009c;
+        public static final int lblRowProductoCod=0x7f05009a;
+        public static final int lblRowProductoNombre=0x7f050030;
+        public static final int lblRowProductoSexo=0x7f05009d;
+        public static final int lblTipoDocumentoPagoRow=0x7f050086;
+        public static final int lblTipoDocumentoRow=0x7f050094;
+        public static final int lblUsuario=0x7f050046;
+        public static final int lblVisitaCobranzaDetalle=0x7f050034;
+        public static final int lblVisitaNuevaCobranza=0x7f050048;
+        public static final int lblVisitaRegistrarCobranzas=0x7f05006d;
+        public static final int lblVisitaRegistroDeposito=0x7f050078;
+        public static final int lblVoucherRow=0x7f050058;
+        public static final int left=0x7f050000;
+        public static final int menu_settings=0x7f0500a3;
+        public static final int reportePedidoView1=0x7f050080;
+        public static final int right=0x7f050001;
+        public static final int scrollView1=0x7f05004a;
+        public static final int textView7=0x7f050028;
+        public static final int txtAgregarTalla=0x7f050025;
+        public static final int txtBuscarEmpresaTransporte=0x7f05002e;
+        public static final int txtBuscarProducto=0x7f05002f;
+        public static final int txtCLientePedido=0x7f05007b;
+        public static final int txtCantidadTalla=0x7f050029;
+        public static final int txtClave=0x7f05003e;
+        public static final int txtCodigoVisita=0x7f050007;
+        public static final int txtDireccionEnvioPedido=0x7f050064;
+        public static final int txtDocumentoPagoAgregarDoc=0x7f05000c;
+        public static final int txtEmpresaTransportePedido=0x7f050066;
+        public static final int txtEstadoVisita=0x7f0500a1;
+        public static final int txtFechaVencimientoAgregarDocumentos=0x7f05000f;
+        public static final int txtFechaVisita=0x7f0500a0;
+        public static final int txtFiltrarPedidos=0x7f05007d;
+        public static final int txtFiltroBuscarDocumento=0x7f05002d;
+        public static final int txtFiltroRegistrarDepositos=0x7f05007a;
+        public static final int txtImporteAmortizarAgregarDocs=0x7f050013;
+        public static final int txtImporteCobranzaNueva=0x7f05004c;
+        public static final int txtImporteDeposito=0x7f05005b;
+        public static final int txtImportePendienteAgregarDoc=0x7f050011;
+        public static final int txtInstruccionesPedido=0x7f050068;
+        public static final int txtLogin=0x7f05003d;
+        public static final int txtProductoAgregar=0x7f050018;
+        public static final int txtVisitaPedido=0x7f050004;
+        public static final int txtVoucherDeposito=0x7f050059;
+        public static final int txtWebServiceRespuesta=0x7f05006f;
+        public static final int txtWebServiceURL=0x7f05006e;
     }
     public static final class layout {
         public static final int activity_activar_visita=0x7f030000;
@@ -202,130 +334,140 @@ public final class R {
         public static final int activity_registrar_cobranzas=0x7f030010;
         public static final int activity_registrar_depositos=0x7f030011;
         public static final int activity_registrar_pedidos=0x7f030012;
-        public static final int amortizacion_row=0x7f030013;
-        public static final int cobranza_row=0x7f030014;
-        public static final int deposito_row=0x7f030015;
-        public static final int detalle_pedido_row=0x7f030016;
-        public static final int documento_pago_row=0x7f030017;
-        public static final int empresa_carga_row=0x7f030018;
-        public static final int pedido_row=0x7f030019;
-        public static final int producto_row=0x7f03001a;
-        public static final int talla_pedido_row=0x7f03001b;
-        public static final int talla_row=0x7f03001c;
-        public static final int visita_row=0x7f03001d;
+        public static final int activity_reporte_pedido=0x7f030013;
+        public static final int activity_test_graphic=0x7f030014;
+        public static final int amortizacion_row=0x7f030015;
+        public static final int cobranza_row=0x7f030016;
+        public static final int deposito_row=0x7f030017;
+        public static final int detalle_pedido_row=0x7f030018;
+        public static final int documento_pago_row=0x7f030019;
+        public static final int empresa_carga_row=0x7f03001a;
+        public static final int pedido_row=0x7f03001b;
+        public static final int pie_chart_view=0x7f03001c;
+        public static final int producto_row=0x7f03001d;
+        public static final int talla_pedido_row=0x7f03001e;
+        public static final int talla_row=0x7f03001f;
+        public static final int visita_row=0x7f030020;
     }
     public static final class menu {
-        public static final int activar_visita=0x7f070000;
-        public static final int activity_detalle_cobranza=0x7f070001;
-        public static final int activity_menu_principal=0x7f070002;
-        public static final int agregar_documentos=0x7f070003;
-        public static final int agregar_producto=0x7f070004;
-        public static final int agregar_talla=0x7f070005;
-        public static final int buscar_documento_pago=0x7f070006;
-        public static final int buscar_empresa_transporte=0x7f070007;
-        public static final int buscar_producto=0x7f070008;
-        public static final int buscar_talla=0x7f070009;
-        public static final int detalle_pedido=0x7f07000a;
-        public static final int login=0x7f07000b;
-        public static final int nueva_cobranza=0x7f07000c;
-        public static final int nuevo_deposito=0x7f07000d;
-        public static final int nuevo_pedido=0x7f07000e;
-        public static final int prueba_web=0x7f07000f;
-        public static final int registrar_cobranzas=0x7f070010;
-        public static final int registrar_depositos=0x7f070011;
-        public static final int registrar_pedidos=0x7f070012;
-        public static final int test_url=0x7f070013;
+        public static final int activar_visita=0x7f090000;
+        public static final int activity_detalle_cobranza=0x7f090001;
+        public static final int activity_menu_principal=0x7f090002;
+        public static final int agregar_documentos=0x7f090003;
+        public static final int agregar_producto=0x7f090004;
+        public static final int agregar_talla=0x7f090005;
+        public static final int buscar_documento_pago=0x7f090006;
+        public static final int buscar_empresa_transporte=0x7f090007;
+        public static final int buscar_producto=0x7f090008;
+        public static final int buscar_talla=0x7f090009;
+        public static final int detalle_pedido=0x7f09000a;
+        public static final int login=0x7f09000b;
+        public static final int nueva_cobranza=0x7f09000c;
+        public static final int nuevo_deposito=0x7f09000d;
+        public static final int nuevo_pedido=0x7f09000e;
+        public static final int prueba_web=0x7f09000f;
+        public static final int registrar_cobranzas=0x7f090010;
+        public static final int registrar_depositos=0x7f090011;
+        public static final int registrar_pedidos=0x7f090012;
+        public static final int reporte_pedido=0x7f090013;
+        public static final int test_graphic=0x7f090014;
+        public static final int test_url=0x7f090015;
     }
     public static final class string {
-        public static final int EmpresaTransporte=0x7f05001a;
-        public static final int ImportePendiente=0x7f05004a;
-        public static final int Instrucciones=0x7f05001b;
-        public static final int Productos=0x7f050032;
-        public static final int Punit=0x7f050029;
-        public static final int aceptaRetenido=0x7f05001c;
-        public static final int action_settings=0x7f050001;
-        public static final int activarVisitas=0x7f050056;
-        public static final int agregar=0x7f05002e;
-        public static final int agregarDocumentos=0x7f050045;
-        public static final int agregarProducto=0x7f050022;
-        public static final int agregarTalla=0x7f05002c;
-        public static final int app_name=0x7f050000;
-        public static final int autoDistribuir=0x7f050042;
-        public static final int banco=0x7f050053;
-        public static final int blanco=0x7f050016;
-        public static final int btnNuevaCobranza=0x7f05003d;
-        public static final int btnNuevo=0x7f050013;
-        public static final int buscarDeposito=0x7f050051;
-        public static final int buscarDocumento=0x7f05004d;
-        public static final int buscarEmpTrans=0x7f050058;
-        public static final int buscarProducto=0x7f050031;
-        public static final int buscarTalla=0x7f050039;
-        public static final int cancel=0x7f05001f;
-        public static final int cantidad=0x7f050036;
-        public static final int cod=0x7f05002b;
-        public static final int depositos=0x7f050050;
-        public static final int detalleCobranza=0x7f050041;
-        public static final int detalles=0x7f050020;
-        public static final int direccionEnvio=0x7f050019;
-        public static final int documentoPago=0x7f050048;
-        public static final int documentosIncluidosCobranza=0x7f050044;
-        public static final int enter=0x7f050005;
-        public static final int estado=0x7f05001d;
-        public static final int estadoVisita=0x7f050009;
-        public static final int existencias=0x7f050035;
-        public static final int fechaVencimiento=0x7f050049;
-        public static final int filtrar=0x7f05000a;
-        public static final int formaPago=0x7f050018;
-        public static final int hello_world=0x7f050002;
-        public static final int impTotal=0x7f05002a;
-        public static final int importe=0x7f05003f;
-        public static final int importeAmortizar=0x7f05004b;
-        public static final int lblImporte=0x7f050026;
-        public static final int lblPunit=0x7f050025;
-        public static final int lblcodprod=0x7f050024;
-        public static final int login=0x7f050003;
-        public static final int loginFail=0x7f050011;
-        public static final int medioPago=0x7f050040;
-        public static final int menu_settings=0x7f05000c;
-        public static final int nroPedido=0x7f050015;
-        public static final int nuevoDeposito=0x7f05004f;
-        public static final int password=0x7f050004;
-        public static final int pedidos=0x7f050014;
-        public static final int producto=0x7f050028;
-        public static final int registrarCobranza=0x7f05000f;
-        public static final int registrarDeposito=0x7f050010;
-        public static final int registrarPedido=0x7f05000e;
-        public static final int resumen=0x7f050023;
-        public static final int ruta_servicio=0x7f050055;
-        public static final int save=0x7f05001e;
-        public static final int seleccionarTalla=0x7f050037;
-        public static final int talla=0x7f050034;
-        public static final int tallasSeleccionadas=0x7f05002d;
-        public static final int tipoDocumento=0x7f050047;
-        public static final int tipoVisita=0x7f050008;
-        public static final int title_activity_activar_visita=0x7f050007;
-        public static final int title_activity_agregar_documentos=0x7f050046;
-        public static final int title_activity_agregar_producto=0x7f050027;
-        public static final int title_activity_agregar_talla=0x7f050033;
-        public static final int title_activity_buscar_documento_pago=0x7f05004c;
-        public static final int title_activity_buscar_empresa_transporte=0x7f050057;
-        public static final int title_activity_buscar_producto=0x7f050030;
-        public static final int title_activity_buscar_talla=0x7f050038;
-        public static final int title_activity_detalle_cobranza=0x7f050043;
-        public static final int title_activity_detalle_pedido=0x7f050021;
-        public static final int title_activity_menu_principal=0x7f05000d;
-        public static final int title_activity_nueva_cobranza=0x7f05003e;
-        public static final int title_activity_nuevo_deposito=0x7f050052;
-        public static final int title_activity_nuevo_pedido=0x7f050017;
-        public static final int title_activity_prueba_web_service=0x7f05003b;
-        public static final int title_activity_registrar_cobranzas=0x7f05003c;
-        public static final int title_activity_registrar_depositos=0x7f05004e;
-        public static final int title_activity_registrar_pedidos=0x7f050012;
-        public static final int title_activity_test_url=0x7f05003a;
-        public static final int tituloListaVisitas=0x7f05000b;
-        public static final int visita=0x7f05002f;
-        public static final int voucher=0x7f050054;
-        public static final int welcome=0x7f050006;
+        public static final int EmpresaTransporte=0x7f07001a;
+        public static final int ImportePendiente=0x7f07004a;
+        public static final int Instrucciones=0x7f07001b;
+        public static final int Productos=0x7f070032;
+        public static final int Punit=0x7f070029;
+        public static final int aceptaRetenido=0x7f07001c;
+        public static final int action_settings=0x7f070001;
+        public static final int activarVisitas=0x7f070056;
+        public static final int agregar=0x7f07002e;
+        public static final int agregarDocumentos=0x7f070045;
+        public static final int agregarProducto=0x7f070022;
+        public static final int agregarTalla=0x7f07002c;
+        public static final int app_name=0x7f070000;
+        public static final int autoDistribuir=0x7f070042;
+        public static final int banco=0x7f070053;
+        public static final int blanco=0x7f070016;
+        public static final int btnNuevaCobranza=0x7f07003d;
+        public static final int btnNuevo=0x7f070013;
+        public static final int btn_testGraphic=0x7f07005b;
+        public static final int buscarDeposito=0x7f070051;
+        public static final int buscarDocumento=0x7f07004d;
+        public static final int buscarEmpTrans=0x7f070058;
+        public static final int buscarProducto=0x7f070031;
+        public static final int buscarTalla=0x7f070039;
+        public static final int cancel=0x7f07001f;
+        public static final int cantidad=0x7f070036;
+        public static final int cod=0x7f07002b;
+        public static final int depositos=0x7f070050;
+        public static final int detalleCobranza=0x7f070041;
+        public static final int detalles=0x7f070020;
+        public static final int direccionEnvio=0x7f070019;
+        public static final int documentoPago=0x7f070048;
+        public static final int documentosIncluidosCobranza=0x7f070044;
+        public static final int enter=0x7f070005;
+        public static final int estado=0x7f07001d;
+        public static final int estadoVisita=0x7f070009;
+        public static final int existencias=0x7f070035;
+        public static final int fechaVencimiento=0x7f070049;
+        public static final int filtrar=0x7f07000a;
+        public static final int formaPago=0x7f070018;
+        public static final int hello_world=0x7f070002;
+        public static final int impTotal=0x7f07002a;
+        public static final int importe=0x7f07003f;
+        public static final int importeAmortizar=0x7f07004b;
+        public static final int lblImporte=0x7f070026;
+        public static final int lblImprimir=0x7f07005d;
+        public static final int lblPunit=0x7f070025;
+        public static final int lblcodprod=0x7f070024;
+        public static final int login=0x7f070003;
+        public static final int loginFail=0x7f070011;
+        public static final int medioPago=0x7f070040;
+        public static final int menu_settings=0x7f07000c;
+        public static final int nroPedido=0x7f070015;
+        public static final int nuevoDeposito=0x7f07004f;
+        public static final int password=0x7f070004;
+        public static final int pedidos=0x7f070014;
+        public static final int producto=0x7f070028;
+        public static final int registrarCobranza=0x7f07000f;
+        public static final int registrarDeposito=0x7f070010;
+        public static final int registrarPedido=0x7f07000e;
+        public static final int reset_button=0x7f07005a;
+        public static final int resumen=0x7f070023;
+        public static final int ruta_servicio=0x7f070055;
+        public static final int save=0x7f07001e;
+        public static final int seleccionarTalla=0x7f070037;
+        public static final int talla=0x7f070034;
+        public static final int tallasSeleccionadas=0x7f07002d;
+        public static final int tipoDocumento=0x7f070047;
+        public static final int tipoVisita=0x7f070008;
+        public static final int title_activity_activar_visita=0x7f070007;
+        public static final int title_activity_agregar_documentos=0x7f070046;
+        public static final int title_activity_agregar_producto=0x7f070027;
+        public static final int title_activity_agregar_talla=0x7f070033;
+        public static final int title_activity_buscar_documento_pago=0x7f07004c;
+        public static final int title_activity_buscar_empresa_transporte=0x7f070057;
+        public static final int title_activity_buscar_producto=0x7f070030;
+        public static final int title_activity_buscar_talla=0x7f070038;
+        public static final int title_activity_detalle_cobranza=0x7f070043;
+        public static final int title_activity_detalle_pedido=0x7f070021;
+        public static final int title_activity_menu_principal=0x7f07000d;
+        public static final int title_activity_nueva_cobranza=0x7f07003e;
+        public static final int title_activity_nuevo_deposito=0x7f070052;
+        public static final int title_activity_nuevo_pedido=0x7f070017;
+        public static final int title_activity_prueba_web_service=0x7f07003b;
+        public static final int title_activity_registrar_cobranzas=0x7f07003c;
+        public static final int title_activity_registrar_depositos=0x7f07004e;
+        public static final int title_activity_registrar_pedidos=0x7f070012;
+        public static final int title_activity_reporte_pedido=0x7f07005c;
+        public static final int title_activity_test_graphic=0x7f070059;
+        public static final int title_activity_test_url=0x7f07003a;
+        public static final int tituloListaVisitas=0x7f07000b;
+        public static final int visita=0x7f07002f;
+        public static final int voucher=0x7f070054;
+        public static final int welcome=0x7f070006;
     }
     public static final class style {
         /** 
@@ -338,10 +480,265 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f080001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a CircleView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleView_strokeColor com.atl.atlmovil:strokeColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleView_strokeWidth com.atl.atlmovil:strokeWidth}</code></td><td></td></tr>
+           </table>
+           @see #CircleView_strokeColor
+           @see #CircleView_strokeWidth
+         */
+        public static final int[] CircleView = {
+            0x7f01000a, 0x7f01000b
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#strokeColor}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:strokeColor
+        */
+        public static final int CircleView_strokeColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#strokeWidth}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:strokeWidth
+        */
+        public static final int CircleView_strokeWidth = 0;
+        /** Attributes that can be used with a PieChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PieChart_autoCenterPointerInSlice com.atl.atlmovil:autoCenterPointerInSlice}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_highlightStrength com.atl.atlmovil:highlightStrength}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_labelColor com.atl.atlmovil:labelColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_labelHeight com.atl.atlmovil:labelHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_labelPosition com.atl.atlmovil:labelPosition}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_labelWidth com.atl.atlmovil:labelWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_labelY com.atl.atlmovil:labelY}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_pieRotation com.atl.atlmovil:pieRotation}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_pointerRadius com.atl.atlmovil:pointerRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_showText com.atl.atlmovil:showText}</code></td><td></td></tr>
+           </table>
+           @see #PieChart_autoCenterPointerInSlice
+           @see #PieChart_highlightStrength
+           @see #PieChart_labelColor
+           @see #PieChart_labelHeight
+           @see #PieChart_labelPosition
+           @see #PieChart_labelWidth
+           @see #PieChart_labelY
+           @see #PieChart_pieRotation
+           @see #PieChart_pointerRadius
+           @see #PieChart_showText
+         */
+        public static final int[] PieChart = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#autoCenterPointerInSlice}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:autoCenterPointerInSlice
+        */
+        public static final int PieChart_autoCenterPointerInSlice = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#highlightStrength}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:highlightStrength
+        */
+        public static final int PieChart_highlightStrength = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#labelColor}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:labelColor
+        */
+        public static final int PieChart_labelColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#labelHeight}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:labelHeight
+        */
+        public static final int PieChart_labelHeight = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#labelPosition}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:labelPosition
+        */
+        public static final int PieChart_labelPosition = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#labelWidth}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:labelWidth
+        */
+        public static final int PieChart_labelWidth = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#labelY}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:labelY
+        */
+        public static final int PieChart_labelY = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#pieRotation}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:pieRotation
+        */
+        public static final int PieChart_pieRotation = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#pointerRadius}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:pointerRadius
+        */
+        public static final int PieChart_pointerRadius = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#showText}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:showText
+        */
+        public static final int PieChart_showText = 9;
+        /** Attributes that can be used with a ReportePedidoView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ReportePedidoView_titulo com.atl.atlmovil:titulo}</code></td><td></td></tr>
+           </table>
+           @see #ReportePedidoView_titulo
+         */
+        public static final int[] ReportePedidoView = {
+            0x7f01000c
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.atl.atlmovil.R.attr#titulo}
+          attribute's value can be found in the {@link #ReportePedidoView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:titulo
+        */
+        public static final int ReportePedidoView_titulo = 0;
+    };
 }

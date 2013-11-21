@@ -110,6 +110,14 @@
             android:name="com.atl.atlmovil.BuscarEmpresaTransporteActivity"
             android:label="@string/title_activity_buscar_empresa_transporte" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.TestGraphicActivity"
+            android:label="@string/title_activity_test_graphic" >
+        </activity>
+        <activity
+            android:name="com.atl.atlmovil.ReportePedidoActivity"
+            android:label="@string/title_activity_reporte_pedido" >
+        </activity>
     </application>
 
 </manifest>

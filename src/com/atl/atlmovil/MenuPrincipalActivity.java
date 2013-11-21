@@ -41,7 +41,9 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         btnRegistrarCobranza.setOnClickListener(this);
         Button btnRegistrarDeposito = (Button)findViewById(R.id.btnRegistrarDeposito);
         btnRegistrarDeposito.setOnClickListener(this);
-        
+       
+        Button btnTest = (Button)findViewById(R.id.btnTest);
+        btnTest.setOnClickListener(this);
        
         
         
@@ -152,6 +154,12 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 				alertDialog.show();
 				
 			}	
+		}
+		if(v.getId()==R.id.btnTest){
+			
+			Intent testIntent = new Intent(MenuPrincipalActivity.this, TestGraphicActivity.class);
+			startActivity(testIntent);
+			
 		}
 		
 		
