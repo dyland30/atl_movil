@@ -149,9 +149,9 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int Pie=0x7f050082;
-        public static final int Reset=0x7f050083;
-        public static final int action_settings=0x7f0500a2;
+        public static final int Pie=0x7f050084;
+        public static final int Reset=0x7f050085;
+        public static final int action_settings=0x7f0500a4;
         public static final int btnActivarVisitas=0x7f050041;
         public static final int btnAgregarDocumento=0x7f050014;
         public static final int btnAgregarDocumentoPago=0x7f05000e;
@@ -174,7 +174,8 @@ containing a value of this type.
         public static final int btnGuardarCobranza=0x7f05004f;
         public static final int btnGuardarDeposito=0x7f05005d;
         public static final int btnGuardarPedido=0x7f05006b;
-        public static final int btnImprimir=0x7f050081;
+        public static final int btnImprimir=0x7f050083;
+        public static final int btnImprimirCobranza=0x7f050081;
         public static final int btnIngresar=0x7f05003f;
         public static final int btnNuevaCobranza=0x7f050077;
         public static final int btnNuevoPedido=0x7f05007c;
@@ -188,7 +189,7 @@ containing a value of this type.
         public static final int btnTest=0x7f050045;
         public static final int btnWebServiceGet=0x7f050070;
         public static final int chbAceptaRetencion=0x7f050069;
-        public static final int circle_view_id=0x7f050084;
+        public static final int circle_view_id=0x7f050086;
         public static final int cmbBancoDeposito=0x7f050057;
         public static final int cmbEstadoCobranzaFiltro=0x7f050072;
         public static final int cmbEstadoNuevaCobranza=0x7f05004b;
@@ -205,7 +206,7 @@ containing a value of this type.
         public static final int lblBancoRow=0x7f050056;
         public static final int lblBuscarTalla=0x7f050032;
         public static final int lblCantItemsPedidoDetalle=0x7f05003b;
-        public static final int lblCantidadTallaPedido=0x7f05009e;
+        public static final int lblCantidadTallaPedido=0x7f0500a0;
         public static final int lblClienteBuscarDocumento=0x7f050009;
         public static final int lblClienteCobranzaDetalle=0x7f050035;
         public static final int lblClienteDeposito=0x7f050055;
@@ -216,23 +217,23 @@ containing a value of this type.
         public static final int lblClienteRegistrarCobranzas=0x7f050071;
         public static final int lblClienteRegistrarDeposito=0x7f050079;
         public static final int lblCodProductoAgregarProd=0x7f05001b;
-        public static final int lblCodProductoDetallePedido=0x7f050092;
-        public static final int lblCodigoEmpresaCargaRow=0x7f050095;
+        public static final int lblCodProductoDetallePedido=0x7f050094;
+        public static final int lblCodigoEmpresaCargaRow=0x7f050097;
         public static final int lblCodigoProductoBuscarTalla=0x7f050031;
-        public static final int lblDescripcionEmpresaCargaRow=0x7f050096;
-        public static final int lblEstadoPedido=0x7f050098;
+        public static final int lblDescripcionEmpresaCargaRow=0x7f050098;
+        public static final int lblEstadoPedido=0x7f05009a;
         public static final int lblExistenciasTallaPedido=0x7f05001d;
         public static final int lblExistenciasTallaRow=0x7f050022;
-        public static final int lblFechaDepositoRow=0x7f050090;
+        public static final int lblFechaDepositoRow=0x7f050092;
         public static final int lblFechaDesde=0x7f050024;
         public static final int lblFechaHasta=0x7f050075;
-        public static final int lblFechaPedido=0x7f050097;
-        public static final int lblFechaVencimientoAmortizacionRow=0x7f050088;
+        public static final int lblFechaPedido=0x7f050099;
+        public static final int lblFechaVencimientoAmortizacionRow=0x7f05008a;
         public static final int lblFechaVencimientoDocRow=0x7f050012;
-        public static final int lblImporteAmortizacionRow=0x7f050089;
+        public static final int lblImporteAmortizacionRow=0x7f05008b;
         public static final int lblImporteDetallePedido=0x7f050065;
         public static final int lblImporteOriginalRow=0x7f05000d;
-        public static final int lblImportePedido=0x7f050099;
+        public static final int lblImportePedido=0x7f05009b;
         public static final int lblImportePedidoDetalle=0x7f05003c;
         public static final int lblImportePendienteRow=0x7f050010;
         public static final int lblImporteRow=0x7f05005a;
@@ -242,14 +243,14 @@ containing a value of this type.
         public static final int lblNroCobranzaAgregarDocumentos=0x7f050008;
         public static final int lblNroCobranzaBuscarDocumento=0x7f05002c;
         public static final int lblNroCobranzaDeposito=0x7f050054;
-        public static final int lblNroCobranzaDepositoRow=0x7f050091;
+        public static final int lblNroCobranzaDepositoRow=0x7f050093;
         public static final int lblNroCobranzaNueva=0x7f050047;
         public static final int lblNroDeposito=0x7f050053;
-        public static final int lblNroDepositoRow=0x7f05008f;
-        public static final int lblNroDocumentoPagoRow=0x7f050085;
-        public static final int lblNroDocumentoRow=0x7f050093;
+        public static final int lblNroDepositoRow=0x7f050091;
+        public static final int lblNroDocumentoPagoRow=0x7f050087;
+        public static final int lblNroDocumentoRow=0x7f050095;
         public static final int lblNroPedidoAgregarProducto=0x7f050016;
-        public static final int lblNroTallaRow=0x7f05009f;
+        public static final int lblNroTallaRow=0x7f0500a1;
         public static final int lblNroVisitaNuevoPedido=0x7f050060;
         public static final int lblNroVisitaPedidoDetalle=0x7f050037;
         public static final int lblNumeroCobranzaDetalle=0x7f050033;
@@ -260,20 +261,20 @@ containing a value of this type.
         public static final int lblProductoDetallePedido=0x7f05003a;
         public static final int lblPunitAgregarProd=0x7f05001c;
         public static final int lblPunitDetallePedido=0x7f050063;
-        public static final int lblReferenciaDocumentoPagoRow=0x7f050087;
+        public static final int lblReferenciaDocumentoPagoRow=0x7f050089;
         public static final int lblReferenciaRow=0x7f05000b;
-        public static final int lblRowEstadoCobranza=0x7f05008c;
-        public static final int lblRowFechaCobranza=0x7f05008b;
-        public static final int lblRowImporteCobranza=0x7f05008d;
-        public static final int lblRowImportePendienteCobranza=0x7f05008e;
-        public static final int lblRowNroCobranza=0x7f05008a;
-        public static final int lblRowProdCalidad=0x7f05009b;
-        public static final int lblRowProdColor=0x7f05009c;
-        public static final int lblRowProductoCod=0x7f05009a;
+        public static final int lblRowEstadoCobranza=0x7f05008e;
+        public static final int lblRowFechaCobranza=0x7f05008d;
+        public static final int lblRowImporteCobranza=0x7f05008f;
+        public static final int lblRowImportePendienteCobranza=0x7f050090;
+        public static final int lblRowNroCobranza=0x7f05008c;
+        public static final int lblRowProdCalidad=0x7f05009d;
+        public static final int lblRowProdColor=0x7f05009e;
+        public static final int lblRowProductoCod=0x7f05009c;
         public static final int lblRowProductoNombre=0x7f050030;
-        public static final int lblRowProductoSexo=0x7f05009d;
-        public static final int lblTipoDocumentoPagoRow=0x7f050086;
-        public static final int lblTipoDocumentoRow=0x7f050094;
+        public static final int lblRowProductoSexo=0x7f05009f;
+        public static final int lblTipoDocumentoPagoRow=0x7f050088;
+        public static final int lblTipoDocumentoRow=0x7f050096;
         public static final int lblUsuario=0x7f050046;
         public static final int lblVisitaCobranzaDetalle=0x7f050034;
         public static final int lblVisitaNuevaCobranza=0x7f050048;
@@ -281,8 +282,9 @@ containing a value of this type.
         public static final int lblVisitaRegistroDeposito=0x7f050078;
         public static final int lblVoucherRow=0x7f050058;
         public static final int left=0x7f050000;
-        public static final int menu_settings=0x7f0500a3;
-        public static final int reportePedidoView1=0x7f050080;
+        public static final int menu_settings=0x7f0500a5;
+        public static final int reciboCobranzaView=0x7f050080;
+        public static final int reportePedido=0x7f050082;
         public static final int right=0x7f050001;
         public static final int scrollView1=0x7f05004a;
         public static final int textView7=0x7f050028;
@@ -296,9 +298,9 @@ containing a value of this type.
         public static final int txtDireccionEnvioPedido=0x7f050064;
         public static final int txtDocumentoPagoAgregarDoc=0x7f05000c;
         public static final int txtEmpresaTransportePedido=0x7f050066;
-        public static final int txtEstadoVisita=0x7f0500a1;
+        public static final int txtEstadoVisita=0x7f0500a3;
         public static final int txtFechaVencimientoAgregarDocumentos=0x7f05000f;
-        public static final int txtFechaVisita=0x7f0500a0;
+        public static final int txtFechaVisita=0x7f0500a2;
         public static final int txtFiltrarPedidos=0x7f05007d;
         public static final int txtFiltroBuscarDocumento=0x7f05002d;
         public static final int txtFiltroRegistrarDepositos=0x7f05007a;
@@ -334,20 +336,21 @@ containing a value of this type.
         public static final int activity_registrar_cobranzas=0x7f030010;
         public static final int activity_registrar_depositos=0x7f030011;
         public static final int activity_registrar_pedidos=0x7f030012;
-        public static final int activity_reporte_pedido=0x7f030013;
-        public static final int activity_test_graphic=0x7f030014;
-        public static final int amortizacion_row=0x7f030015;
-        public static final int cobranza_row=0x7f030016;
-        public static final int deposito_row=0x7f030017;
-        public static final int detalle_pedido_row=0x7f030018;
-        public static final int documento_pago_row=0x7f030019;
-        public static final int empresa_carga_row=0x7f03001a;
-        public static final int pedido_row=0x7f03001b;
-        public static final int pie_chart_view=0x7f03001c;
-        public static final int producto_row=0x7f03001d;
-        public static final int talla_pedido_row=0x7f03001e;
-        public static final int talla_row=0x7f03001f;
-        public static final int visita_row=0x7f030020;
+        public static final int activity_reporte_cobranza=0x7f030013;
+        public static final int activity_reporte_pedido=0x7f030014;
+        public static final int activity_test_graphic=0x7f030015;
+        public static final int amortizacion_row=0x7f030016;
+        public static final int cobranza_row=0x7f030017;
+        public static final int deposito_row=0x7f030018;
+        public static final int detalle_pedido_row=0x7f030019;
+        public static final int documento_pago_row=0x7f03001a;
+        public static final int empresa_carga_row=0x7f03001b;
+        public static final int pedido_row=0x7f03001c;
+        public static final int pie_chart_view=0x7f03001d;
+        public static final int producto_row=0x7f03001e;
+        public static final int talla_pedido_row=0x7f03001f;
+        public static final int talla_row=0x7f030020;
+        public static final int visita_row=0x7f030021;
     }
     public static final class menu {
         public static final int activar_visita=0x7f090000;
@@ -369,9 +372,10 @@ containing a value of this type.
         public static final int registrar_cobranzas=0x7f090010;
         public static final int registrar_depositos=0x7f090011;
         public static final int registrar_pedidos=0x7f090012;
-        public static final int reporte_pedido=0x7f090013;
-        public static final int test_graphic=0x7f090014;
-        public static final int test_url=0x7f090015;
+        public static final int reporte_cobranza=0x7f090013;
+        public static final int reporte_pedido=0x7f090014;
+        public static final int test_graphic=0x7f090015;
+        public static final int test_url=0x7f090016;
     }
     public static final class string {
         public static final int EmpresaTransporte=0x7f07001a;
@@ -418,6 +422,7 @@ containing a value of this type.
         public static final int impTotal=0x7f07002a;
         public static final int importe=0x7f07003f;
         public static final int importeAmortizar=0x7f07004b;
+        public static final int imprimir=0x7f07005f;
         public static final int lblImporte=0x7f070026;
         public static final int lblImprimir=0x7f07005d;
         public static final int lblPunit=0x7f070025;
@@ -461,6 +466,7 @@ containing a value of this type.
         public static final int title_activity_registrar_cobranzas=0x7f07003c;
         public static final int title_activity_registrar_depositos=0x7f07004e;
         public static final int title_activity_registrar_pedidos=0x7f070012;
+        public static final int title_activity_reporte_cobranza=0x7f07005e;
         public static final int title_activity_reporte_pedido=0x7f07005c;
         public static final int title_activity_test_graphic=0x7f070059;
         public static final int title_activity_test_url=0x7f07003a;
@@ -511,7 +517,7 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:strokeColor
+          @attr name com.atl.atlmovil:strokeColor
         */
         public static final int CircleView_strokeColor = 1;
         /**
@@ -525,7 +531,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:strokeWidth
+          @attr name com.atl.atlmovil:strokeWidth
         */
         public static final int CircleView_strokeWidth = 0;
         /** Attributes that can be used with a PieChart.
@@ -572,7 +578,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:autoCenterPointerInSlice
+          @attr name com.atl.atlmovil:autoCenterPointerInSlice
         */
         public static final int PieChart_autoCenterPointerInSlice = 0;
         /**
@@ -586,7 +592,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:highlightStrength
+          @attr name com.atl.atlmovil:highlightStrength
         */
         public static final int PieChart_highlightStrength = 1;
         /**
@@ -601,7 +607,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:labelColor
+          @attr name com.atl.atlmovil:labelColor
         */
         public static final int PieChart_labelColor = 2;
         /**
@@ -617,7 +623,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:labelHeight
+          @attr name com.atl.atlmovil:labelHeight
         */
         public static final int PieChart_labelHeight = 3;
         /**
@@ -634,7 +640,7 @@ containing a value of this type.
 <tr><td><code>left</code></td><td>0</td><td></td></tr>
 <tr><td><code>right</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:labelPosition
+          @attr name com.atl.atlmovil:labelPosition
         */
         public static final int PieChart_labelPosition = 4;
         /**
@@ -650,7 +656,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:labelWidth
+          @attr name com.atl.atlmovil:labelWidth
         */
         public static final int PieChart_labelWidth = 5;
         /**
@@ -666,7 +672,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:labelY
+          @attr name com.atl.atlmovil:labelY
         */
         public static final int PieChart_labelY = 6;
         /**
@@ -680,7 +686,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:pieRotation
+          @attr name com.atl.atlmovil:pieRotation
         */
         public static final int PieChart_pieRotation = 7;
         /**
@@ -696,7 +702,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:pointerRadius
+          @attr name com.atl.atlmovil:pointerRadius
         */
         public static final int PieChart_pointerRadius = 8;
         /**
@@ -710,7 +716,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:showText
+          @attr name com.atl.atlmovil:showText
         */
         public static final int PieChart_showText = 9;
         /** Attributes that can be used with a ReportePedidoView.
@@ -737,7 +743,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:titulo
+          @attr name com.atl.atlmovil:titulo
         */
         public static final int ReportePedidoView_titulo = 0;
     };

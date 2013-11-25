@@ -9,3 +9,14 @@ D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\bin\ATL.DAO.pdb
 D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.csprojResolveAssemblyReference.cache
 D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.dll
 D:\Daniel\personal\Android\ATLMovil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Sitio.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Sitio.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.BL.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Entidad.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.DAO.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.BL.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.Entidad.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\bin\ATL.DAO.pdb
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ResolveAssemblyReference.cache
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.dll
+C:\atl\android\atl_movil\net\ATL.Servicio\ATL.Sitio\obj\Debug\ATL.Sitio.pdb

@@ -16,7 +16,7 @@ public class UsuarioDAO {
 
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
-	private String[] allColumns = { "id","login","clave","nombres","apellidos","dni"};
+	private String[] allColumns = { "id","login","clave","nombres","apellidos","dni","codigoEmpleado"};
 
 	public UsuarioDAO(Context context){
 		dbHelper = new MySQLiteHelper(context);
@@ -49,7 +49,7 @@ public class UsuarioDAO {
 		 
 	 }
 	 
-	 public Usuario crear(String login, String clave, String nombres, String apellidos, String dni){
+	 public Usuario crear(String login, String clave, String nombres, String apellidos, String dni, long codigoEmpleado){
 		 Usuario us = null;
 		 ContentValues values = new ContentValues();
 		 values.put("login", login);
@@ -57,6 +57,8 @@ public class UsuarioDAO {
 		 values.put("nombres", nombres);
 		 values.put("apellidos", apellidos);
 		 values.put("dni", dni);
+		 values.put("codigoEmpleado", codigoEmpleado);
+		 
 		 long insertId = database.insert(Usuario.class.getSimpleName(), null, values);
 		 
 		 us = buscarPorID(insertId);
@@ -72,6 +74,7 @@ public class UsuarioDAO {
 		 values.put("nombres", us.getNombres());
 		 values.put("apellidos", us.getApellidos());
 		 values.put("dni", us.getDni());
+		 values.put("codigoEmpleado", us.getCodigoEmpleado());
 		 
 		 database.update(Usuario.class.getSimpleName(), values, " id = "+us.getId(), null);
 		 
@@ -113,6 +116,8 @@ public class UsuarioDAO {
 			    ent.setNombres(cursor.getString(3));
 			    ent.setApellidos(cursor.getString(4));
 			    ent.setDni(cursor.getString(5));
+			    ent.setCodigoEmpleado(cursor.getLong(6));
+			    
 		    	
 		    }
 		    

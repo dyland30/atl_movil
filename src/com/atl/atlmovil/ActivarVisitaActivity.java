@@ -9,12 +9,14 @@ import com.atl.atlmovil.dao.EstadoVisitaDAO;
 import com.atl.atlmovil.dao.TipoVisitaDAO;
 import com.atl.atlmovil.dao.VisitaDAO;
 import com.atl.atlmovil.entidades.*;
-
+import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -72,6 +74,18 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 		//obtener estadoVisita Seleccionada
 		TipoVisita tipVi = (TipoVisita)cmbTipoVisita.getSelectedItem();
 		EstadoVisita estVi = (EstadoVisita)cmbEstadoVisita.getSelectedItem();
+		//obtener usuario logueado
+		SharedPreferences prefs = this.getSharedPreferences(
+			      "com.atl.atlmovil", Context.MODE_PRIVATE);
+		Gson gson = new Gson();
+		
+		String jsonUsr = prefs.getString("usuario", "");
+		Usuario usr = gson.fromJson(jsonUsr, Usuario.class);
+		if(usr==null){
+			finish();
+			
+		}
+		
 		long codTipVi = 0;
 		long codEstVi = 0;
 		if(tipVi!=null){
@@ -83,7 +97,7 @@ public class ActivarVisitaActivity extends ListActivity implements OnClickListen
 		Log.w("info","tipo visita "+codTipVi);
 		Log.w("info","estado visita "+codEstVi);
 		
-		lsVisitas = viDao.obtenerVisitasEstadoTipo(codTipVi, codEstVi);
+		lsVisitas = viDao.obtenerVisitasEstadoTipo(codTipVi, codEstVi, usr.getCodigoEmpleado());
 		
 		Log.w("info","cant datos "+lsVisitas.size());
 		

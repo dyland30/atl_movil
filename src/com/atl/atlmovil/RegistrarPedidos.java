@@ -143,7 +143,22 @@ public class RegistrarPedidos extends ListActivity implements OnClickListener  {
 			
 			
 			
-		} else {return false;}
+		}
+		else if(item.getTitle().equals("IMPRIMIR")){
+			
+			PedidoAdapter adaptadorInterno = (PedidoAdapter)getListAdapter();
+			Pedido pe = (Pedido)adaptadorInterno.getItem(adapterInfo.position);
+			if(pe!=null){
+				// navegar a nuevo pedido con operacion editar
+				Intent nuevoPedidoIntent = new Intent(RegistrarPedidos.this, ReportePedidoActivity.class);
+				nuevoPedidoIntent.putExtra("idPedido", pe.getId());
+				startActivity(nuevoPedidoIntent);
+				
+			}
+			
+			
+		}
+		else {return false;}
 		
 		return true;
 	}

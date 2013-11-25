@@ -58,9 +58,9 @@ public class VisitaDAO {
 	 }
 	 
 	 
-	 public List<Visita> obtenerVisitasEstadoTipo(long codTipoVisita, long codEstadoVisita){
+	 public List<Visita> obtenerVisitasEstadoTipo(long codTipoVisita, long codEstadoVisita, long codigoEmpleado){
 		 List<Visita> ls = new ArrayList<Visita>();
-		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+codEstadoVisita+"' and codigoTipoVisita = '"+codTipoVisita+"'",null, null,null,null);
+		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+codEstadoVisita+"' and codigoTipoVisita = '"+codTipoVisita+"' and codigoEmpleado='"+codigoEmpleado+"'",null, null,null,null);
 		 cursor.moveToFirst();
 		 while(!cursor.isAfterLast()){
 			 Visita vi = cursorToEnt(cursor);

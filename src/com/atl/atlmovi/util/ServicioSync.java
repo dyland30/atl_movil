@@ -88,7 +88,7 @@ public class ServicioSync extends Service{
 					Usuario uold = udao.buscarPorLogin(u.getLogin());
 					if(uold==null){
 						//insertamos en bd
-						udao.crear(u.getLogin(), u.getClave(), u.getNombres(), u.getApellidos(), u.getDni());
+						udao.crear(u.getLogin(), u.getClave(), u.getNombres(), u.getApellidos(), u.getDni(), u.getCodigoEmpleado());
 						Log.i("usuario insertado", u.getLogin());
 					}
 					

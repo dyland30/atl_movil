@@ -40,12 +40,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 30;
+	private static final int DATABASE_VERSION = 31;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
 			"(id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , login TEXT UNIQUE, " +
-			"clave TEXT, nombres TEXT, apellidos TEXT, dni TEXT) ; ";
+			"clave TEXT, nombres TEXT, apellidos TEXT, dni TEXT, codigoEmpleado INTEGER) ; ";
 	
 	private static final String C_TB_VISITA = " CREATE TABLE Visita (codigoVisita INTEGER PRIMARY KEY NOT NULL, " +
 			"codigoCliente INTEGER, codigoEmpleado INTEGER, codigoEstadoVisita INTEGER, codigoTipoVIsita INTEGER," +

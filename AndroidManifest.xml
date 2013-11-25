@@ -118,6 +118,10 @@
             android:name="com.atl.atlmovil.ReportePedidoActivity"
             android:label="@string/title_activity_reporte_pedido" >
         </activity>
+        <activity
+            android:name="com.atl.atlmovil.ReporteCobranzaActivity"
+            android:label="@string/title_activity_reporte_cobranza" >
+        </activity>
     </application>
 
 </manifest>

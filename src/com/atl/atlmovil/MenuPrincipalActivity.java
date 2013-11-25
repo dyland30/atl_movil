@@ -29,7 +29,7 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         AtlApp app = (AtlApp)getApplicationContext();
         Usuario usr = app.getUsuario();
         if(usr!=null){
-        	lblUsuario.setText("Usuario: "+usr.getLogin() +" "+ usr.getNombres()+" "+ usr.getApellidos());
+        	lblUsuario.setText("Usuario: "+usr.getLogin() +" "+ usr.getEmpleado().getPersona().getNombrePersona());
         	
         }
         // registrar eventos

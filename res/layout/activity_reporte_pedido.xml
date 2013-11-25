@@ -7,10 +7,10 @@
    
 
     <com.atl.atlmovil.customviews.ReportePedidoView
-        android:id="@+id/reportePedidoView1"
+        android:id="@+id/reportePedido"
         android:layout_width="fill_parent"
         android:layout_height="430dip" 
-        custom:titulo="PEDIDO"/>
+        custom:titulo="PEDIDO NRO: "/>
     
     <Button
         android:id="@+id/btnImprimir"

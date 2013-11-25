@@ -13,6 +13,8 @@ private long codigoPersona;
 private String strfechaIngresoEmpleado;
 private String strfechaCeseEmpleado;
 
+private Persona persona;
+
 
 public long getCodigoEmpleado() {
 	return codigoEmpleado;
@@ -67,6 +69,12 @@ public String getStrfechaCeseEmpleado() {
 }
 public void setStrfechaCeseEmpleado(String strfechaCeseEmpleado) {
 	this.strfechaCeseEmpleado = strfechaCeseEmpleado;
+}
+public Persona getPersona() {
+	return persona;
+}
+public void setPersona(Persona persona) {
+	this.persona = persona;
 }
 
 }

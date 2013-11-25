@@ -60,7 +60,7 @@
             android:layout_gravity="center_horizontal"
              android:layout_margin="5dip"
             android:text="@string/blanco" 
-            android:drawableLeft="@android:drawable/ic_input_add"/>
+            android:drawableLeft="@android:drawable/ic_search_category_default"/>
     </LinearLayout>
 
     <TextView

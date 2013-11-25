@@ -7,6 +7,9 @@ public class Usuario {
 	private String nombres;
 	private String apellidos;
 	private String dni;
+	private long codigoEmpleado;
+	private Empleado empleado;
+	
 	public long getId() {
 		return id;
 	}
@@ -42,6 +45,18 @@ public class Usuario {
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	public long getCodigoEmpleado() {
+		return codigoEmpleado;
+	}
+	public void setCodigoEmpleado(long codigoEmpleado) {
+		this.codigoEmpleado = codigoEmpleado;
+	}
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 	
 }

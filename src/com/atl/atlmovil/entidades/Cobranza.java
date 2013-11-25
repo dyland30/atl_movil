@@ -1,6 +1,7 @@
 package com.atl.atlmovil.entidades;
 
 import java.util.Date;
+import java.util.List;
 
 public class Cobranza {
 	private long id;
@@ -13,6 +14,7 @@ public class Cobranza {
 	private String estadoCobranza; 
 	private long codigoVisita;
 	private Boolean esAutoDistribuido;  // 1 -> si, 0 --> no
+	private List<Amortizacion> amortizaciones;
 	
 	public long getId() {
 		return id;
@@ -73,6 +75,12 @@ public class Cobranza {
 	}
 	public void setEsAutoDistribuido(Boolean esAutoDistribuido) {
 		this.esAutoDistribuido = esAutoDistribuido;
+	}
+	public List<Amortizacion> getAmortizaciones() {
+		return amortizaciones;
+	}
+	public void setAmortizaciones(List<Amortizacion> amortizaciones) {
+		this.amortizaciones = amortizaciones;
 	}
 	
 	

@@ -161,9 +161,9 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 	    
 	    
 	    menu.setHeaderTitle("Cobranza Nro: "+Cadena.formatearNumero("0000000000", (double)cob.getId()));
-	    menu.add(0, v.getId(), 0, "EDITAR");  
-	    menu.add(0, v.getId(), 1, "REMOVER");
-	    menu.add(0, v.getId(), 2, "ANULAR");
+	    menu.add(0, v.getId(), 0, "IMPRIMIR");  
+	    menu.add(0, v.getId(), 1, "EDITAR");
+	    menu.add(0, v.getId(), 2, "REMOVER");
 	    
 	}
 	
@@ -214,6 +214,17 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 			});
 			
 			alertDialog.show();
+			
+		}
+		
+		if(item.getTitle().equals("IMPRIMIR")){
+			
+			CobranzaAdapter adaptadorInterno = (CobranzaAdapter) getListAdapter();
+			Cobranza cob = (Cobranza)adaptadorInterno.getItem(adapterInfo.position);
+			
+			Intent reporteCobranzaIntent = new Intent(RegistrarCobranzasActivity.this, ReporteCobranzaActivity.class);
+			reporteCobranzaIntent.putExtra("idCobranza", cob.getId());
+			startActivity(reporteCobranzaIntent);
 			
 		}
 		
