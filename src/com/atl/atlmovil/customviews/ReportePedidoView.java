@@ -46,6 +46,7 @@ public class ReportePedidoView extends AbstractBaseView {
 	EmpresaCargaDAO empCargaDao;
 	FormaPagoDAO fpDao;
 	VisitaDAO viDao;
+	SimpleDateFormat dateFormat;
 	public ReportePedidoView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -94,8 +95,8 @@ public class ReportePedidoView extends AbstractBaseView {
 		colorLinea.setColor(getResources().getColor(android.R.color.black));
 		colorLinea.setStyle(Paint.Style.STROKE);
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
-		fecha = dateFormat.format(new Date());
+		dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
+		
 		
 		pdao = new ProductoDAO(contexto);
 		
@@ -122,12 +123,12 @@ public class ReportePedidoView extends AbstractBaseView {
 	    	String razonSocial = "CALZADO ATLAS S.A.";
 	    	String ruc = "RUC: 20185788599";
 	    	String direccion = "Jr. Cristóbal de peralta Norte 112 - Surco";
-	    	String strfecha = "Telef: 434-2666 / 434-1969     FECHA: "+fecha;
+	    	
 	    	
 	    	canvas.drawText(razonSocial, w/2, inicioy, colorTitulo);
 	    	canvas.drawText(ruc, w/2, inicioy+20, colorTitulo);
 	    	canvas.drawText(direccion, w/2, inicioy+40, colorTitulo);
-	    	canvas.drawText(strfecha, iniciox, inicioy+65, colorTexto);
+	    	
 	    
 	    	
 	    	if(pedido!=null){
@@ -159,6 +160,10 @@ public class ReportePedidoView extends AbstractBaseView {
 	    				}
 	    				
 	    			}
+	    			//fecha
+	    			fecha = dateFormat.format(pedido.getFechaIngresoPedido());
+	    			String strfecha = "Telef: 434-2666 / 434-1969     FECHA: "+fecha;
+	    			canvas.drawText(strfecha, iniciox, inicioy+65, colorTexto);
 	    			
 	    			// obtener empresa de carga
 	    			empresaTransporte = empCargaDao.buscarPorID(pedido.getCodigoEmpresaCarga());

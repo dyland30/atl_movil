@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Calzado Atlas SA</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Menú Princial</string>
     <string name="hello_world">Hello world!</string>
     <string name="login">Usuario</string>
     <string name="password">Clave</string>
@@ -13,7 +13,7 @@
     <string name="estadoVisita">Estado Visita</string>
     <string name="filtrar">Filtrar</string>
     <string name="tituloListaVisitas">Visitas</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Menú Principal</string>
     <string name="title_activity_menu_principal">Calzado Atlas SA</string>
     <string name="registrarPedido">Registrar Pedido</string>
     <string name="registrarCobranza">Registrar Cobranza</string>

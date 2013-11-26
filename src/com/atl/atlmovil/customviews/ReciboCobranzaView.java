@@ -44,7 +44,7 @@ public class ReciboCobranzaView  extends AbstractBaseView{
 	PersonaDAO perDao;
 	MedioPagoDAO mpDao;
 	DocumentoPagoDAO docDao;
-	
+	SimpleDateFormat dateFormat;
 	public ReciboCobranzaView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -91,8 +91,8 @@ public class ReciboCobranzaView  extends AbstractBaseView{
 		colorLinea.setColor(getResources().getColor(android.R.color.black));
 		colorLinea.setStyle(Paint.Style.STROKE);
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
-		fecha = dateFormat.format(new Date());
+		dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
+		
 		
 		cliDao = new ClienteDAO(contexto);
 		empDao = new EmpleadoDAO(contexto);
@@ -115,13 +115,13 @@ public class ReciboCobranzaView  extends AbstractBaseView{
 	    	String razonSocial = "CALZADO ATLAS S.A.";
 	    	String ruc = "RUC: 20185788599";
 	    	String direccion = "Jr. Cristóbal de peralta Norte 112 - Surco";
-	    	String strfecha = "Telef: 434-2666 / 434-1969     FECHA: "+fecha;
+	    	
 	    	String titulo = "RECIBO NRO: ";
 	    	
 	    	canvas.drawText(razonSocial, w/2, inicioy, colorTitulo);
 	    	canvas.drawText(ruc, w/2, inicioy+20, colorTitulo);
 	    	canvas.drawText(direccion, w/2, inicioy+40, colorTitulo);
-	    	canvas.drawText(strfecha, iniciox, inicioy+65, colorTexto);
+	    	
 	    	
 	    	if(cobranza!=null){
 	    		titulo  += Cadena.formatearNumero("0000000000", (double)cobranza.getId());
@@ -151,6 +151,10 @@ public class ReciboCobranzaView  extends AbstractBaseView{
 	    				}
 	    				
 	    			}
+	    			
+	    			fecha = dateFormat.format(cobranza.getFechaCObranza());
+	    			String strfecha = "Telef: 434-2666 / 434-1969     FECHA: "+fecha;
+	    			canvas.drawText(strfecha, iniciox, inicioy+65, colorTexto);
 	    			
 	    			//obtener medio de pago
 	    			

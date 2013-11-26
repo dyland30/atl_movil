@@ -145,10 +145,29 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		 super.onCreateOptionsMenu(menu);
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.registrar_cobranzas, menu);
+		 menu.add(Menu.NONE, Menu.FIRST, Menu.NONE, "MENU PRINCIPAL");
 		return true;
 	}
+	  @Override
+      public boolean onOptionsItemSelected(MenuItem item)
+      {
+          switch(item.getItemId())
+          {
+              case Menu.FIRST:
+                    // do whatever
+            	  Log.w("info","Menu principal presionado");
+            	  Intent intent = new Intent(this, MenuPrincipalActivity.class);
+            	    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);   
+            	    startActivity(intent);
+            	  
+            	  
+                    return true;
+              default:
+                    return super.onOptionsItemSelected(item);
+          }
+      }
 	
 	@Override  
 	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {  

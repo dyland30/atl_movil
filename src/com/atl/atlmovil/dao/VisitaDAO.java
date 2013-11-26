@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.atl.atlmovil.entidades.*;
+import com.google.gson.Gson;
 
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,8 +21,9 @@ public class VisitaDAO {
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
 	private String[] allColumns = { "codigoVisita","codigoCliente","codigoEmpleado","codigoEstadoVisita","codigoTipoVisita","fechaVisita","horaInicioVisita","horaFinalVisita"};
-
+	private Context contexto;
 	public VisitaDAO(Context context){
+		contexto = context;
 		dbHelper = new MySQLiteHelper(context);
 		
 	}
@@ -147,28 +150,55 @@ public class VisitaDAO {
 	 public Boolean existeVisitaActiva(){
 		 Visita vi = null;
 		 Boolean existe=false;
-		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"'",null,null,null,null);
-		 if(cursor!=null && cursor.getCount()>0){
-			 cursor.moveToFirst();
-			 vi = cursorToEnt(cursor); 
+		 
+		 //obtener usuario
+		 Usuario usr = obtenerUsuarioLogueado();
+		 if(usr!=null){
+			 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"' and codigoEmpleado ='"+usr.getCodigoEmpleado()+"'",null,null,null,null);
+			 
+			 if(cursor!=null && cursor.getCount()>0){
+				 cursor.moveToFirst();
+				 vi = cursorToEnt(cursor); 
+			 }
+			 
+			 if(vi!=null){
+				existe = true; 
+			 }
+			 
 		 }
 		 
-		 if(vi!=null){
-			existe = true; 
-		 }
 		 return existe;
 		 
+	 }
+	 
+	 private Usuario obtenerUsuarioLogueado(){
+		 Usuario usr = null;
+		try{
+			SharedPreferences prefs = contexto.getSharedPreferences(
+				      "com.atl.atlmovil", Context.MODE_PRIVATE);
+			Gson gson = new Gson();
+			
+			String jsonUsr = prefs.getString("usuario", "");
+			usr = gson.fromJson(jsonUsr, Usuario.class);
+			
+		} catch(Exception ex){
+			usr = null;
+		}
+		
+		return usr;
 	 }
 	 
 	 public Visita obtenerVisitaActiva(){
 		 Visita vi = null;
 		
-		 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"'",null,null,null,null);
-		 if(cursor!=null && cursor.getCount()>0){
-			 cursor.moveToFirst();
-			 vi = cursorToEnt(cursor); 
+		 Usuario usr = obtenerUsuarioLogueado();
+		 if(usr!=null){
+			 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEstadoVisita = '"+2+"' and codigoEmpleado ='"+usr.getCodigoEmpleado()+"'",null,null,null,null);
+			 if(cursor!=null && cursor.getCount()>0){
+				 cursor.moveToFirst();
+				 vi = cursorToEnt(cursor); 
+			 }
 		 }
-		 
 		 return vi;
 		 
 	 }

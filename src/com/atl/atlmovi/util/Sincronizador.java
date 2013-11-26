@@ -25,7 +25,7 @@ public class Sincronizador {
 	
 	private static final String NAMESPACE = "http://atl.com/";
 	
-	private static String URL="http://192.168.0.12:82/AtlServicio/Servicios.asmx";
+	private static String URL="http://172.24.3.15:82/AtlServicio/Servicios.asmx";
 	//
 	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
 	private static final String METHOD_OBTENERPERSONAS = "obtenerPersonas";
@@ -1007,7 +1007,7 @@ public class Sincronizador {
 		
 		 requestPedido = new SoapObject(NAMESPACE, METHOD_REGISTRARPEDIDO);
 		 requestPedido.addProperty("strPedidoJSON", json);		 
-		 Log.i("json Pedido: ",json);
+		// Log.i("json Pedido: ",json);
 		 envelopePedido = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		 envelopePedido.dotNet = true;
 		 envelopePedido.setOutputSoapObject(requestPedido);

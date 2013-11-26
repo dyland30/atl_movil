@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -235,12 +236,31 @@ private void guardarCobranza(){
 	}
 }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.nueva_cobranza, menu);
-		return true;
-	}
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	 super.onCreateOptionsMenu(menu);
+	// Inflate the menu; this adds items to the action bar if it is present.
+	 menu.add(Menu.NONE, Menu.FIRST, Menu.NONE, "MENU PRINCIPAL");
+	return true;
+}
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item)
+  {
+      switch(item.getItemId())
+      {
+          case Menu.FIRST:
+                // do whatever
+        	  Log.w("info","Menu principal presionado");
+        	  Intent intent = new Intent(this, MenuPrincipalActivity.class);
+        	    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);   
+        	    startActivity(intent);
+        	  
+        	  
+                return true;
+          default:
+                return super.onOptionsItemSelected(item);
+      }
+  }
 
 	@Override
 	protected void onResume() {

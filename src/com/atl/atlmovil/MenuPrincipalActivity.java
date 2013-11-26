@@ -1,10 +1,13 @@
 package com.atl.atlmovil;
 
+import java.util.Date;
 import java.util.List;
 
 import com.atl.atlmovi.util.Sincronizador;
+import com.atl.atlmovil.adapters.VisitaAdapter;
 import com.atl.atlmovil.dao.VisitaDAO;
 import com.atl.atlmovil.entidades.Usuario;
+import com.atl.atlmovil.entidades.Visita;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -42,8 +45,8 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
         Button btnRegistrarDeposito = (Button)findViewById(R.id.btnRegistrarDeposito);
         btnRegistrarDeposito.setOnClickListener(this);
        
-        Button btnTest = (Button)findViewById(R.id.btnTest);
-        btnTest.setOnClickListener(this);
+       // Button btnTest = (Button)findViewById(R.id.btnTest);
+      //  btnTest.setOnClickListener(this);
        
         
         
@@ -53,6 +56,43 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_menu_principal, menu);
         return true;
+    }
+    
+    @Override
+    public void onBackPressed() {
+       Log.d("CDA", "onBackPressed Called");
+       //mostrar mensaje de confirmacion
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuPrincipalActivity.this);
+		alertDialog.setTitle("CERRAR APLICACIÓN");
+		alertDialog.setMessage("¿Desea Salir del Sistema?");
+		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		
+		alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				// cerrar la aplicacion
+				finish();          
+	            moveTaskToBack(true);
+			}
+		});
+		
+		alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				dialog.cancel();
+			}
+		});
+   	
+		alertDialog.show();
+       
+       
+       
+       
+       
     }
 
 	@Override
@@ -155,13 +195,14 @@ public class MenuPrincipalActivity extends Activity implements OnClickListener{
 				
 			}	
 		}
+		/*
 		if(v.getId()==R.id.btnTest){
 			
 			Intent testIntent = new Intent(MenuPrincipalActivity.this, TestGraphicActivity.class);
 			startActivity(testIntent);
 			
 		}
-		
+		*/
 		
 		
 	}
