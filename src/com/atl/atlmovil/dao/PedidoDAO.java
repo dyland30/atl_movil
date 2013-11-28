@@ -186,6 +186,19 @@ public class PedidoDAO {
 		 cursor.close();
 		 return ent;
 	 }
+	 
+	 public Pedido buscarPorCodigoPedido(long id){
+		 Pedido ent = null;
+		 Cursor cursor = database.query(Pedido.class.getSimpleName(), allColumns, " codigoPedido = "+id,null,null,null,null);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			 		 
+		 }
+		 cursor.close();
+		 return ent;
+	 }
+	 
 	 public double calcularMontoPedido(long idPedido){
 		 double suma =0.0D;		
 		 Cursor cursor = database.rawQuery("select sum(cant*precio) as importe from " +

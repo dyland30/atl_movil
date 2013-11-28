@@ -20,6 +20,7 @@ private String direccionDeEnvio;
 private String empresaTransporte;
 private String instruccionesEspeciales;
 private String strfechaIngresoPedido;
+private String codigoMovil;
 
 private List<DetallePedido> detalles;
 
@@ -125,6 +126,12 @@ public String getStrfechaIngresoPedido() {
 }
 public void setStrfechaIngresoPedido(String strfechaIngresoPedido) {
 	this.strfechaIngresoPedido = strfechaIngresoPedido;
+}
+public String getCodigoMovil() {
+	return codigoMovil;
+}
+public void setCodigoMovil(String codigoMovil) {
+	this.codigoMovil = codigoMovil;
 }
 
 }

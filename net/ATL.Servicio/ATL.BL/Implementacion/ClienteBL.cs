@@ -17,7 +17,7 @@ namespace ATL.BL
             List<Cliente> ls;
             IClienteDAO clienteDAO = new ClienteDAO();
             ls = EntidadesHelper.ConvertirAEntidades<Cliente>(clienteDAO.obtenerClientes());
-
+            
             return ls;
         }
     }

@@ -45,6 +45,7 @@ public class Sincronizador {
 	private static final String METHOD_OBTENERBANCOS = "obtenerBancos";
 	private static final String METHOD_OBTENERMEDIOPAGO = "obtenerMedioPagos";
 	private static final String METHOD_REGISTRARPEDIDO = "registrarPedido";
+	private static final String METHOD_OBTENERPEDIDOS = "obtenerPedidos";
 	
 	
 	
@@ -72,6 +73,9 @@ public class Sincronizador {
 	private static final String SOAP_PING =NAMESPACE+METHOD_PING;
 	private static final String SOAP_ECHO =NAMESPACE+METHOD_ECHO;
 	private static final String SOAP_REGISTRAR_PEDIDO = NAMESPACE+METHOD_REGISTRARPEDIDO;
+	private static final String SOAP_OBTENER_PEDIDOS = NAMESPACE+METHOD_OBTENERPEDIDOS;
+	
+	
 	
 	private SoapObject request=null;
 	private SoapSerializationEnvelope envelope=null;
@@ -983,7 +987,7 @@ public class Sincronizador {
 									return ls;
 								}
 									
-	public List<MedioPago> crearListaMedioPagos(String strJson){
+				public List<MedioPago> crearListaMedioPagos(String strJson){
 									List<MedioPago> ls= new ArrayList<MedioPago>();
 									//se crea el objeto que ayuda deserealizar la cadena JSON
 											gson = new Gson();
@@ -1007,7 +1011,7 @@ public class Sincronizador {
 		
 		 requestPedido = new SoapObject(NAMESPACE, METHOD_REGISTRARPEDIDO);
 		 requestPedido.addProperty("strPedidoJSON", json);		 
-		// Log.i("json Pedido: ",json);
+		 Log.i("json Pedido: ",json);
 		 envelopePedido = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		 envelopePedido.dotNet = true;
 		 envelopePedido.setOutputSoapObject(requestPedido);
@@ -1037,4 +1041,59 @@ public class Sincronizador {
 		
 		
 	}
+	
+	// obtener pedidos
+	
+	public List<Pedido> obtenerPedidos(){
+		List<Pedido> ls= null;
+		request = new SoapObject(NAMESPACE, METHOD_OBTENERPEDIDOS);
+		//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//		peticion SOAP y permitir viajar el mensaje por la nube
+//		el constructor recibe la version de SOAP
+		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+		//Se envuelve la peticion soap
+		envelope.setOutputSoapObject(request);
+		
+		//Objeto que representa el modelo de transporte
+		//Recibe la URL del ws
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_OBTENER_PEDIDOS, envelope);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+			
+			String  strJSON = resultsRequestSOAP.toString();
+			
+			ls =  crearListaPedidos(strJSON);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ls;
+	}
+		
+	public List<Pedido> crearListaPedidos(String strJson){
+		List<Pedido> ls= new ArrayList<Pedido>();
+		//se crea el objeto que ayuda deserealizar la cadena JSON
+				gson = new Gson();
+				//Obtenemos el tipo de un ArrayList<AndroidSO>
+				Type lstT = new TypeToken< ArrayList<Pedido>>(){}.getType();
+				ls = gson.fromJson(strJson, lstT);
+		return ls;
+	}
+
+	
+	
+	
+	
 }

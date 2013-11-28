@@ -80,6 +80,19 @@ public class DetallePedidoDAO {
 		 return ent;
 	 }
 	 
+	 
+	 public DetallePedido crear(DetallePedido ent){
+		 DetallePedido nuevo = null;
+		 ContentValues values = new ContentValues();
+		 values.put("idPedido", ent.getIdPedido());
+		 values.put("codigoProducto", ent.getCodigoProducto());
+		 values.put("precioUnitario", ent.getPrecioUnitario());
+		 database.insert(DetallePedido.class.getSimpleName(), null, values);
+		 nuevo=  buscarPorID(ent.getIdPedido(), ent.getCodigoProducto());
+		 
+		 return nuevo;
+	 }
+	 
 	 public DetallePedido actualizar(DetallePedido ent){
 		 DetallePedido nuevo = null;
 		 ContentValues values = new ContentValues();

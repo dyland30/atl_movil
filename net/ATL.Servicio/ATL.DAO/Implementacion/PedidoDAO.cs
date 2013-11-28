@@ -14,11 +14,11 @@ namespace ATL.DAO.Implementacion
         public long guardarPedido(Entidad.Pedido p)
         {
             long codigoPedido=0;
-            DateTime fecha =  DateTime.ParseExact(p.strfechaIngresoPedido,"yyyy-mm-dd hh:mm",CultureInfo.InvariantCulture);
+            DateTime fecha =  DateTime.ParseExact(p.strfechaIngresoPedido,"yyyy-MM-dd HH:mm",CultureInfo.InvariantCulture);
             
             DBHelper helper = DBHelper.GetInstance();
             DataTable dt = helper.CargarDataTableProc("USP_PEDIDO_INS",fecha, p.importePedido, p.codigoFormaPago, p.instruccionesEspeciales, 
-                p.codigoEmpresaCarga,0.0, p.aceptaRetencionPedido,p.estaRetenidoPedido,p.faltaImportePedido,p.faltaStockPedido,p.estadoPedido,p.codigoVisita);
+                p.codigoEmpresaCarga,0.0, p.aceptaRetencionPedido,p.estaRetenidoPedido,p.faltaImportePedido,p.faltaStockPedido,p.estadoPedido,p.codigoVisita,p.codigoMovil);
 
             if (dt == null)
             {
@@ -43,7 +43,13 @@ namespace ATL.DAO.Implementacion
 
         public System.Data.IDataReader obtenerPedidos()
         {
-            throw new NotImplementedException();
+            DBHelper helper = DBHelper.GetInstance();
+            IDataReader reader = helper.CargarDataReaderProc("usp_pedido_sel");
+            if (reader == null)
+            {
+                throw helper.getErrorReal();
+            }
+            return reader;
         }
 
         public void actualizarPedido(Entidad.Pedido p)
@@ -53,7 +59,7 @@ namespace ATL.DAO.Implementacion
             DBHelper helper = DBHelper.GetInstance();
          
             int resp = helper.Ejecute("usp_pedido_update", p.codigoPedido, p.importePedido, p.codigoFormaPago, p.instruccionesEspeciales,
-                p.codigoEmpresaCarga, p.aceptaRetencionPedido, p.estaRetenidoPedido, p.faltaImportePedido, p.faltaStockPedido, p.estadoPedido);
+                p.codigoEmpresaCarga, p.aceptaRetencionPedido, p.estaRetenidoPedido, p.faltaImportePedido, p.faltaStockPedido, p.estadoPedido, p.codigoMovil);
             if (resp == -2)
             {
                 throw helper.getErrorReal();

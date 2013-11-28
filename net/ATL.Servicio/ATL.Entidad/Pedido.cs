@@ -34,7 +34,7 @@ namespace ATL.Entidad
         public String strfechaIngresoPedido { get; set; }
         public Boolean faltaImportePedido { get; set; }
         public Boolean faltaStockPedido { get; set; }
-
+        public String codigoMovil { get; set; }
 
 
         public List<DetallePedido> detalles;

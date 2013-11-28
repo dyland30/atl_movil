@@ -389,6 +389,28 @@ namespace ATL.Servicio
         }
 
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerPedidos()
+        {
+            try
+            {
+                IPedidoBL pedidoBL = new PedidoBL();
+                List<Pedido> ls = pedidoBL.obtenerPedidos();
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
+
+
 
         [WebMethod]
         public String ping()

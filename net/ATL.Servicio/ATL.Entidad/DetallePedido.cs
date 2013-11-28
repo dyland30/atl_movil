@@ -10,7 +10,7 @@ namespace ATL.Entidad
         public long idPedido { get; set; }
         public long codigoPedido { get; set; }
         public long codigoProducto { get; set; }
-        public double precioUnitario { get; set; }
+        public decimal precioUnitario { get; set; }
         public List<TallaPedido> tallas { get; set; }
 	
     }

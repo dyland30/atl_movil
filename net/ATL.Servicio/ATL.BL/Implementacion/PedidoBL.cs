@@ -107,7 +107,31 @@ namespace ATL.BL.Implementacion
 
         public List<Pedido> obtenerPedidos()
         {
-            throw new NotImplementedException();
+            List<Pedido> ls;
+            IPedidoDAO pedidoDao = new PedidoDAO();
+            IDetallePedidoBL detallePedidoBL = new DetallePedidoBL();
+            ITallaPedidoBL tallaPedidoBL = new TallaPedidoBL();
+
+            ls = EntidadesHelper.ConvertirAEntidades<Pedido>(pedidoDao.obtenerPedidos());
+            // cargar detalles
+            List<Pedido> nuevaLista= new List<Pedido>();
+            foreach(Pedido p in ls){
+                // crear detalles
+                List<DetallePedido> detalles = detallePedidoBL.obtenerDetallesdePedido(p.codigoPedido);
+                List<DetallePedido> nuevosDetalles = new List<DetallePedido>();
+                foreach(DetallePedido det in detalles){
+                    //obtener tallas
+                    List<TallaPedido> tallas = tallaPedidoBL.obtenerTallasPedido(det.codigoPedido, det.codigoProducto);
+                    det.tallas = tallas;
+                    nuevosDetalles.Add(det);
+                }
+                p.detalles = detalles;
+
+                nuevaLista.Add(p);
+            }
+            //cargar tallas
+
+            return nuevaLista;
         }
 
         public Pedido buscarPorCodigo(long codigoPedido)

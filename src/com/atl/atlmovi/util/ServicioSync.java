@@ -6,9 +6,12 @@ import java.util.List;
 
 import com.atl.atlmovil.dao.*;
 import com.atl.atlmovil.entidades.*;
+import com.google.gson.Gson;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -62,7 +65,7 @@ public class ServicioSync extends Service{
 				pullDocumentosPago();
 				pullMedioPago();
 				pullBancos();
-				
+				pullPedidos();
 				pushPedidos();
 			}
 			
@@ -662,12 +665,16 @@ public class ServicioSync extends Service{
 		DetallePedidoDAO dpDao = new DetallePedidoDAO(this);
 		TallaPedidoDAO tpDao = new TallaPedidoDAO(this);
 		ProductoFormaPagoDAO pfDao = new ProductoFormaPagoDAO(this);
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd HH:mm");
+		VisitaDAO viDao = new VisitaDAO(this);
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		
 		try{
 			dao.open();
 			dpDao.open();
 			tpDao.open();
 			pfDao.open();
+			viDao.open();
 			Sincronizador sinc = new Sincronizador();
 			List<Pedido> ls = dao.obtenerNoSincronizados();
 			//test
@@ -690,6 +697,13 @@ public class ServicioSync extends Service{
 					lsDetalles.add(dp);
 				}
 				p.setDetalles(lsDetalles);
+				// obtener visita
+				Visita visita = viDao.buscarPorID(p.getCodigoVisita());
+				String strcodEmp = "000";
+				if(visita!=null){
+					strcodEmp = Cadena.formatearNumero("000", (double)visita.getCodigoEmpleado());
+				}
+				p.setCodigoMovil(Cadena.formatearNumero("0000000000", (double)p.getId())+"-E"+strcodEmp);
 				
 				long codigoPedido=0;
 				int retenido=0;
@@ -723,8 +737,77 @@ public class ServicioSync extends Service{
 			dpDao.close();
 			tpDao.close();
 			pfDao.close();
+			viDao.close();
+ 		}		
+	}
+	
+	
+	public void pullPedidos(){
+		PedidoDAO dao = new PedidoDAO(this);
+		DetallePedidoDAO detalleDao = new DetallePedidoDAO(this);
+		TallaPedidoDAO tpDao = new TallaPedidoDAO(this);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+			dao.open();
+			detalleDao.open();
+			tpDao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Pedido> ls = sinc.obtenerPedidos();
+			if(ls!=null){
+				for(Pedido p : ls){
+					Log.w("Pedido BD_CENTRAL", "cod: "+p.getCodigoPedido());
+					Pedido old = dao.buscarPorCodigoPedido(p.getCodigoPedido());
+					
+					if(old==null){
+						//insertamos en bd
+						
+						if(p.getStrfechaIngresoPedido()!=null && p.getStrfechaIngresoPedido().length()>0 && !p.getStrfechaIngresoPedido().equals("null")) 
+							p.setFechaIngresoPedido(dateFormat.parse(p.getStrfechaIngresoPedido()));
+						else
+							p.setFechaIngresoPedido(dateFormat.parse("1900-01-01"));						
+						
+						p.setEstaSincronizado(true);
+						
+						// insertar cabecera
+						Pedido pnuevo = dao.crear(p);
+						List<DetallePedido> detalles = p.getDetalles();
+						if(detalles!=null && detalles.size()>0){
+							for(DetallePedido det: detalles){
+								det.setIdPedido(pnuevo.getId());
+								
+								for(TallaPedido tp : det.getTallas()){
+									tp.setIdPedido(pnuevo.getId());
+									tpDao.crear(tp);
+									Log.i("Talla Pedido insertada ", "id Pedido: "+tp.getIdPedido()+" id Producto: "+tp.getCodigoProducto()+ "Nro Talla: "+tp.getNumeroTalla());
+									
+								}
+								
+								detalleDao.crear(det);
+								Log.i("Detalle Pedido Insertado", "id Pedido: "+det.getIdPedido()+" Id Producto: "+det.getCodigoProducto());
+								
+							}
+							
+							
+							Log.i("Pedido Insertado", "cod: "+p.getCodigoPedido()+" ID: "+p.getId());
+						}
+						
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullPedido", "err "+ ex.getMessage());
+			ex.printStackTrace();
+		} finally{
+			dao.close();
+			detalleDao.close();
+			tpDao.close();
 		}		
 	}
+	
 	
 	
 	
