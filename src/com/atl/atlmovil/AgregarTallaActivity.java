@@ -79,7 +79,6 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 			cargarTalla();
 		}
 			
-		
 		cargarDatos();
 		
 	}
@@ -104,7 +103,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 	    } 
 	  }
 	  
-	  pdao.close();
+	    pdao.close();
 		proDao.close();
 		tdao.close();
 		tpDao.close();
@@ -114,12 +113,8 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 		TextView lblAgregarTallaCodProducto = (TextView)findViewById(R.id.lblAgregarTallaCodProducto);
 		if(pedido!=null && prod!=null){
 			lblAgregarTallaIdPedido.setText("Nro Pedido: "+Cadena.formatearNumero("0000000000",  (double)pedido.getId()));
-			lblAgregarTallaCodProducto.setText(Cadena.formatearNumero("000000", (double)prod.getCodigoProducto())+" "+prod.getDescripcionProducto());
-			
-			
+			lblAgregarTallaCodProducto.setText(Cadena.formatearNumero("000000", (double)prod.getCodigoProducto())+" "+prod.getDescripcionProducto());	
 		}
-		
-		
 	}
 	
 	private void cargarTalla(){
@@ -180,6 +175,8 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 					if(cant>0){
 						tallaPed.setCantidad(cant);
 						tpDao.crear(tallaPed);
+						pedido.setEstaSincronizado(false);
+						
 						pdao.actualizar(pedido);
 						finish();
 						
@@ -206,6 +203,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 					if(cant>0){
 						tallaPed.setCantidad(cant);
 						tpDao.actualizar(tallaPed);
+						pedido.setEstaSincronizado(false);
 						pdao.actualizar(pedido);
 						finish();
 					} else{
@@ -222,9 +220,7 @@ public class AgregarTallaActivity extends Activity implements OnClickListener{
 			mostrarMensaje("Error", "No se pudo agregar la talla seleccionada:  " +ex.getMessage() );
 			
 		} 
-		
-		
-	}
+}
 	
 	
 public void mostrarMensaje( String titulo, String mensaje){

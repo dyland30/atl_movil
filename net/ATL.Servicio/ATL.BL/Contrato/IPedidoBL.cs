@@ -11,6 +11,6 @@ namespace ATL.BL.Contrato
         Pedido registrarPedido(Pedido pedido);
         List<Pedido> obtenerPedidos();
         Pedido buscarPorCodigo(long codigoPedido);
-        void gestionarRetenciones();
+        void gestionarRetenciones(long idPedido);
     }
 }

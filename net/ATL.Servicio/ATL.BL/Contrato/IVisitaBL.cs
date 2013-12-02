@@ -9,5 +9,6 @@ namespace ATL.BL.Contrato
     public interface IVisitaBL
     {
         List<Visita> obtenerVisitas();
+        void actualizarEstadoVisita(Visita vi);
     }
 }

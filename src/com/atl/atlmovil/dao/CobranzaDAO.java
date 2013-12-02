@@ -52,6 +52,18 @@ public class CobranzaDAO {
 		 return ls;
 	 }
 	 
+	 public List<Cobranza> obtenerNoSincronizados(){
+		 List<Cobranza> ls = new ArrayList<Cobranza>();
+		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " estaSincronizado =0",null, null,null,null);
+		 cursor.moveToFirst();
+		 while(!cursor.isAfterLast()){
+			 Cobranza ent = cursorToEnt(cursor);
+			 ls.add(ent);
+			 cursor.moveToNext();
+		 }
+		 cursor.close();
+		 return ls;
+	 }
 	 public List<Cobranza> buscarPorVisita(long codigoVisita){
 		 List<Cobranza> ls = new ArrayList<Cobranza>();
 		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " codigoVisita = '"+codigoVisita+"'",null, null,null,null);
@@ -242,6 +254,18 @@ public class CobranzaDAO {
 	 public Cobranza buscarPorID(long id){
 		 Cobranza ent = null;
 		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " id = "+id,null,null,null,null);
+		 if(cursor!=null && cursor.getCount()>0){
+			 cursor.moveToFirst();
+			 ent = cursorToEnt(cursor);
+			
+		 }
+		 cursor.close();
+		 return ent;
+	 }
+	 
+	 public Cobranza buscarPorCodigoCobranza(long id){
+		 Cobranza ent = null;
+		 Cursor cursor = database.query(Cobranza.class.getSimpleName(), allColumns, " codigoCobranza = "+id,null,null,null,null);
 		 if(cursor!=null && cursor.getCount()>0){
 			 cursor.moveToFirst();
 			 ent = cursorToEnt(cursor);

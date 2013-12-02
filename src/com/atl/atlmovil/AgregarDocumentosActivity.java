@@ -88,7 +88,6 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 			lblNroCobranza.setText("Nro de Cobranza: "+Cadena.formatearNumero("0000000000",(double)cobranza.getId() ));
 			
 		}
-		cargarTipoDocumento();
 		if(operacion.equals("editar")){
 			amortizacion = amDao.buscarPorID(idAmortizacion);
 			documento = docDao.buscarPorID(amortizacion.getCodigoDocumentoPago());
@@ -154,7 +153,7 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 		}
 		
 	}
-	
+	/*
 	private void cargarTipoDocumento(){
 		//
 		String[] estados = 	{"FACTURA","BOLETA","LETRA"};
@@ -165,7 +164,7 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 		
 		
 	}
-	
+	*/
 	private void cargarDatos(){
 		if(amortizacion !=null){
 			EditText txtImporteAmortizar = (EditText)findViewById(R.id.txtImporteAmortizarAgregarDocs);
@@ -187,7 +186,8 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 			EditText txtDocumentoPago = (EditText)findViewById(R.id.txtDocumentoPagoAgregarDoc);
 			EditText txtFechaVencimiento = (EditText)findViewById(R.id.txtFechaVencimientoAgregarDocumentos);
 			EditText txtImportePendiente = (EditText)findViewById(R.id.txtImportePendienteAgregarDoc);
-		
+			EditText txtTipoDocumento = (EditText)findViewById(R.id.txtTipoDocumentoAgregarDoc);
+			txtTipoDocumento.setText(documento.getTipoDocumentoPago());
 			txtDocumentoPago.setText(documento.getReferenciaDocumentoPago());
 			txtFechaVencimiento.setText(dateFormat.format(documento.getFechaVencimientoDocumentoPago()));
 			txtImportePendiente.setText(Cadena.formatearNumero("0.00", documento.getImportePendienteDocumentoPago() ));
@@ -304,7 +304,6 @@ public class AgregarDocumentosActivity extends Activity implements OnClickListen
 	@Override
 	protected void onResume() {
 		abrirConexion();
-		cargarTipoDocumento();
 		cargarDatos();
 		super.onResume();
 	}

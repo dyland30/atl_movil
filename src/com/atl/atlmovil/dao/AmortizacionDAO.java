@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.atl.atlmovil.entidades.Amortizacion;
+import com.atl.atlmovil.entidades.Cobranza;
 import com.atl.atlmovil.entidades.DocumentoPago;
 
 public class AmortizacionDAO {
@@ -20,7 +21,7 @@ public class AmortizacionDAO {
 	
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
-	private String[] allColumns = {"id","idCobranza","codigoDocumentoPago","importeAmortizacion","anotacionAmortizacion"};
+	private String[] allColumns = {"id","idCobranza","codigoDocumentoPago","importeAmortizacion","anotacionAmortizacion","codigoAmortizacion"};
 
 	public AmortizacionDAO(Context context){
 		contexto = context;
@@ -69,7 +70,7 @@ public class AmortizacionDAO {
 		 
 	 }
 	
-	 public Amortizacion crear(long idCobranza,long codigoDocumentoPago,double importeAmortizacion,String anotacionAmortizacion){
+	 public Amortizacion crear(long idCobranza,long codigoDocumentoPago,double importeAmortizacion,String anotacionAmortizacion, long codigoAmortizacion){
 		
 		 Amortizacion ent = null;
 		 ContentValues values = new ContentValues();
@@ -78,6 +79,7 @@ public class AmortizacionDAO {
 		 values.put("codigoDocumentoPago", codigoDocumentoPago);
 		 values.put("importeAmortizacion", importeAmortizacion);
 		 values.put("anotacionAmortizacion", anotacionAmortizacion);
+		 values.put("codigoAmortizacion", codigoAmortizacion);
 		 
 		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
 		 
@@ -127,6 +129,7 @@ public class AmortizacionDAO {
 		 values.put("codigoDocumentoPago", ent.getCodigoDocumentoPago());
 		 values.put("importeAmortizacion", ent.getImporteAmortizacion());
 		 values.put("anotacionAmortizacion", ent.getAnotacionAmortizacion());
+		 values.put("codigoAmortizacion", ent.getCodigoAmortizacion());
 		 
 		 long insertId = database.insert(Amortizacion.class.getSimpleName(), null, values);
 		 nuevo=buscarPorID(insertId);
@@ -138,6 +141,11 @@ public class AmortizacionDAO {
 		 CobranzaDAO cobDao = new CobranzaDAO(contexto);
 		 cobDao.open();
 		 try{
+			 //obtener cobranza y establecer estado no sincronizado
+			 
+			 Cobranza cob = cobDao.buscarPorID(idCobranza);
+			 cob.setEstaSincronizado(false);
+			 cobDao.actualizar(cob);
 			 cobDao.actualizarImporteCobranza(idCobranza);
 		 }
 		 catch(Exception ex){
@@ -160,7 +168,7 @@ public class AmortizacionDAO {
 		 values.put("codigoDocumentoPago", ent.getCodigoDocumentoPago());
 		 values.put("importeAmortizacion", ent.getImporteAmortizacion());
 		 values.put("anotacionAmortizacion", ent.getAnotacionAmortizacion());
-		 
+		 values.put("codigoAmortizacion", ent.getCodigoAmortizacion());
 		 database.update(Amortizacion.class.getSimpleName(), values, " id = "+ent.getId(), null);
 		 nuevo=buscarPorID(ent.getId());
 		 actualizarImporteCobranza(nuevo.getIdCobranza());
@@ -190,7 +198,7 @@ public class AmortizacionDAO {
 		    	ent.setCodigoDocumentoPago(cursor.getInt(2));
 		    	ent.setImporteAmortizacion(cursor.getDouble(3));
 		    	ent.setAnotacionAmortizacion(cursor.getString(4));
-		    	
+		    	ent.setCodigoAmortizacion(cursor.getLong(5));
 		    	
 		    }
 		    

@@ -6,6 +6,7 @@ public class Amortizacion {
 	private long codigoDocumentoPago;
 	private double importeAmortizacion;
 	private String anotacionAmortizacion;
+	private long codigoAmortizacion;
 	
 	
 	public long getId() {
@@ -37,6 +38,12 @@ public class Amortizacion {
 	}
 	public void setAnotacionAmortizacion(String anotacionAmortizacion) {
 		this.anotacionAmortizacion = anotacionAmortizacion;
+	}
+	public long getCodigoAmortizacion() {
+		return codigoAmortizacion;
+	}
+	public void setCodigoAmortizacion(long codigoAmortizacion) {
+		this.codigoAmortizacion = codigoAmortizacion;
 	}
 	
 }

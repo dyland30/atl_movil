@@ -21,7 +21,7 @@ namespace ATL.Sitio
             lblIndicador.Text = "Procesando Retenciones ....";
             IPedidoBL pedidoBL = new PedidoBL();
 
-            pedidoBL.gestionarRetenciones();
+            pedidoBL.gestionarRetenciones(0);
 
             lblIndicador.Text = "El Procesamiento de las Retenciones ha concluido satisfactoriamente";
 

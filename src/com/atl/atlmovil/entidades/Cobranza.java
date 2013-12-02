@@ -15,7 +15,8 @@ public class Cobranza {
 	private long codigoVisita;
 	private Boolean esAutoDistribuido;  // 1 -> si, 0 --> no
 	private List<Amortizacion> amortizaciones;
-	
+	private String strfechaCobranza;
+	private String codigoMovil;
 	public long getId() {
 		return id;
 	}
@@ -81,6 +82,18 @@ public class Cobranza {
 	}
 	public void setAmortizaciones(List<Amortizacion> amortizaciones) {
 		this.amortizaciones = amortizaciones;
+	}
+	public String getStrfechaCobranza() {
+		return strfechaCobranza;
+	}
+	public void setStrfechaCobranza(String strfechaCobranza) {
+		this.strfechaCobranza = strfechaCobranza;
+	}
+	public String getCodigoMovil() {
+		return codigoMovil;
+	}
+	public void setCodigoMovil(String codigoMovil) {
+		this.codigoMovil = codigoMovil;
 	}
 	
 	

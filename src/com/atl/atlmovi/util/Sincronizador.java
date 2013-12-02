@@ -25,7 +25,7 @@ public class Sincronizador {
 	
 	private static final String NAMESPACE = "http://atl.com/";
 	
-	private static String URL="http://172.24.3.15:82/AtlServicio/Servicios.asmx";
+	private static String URL="http://192.168.1.100:82/AtlServicio/Servicios.asmx";
 	//
 	private static final String METHOD_OBTENERUSUARIOS = "obtenerUsuarios";
 	private static final String METHOD_OBTENERPERSONAS = "obtenerPersonas";
@@ -46,8 +46,9 @@ public class Sincronizador {
 	private static final String METHOD_OBTENERMEDIOPAGO = "obtenerMedioPagos";
 	private static final String METHOD_REGISTRARPEDIDO = "registrarPedido";
 	private static final String METHOD_OBTENERPEDIDOS = "obtenerPedidos";
-	
-	
+	private static final String METHOD_ACTUALIZARVISITA = "actualizarVisita";
+	private static final String METHOD_OBTENERCOBRANZAS = "obtenerCobranzas";
+	private static final String METHOD_REGISTRARCOBRANZA = "registrarCobranza";
 	
 	
 	private static final String METHOD_ECHO = "echo";
@@ -74,8 +75,9 @@ public class Sincronizador {
 	private static final String SOAP_ECHO =NAMESPACE+METHOD_ECHO;
 	private static final String SOAP_REGISTRAR_PEDIDO = NAMESPACE+METHOD_REGISTRARPEDIDO;
 	private static final String SOAP_OBTENER_PEDIDOS = NAMESPACE+METHOD_OBTENERPEDIDOS;
-	
-	
+	private static final String SOAP_ACTUALIZAR_VISITA = NAMESPACE+METHOD_ACTUALIZARVISITA;
+	private static final String SOAP_REGISTRAR_COBRANZA = NAMESPACE+METHOD_REGISTRARCOBRANZA;
+	private static final String SOAP_OBTENER_COBRANZA = NAMESPACE+METHOD_OBTENERCOBRANZAS;
 	
 	private SoapObject request=null;
 	private SoapSerializationEnvelope envelope=null;
@@ -1092,6 +1094,145 @@ public class Sincronizador {
 		return ls;
 	}
 
+	
+
+	public List<Cobranza> obtenerCobranzas(){
+		List<Cobranza> ls= null;
+		request = new SoapObject(NAMESPACE, METHOD_OBTENERCOBRANZAS);
+		//Se crea un objeto SoapSerializationEnvelope para serealizar la
+//		peticion SOAP y permitir viajar el mensaje por la nube
+//		el constructor recibe la version de SOAP
+		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+		//Se envuelve la peticion soap
+		envelope.setOutputSoapObject(request);
+		
+		//Objeto que representa el modelo de transporte
+		//Recibe la URL del ws
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_OBTENER_COBRANZA, envelope);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+			
+			String  strJSON = resultsRequestSOAP.toString();
+			
+			ls =  crearListaCobranzas(strJSON);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return ls;
+	}
+		
+	public List<Cobranza> crearListaCobranzas(String strJson){
+		List<Cobranza> ls= new ArrayList<Cobranza>();
+		//se crea el objeto que ayuda deserealizar la cadena JSON
+				gson = new Gson();
+				//Obtenemos el tipo de un ArrayList<AndroidSO>
+				Type lstT = new TypeToken< ArrayList<Cobranza>>(){}.getType();
+				ls = gson.fromJson(strJson, lstT);
+		return ls;
+	}
+	
+// registrar cobranza
+	
+		public String registrarCobranza(Cobranza Cobranza){
+			
+			gson = new Gson();
+			String json = gson.toJson(Cobranza);
+			String respuesta = "";
+			
+			 SoapObject requestCobranza=null;
+			 SoapSerializationEnvelope envelopeCobranza=null;
+			 SoapPrimitive  resultsRequestSOAPCobranza=null;
+			
+			 requestCobranza = new SoapObject(NAMESPACE, METHOD_REGISTRARCOBRANZA);
+			 requestCobranza.addProperty("strJson", json);		 
+			 //Log.i("json Cobranza: ",json);
+			 envelopeCobranza = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+			 envelopeCobranza.dotNet = true;
+			 envelopeCobranza.setOutputSoapObject(requestCobranza);
+			HttpTransportSE transporte = new HttpTransportSE(URL);
+			
+			try {	
+				//Hace la llamada al ws
+				transporte.call(SOAP_REGISTRAR_COBRANZA, envelopeCobranza);
+				
+				//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+				//de la peticion
+				resultsRequestSOAPCobranza = (SoapPrimitive)envelopeCobranza.getResponse();
+				if(resultsRequestSOAPCobranza!=null){
+					respuesta = resultsRequestSOAPCobranza.toString();
+				}
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				respuesta = "";
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				respuesta = "";
+			}
+			
+			return respuesta;
+			
+			
+		}
+	
+	
+	
+public String actualizarVisita(Visita vi){
+		
+		gson = new Gson();
+		String json = gson.toJson(vi);
+		String respuesta = "";
+		
+		 SoapObject requestVisita=null;
+		 SoapSerializationEnvelope envelopeVisita=null;
+		 SoapPrimitive  resultsRequestSOAPVisita=null;
+		
+		 requestVisita = new SoapObject(NAMESPACE, METHOD_ACTUALIZARVISITA);
+		 requestVisita.addProperty("strJSON", json);		 
+		 //Log.i("json Visita: ",json);
+		 envelopeVisita = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		 envelopeVisita.dotNet = true;
+		 envelopeVisita.setOutputSoapObject(requestVisita);
+		HttpTransportSE transporte = new HttpTransportSE(URL);
+		
+		try {	
+			//Hace la llamada al ws
+			transporte.call(SOAP_ACTUALIZAR_VISITA, envelopeVisita);
+			
+			//Se crea un objeto SoapPrimitive y se obtiene la respuesta 
+			//de la peticion
+			resultsRequestSOAPVisita = (SoapPrimitive)envelopeVisita.getResponse();
+			if(resultsRequestSOAPVisita!=null){
+				respuesta = resultsRequestSOAPVisita.toString();
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			respuesta = "";
+		}
+		
+		return respuesta;
+		
+		
+	}
 	
 	
 	

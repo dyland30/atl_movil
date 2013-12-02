@@ -109,7 +109,7 @@ public class RegistrarCobranzasActivity extends ListActivity implements OnClickL
 	
 	private void cargarCmbEstado(){
 		
-		String[] estados = 	{"Ingresado","Retenido","Anulado"};
+		String[] estados = 	{"Ingresado","Aprobado","Retenido","Anulado"};
 		Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbEstadoCobranzaFiltro);
 		ArrayAdapter<String> formaPagoAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, estados);

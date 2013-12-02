@@ -362,6 +362,8 @@ namespace ATL.Servicio
         }
 
 
+
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public String registrarPedido(String strPedidoJSON)
@@ -375,7 +377,7 @@ namespace ATL.Servicio
                 IPedidoBL pedidoBL = new PedidoBL();
 
                 Pedido nuevo = pedidoBL.registrarPedido(ped);
-                string retJSON = nuevo.codigoPedido+","+(nuevo.estaRetenidoPedido? 1 : 0);
+                string retJSON = nuevo.codigoPedido+","+(nuevo.estaRetenidoPedido? 1 : 0)+","+nuevo.estadoPedido;
 
 
 
@@ -387,6 +389,30 @@ namespace ATL.Servicio
 
             }
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String actualizarVisita(String strJson)
+        {
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                Visita vi = js.Deserialize<Visita>(strJson);
+
+                IVisitaBL visitaBL = new VisitaBL();
+
+                visitaBL.actualizarEstadoVisita(vi);
+                string retJSON = js.Serialize(vi);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
+
 
 
         [WebMethod]
@@ -409,8 +435,48 @@ namespace ATL.Servicio
             }
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String obtenerCobranzas()
+        {
+            try
+            {
+                ICobranzaBL cobranzaBL = new CobranzaBL();
+                List<Cobranza> ls = cobranzaBL.obtenerCobranzas();
 
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(ls);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
 
+            }
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public String registrarCobranza(String strJson)
+        {
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+
+                Cobranza cob = js.Deserialize<Cobranza>(strJson);
+
+                ICobranzaBL cobranzaBL = new CobranzaBL();
+
+                Cobranza nuevo = cobranzaBL.registrarCobranza(cob);
+                string retJSON = js.Serialize(nuevo);
+                return retJSON;
+            }
+            catch (Exception ex)
+            {
+                return null;
+
+            }
+        }
 
         [WebMethod]
         public String ping()

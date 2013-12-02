@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IAmortizacionDAO.cs" />
     <Compile Include="Contrato\IBancoDAO.cs" />
     <Compile Include="Contrato\IClienteDAO.cs" />
+    <Compile Include="Contrato\ICobranzaDAO.cs" />
     <Compile Include="Contrato\IDetallePedidoDAO.cs" />
     <Compile Include="Contrato\IDocumentoPagoDAO.cs" />
     <Compile Include="Contrato\IEmpleadoDAO.cs" />
@@ -61,8 +63,10 @@
     <Compile Include="Contrato\ITipoVisitaDAO.cs" />
     <Compile Include="Contrato\IUsuarioDAO.cs" />
     <Compile Include="Contrato\IVisitaDAO.cs" />
+    <Compile Include="Implementacion\AmortizacionDAO.cs" />
     <Compile Include="Implementacion\BancoDAO.cs" />
     <Compile Include="Implementacion\ClienteDAO.cs" />
+    <Compile Include="Implementacion\CobranzaDAO.cs" />
     <Compile Include="Implementacion\DBHelper.cs" />
     <Compile Include="Implementacion\DetallePedidoDAO.cs" />
     <Compile Include="Implementacion\DocumentoPagoDAO.cs" />

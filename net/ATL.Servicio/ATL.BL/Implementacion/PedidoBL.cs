@@ -28,71 +28,88 @@ namespace ATL.BL.Implementacion
 
                     if (pedido.detalles != null && pedido.detalles.Count > 0)
                     {
-                        // guardar pedido, en caso que el pedido venga sin codigo de pedido
-                        // si tiene codigo de pedido se debe actualizar los flags y el importe
-                        pedido.estaRetenidoPedido = true;
-                        pedido.faltaStockPedido = true;
-                        pedido.faltaImportePedido = true;
 
-                        if (pedido.codigoPedido > 0)
-                        {
-                            // actualizar
-                            codigoPedido = pedido.codigoPedido;
-                            pedidoDAO.actualizarPedido(pedido);
-                        }
-                        else { 
-                            //crear
-                            codigoPedido = pedidoDAO.guardarPedido(pedido);
-                        }
-                        //agregar detalles al pedido
-                        foreach (DetallePedido det in pedido.detalles)
-                        {
-                            if (det.tallas != null && det.tallas.Count > 0)
+                        var tallas = from detalle in pedido.detalles
+                                     from talla in detalle.tallas
+                                     select talla;
+                        List<TallaPedido> lst = tallas.ToList<TallaPedido>();
+                        
+                        if(lst.Count>0){
+
+                            // guardar pedido, en caso que el pedido venga sin codigo de pedido
+                            // si tiene codigo de pedido se debe actualizar los flags y el importe
+                            // verificar que tenga tallas antes de 
+                            pedido.estaRetenidoPedido = true;
+                            pedido.faltaStockPedido = true;
+                            pedido.faltaImportePedido = true;
+
+                            if (pedido.codigoPedido > 0)
                             {
-                                 det.codigoPedido = codigoPedido;
-                                //si el detalle no existe crearlo, caso contrario modificarlo
-                                //obtener detalle 
-                                 DetallePedido detNuevo = detallePedidoBL.buscarPorID(det.codigoPedido, det.codigoProducto);
-                                 if (detNuevo == null)
-                                 {
-                                     //guardar detalle
-                                     detallePedidoBL.guardarDetallePedido(det);
-                                 }
-                                 else { 
-                                    // actualizar detalle
-                                     detallePedidoBL.actualizarDetallePedido(det);
-                                 }
-
-                                foreach (TallaPedido tp in det.tallas)
+                                // actualizar
+                                codigoPedido = pedido.codigoPedido;
+                                pedidoDAO.actualizarPedido(pedido);
+                            }
+                            else
+                            {
+                                //crear
+                                codigoPedido = pedidoDAO.guardarPedido(pedido);
+                            }
+                            //agregar detalles al pedido
+                            foreach (DetallePedido det in pedido.detalles)
+                            {
+                                if (det.tallas != null && det.tallas.Count > 0)
                                 {
-                                    // si la talla ya existe, modificar su cantidad, caso contrario crearla
-                                    tp.codigoPedido = codigoPedido;
-                                    TallaPedido tpNuevo = tallaPedidoBL.buscarPorID(tp.codigoPedido, tp.codigoProducto, tp.numeroTalla);
-                                    if (tpNuevo == null)
+                                    det.codigoPedido = codigoPedido;
+                                    //si el detalle no existe crearlo, caso contrario modificarlo
+                                    //obtener detalle 
+                                    DetallePedido detNuevo = detallePedidoBL.buscarPorID(det.codigoPedido, det.codigoProducto);
+                                    if (detNuevo == null)
                                     {
-                                        //crear
-                                        tallaPedidoBL.guardarTallaPedido(tp);
+                                        //guardar detalle
+                                        detallePedidoBL.guardarDetallePedido(det);
                                     }
-                                    else { 
-                                        //actualizar
-                                        tallaPedidoBL.actualizarTallaPedido(tp);
+                                    else
+                                    {
+                                        // actualizar detalle
+                                        detallePedidoBL.actualizarDetallePedido(det);
+                                    }
+
+                                    foreach (TallaPedido tp in det.tallas)
+                                    {
+                                        // si la talla ya existe, modificar su cantidad, caso contrario crearla
+                                        tp.codigoPedido = codigoPedido;
+                                        TallaPedido tpNuevo = tallaPedidoBL.buscarPorID(tp.codigoPedido, tp.codigoProducto, tp.numeroTalla);
+                                        if (tpNuevo == null)
+                                        {
+                                            //crear
+                                            tallaPedidoBL.guardarTallaPedido(tp);
+                                        }
+                                        else
+                                        {
+                                            //actualizar
+                                            tallaPedidoBL.actualizarTallaPedido(tp);
+                                        }
+
                                     }
 
                                 }
-
                             }
-                        }
 
-                        //ejecutar proceso de retencion
+                            //ejecutar proceso de retencion
 
-                        pedido.estaRetenidoPedido = flgRetenido;
-                        try {
-                            gestionarRetenciones();
-                        }catch(Exception ex){
-                            // no hacer nada si se cae en el proceso de gestionar retenciones
+                            pedido.estaRetenidoPedido = flgRetenido;
+                            try
+                            {
+                                gestionarRetenciones(pedido.codigoPedido);
+                            }
+                            catch (Exception ex)
+                            {
+                                // no hacer nada si se cae en el proceso de gestionar retenciones
+                            }
+                            // buscar pedido y verificar estado
+                            nuevo = buscarPorCodigo(codigoPedido);
+
                         }
-                        // buscar pedido y verificar estado
-                        nuevo = buscarPorCodigo(codigoPedido);
 
                     }
                 
@@ -153,10 +170,10 @@ namespace ATL.BL.Implementacion
         }
 
 
-        public void gestionarRetenciones()
+        public void gestionarRetenciones(long idPedido)
         {
             IPedidoDAO pedidoDAO = new PedidoDAO();
-            pedidoDAO.gestionarRetenciones();
+            pedidoDAO.gestionarRetenciones(idPedido);
 
         }
     }

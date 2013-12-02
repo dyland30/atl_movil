@@ -198,7 +198,7 @@ public class NuevoPedido extends Activity implements OnClickListener {
 	}
 	private void cargarCmbEstadoPedido(){
 		
-		String[] estados = 	{"Ingresado","Retenido","Anulado"};
+		String[] estados = 	{"Ingresado","Retenido","Anulado", "Aprobado"};
 		Spinner cmbFormaPago = (Spinner)findViewById(R.id.cmbEstadoNuevaCobranza);
 		ArrayAdapter<String> formaPagoAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, estados);

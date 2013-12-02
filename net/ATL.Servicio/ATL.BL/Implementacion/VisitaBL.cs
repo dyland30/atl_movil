@@ -19,5 +19,22 @@ namespace ATL.BL
             return ls;
 
         }
+        public void actualizarEstadoVisita(Visita vi)
+        {
+            List<Visita> ls;
+            IVisitaDAO visitaDAO = new VisitaDAO();
+            ls = EntidadesHelper.ConvertirAEntidades<Visita>(visitaDAO.obtenerVisitas());
+            // obtener visita 
+
+            Visita old = (from v in ls
+                         where v.codigoVisita == vi.codigoVisita
+                         select v).ToList().First();
+
+            if (old.codigoEstadoVisita != vi.codigoEstadoVisita) {
+                visitaDAO.actualizarEstadoVisita(vi);
+            }
+
+            
+        }
     }
 }

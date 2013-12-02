@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contrato\IAmortizacionBL.cs" />
     <Compile Include="Contrato\IBancoBL.cs" />
+    <Compile Include="Contrato\ICobranzaBL.cs" />
     <Compile Include="Contrato\IDetallePedidoBL.cs" />
     <Compile Include="Contrato\IDocumentoPagoBL.cs" />
     <Compile Include="Contrato\IEmpleadoBL.cs" />
@@ -60,8 +62,10 @@
     <Compile Include="Contrato\ITipoVisitaBL.cs" />
     <Compile Include="Contrato\IUsuarioBL.cs" />
     <Compile Include="Contrato\IVisitaBL.cs" />
+    <Compile Include="Implementacion\AmortizacionBL.cs" />
     <Compile Include="Implementacion\BancoBL.cs" />
     <Compile Include="Implementacion\ClienteBL.cs" />
+    <Compile Include="Implementacion\CobranzaBL.cs" />
     <Compile Include="Implementacion\DetallePedidoBL.cs" />
     <Compile Include="Implementacion\DocumentoPagoBL.cs" />
     <Compile Include="Implementacion\EmpleadoBL.cs" />

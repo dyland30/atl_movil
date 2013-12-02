@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 
@@ -38,6 +39,12 @@ public class ServicioSync extends Service{
 	public void ejecutarProceso(){
 		Sincronizador sinc = new Sincronizador();
 		while(true){ // bucle infinito
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			String ping = sinc.ping();
 			
@@ -66,7 +73,11 @@ public class ServicioSync extends Service{
 				pullMedioPago();
 				pullBancos();
 				pullPedidos();
+				pullCobranzas();
 				pushPedidos();
+				pushVisitas();
+				pushCobranzas();
+				
 			}
 			
 		}
@@ -585,18 +596,47 @@ public class ServicioSync extends Service{
 								p.getImporteAmortizadoDocumentoPago(), p.getImporteDescontadoDocumentoPago(), p.getImporteIgvDocumentoPago(), 
 								p.getImporteOriginalDocumentoPago(), p.getImportePendienteDocumentoPago(), p.getPlazoDocumentoPago(), p.getTipoDocumentoPago(), 
 								p.getReferenciaDocumentoPago(), p.getCodigoCliente());
-						
-						
+
 						Log.i("documento pago insertado", "cod: "+p.getCodigoDocumentoPago());
+					} else{
+						// actualizar
+						
+						if(p.getStrfechaEmisionDocumentoPago()!=null && p.getStrfechaEmisionDocumentoPago().length()>0 && !p.getStrfechaEmisionDocumentoPago().equals("null")) 
+							p.setFechaEmisionDocumentoPago(dateFormat.parse(p.getStrfechaEmisionDocumentoPago()));
+						else
+							p.setFechaEmisionDocumentoPago(dateFormat.parse("1900-01-01"));						
+						
+						if(p.getStrfechaVencimientoDocumentoPago()!=null && p.getStrfechaVencimientoDocumentoPago().length()>0 && !p.getStrfechaVencimientoDocumentoPago().equals("null"))
+							p.setFechaVencimientoDocumentoPago(dateFormat.parse(p.getStrfechaVencimientoDocumentoPago()));
+						else
+							p.setFechaVencimientoDocumentoPago(dateFormat.parse("1900-01-01"));
+						
+						String refOld = "";
+						String refNuevo ="";
+						if(old.getReferenciaDocumentoPago()!=null){
+							refOld= old.getReferenciaDocumentoPago().trim();
+						}
+						if(p.getReferenciaDocumentoPago()!=null){
+							refNuevo = p.getReferenciaDocumentoPago().trim();
+							
+						}
+						
+						
+						if(!refOld.equals(refNuevo) || Math.abs(p.getImporteOriginalDocumentoPago() - 
+								old.getImporteOriginalDocumentoPago())>0.1 ){
+							Log.i("documento pago actualizado", "cod: "+p.getCodigoDocumentoPago()+"ref: "
+						+p.getReferenciaDocumentoPago()+" "+p.getImporteOriginalDocumentoPago());
+							dao.actualizar(p);
+						}
 					} 
-					
+	
 				}
 				
 			}
 			
 		} catch(Exception ex){
-			Log.w("pullEmpleado", "err "+ ex.getMessage());
-			//ex.printStackTrace();
+			Log.w("pullDocumentoPago", "err "+ ex.getMessage());
+			ex.printStackTrace();
 		} finally{
 			dao.close();	
 		}		
@@ -667,7 +707,7 @@ public class ServicioSync extends Service{
 		ProductoFormaPagoDAO pfDao = new ProductoFormaPagoDAO(this);
 		VisitaDAO viDao = new VisitaDAO(this);
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		
+		SimpleDateFormat formatoMovil = new SimpleDateFormat("yyyyMMdd");
 		
 		try{
 			dao.open();
@@ -703,16 +743,18 @@ public class ServicioSync extends Service{
 				if(visita!=null){
 					strcodEmp = Cadena.formatearNumero("000", (double)visita.getCodigoEmpleado());
 				}
-				p.setCodigoMovil(Cadena.formatearNumero("0000000000", (double)p.getId())+"-E"+strcodEmp);
+				p.setCodigoMovil("P"+Cadena.formatearNumero("0000000000", (double)p.getId())+"E"+strcodEmp+"F"+formatoMovil.format(p.getFechaIngresoPedido()));
 				
 				long codigoPedido=0;
 				int retenido=0;
+				String estadoPed="Ingresado";
 				String resp = sinc.registrarPedido(p);
 				Log.i("info",resp);
 				if(resp!=null && resp.length()>0){
 					String[] datos = resp.split(",");
 					codigoPedido = Long.parseLong(datos[0]);
 					retenido = Integer.parseInt(datos[1]);
+					estadoPed= datos[2];
 				}
 				if(codigoPedido>0){
 					Log.i("Pedido Registrado", "Codigo Asignado: "+codigoPedido );
@@ -721,11 +763,10 @@ public class ServicioSync extends Service{
 					Boolean estaRet = retenido==1 ? true : false;
 					p.setEstaRetenidoPedido(estaRet);
 					p.setCodigoPedido(codigoPedido);
+					p.setEstadoPedido(estadoPed);
+					
 					dao.actualizar(p);
 				}
-				
-				
-				
 				
 			}
 			
@@ -755,10 +796,11 @@ public class ServicioSync extends Service{
 			List<Pedido> ls = sinc.obtenerPedidos();
 			if(ls!=null){
 				for(Pedido p : ls){
-					Log.w("Pedido BD_CENTRAL", "cod: "+p.getCodigoPedido());
+					//Log.w("Pedido BD_CENTRAL", "cod: "+p.getCodigoPedido());
 					Pedido old = dao.buscarPorCodigoPedido(p.getCodigoPedido());
-					
-					if(old==null){
+					// si no existe el pedido antiguo ademas no tiene codigo móvil
+					if(old==null && (p.getCodigoMovil()==null || p.getCodigoMovil().trim().length()==0)){
+						
 						//insertamos en bd
 						
 						if(p.getStrfechaIngresoPedido()!=null && p.getStrfechaIngresoPedido().length()>0 && !p.getStrfechaIngresoPedido().equals("null")) 
@@ -808,6 +850,164 @@ public class ServicioSync extends Service{
 		}		
 	}
 	
+	
+	public void pullCobranzas(){
+		CobranzaDAO dao = new CobranzaDAO(this);
+		AmortizacionDAO amDao = new AmortizacionDAO(this);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+			dao.open();
+			amDao.open();
+			
+			Sincronizador sinc = new Sincronizador();
+			List<Cobranza> ls = sinc.obtenerCobranzas();
+			if(ls!=null){
+				for(Cobranza p : ls){
+					//Log.w("Cobranza BD_CENTRAL", "cod: "+p.getCodigoCobranza());
+					Cobranza old = dao.buscarPorCodigoCobranza(p.getCodigoCobranza());
+					// si no existe el Cobranza antiguo ademas no tiene codigo móvil
+					if(old==null && (p.getCodigoMovil()==null || p.getCodigoMovil().trim().length()==0)){
+						
+						//insertamos en bd
+						
+						if(p.getStrfechaCobranza()!=null && p.getStrfechaCobranza().length()>0 && !p.getStrfechaCobranza().equals("null")) 
+							p.setFechaCObranza(dateFormat.parse(p.getStrfechaCobranza()));
+						else
+							p.setFechaCObranza(dateFormat.parse("1900-01-01"));						
+						
+						p.setEstaSincronizado(true);
+						
+						// insertar cabecera
+						Cobranza pnuevo = dao.crear(p);
+						//insertar amortizaciones
+						List<Amortizacion> detalles = p.getAmortizaciones();
+						if(detalles!=null && detalles.size()>0){
+							for(Amortizacion det: detalles){
+								det.setIdCobranza(pnuevo.getId());
+								
+								amDao.crear(det);
+								Log.i("Amortizacion insertada", "id Cobranza: "+det.getIdCobranza()+" Id Amortizacion: "+det.getId());
+								
+							}
+							
+							
+							Log.i("Cobranza Insertada", "cod: "+p.getCodigoCobranza()+" ID: "+p.getId());
+						}
+						
+						
+					} 
+					
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pullCobranza", "err "+ ex.getMessage());
+			ex.printStackTrace();
+		} finally{
+			dao.close();
+			amDao.close();
+		}		
+	}
+	
+	public void pushCobranzas(){
+		CobranzaDAO dao = new CobranzaDAO(this);
+		AmortizacionDAO amDao = new AmortizacionDAO(this);
+		VisitaDAO viDao = new VisitaDAO(this);
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat formatoMovil = new SimpleDateFormat("yyyyMMdd");
+		
+		try{
+			dao.open();
+			amDao.open();
+			viDao.open();
+			Sincronizador sinc = new Sincronizador();
+			List<Cobranza> ls = dao.obtenerNoSincronizados();
+			//test
+			for(Cobranza p: ls){
+				//establecer fecha en 
+				if(p.getFechaCObranza()!=null){
+					p.setStrfechaCobranza(dateformat.format(p.getFechaCObranza()));
+				}
+				//cargar detalles
+				List<Amortizacion> lsDetalles = amDao.buscarPorCobranza(p.getId());
+				//cargar tallas
+				
+				
+				p.setAmortizaciones(lsDetalles);
+				
+				// obtener visita
+				Visita visita = viDao.buscarPorID(p.getCodigoVisita());
+				String strcodEmp = "000";
+				if(visita!=null){
+					strcodEmp = Cadena.formatearNumero("000", (double)visita.getCodigoEmpleado());
+				}
+				p.setCodigoMovil("C"+Cadena.formatearNumero("0000000000", (double)p.getId())+"E"+strcodEmp+"F"+formatoMovil.format(p.getFechaCObranza()));
+				
+				long codigoCobranza=0;
+		
+				String resp = sinc.registrarCobranza(p);
+				//Log.i("resp cobranza: ",resp);
+				if(resp!=null && resp.length()>0){
+					Gson gson = new Gson();					
+					Cobranza cob =  gson.fromJson(resp, Cobranza.class);
+					codigoCobranza = cob.getCodigoCobranza();
+					for(Amortizacion am : cob.getAmortizaciones()){
+						amDao.actualizar(am);
+					}
+							
+				}
+				if(codigoCobranza>0){
+					Log.i("Cobranza Registrada", "Codigo Asignado: "+codigoCobranza );
+					//cambiar estado de Cobranza
+					p.setEstaSincronizado(true);
+					p.setCodigoCobranza(codigoCobranza);
+				    p.setEstadoCobranza("Aprobado");
+				    
+					dao.actualizar(p);
+				}
+				
+			}
+			
+		} catch(Exception ex){
+			Log.w("pushCobranza", "err "+ ex.getMessage());
+			ex.printStackTrace();
+		} finally{
+			dao.close();
+			amDao.close();
+			viDao.close();
+ 		}		
+	}
+	
+	public void pushVisitas(){
+		
+		Sincronizador sinc = new Sincronizador();
+		VisitaDAO viDao = new VisitaDAO(this);
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try{
+			viDao.open();
+			// obtener visitas en estado diferente a procesado
+			
+			List<Visita> ls = viDao.obtenerVisitasEmpleado();
+			for(Visita vi : ls){
+				
+				if(vi.getHoraInicioVisita()!=null)
+					vi.setStrhoraInicioVisita(dateformat.format(vi.getHoraInicioVisita()));
+				if(vi.getHoraFinalVisita()!=null)
+					vi.setStrhoraFinalVisita(dateformat.format(vi.getHoraFinalVisita()));
+				sinc.actualizarVisita(vi);
+				
+			}
+		} catch(Exception ex){
+			Log.w("pushVisita", "err "+ ex.getMessage());
+			
+		} finally{
+			viDao.close();
+			
+		}
+		
+	}
 	
 	
 	

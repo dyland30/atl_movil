@@ -13,7 +13,7 @@ namespace ATL.DAO.Contrato
          IDataReader buscarPorCodigo(long codigoPedido);
          IDataReader obtenerPedidos();
          void actualizarPedido(Pedido pedido);
-         void gestionarRetenciones();
+         void gestionarRetenciones(long idpedido);
 
     }
 }

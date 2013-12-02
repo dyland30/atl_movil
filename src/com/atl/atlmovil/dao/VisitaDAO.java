@@ -76,6 +76,29 @@ public class VisitaDAO {
 		 
 	 }
 	 
+	 public List<Visita> obtenerVisitasEmpleado(){
+		 List<Visita> ls = null;
+		 Usuario usr = obtenerUsuarioLogueado();
+		 if(usr!=null){
+			 ls = new ArrayList<Visita>();
+			 
+			 Cursor cursor = database.query(Visita.class.getSimpleName(), allColumns, " codigoEmpleado='"+usr.getCodigoEmpleado()+"' and codigoEstadoVisita <> '1' ",null, null,null,null);
+			 cursor.moveToFirst();
+			 while(!cursor.isAfterLast()){
+				 Visita vi = cursorToEnt(cursor);
+				 ls.add(vi);
+				 cursor.moveToNext();
+			 }
+			 cursor.close();
+			 
+		 }
+		
+		 return ls;
+		 
+		 
+	 }
+	 
+	 
 	 public void eliminar(Visita vi){
 		 long id = vi.getCodigoVisita();
 		 database.delete(Visita.class.getSimpleName(),"codigoVisita = "+id,null);

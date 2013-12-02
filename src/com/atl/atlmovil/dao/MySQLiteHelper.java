@@ -40,7 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
 	
 	//------------------------------------------------------------------
-	private static final int DATABASE_VERSION = 36;
+	private static final int DATABASE_VERSION = 45;
 	private static final String DATABASE_NAME = "atlmovil.db";
 	
 	private static final String C_TB_USUARIO = " CREATE TABLE Usuario " +
@@ -121,7 +121,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private static final String C_TB_AMORTIZACION = "CREATE TABLE Amortizacion (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT) ; ";
+			"idCobranza INTEGER, codigoDocumentoPago INTEGER, importeAmortizacion NUMERIC, anotacionAmortizacion TEXT, codigoAmortizacion INTEGER) ; ";
 	
 	private static final String C_TB_MEDIO_PAGO = "CREATE TABLE MedioPago (codigoMedioPago INTEGER PRIMARY KEY NOT NULL," +
 			"descripcionMedioPago TEXT) ; ";

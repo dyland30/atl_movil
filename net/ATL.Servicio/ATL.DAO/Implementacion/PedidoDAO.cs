@@ -68,14 +68,26 @@ namespace ATL.DAO.Implementacion
         }
 
 
-        public void gestionarRetenciones()
+        public void gestionarRetenciones(long idPedido)
         {
             DBHelper helper = DBHelper.GetInstance();
-            int resp = helper.Ejecute("usp_LEVANTAR_RETENCIONES");
-            if (resp == -2)
+            if (idPedido > 0)
             {
-                throw helper.getErrorReal();
+                int resp = helper.Ejecute("USP_PROCESAR_PEDIDO", idPedido);
+                if (resp == -2)
+                {
+                    throw helper.getErrorReal();
+                }
             }
+            else {
+                int resp = helper.Ejecute("usp_LEVANTAR_RETENCIONES");
+                if (resp == -2)
+                {
+                    throw helper.getErrorReal();
+                }
+            
+            }
+            
             
         }
     }

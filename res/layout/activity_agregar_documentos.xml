@@ -18,26 +18,12 @@
         android:text="@string/blanco" />
 
     <TextView
-        android:id="@+id/lblClienteBuscarDocumento"
+        android:id="@+id/lblReferenciaRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lblNroCobranzaAgregarDocumentos"
         android:layout_below="@+id/lblNroCobranzaAgregarDocumentos"
-        android:text="@string/tipoDocumento" />
-
-    <Spinner
-        android:id="@+id/cmbTipoDocumentoAgregarDoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lblClienteBuscarDocumento"
-        android:layout_below="@+id/lblClienteBuscarDocumento" />
-
-    <TextView
-        android:id="@+id/lblReferenciaRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cmbTipoDocumentoAgregarDoc"
-        android:layout_below="@+id/cmbTipoDocumentoAgregarDoc"
+        
         android:text="@string/documentoPago" />
 
     <EditText
@@ -51,15 +37,33 @@
         android:inputType="none"
         >
 
-        <requestFocus />
     </EditText>
+    
+      <TextView
+        android:id="@+id/lblClienteBuscarDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDocumentoPagoAgregarDoc"
+        android:layout_below="@+id/txtDocumentoPagoAgregarDoc"
+        android:text="@string/tipoDocumento" />
 
+      <EditText
+          android:id="@+id/txtTipoDocumentoAgregarDoc"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/lblClienteBuscarDocumento"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/lblClienteBuscarDocumento"
+          android:editable="false"
+          android:ems="10"
+          android:inputType="none" />
+      
     <TextView
         android:id="@+id/lblImporteOriginalRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDocumentoPagoAgregarDoc"
-        android:layout_below="@+id/btnAgregarDocumentoPago"
+        android:layout_alignLeft="@+id/txtTipoDocumentoAgregarDoc"
+        android:layout_below="@+id/txtTipoDocumentoAgregarDoc"
         android:text="@string/fechaVencimiento" />
 
     <EditText
@@ -67,13 +71,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lblImporteOriginalRow"
-        android:layout_alignRight="@+id/cmbTipoDocumentoAgregarDoc"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/lblImporteOriginalRow"
+        android:editable="false"
         android:ems="10"
-		android:editable="false"
-        android:inputType="none"         
-
-/>
+        android:inputType="none" />
 
     <TextView
         android:id="@+id/lblImportePendienteRow"
